@@ -6,6 +6,7 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  important: "#__next",
   theme: {
     extend: {
       backgroundImage: {
@@ -15,12 +16,14 @@ const config: Config = {
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
-      },
-      colors: {
-        loginBtn: "rgba(31, 35, 38)",
+        roboto: ["Roboto", "sans-serif"],
       },
     },
   },
   plugins: [],
+  corePlugins: {
+    preflight: false,
+  },
 };
+
 export default config;
