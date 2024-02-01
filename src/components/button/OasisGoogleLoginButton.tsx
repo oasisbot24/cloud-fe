@@ -9,6 +9,8 @@ export default function OasisGoogleLoginButton() {
       onError={() => {
         console.log("Login Failed");
       }}
+      size="large"
+      width="260"
     />
   );
 }
