@@ -9,6 +9,9 @@ const config: Config = {
         poppins: ["Poppins", "sans-serif"],
         roboto: ["Roboto", "sans-serif"],
       },
+      colors: {
+        darkBlue: "#373B5C",
+      },
     },
   },
   plugins: [],
