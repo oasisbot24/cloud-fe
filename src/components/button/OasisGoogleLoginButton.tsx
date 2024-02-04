@@ -1,13 +1,23 @@
-import { GoogleLogin } from "@react-oauth/google";
+import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 
-export default function OasisGoogleLoginButton() {
+interface OasisGoogleLoginButtonProps {
+  onSuccess: (credentialResponse: CredentialResponse) => void;
+  onError: () => void;
+}
+
+export default function OasisGoogleLoginButton({
+  onSuccess,
+  onError,
+}: OasisGoogleLoginButtonProps) {
   return (
     <GoogleLogin
       onSuccess={credentialResponse => {
-        console.log(credentialResponse);
+        console.log("Login Success");
+        onSuccess(credentialResponse);
       }}
       onError={() => {
         console.log("Login Failed");
+        onError();
       }}
       size="large"
       width="260"
