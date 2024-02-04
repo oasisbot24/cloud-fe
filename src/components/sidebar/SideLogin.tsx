@@ -1,29 +1,19 @@
-import { useState } from "react";
-import OasisGoogleLoginButton from "@/components/button/OasisGoogleLoginButton";
-import AfterLogin from "@/components/sidebar/AfterLogin";
-import { CredentialResponse } from "@react-oauth/google";
-import axios from "axios";
+import React, { useState } from "react";
 import Image from "next/image";
+import AfterLogin from "@/components/sidebar/AfterLogin";
+import OasisGoogleLoginButton from "@/components/button/OasisGoogleLoginButton";
+import { CredentialResponse } from "@react-oauth/google";
 
 function SideLogin() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const onSuccess = (credential: CredentialResponse) => {
     setIsLoggedIn(true);
-    axios
-      .post("http://3.36.71.228:8080/api/v1/signin", {
-        credential: credential.credential,
-      })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    console.log(credential);
   };
 
   return (
-    <div className="h-lvh xl:w-1/4 lg:w-2/5 md:w-2/5 sm:w-full xs:w-full bg-white flex flex-col self-stretch items-center select-none shadow-md">
+    <div className="w-full h-full bg-white flex flex-col self-stretch items-center select-none">
       <Image
         src="/logo/oasis-black.svg"
         alt="logo"
@@ -48,5 +38,4 @@ function SideLogin() {
     </div>
   );
 }
-
 export default SideLogin;
