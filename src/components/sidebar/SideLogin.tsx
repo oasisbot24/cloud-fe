@@ -9,12 +9,12 @@ function SideLogin() {
   return (
     <div className="h-lvh xl:w-1/4 lg:w-2/5 md:w-2/5 sm:w-full xs:w-full bg-white flex flex-col self-stretch items-center select-none shadow-md">
       <Image
-        src="oasis-logo.svg"
+        src="/logo/oasis-black.svg"
         alt="logo"
         width={120}
         height={138}
-        priority
         className="mt-10 w-32 h-auto"
+        priority
       />
       <div className="text-4xl font-poppins font-semibold uppercase">OASIS</div>
       <div className="text-lg font-poppins font-semibold">
