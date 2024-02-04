@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import AfterLogin from "@/components/sidebar/AfterLogin";
+import OasisGoogleLoginButton from "@/components/button/OasisGoogleLoginButton";
 
 function SideLogin() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -10,9 +11,9 @@ function SideLogin() {
       <Image
         src="oasis-logo.svg"
         alt="logo"
-        width="120"
-        height="138"
-        priority={true}
+        width={120}
+        height={138}
+        priority
         className="mt-10 w-32 h-auto"
       />
       <div className="text-4xl font-poppins font-semibold uppercase">OASIS</div>
@@ -20,16 +21,7 @@ function SideLogin() {
         Search for the vein of money
       </div>
       <div className="flex flex-col flex-grow mt-9 items-center">
-        {!isLoggedIn && (
-          <Image
-            src="/google-login-temp.svg"
-            alt="google-login"
-            width="260"
-            height="59"
-            className="w-64 h-auto"
-            onClick={() => setIsLoggedIn(!isLoggedIn)}
-          />
-        )}
+        {!isLoggedIn && <OasisGoogleLoginButton />}
         {isLoggedIn && <AfterLogin />}
       </div>
       <div className="mb-8 font-poppins text-sm font-normal">

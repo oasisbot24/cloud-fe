@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Paper } from "@mui/material";
 import Selectbox from "@/components/basic/Selectbox";
-import SidebarButton from "@/components/sidebar/SidebarButton";
+import SidebarButton from "@/components/button/SidebarButton";
 
 function AfterLogin() {
   const [exchange, setExchange] = useState("");
