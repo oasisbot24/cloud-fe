@@ -2,12 +2,18 @@ import React, { useState } from "react";
 import Image from "next/image";
 import AfterLogin from "@/components/sidebar/AfterLogin";
 import OasisGoogleLoginButton from "@/components/button/OasisGoogleLoginButton";
+import { CredentialResponse } from "@react-oauth/google";
 
 function SideLogin() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const onSuccess = (credential: CredentialResponse) => {
+    setIsLoggedIn(true);
+    console.log(credential);
+  };
+
   return (
-    <div className="h-lvh xl:w-1/4 lg:w-2/5 md:w-2/5 sm:w-full xs:w-full bg-white flex flex-col self-stretch items-center select-none shadow-md">
+    <div className="w-full h-full bg-white flex flex-col self-stretch items-center select-none">
       <Image
         src="/logo/oasis-black.svg"
         alt="logo"
@@ -21,7 +27,9 @@ function SideLogin() {
         Search for the vein of money
       </div>
       <div className="flex flex-col flex-grow mt-9 items-center">
-        {!isLoggedIn && <OasisGoogleLoginButton />}
+        {!isLoggedIn && (
+          <OasisGoogleLoginButton onSuccess={onSuccess} onError={() => {}} />
+        )}
         {isLoggedIn && <AfterLogin />}
       </div>
       <div className="mb-8 font-poppins text-sm font-normal">
@@ -30,5 +38,4 @@ function SideLogin() {
     </div>
   );
 }
-
 export default SideLogin;

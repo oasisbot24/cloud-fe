@@ -7,7 +7,6 @@ import "@fontsource/roboto/700.css";
 import "@/styles/globals.css";
 
 export default function App({ Component, pageProps }: AppProps) {
-  console.log(process.env.NEXT_PUBLIC_GOOGLE_OAUTH_CLIENT_ID);
   return (
     <GoogleOAuthProvider
       clientId={process.env.NEXT_PUBLIC_GOOGLE_OAUTH_CLIENT_ID ?? ""}
