@@ -12,6 +12,7 @@ const config: Config = {
       colors: {
         darkBlue: "#373B5C",
         purple: "#8859EC",
+        "gray-80": "#F3F3F3",
         "gray-100": "#F5F5F5",
         "gray-200": "#E5E5E5",
         "gray-300": "#D4D4D4",

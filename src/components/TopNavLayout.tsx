@@ -13,7 +13,7 @@ interface TopNavLayoutProps {
 
 export default function TopNavLayout({ children }: TopNavLayoutProps) {
   return (
-    <main className="w-full h-screen">
+    <main className="w-full h-screen bg-gray-80">
       <Stack className="h-full">
         <Paper
           variant="elevation"
