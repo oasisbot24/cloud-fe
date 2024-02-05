@@ -1,8 +1,12 @@
+/* Dependencies */
 import React, { useState } from "react";
 import Image from "next/image";
+import { CredentialResponse } from "@react-oauth/google";
+
+/* Components */
+import Footer from "@/components/basic/Footer";
 import AfterLogin from "@/components/sidebar/AfterLogin";
 import OasisGoogleLoginButton from "@/components/button/OasisGoogleLoginButton";
-import { CredentialResponse } from "@react-oauth/google";
 
 function SideLogin() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -32,9 +36,7 @@ function SideLogin() {
         )}
         {isLoggedIn && <AfterLogin />}
       </div>
-      <div className="mb-8 font-poppins text-sm font-normal">
-        Copyright 2024. OASIS. All rights reserved.
-      </div>
+      <Footer mb={8} />
     </div>
   );
 }
