@@ -15,6 +15,7 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 /* Components */
 import TopNavLayout from "@/components/TopNavLayout";
+import BotSetting from "@/components/oasisbot/BotSetting";
 
 const StyledCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -104,9 +105,7 @@ function OasisBot() {
           </div>
         </div>
         <div className="content flex grow mt-3">
-          <div className="bot grow basis-2/5 mr-5 p-2.5 bg-white font-roboto font-semibold rounded-xl">
-            오아시스봇
-          </div>
+          <BotSetting />
           <div className="profit grow basis-3/5 p-2.5 bg-white font-roboto font-semibold rounded-xl">
             수익내역
           </div>
