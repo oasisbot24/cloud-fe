@@ -1,14 +1,19 @@
+/* Dependencies */
 import React from "react";
-import { Paper, Stack } from "@mui/material";
 import Image from "next/image";
+import { Paper, Stack } from "@mui/material";
 
+/* Components */
+import Footer from "@/components/basic/Footer";
+
+/* interfaces */
 interface TopNavLayoutProps {
   children: React.ReactNode;
 }
 
 export default function TopNavLayout({ children }: TopNavLayoutProps) {
   return (
-    <main className="w-full h-screen">
+    <main className="w-full h-screen bg-gray-80">
       <Stack className="h-full">
         <Paper
           variant="elevation"
@@ -34,7 +39,15 @@ export default function TopNavLayout({ children }: TopNavLayoutProps) {
             <div className="w-1/12">Nav</div>
           </Stack>
         </Paper>
-        <div className="px-16 py-8 h-full">{children}</div>
+        <div className="px-16 py-8 h-full z-10">{children}</div>
+        <Image
+          src="/main/hero-bg.png"
+          width={1800}
+          height={234}
+          className="w-full h-auto fixed bottom-0 z-0"
+          alt="bg"
+        />
+        <Footer center />
       </Stack>
     </main>
   );

@@ -10,8 +10,11 @@ const config: Config = {
         roboto: ["Roboto", "sans-serif"],
       },
       colors: {
+        scarlet: "#DF5656",
+        navy: "#1A278C",
         darkBlue: "#373B5C",
         purple: "#8859EC",
+        "gray-80": "#F3F3F3",
         "gray-100": "#F5F5F5",
         "gray-200": "#E5E5E5",
         "gray-300": "#D4D4D4",
