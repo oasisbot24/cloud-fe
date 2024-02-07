@@ -1,10 +1,16 @@
+/* Dependencies */
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { Button, Paper, Stack } from "@mui/material";
 import { useAtom } from "jotai";
 import authAtom from "@/datas/auth";
+import { Paper, Stack } from "@mui/material";
 
+/* Components */
+import Footer from "@/components/basic/Footer";
+
+/* interfaces */
 interface TopNavLayoutProps {
   children: React.ReactNode;
 }
@@ -37,7 +43,7 @@ export default function TopNavLayout({ children }: TopNavLayoutProps) {
   const router = useRouter();
   const { pathname } = router;
   return (
-    <main className="w-full h-screen">
+    <main className="w-full h-screen bg-gray-80">
       <Stack className="h-full">
         <Paper
           variant="elevation"
@@ -96,9 +102,17 @@ export default function TopNavLayout({ children }: TopNavLayoutProps) {
           className="min-h-[calc(100%-60px)] h-[calc(100%-60px)] px-4 gap-[20px]"
         >
           <div className="w-1/12" />
-          <div className="w-5/6 py-6">{children}</div>
+          <div className="w-5/6 py-6 z-10">{children}</div>
           <div className="w-1/12" />
         </Stack>
+        <Image
+          src="/main/hero-bg.png"
+          width={1800}
+          height={234}
+          className="w-full h-auto fixed bottom-0 z-0"
+          alt="bg"
+        />
+        <Footer center />
       </Stack>
     </main>
   );

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
+import Footer from "@/components/basic/Footer";
 import OasisGoogleLoginButton from "@/components/button/OasisGoogleLoginButton";
 import AfterLogin from "@/components/sidebar/AfterLogin";
 
@@ -30,9 +31,7 @@ function SideLogin() {
         )}
         {isLoggedIn && <AfterLogin />}
       </div>
-      <div className="mb-8 font-poppins text-sm font-normal">
-        Copyright 2024. OASIS. All rights reserved.
-      </div>
+      <Footer />
     </div>
   );
 }

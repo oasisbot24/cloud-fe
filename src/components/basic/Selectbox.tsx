@@ -16,16 +16,25 @@ type Props = {
   }[];
   state: string;
   setState: (value: string) => void;
+  className?: string;
+  disabled?: boolean;
 };
 
-// state, setState는 임시로 해둔 것.
-function Selectbox({ labelId, selectLabel, itemList, state, setState }: Props) {
+function Selectbox({
+  labelId,
+  selectLabel,
+  itemList,
+  state,
+  setState,
+  className,
+  disabled,
+}: Props) {
   const handleChange = (event: SelectChangeEvent) => {
     setState(event.target.value as string);
   };
 
   return (
-    <FormControl size="small">
+    <FormControl size="small" className={className} disabled={disabled}>
       <InputLabel
         id={labelId}
         sx={{
