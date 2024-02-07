@@ -1,22 +1,13 @@
 import { useState } from "react";
 import Image from "next/image";
-import { CredentialResponse } from "@react-oauth/google";
-import { useMutation } from "@tanstack/react-query";
 import OasisGoogleLoginButton from "@/components/button/OasisGoogleLoginButton";
 import AfterLogin from "@/components/sidebar/AfterLogin";
-import signin from "@/apis/signin";
 
 function SideLogin() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const signinMutation = useMutation({
-    mutationFn: signin,
-    onSuccess: () => {
-      setIsLoggedIn(true);
-    },
-  });
 
-  const onSuccess = (credential: CredentialResponse) => {
-    signinMutation.mutate(credential.credential || "");
+  const onSuccess = () => {
+    setIsLoggedIn(true);
   };
 
   return (
