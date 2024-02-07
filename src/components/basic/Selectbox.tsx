@@ -17,6 +17,7 @@ type Props = {
   state: string;
   setState: (value: string) => void;
   className?: string;
+  disabled?: boolean;
 };
 
 function Selectbox({
@@ -26,13 +27,14 @@ function Selectbox({
   state,
   setState,
   className,
+  disabled,
 }: Props) {
   const handleChange = (event: SelectChangeEvent) => {
     setState(event.target.value as string);
   };
 
   return (
-    <FormControl size="small" className={className}>
+    <FormControl size="small" className={className} disabled={disabled}>
       <InputLabel
         id={labelId}
         sx={{

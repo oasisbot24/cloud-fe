@@ -1,6 +1,7 @@
 /* Dependencies */
-import React from "react";
+import React, { useState } from "react";
 import {
+  Box,
   Paper,
   Table,
   TableBody,
@@ -16,6 +17,8 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 /* Components */
 import TopNavLayout from "@/components/TopNavLayout";
 import BotSetting from "@/components/oasisbot/BotSetting";
+import BotSettingRunning from "@/components/oasisbot/BotSettingRunning";
+import ProfitPart from "@/components/oasisbot/ProfitPart";
 
 const StyledCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -33,14 +36,14 @@ const StyledCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const columns: GridColDef[] = [
-  { field: "time", headerName: "거래시각", width: 200 },
-  { field: "item", headerName: "종목", width: 200 },
-  { field: "position", headerName: "포지션", width: 200 },
-  { field: "price", headerName: "매수/매도가", width: 200 },
-  { field: "amount", headerName: "매수/매도수량", width: 200 },
-  { field: "totalPrice", headerName: "총매수/매도금액", width: 200 },
-  { field: "profitRatio", headerName: "손익률", width: 200 },
-  { field: "realizedProfit", headerName: "실현손익", width: 200 },
+  { field: "time", headerName: "거래시각", width: 220 },
+  { field: "item", headerName: "종목", width: 220 },
+  { field: "position", headerName: "포지션", width: 220 },
+  { field: "price", headerName: "매수/매도가", width: 220 },
+  { field: "amount", headerName: "매수/매도수량", width: 220 },
+  { field: "totalPrice", headerName: "총매수/매도금액", width: 220 },
+  { field: "profitRatio", headerName: "손익률", width: 220 },
+  { field: "realizedProfit", headerName: "실현손익", width: 220 },
 ];
 
 const rows = [
@@ -59,7 +62,7 @@ const rows = [
     id: 2,
     time: "22-06-23 22:09:11",
     item: "비트코인",
-    position: "BUY",
+    position: "SELL",
     price: 30122334,
     amount: 0.1,
     totalPrice: 3012233,
@@ -69,6 +72,8 @@ const rows = [
 ];
 
 function OasisBot() {
+  const [isRunning, setIsRunning] = useState<boolean>(false);
+
   return (
     <TopNavLayout>
       <TableContainer
@@ -105,27 +110,31 @@ function OasisBot() {
           </div>
         </div>
         <div className="content flex grow mt-3">
-          <BotSetting />
-          <div className="profit grow basis-3/5 p-2.5 bg-white font-roboto font-semibold rounded-xl">
-            수익내역
-          </div>
+          {!isRunning ? (
+            <BotSetting setIsRunning={setIsRunning} />
+          ) : (
+            <BotSettingRunning setIsRunning={setIsRunning} />
+          )}
+          <ProfitPart />
         </div>
       </div>
       <div className="transactionHistory mt-10">
         <div className="label grow py-2 pl-4 bg-darkBlue text-white font-roboto font-semibold rounded-md">
           거래내역
         </div>
-        <DataGrid
-          className="mt-3"
-          columns={columns}
-          rows={rows}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 10 },
-            },
-          }}
-          pageSizeOptions={[5, 10]}
-        />
+        <Box className="mt-3 bg-white rounded-md">
+          <DataGrid
+            className="font-roboto"
+            columns={columns}
+            rows={rows}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 10 },
+              },
+            }}
+            pageSizeOptions={[5, 10]}
+          />
+        </Box>
       </div>
     </TopNavLayout>
   );
