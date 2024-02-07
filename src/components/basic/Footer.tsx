@@ -1,14 +1,13 @@
 import React from "react";
 
 type Props = {
-  mb?: number;
   center?: boolean;
 };
 
-function Footer({ mb, center }: Props) {
+function Footer({ center }: Props) {
   return (
     <div
-      className={`z-10 font-poppins text-sm font-normal mb-${mb} ${center ? "mx-auto" : ""}`}
+      className={`z-10 font-poppins text-sm font-normal ${center ? "mb-2.5" : "mb-8"} ${center ? "mx-auto" : ""}`}
     >
       Copyright 2024. OASIS. All rights reserved.
     </div>

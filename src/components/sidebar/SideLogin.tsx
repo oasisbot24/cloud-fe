@@ -36,7 +36,7 @@ function SideLogin() {
         )}
         {isLoggedIn && <AfterLogin />}
       </div>
-      <Footer mb={8} />
+      <Footer />
     </div>
   );
 }

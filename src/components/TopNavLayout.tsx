@@ -47,7 +47,7 @@ export default function TopNavLayout({ children }: TopNavLayoutProps) {
           className="w-full h-auto fixed bottom-0 z-0"
           alt="bg"
         />
-        <Footer mb={2.5} center />
+        <Footer center />
       </Stack>
     </main>
   );
