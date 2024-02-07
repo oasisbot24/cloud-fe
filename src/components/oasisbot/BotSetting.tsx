@@ -14,7 +14,7 @@ function BotSetting({ setIsRunning }: Props) {
   const [leverage, setLeverage] = useState<string>("");
 
   return (
-    <div className="grow basis-2/5 mr-5 p-2.5 bg-white font-roboto font-semibold rounded-xl shadow-md">
+    <div className="grow p-2.5 bg-white font-roboto font-semibold rounded-xl shadow-md">
       <div className="flex place-content-between">
         <div className="flex items-center">설정 프리셋</div>
         <Selectbox
