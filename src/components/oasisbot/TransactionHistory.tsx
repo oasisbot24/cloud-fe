@@ -1,4 +1,3 @@
-import React from "react";
 import { Box } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
@@ -39,7 +38,7 @@ function TransactionHistory() {
     },
   ];
   return (
-    <Box className="mt-3 bg-white rounded-md">
+    <Box className="bg-white rounded-md">
       <DataGrid
         className="font-roboto"
         columns={columns}

@@ -21,7 +21,7 @@ const route = [
   },
   {
     name: "오아시스 봇",
-    path: "/bot",
+    path: "/oasisbot",
   },
   {
     name: "백테스트",
@@ -33,7 +33,7 @@ const route = [
   },
   {
     name: "API 연결",
-    path: "/api",
+    path: "/setting",
   },
 ];
 
@@ -104,7 +104,7 @@ export default function TopNavLayout({ children }: TopNavLayoutProps) {
           <Stack
             direction="column"
             justifyContent="space-between"
-            className="w-5/6 py-6 z-10"
+            className="h-full w-5/6 py-6 z-10"
           >
             {children}
             <Footer center />

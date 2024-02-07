@@ -10,7 +10,7 @@ function BotSettingRunning({ setIsRunning }: Props) {
   const [preset, setPreset] = useState<string>("high");
 
   return (
-    <div className="grow basis-2/5 mr-5 p-2.5 bg-white font-poppins font-semibold rounded-xl shadow-md">
+    <div className="grow p-2.5 bg-white font-poppins font-semibold rounded-xl shadow-md">
       <div className="flex place-content-between items-center">
         <div className="flex">현재 상태</div>
         <div className="text-xl font-semibold text-scarlet">진입</div>
