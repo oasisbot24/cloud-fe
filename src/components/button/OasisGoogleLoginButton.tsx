@@ -23,9 +23,10 @@ export default function OasisGoogleLoginButton({
     const { credential } = credentialResponse;
     signinMutation.mutate(credential || "", {
       onSuccess: () => {
-        localStorage.setItem("credential", JSON.stringify(credential));
+        localStorage.setItem("credential", credential || "");
         const auth = jwtDecode(credential || "") as Auth;
         setAuth(auth);
+        onSuccess();
       },
     });
   };
@@ -34,7 +35,6 @@ export default function OasisGoogleLoginButton({
       onSuccess={credentialResponse => {
         console.log("Login Success");
         handleCredentialResponse(credentialResponse);
-        onSuccess();
       }}
       onError={() => {
         console.log("Login Failed");
