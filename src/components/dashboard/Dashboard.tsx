@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Background from "../common/Background";
 import CustomPaper from "../common/CustomPaper";
 import CustomTable from "../common/CustomTable";
 import CustomList from "./CustomList";
