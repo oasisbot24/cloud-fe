@@ -1,44 +1,50 @@
-
 import Image from "next/image";
 import Background from "../common/Background";
 import CustomPaper from "../common/CustomPaper";
-import Table from "../common/Table";
-import TradeCard from "./TradeCard";
+import CustomTable from "../common/CustomTable";
 import CustomList from "./CustomList";
 import PartnerImage from "./PartnerImage";
+import TradeCard from "./TradeCard";
 
-const row = ['접속 거래소','잔고','닉네임','사용시간']
-const data = [['UPBIT 거래소','100,000 KRW','ALPHA','00:00:12']]
-const listData = ['2024','업데이트 되었습니다']
-
+const row = ["접속 거래소", "잔고", "닉네임", "사용시간"];
+const data = ["UPBIT 거래소", "100,000 KRW", "ALPHA", "00:00:12"];
+const listData = ["2024", "업데이트 되었습니다"];
+const coin = [
+  { name: "비트코인", part: 70 },
+  { name: "이더리움", part: 20 },
+  { name: "기타", part: 10 },
+];
+const tradeData = {
+  duration: "0.32일",
+  holding: "0.32일",
+  transactions: "1,233회",
+  balance: "7,300,232 KRW",
+  volatility: "13.2%",
+  income: "+40.5%",
+  lose: "-5.2%",
+};
 
 export default function Dashboard() {
-    return (
-      <Background>
-        <div className="p-5">
-          <Table row={row} data={data}/>
+  return (
+    <div>
+      <div className="pt-5">
+        <CustomTable row={row} data={data} />
+      </div>
+      <div className="pt-5 flex flex-col gap-5  w-full">
+        <CustomPaper data={"트레이드 스타일"} widthSize={"98%"} />
+        <TradeCard income={75} lose={25} coin={coin} trade={tradeData} />
+      </div>
+      <div className="flex pt-5  w-full md:flex-col sm: flex-col lg:flex-row ">
+        <div className=" px-2 flex flex-col w-full">
+          <CustomPaper data={"제휴업체"} widthSize={"95%"} />
+          <PartnerImage />
         </div>
-        <div className="px-5 flex flex-col gap-5 ">
-          <CustomPaper data={'트레이드 스타일'} widthSize={'98%'}/>
-          <TradeCard/>
-        </div>
-        <div className="flex">
-          <div className="py-5 pl-10 flex-col w-full">
-            <div className="relative z-10">
-              <CustomPaper data={'제휴업체'} widthSize={'90%'}/>
-              <PartnerImage/>
-            </div>
-          </div>
-          
-          <div className="py-5 pl-5 flex flex-col  w-full">
-            <div className="relative z-10">
-              <CustomPaper data={'OASIS 패치 노트'} widthSize={'90%'}/>
-              <CustomList data={listData}/>
-            </div>
-          </div>
-        </div>
-      </Background>
-      
-    )
 
+        <div className="px-2 flex flex-col  w-full md:pt-5 sm:pt-5 lg:pt-0">
+          <CustomPaper data={"OASIS 패치 노트"} widthSize={"95%"} />
+          <CustomList data={listData} />
+        </div>
+      </div>
+    </div>
+  );
 }
