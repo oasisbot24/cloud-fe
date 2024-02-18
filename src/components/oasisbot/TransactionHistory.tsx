@@ -1,6 +1,11 @@
 import React from "react";
 import { Box, Chip, Typography } from "@mui/material";
-import { DataGrid, GridCellParams, GridColDef } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridCellParams,
+  GridColDef,
+  GridValueFormatterParams,
+} from "@mui/x-data-grid";
 import { amber, purple } from "@mui/material/colors";
 
 function TransactionHistory() {
@@ -38,9 +43,11 @@ function TransactionHistory() {
       width: 220,
       headerAlign: "center",
       align: "center",
+      valueFormatter: (params: GridValueFormatterParams<number>) =>
+        params.value ? `${params.value.toLocaleString()} KRW` : "-",
       renderCell: (params: GridCellParams) => (
         <Typography variant="body2" component="span">
-          {params.value.toLocaleString() + " KRW"}
+          {params.formattedValue}
         </Typography>
       ),
     },
@@ -57,9 +64,11 @@ function TransactionHistory() {
       width: 220,
       headerAlign: "center",
       align: "center",
+      valueFormatter: (params: GridValueFormatterParams<number>) =>
+        params.value ? `${params.value.toLocaleString()} KRW` : "-",
       renderCell: (params: GridCellParams) => (
         <Typography variant="body2" component="span">
-          {params.value.toLocaleString() + " KRW"}
+          {params.formattedValue}
         </Typography>
       ),
     },
@@ -85,9 +94,11 @@ function TransactionHistory() {
       width: 220,
       headerAlign: "center",
       align: "center",
+      valueFormatter: (params: GridValueFormatterParams<number>) =>
+        params.value ? `${params.value.toLocaleString()} KRW` : "-",
       renderCell: (params: GridCellParams) => (
         <Typography variant="body2" component="span">
-          {params.value.toLocaleString() + " KRW"}
+          {params.formattedValue}
         </Typography>
       ),
     },
