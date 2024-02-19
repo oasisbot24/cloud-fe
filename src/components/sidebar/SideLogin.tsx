@@ -1,19 +1,14 @@
-/* Dependencies */
-import React, { useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import { CredentialResponse } from "@react-oauth/google";
-
-/* Components */
 import Footer from "@/components/basic/Footer";
-import AfterLogin from "@/components/sidebar/AfterLogin";
 import OasisGoogleLoginButton from "@/components/button/OasisGoogleLoginButton";
+import AfterLogin from "@/components/sidebar/AfterLogin";
 
 function SideLogin() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const onSuccess = (credential: CredentialResponse) => {
+  const onSuccess = () => {
     setIsLoggedIn(true);
-    console.log(credential);
   };
 
   return (

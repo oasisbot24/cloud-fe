@@ -28,26 +28,28 @@ const StyledCell = styled(TableCell)(({ theme }) => ({
 
 function BotUseInfo() {
   return (
-    <TableContainer component={Paper} elevation={0} className="w-full">
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <StyledCell align="left">접속 거래소</StyledCell>
-            <StyledCell align="center">잔고</StyledCell>
-            <StyledCell align="center">닉네임</StyledCell>
-            <StyledCell align="right">사용시간</StyledCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <StyledCell align="left">UPBIT 거래소</StyledCell>
-            <StyledCell align="center">100,000 KRW</StyledCell>
-            <StyledCell align="center">ALPHA</StyledCell>
-            <StyledCell align="right">00:00:12</StyledCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <div className="h-fit">
+      <TableContainer component={Paper} elevation={0} className="w-full">
+        <Table size="small">
+          <TableHead>
+            <TableRow>
+              <StyledCell align="left">접속 거래소</StyledCell>
+              <StyledCell align="center">잔고</StyledCell>
+              <StyledCell align="center">닉네임</StyledCell>
+              <StyledCell align="right">사용시간</StyledCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <StyledCell align="left">UPBIT 거래소</StyledCell>
+              <StyledCell align="center">100,000 KRW</StyledCell>
+              <StyledCell align="center">ALPHA</StyledCell>
+              <StyledCell align="right">00:00:12</StyledCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
   );
 }
 

@@ -129,7 +129,7 @@ function TransactionHistory() {
     },
   ];
   return (
-    <Box className="mt-3 bg-white rounded-md">
+    <Box className="bg-white rounded-md">
       <DataGrid
         className="font-roboto"
         columns={columns}
