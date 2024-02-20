@@ -1,12 +1,14 @@
 import React from "react";
 import { Box, Chip, Typography } from "@mui/material";
+import { amber, purple } from "@mui/material/colors";
 import {
   DataGrid,
   GridCellParams,
   GridColDef,
+  GridTreeNode,
+  GridValidRowModel,
   GridValueFormatterParams,
 } from "@mui/x-data-grid";
-import { amber, purple } from "@mui/material/colors";
 
 function TransactionHistory() {
   const columns: GridColDef[] = [
@@ -24,7 +26,9 @@ function TransactionHistory() {
       width: 150,
       headerAlign: "center",
       align: "center",
-      renderCell: (params: GridCellParams) => (
+      renderCell: (
+        params: GridCellParams<GridValidRowModel, string, string, GridTreeNode>,
+      ) => (
         <Chip
           label={params.value}
           sx={{
@@ -45,7 +49,9 @@ function TransactionHistory() {
       align: "center",
       valueFormatter: (params: GridValueFormatterParams<number>) =>
         params.value ? `${params.value.toLocaleString()} KRW` : "-",
-      renderCell: (params: GridCellParams) => (
+      renderCell: (
+        params: GridCellParams<GridValidRowModel, number, string, GridTreeNode>,
+      ) => (
         <Typography variant="body2" component="span">
           {params.formattedValue}
         </Typography>
@@ -66,7 +72,9 @@ function TransactionHistory() {
       align: "center",
       valueFormatter: (params: GridValueFormatterParams<number>) =>
         params.value ? `${params.value.toLocaleString()} KRW` : "-",
-      renderCell: (params: GridCellParams) => (
+      renderCell: (
+        params: GridCellParams<GridValidRowModel, number, string, GridTreeNode>,
+      ) => (
         <Typography variant="body2" component="span">
           {params.formattedValue}
         </Typography>
@@ -78,15 +86,23 @@ function TransactionHistory() {
       width: 220,
       headerAlign: "center",
       align: "center",
-      renderCell: (params: GridCellParams) => (
-        <Typography
-          variant="body2"
-          component="span"
-          color={params.value.slice(0, 1) === "-" ? "blue" : "red"}
-        >
-          {params.value}
-        </Typography>
-      ),
+      valueFormatter: (params: GridValueFormatterParams<string>) => {
+        if (!params.value) return "-";
+        return params.value;
+      },
+      renderCell: (
+        params: GridCellParams<GridValidRowModel, string, string, GridTreeNode>,
+      ) => {
+        return (
+          <Typography
+            variant="body2"
+            component="span"
+            color={params.formattedValue?.slice(0, 1) === "-" ? "blue" : "red"}
+          >
+            {params.formattedValue}
+          </Typography>
+        );
+      },
     },
     {
       field: "realizedProfit",
@@ -96,7 +112,9 @@ function TransactionHistory() {
       align: "center",
       valueFormatter: (params: GridValueFormatterParams<number>) =>
         params.value ? `${params.value.toLocaleString()} KRW` : "-",
-      renderCell: (params: GridCellParams) => (
+      renderCell: (
+        params: GridCellParams<GridValidRowModel, number, string, GridTreeNode>,
+      ) => (
         <Typography variant="body2" component="span">
           {params.formattedValue}
         </Typography>
