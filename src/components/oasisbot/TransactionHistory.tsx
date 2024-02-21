@@ -12,18 +12,18 @@ import {
 
 function TransactionHistory() {
   const columns: GridColDef[] = [
-    { field: "time", headerName: "거래시각", width: 170 },
+    { field: "time", headerName: "거래시각", flex: 1 },
     {
       field: "item",
       headerName: "종목",
-      width: 150,
+      flex: 1,
       headerAlign: "center",
       align: "center",
     },
     {
       field: "position",
       headerName: "포지션",
-      width: 150,
+      flex: 1,
       headerAlign: "center",
       align: "center",
       renderCell: (
@@ -44,7 +44,7 @@ function TransactionHistory() {
     {
       field: "price",
       headerName: "매수/매도가",
-      width: 220,
+      flex: 1,
       headerAlign: "center",
       align: "center",
       valueFormatter: (params: GridValueFormatterParams<number>) =>
@@ -60,14 +60,14 @@ function TransactionHistory() {
     {
       field: "amount",
       headerName: "매수/매도수량",
-      width: 150,
+      flex: 1,
       headerAlign: "center",
       align: "center",
     },
     {
       field: "totalPrice",
       headerName: "총매수/매도금액",
-      width: 220,
+      flex: 1,
       headerAlign: "center",
       align: "center",
       valueFormatter: (params: GridValueFormatterParams<number>) =>
@@ -83,7 +83,7 @@ function TransactionHistory() {
     {
       field: "profitRatio",
       headerName: "손익률",
-      width: 220,
+      flex: 1,
       headerAlign: "center",
       align: "center",
       valueFormatter: (params: GridValueFormatterParams<string>) => {
@@ -107,7 +107,7 @@ function TransactionHistory() {
     {
       field: "realizedProfit",
       headerName: "실현손익",
-      width: 220,
+      flex: 1,
       headerAlign: "center",
       align: "center",
       valueFormatter: (params: GridValueFormatterParams<number>) =>
@@ -137,7 +137,7 @@ function TransactionHistory() {
     {
       id: 2,
       time: "22-06-23 22:09:11",
-      item: "비트코인",
+      item: "스테이터스네트워크토큰",
       position: "SELL",
       price: 30122334,
       amount: 0.1,
