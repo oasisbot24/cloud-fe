@@ -1,13 +1,21 @@
 import React, { useState } from "react";
 import { Button, Divider } from "@mui/material";
+import { useAtom } from "jotai";
 import Selectbox from "@/components/basic/Selectbox";
+import settingAtom from "@/datas/setting";
 
-type Props = {
-  setIsRunning: (value: boolean) => void;
-};
-
-function BotSettingRunning({ setIsRunning }: Props) {
+function BotSettingRunning() {
+  const [setting, setSetting] = useAtom(settingAtom);
   const [preset, setPreset] = useState<string>("high");
+
+  const stopBot = () => {
+    setSetting({
+      ...setting,
+      botStatus: {
+        isRunning: false,
+      },
+    });
+  };
 
   return (
     <div className="grow p-2.5 bg-white font-poppins font-semibold rounded-xl shadow-md">
@@ -43,7 +51,7 @@ function BotSettingRunning({ setIsRunning }: Props) {
       <div className="flex place-content-between mt-3">
         <Button
           variant="contained"
-          className="bg-gray-500 text-white text-base font-roboto font-semibold w-2/5 py-2 px-6"
+          className="bg-gray-300 text-white text-base font-roboto font-semibold w-2/5 py-2 px-6"
           disabled
         >
           세팅 변경
@@ -52,7 +60,7 @@ function BotSettingRunning({ setIsRunning }: Props) {
           variant="contained"
           color="error"
           className="text-white text-base font-roboto font-semibold w-2/5 py-2 px-6"
-          onClick={() => setIsRunning(false)}
+          onClick={stopBot}
         >
           중지
         </Button>

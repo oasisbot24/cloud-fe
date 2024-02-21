@@ -1,17 +1,25 @@
 import React, { useState } from "react";
 import { Button, Divider } from "@mui/material";
+import { useAtom } from "jotai";
 import Selectbox from "@/components/basic/Selectbox";
 import OasisbotInput from "@/components/input/OasisbotInput";
+import settingAtom from "@/datas/setting";
 
-type Props = {
-  setIsRunning: (value: boolean) => void;
-};
-
-function BotSetting({ setIsRunning }: Props) {
+function BotSetting() {
+  const [setting, setSetting] = useAtom(settingAtom);
   const [preset, setPreset] = useState<string>("high");
   const [coin, setCoin] = useState<string>("BTC");
   const [price, setPrice] = useState<string>("");
   const [leverage, setLeverage] = useState<string>("");
+
+  const startBot = () => {
+    setSetting({
+      ...setting,
+      botStatus: {
+        isRunning: true,
+      },
+    });
+  };
 
   return (
     <div className="grow p-2.5 bg-white font-roboto font-semibold rounded-xl shadow-md">
@@ -62,7 +70,7 @@ function BotSetting({ setIsRunning }: Props) {
         <Button
           variant="contained"
           className="bg-navy text-white text-base font-roboto font-semibold w-2/5 py-2 px-6"
-          onClick={() => setIsRunning(true)}
+          onClick={startBot}
         >
           저장 후 실행
         </Button>

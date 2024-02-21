@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
 import SettingsIcon from "@mui/icons-material/Settings";
+import StarIcon from "@mui/icons-material/Star";
 import {
   AppBar,
   Box,
@@ -44,10 +45,6 @@ const route = [
   {
     name: "프리셋 연결",
     path: "/preset",
-  },
-  {
-    name: "API 연결",
-    path: "/setting",
   },
 ];
 
@@ -90,7 +87,7 @@ export default function TopNavLayout({ children }: TopNavLayoutProps) {
                 direction="row"
                 justifyContent="space-between"
                 alignItems="center"
-                className="w-5/6 gap-[20px]"
+                className="shrink-0 w-5/6 gap-[20px]"
               >
                 {route.map(item => (
                   <Button
@@ -141,6 +138,10 @@ export default function TopNavLayout({ children }: TopNavLayoutProps) {
                         <MenuItem onClick={() => {}} className="px-4">
                           <PersonIcon className="text-gray-500 mr-2" />
                           요금 안내
+                        </MenuItem>
+                        <MenuItem onClick={() => {}} className="px-4">
+                          <StarIcon className="text-gray-500 mr-2" />
+                          API 연결
                         </MenuItem>
                         <Divider className="my-2" />
                         <MenuItem onClick={() => {}} className="px-4">

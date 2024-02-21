@@ -10,7 +10,7 @@ function AfterLogin() {
   const [setting, setSetting] = useAtom(settingAtom);
 
   const setExchange = (value: string) => {
-    setSetting({ ...setting, bank_name: value as "upbit" | "okx" });
+    setSetting({ ...setting, bankName: value as "upbit" | "okx" });
   };
 
   return (
@@ -22,14 +22,14 @@ function AfterLogin() {
           { value: "upbit", itemLabel: "UPBIT 거래소" },
           { value: "okx", itemLabel: "OKX 거래소" },
         ]}
-        state={setting.bank_name}
+        state={setting.bankName}
         setState={setExchange}
       />
       <SidebarButton onClick={() => router.push("/main")}>
         거래소 접속
       </SidebarButton>
 
-      {setting.bank_name === "okx" && (
+      {setting.bankName === "okx" && (
         <>
           <Paper
             elevation={0}
