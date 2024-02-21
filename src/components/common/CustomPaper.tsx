@@ -16,9 +16,8 @@ const BasicPaper = styled(Paper)(({ theme }) => ({
 
 interface PaperData {
   data: string;
-  widthSize: string;
 }
 
-export default function CustomPaper({ data, widthSize }: PaperData) {
-  return <BasicPaper style={{ width: widthSize }}>{data}</BasicPaper>;
+export default function CustomPaper({ data }: PaperData) {
+  return <BasicPaper>{data}</BasicPaper>;
 }

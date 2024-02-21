@@ -71,8 +71,7 @@ export default function TradeRight({ trade }: TradeData) {
               {trade?.income}
             </div>
             <div className="font-semibold font-poppins text-base">
-              {" "}
-              / {trade?.lose}
+              &nbsp; / {trade?.lose}
             </div>
           </div>
         </div>
