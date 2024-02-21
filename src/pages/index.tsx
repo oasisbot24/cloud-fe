@@ -1,4 +1,5 @@
 import MainDiscription from "@/components/MainDiscription";
+import Dashboard from "@/components/dashboard/Dashboard";
 import SideLogin from "@/components/sidebar/SideLogin";
 
 export default function Home() {
