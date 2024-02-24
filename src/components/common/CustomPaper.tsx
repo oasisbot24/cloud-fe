@@ -1,4 +1,6 @@
 import { Box, Paper, Stack, styled } from "@mui/material";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
 
 const BasicPaper = styled(Paper)(({ theme }) => ({
   // width: '98%',
@@ -11,7 +13,7 @@ const BasicPaper = styled(Paper)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   verticalAlign: "middle",
-  paddingLeft: "30px",
+  paddingLeft: "15px",
 }));
 
 interface PaperData {

@@ -4,8 +4,6 @@ import CustomTable from "../common/CustomTable";
 import PartnerImage from "./PartnerImage";
 import TradeCard from "./TradeCard";
 
-const row = ["접속 거래소", "잔고", "닉네임", "사용시간"];
-const data = ["UPBIT 거래소", "100,000 KRW", "ALPHA", "00:00:12"];
 const listData = ["2024", "업데이트 되었습니다"];
 const coin = [
   { name: "비트코인", part: 70 },
@@ -26,7 +24,7 @@ export default function Dashboard() {
   return (
     <div>
       <div className="pt-5">
-        <CustomTable row={row} data={data} />
+        <CustomTable />
       </div>
       <div className="pt-5 flex flex-col gap-5  w-full">
         <CustomPaper data={"트레이드 스타일"} />
