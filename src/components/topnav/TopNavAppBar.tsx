@@ -33,10 +33,12 @@ export default function TopNavAppBar({
   const { pathname } = router;
   const [auth] = useAtom(authAtom);
   const [setting] = useAtom(settingAtom);
-  const openMenu = (e: React.MouseEvent) => {
+
+  const toggleMenu = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setIsOpened(true);
+    setIsOpened(!isOpened);
   };
+
   return (
     <AppBar position="static" className="bg-darkBlue h-[60px]">
       <Stack
@@ -84,7 +86,7 @@ export default function TopNavAppBar({
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={openMenu}
+              onClick={toggleMenu}
               color="inherit"
             >
               <Image
