@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Button, Divider } from "@mui/material";
-import { DateField, LocalizationProvider } from "@mui/x-date-pickers";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Dayjs } from "dayjs";
 import Selectbox from "@/components/basic/Selectbox";
 import OasisbotInput from "@/components/input/OasisbotInput";
 
 function BackTestSetting() {
+  const [isRunning, setIsRunning] = useState<boolean>(false);
   const [preset, setPreset] = useState<string>("high");
   const [coin, setCoin] = useState<string>("BTC");
   const [price, setPrice] = useState<string>("");
@@ -48,13 +49,12 @@ function BackTestSetting() {
       <div className="flex place-content-between mt-4">
         <div className="flex items-center">테스트 기간</div>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DateField
-            id="testDate"
+          <DatePicker
             label="날짜 선택"
             value={testDate}
             onChange={newValue => setTestDate(newValue)}
-            size="small"
             className="w-72"
+            slotProps={{ textField: { size: "small" } }}
             sx={{
               "& label.Mui-focused": {
                 color: "black",
@@ -83,17 +83,19 @@ function BackTestSetting() {
       <div className="flex place-content-between">
         <Button
           variant="contained"
-          className="bg-gray-500 text-white text-base font-roboto font-semibold w-2/5 py-2 px-6"
-          // disabled
+          className={`text-white text-base font-roboto font-semibold w-2/5 py-2 px-6 ${isRunning ? "bg-red-500" : "bg-gray-400"}`}
+          onClick={() => setIsRunning(false)}
+          disabled={!isRunning}
         >
-          세팅 변경
+          중지
         </Button>
         <Button
           variant="contained"
-          className="bg-navy text-white text-base font-roboto font-semibold w-2/5 py-2 px-6"
+          className={`text-white text-base font-roboto font-semibold w-2/5 py-2 px-6 ${isRunning ? "bg-gray-400" : "bg-navy"}`}
           onClick={() => setIsRunning(true)}
+          disabled={isRunning}
         >
-          저장 후 실행
+          {isRunning ? "실행중" : "백테스트 실행"}
         </Button>
       </div>
     </div>
