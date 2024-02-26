@@ -1,5 +1,5 @@
 import React from "react";
-import TwoCircularChart from "./TwoCircularChart";
+import TwoCircularChart from "../dashboard/TwoCircularChart";
 
 type Props = {
   income: number;

@@ -3,6 +3,8 @@ import React from "react";
 const TextDataTypes = {
   percent: "percent",
   currency: "currency",
+  count: "count",
+  day: "day",
   number: "number",
 };
 
@@ -23,6 +25,10 @@ function TextData({ label, value, type, labelClass, valueClass }: Props) {
         return `${data}%`;
       case "currency":
         return `${data.toLocaleString()} KRW`;
+      case "count":
+        return `${data.toLocaleString()}회`;
+      case "day":
+        return `${data.toLocaleString()}일`;
       default:
         return data;
     }

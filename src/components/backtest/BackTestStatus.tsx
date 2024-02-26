@@ -7,8 +7,8 @@ import {
   linearProgressClasses,
   styled,
 } from "@mui/material";
-import TextData from "../basic/TextData";
-import WinningRate from "../dashboard/WinningRate";
+import TextData from "@/components/common/TextData";
+import WinningRate from "@/components/common/WinningRate";
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
@@ -33,8 +33,8 @@ function BackTestStatus() {
         </Box>
       </Stack>
       <Divider className="py-1.5 my-3 mx-3 border-b-[2px]" />
-      <div className="flex justify-between mt-3">
-        <div className="flex flex-col flex-1 mx-2">
+      <div className="flex justify-between mt-5">
+        <div className="flex flex-col flex-1 mx-2 my-3">
           <WinningRate income={85} lose={15} />
           <TextData
             label="손익률"
@@ -49,7 +49,7 @@ function BackTestStatus() {
           orientation="vertical"
           flexItem
         />
-        <div className="flex flex-col flex-1">
+        <div className="flex flex-col flex-1 my-3">
           <TextData
             label="현재금액"
             value={30002122}
@@ -64,7 +64,8 @@ function BackTestStatus() {
           />
           <TextData
             label="월 평균 매매 횟수"
-            value="420회"
+            value={420}
+            type="count"
             valueClass="font-normal"
           />
           <TextData

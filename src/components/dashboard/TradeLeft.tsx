@@ -1,6 +1,5 @@
-import ThreeCircularChart from "./ThreeCircularChart";
-import TwoCircularChart from "./TwoCircularChart";
-import WinningRate from "./WinningRate";
+import WinningRate from "@/components/common/WinningRate";
+import ThreeCircularChart from "@/components/dashboard/ThreeCircularChart";
 
 interface CoinItem {
   name: string;

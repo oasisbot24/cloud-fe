@@ -50,7 +50,40 @@ function BackTestSetting() {
         <div className="flex items-center">테스트 기간</div>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DatePicker
-            label="날짜 선택"
+            label="시작일"
+            value={testDate}
+            onChange={newValue => setTestDate(newValue)}
+            className="w-72"
+            slotProps={{ textField: { size: "small" } }}
+            sx={{
+              "& label.Mui-focused": {
+                color: "black",
+                borderWidth: "0.1px",
+              },
+              "& .MuiInput-underline:after": {
+                borderBottomColor: "black",
+              },
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "black",
+                },
+                "&:hover fieldset": {
+                  borderColor: "black",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "black",
+                  borderWidth: "0.1px",
+                },
+              },
+            }}
+          />
+        </LocalizationProvider>
+      </div>
+      <div className="flex place-content-between mt-4">
+        <div className="flex items-center" />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DatePicker
+            label="종료일"
             value={testDate}
             onChange={newValue => setTestDate(newValue)}
             className="w-72"
