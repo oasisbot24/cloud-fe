@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { headers } from "next/headers";
 import {
   Paper,
   Table,
@@ -11,7 +12,7 @@ import {
   tableCellClasses,
 } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import tradeStyle from "@/apis/tradeStyle";
 
 const StyledCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -30,29 +31,13 @@ const StyledCell = styled(TableCell)(({ theme }) => ({
 
 const row = ["접속 거래소", "잔고", "닉네임", "사용시간"];
 
-// const oasisUrl = "http://3.36.71.228:8080/api/v1";
-const oasisUrl = "http://localhost:9999";
-
 export default function CustomTable() {
-  const [data, setData] = useState([] as any);
+  const [field, setField] = useState([] as any);
 
-  const dashboard = useQuery({
-    queryKey: ["data"],
-    queryFn: () =>
-      axios.get(oasisUrl + "/user_dashboard").then(res => {
-        return res;
-      }),
-  });
-
-  useEffect(() => {
-    const user = dashboard.data?.data.data;
-    const userList = [];
-    userList.push(user.exchange);
-    userList.push(user.balance);
-    userList.push(user.nickName);
-    userList.push(user.usageTime);
-    setData(userList);
-  }, []);
+  // const data = useQuery({
+  //   queryKey: ["data"],
+  //   queryFn: userDashboard,
+  // });
 
   return (
     <div className="h-fit">
@@ -84,7 +69,7 @@ export default function CustomTable() {
           </TableHead>
           <TableBody>
             <TableRow>
-              {data?.map((item: any, index: any) =>
+              {field?.map((item: any, index: any) =>
                 index == 0 ? (
                   <StyledCell key={index} align="left">
                     {item}

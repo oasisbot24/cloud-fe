@@ -1,12 +1,14 @@
 {
   "user_dashboard": {
-    "data": {
-      "nickName": "홍길동",
-      "exchange": "Upbit",
-      "balance": 1000000,
-      "currencyUnit": "KRW",
-      "usageTime": "130034"
-    }
+    "data": [
+      {
+        "nickName": "홍길동",
+        "exchange": "Upbit",
+        "balance": 1000000,
+        "currencyUnit": "KRW",
+        "usageTime": "130034"
+      }
+    ]
   },
 
   "trade_style": {

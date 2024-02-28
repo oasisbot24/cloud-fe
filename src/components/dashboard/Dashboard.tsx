@@ -5,20 +5,6 @@ import PartnerImage from "./PartnerImage";
 import TradeCard from "./TradeCard";
 
 const listData = ["2024", "업데이트 되었습니다"];
-const coin = [
-  { name: "비트코인", part: 70 },
-  { name: "이더리움", part: 20 },
-  { name: "기타", part: 10 },
-];
-const tradeData = {
-  duration: "0.32일",
-  holding: "0.32일",
-  transactions: "1,233회",
-  balance: "7,300,232 KRW",
-  volatility: "13.2%",
-  income: "+40.5%",
-  lose: "-5.2%",
-};
 
 export default function Dashboard() {
   return (
@@ -28,7 +14,7 @@ export default function Dashboard() {
       </div>
       <div className="pt-5 flex flex-col gap-5  w-full">
         <CustomPaper data={"트레이드 스타일"} />
-        <TradeCard income={75} lose={25} coin={coin} trade={tradeData} />
+        <TradeCard />
       </div>
       <div className="flex pt-5  w-full md:flex-col sm: flex-col lg:flex-row gap-4">
         <div className="flex flex-col w-full">

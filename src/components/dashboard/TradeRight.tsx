@@ -2,13 +2,13 @@ import { Divider } from "@mui/material";
 
 interface TradeData {
   trade: {
-    duration: string;
-    holding: string;
-    transactions: string;
-    balance: string;
-    volatility: string;
-    income: string;
-    lose: string;
+    avgWaitTime: number;
+    avgCarryTime: number;
+    avgMonthlyTradeCount: number;
+    maxBalance: number;
+    volatility: number;
+    maxProfit: number;
+    minLoss: number;
   };
 }
 
@@ -22,7 +22,7 @@ export default function TradeRight({ trade }: TradeData) {
           </div>
 
           <div className="font-light font-poppins text-base">
-            {trade?.duration}
+            {trade?.avgWaitTime}
           </div>
         </div>
         <div className="flex justify-between">
@@ -31,7 +31,7 @@ export default function TradeRight({ trade }: TradeData) {
           </div>
 
           <div className="font-light font-poppins text-base">
-            {trade?.holding}
+            {trade?.avgCarryTime}
           </div>
         </div>
         <div className="flex justify-between">
@@ -40,7 +40,7 @@ export default function TradeRight({ trade }: TradeData) {
           </div>
 
           <div className="font-light font-poppins text-base">
-            {trade?.transactions}
+            {trade?.avgMonthlyTradeCount}
           </div>
         </div>
         <div className="flex justify-between">
@@ -49,7 +49,7 @@ export default function TradeRight({ trade }: TradeData) {
           </div>
 
           <div className="font-light font-poppins text-base">
-            {trade?.balance}
+            {trade?.maxBalance}
           </div>
         </div>
       </div>
@@ -68,10 +68,10 @@ export default function TradeRight({ trade }: TradeData) {
           </div>
           <div className="flex">
             <div className="font-semibold font-poppins text-base text-[#DF5656]">
-              {trade?.income}
+              {trade?.maxProfit}
             </div>
             <div className="font-semibold font-poppins text-base">
-              &nbsp; / {trade?.lose}
+              &nbsp; / {trade?.minLoss}
             </div>
           </div>
         </div>

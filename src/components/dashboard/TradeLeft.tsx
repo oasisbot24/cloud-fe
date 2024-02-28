@@ -7,30 +7,41 @@ interface CoinItem {
 }
 
 interface TradeData {
-  income: number;
-  lose: number;
-  coin: Array<CoinItem>;
+  winRate: number;
+  lossRate: number;
+  // tradeCoin: {
+  //   name: string;
+  //   part: number;
+  // };
 }
 
-export default function TradeLeft({ income, lose, coin }: TradeData) {
+const coin = [
+  { name: "비트코인", part: 70 },
+  { name: "이더리움", part: 20 },
+  { name: "기타", part: 10 },
+];
+
+export default function TradeLeft({ winRate, lossRate }: TradeData) {
   return (
     <>
       <div className="flex">
         <div>
           <div className="font-bold font-poppins text-lg">승률</div>
-          <TwoCircularChart income={income} />
+          <TwoCircularChart winRate={winRate} />
         </div>
         <div className="flex flex-col gap-3 mt-12 ml-5 w-full">
           <div className="flex justify-between">
             <div className="font-light font-poppins text-base">수익</div>
 
             <div className="font-bold font-poppins text-base">
-              {income + "%"}
+              {winRate + "%"}
             </div>
           </div>
           <div className="flex justify-between">
             <div className="font-light font-poppins text-base">손해</div>
-            <div className="font-bold font-poppins text-base">{lose + "%"}</div>
+            <div className="font-bold font-poppins text-base">
+              {lossRate + "%"}
+            </div>
           </div>
         </div>
       </div>

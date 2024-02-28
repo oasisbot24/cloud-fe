@@ -8,6 +8,8 @@ import {
   Typography,
   styled,
 } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
+import tradeStyle from "@/apis/tradeStyle";
 import TradeLeft from "./TradeLeft";
 import TradeRight from "./TradeRight";
 import Circular from "./TwoCircularChart";
@@ -37,15 +39,31 @@ interface TradeData {
   };
 }
 
-export default function TradeCard({ income, lose, coin, trade }: TradeData) {
+export default function TradeCard() {
+  const data = useQuery({
+    queryKey: ["data"],
+    queryFn: tradeStyle,
+  });
+
   return (
     <BasicCard>
       <CardContent sx={{ width: "50%" }}>
-        <TradeLeft income={income} lose={lose} coin={coin} />
+        <TradeLeft
+          winRate={
+            data && data.data?.data.data.winRate === undefined
+              ? 0
+              : data.data?.data.data.winRate
+          }
+          lossRate={
+            data && data.data?.data.data.winRate === undefined
+              ? 0
+              : 100 - data.data?.data.data.winRate
+          }
+        />
       </CardContent>
       <Divider orientation="vertical" variant="middle" flexItem />
       <CardContent sx={{ width: "50%" }}>
-        <TradeRight trade={trade} />
+        <TradeRight trade={data && data.data?.data.data} />
       </CardContent>
     </BasicCard>
   );
