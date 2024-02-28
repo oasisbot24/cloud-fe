@@ -3,14 +3,13 @@ import { Button } from "@mui/material";
 
 type Props = {
   children: string;
+  onClick?: () => void;
 };
 
-function SidebarButton({ children }: Props) {
+function SidebarButton({ children, onClick }: Props) {
   return (
     <Button
-      onClick={() => {
-        console.log(children);
-      }}
+      onClick={onClick}
       variant="contained"
       size="small"
       className="w-full mt-5 bg-black font-roboto text-base text-white font-semibold"

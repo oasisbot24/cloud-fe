@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import { useRouter } from "next/router";
 import { Paper } from "@mui/material";
+import { useAtom } from "jotai";
 import Selectbox from "@/components/basic/Selectbox";
 import SidebarButton from "@/components/button/SidebarButton";
+import settingAtom from "@/datas/setting";
 
 function AfterLogin() {
-  const [exchange, setExchange] = useState("");
+  const router = useRouter();
+  const [setting, setSetting] = useAtom(settingAtom);
+
+  const setExchange = (value: string) => {
+    setSetting({ ...setting, bankName: value as "upbit" | "okx" });
+  };
 
   return (
     <>
@@ -15,12 +22,14 @@ function AfterLogin() {
           { value: "upbit", itemLabel: "UPBIT 거래소" },
           { value: "okx", itemLabel: "OKX 거래소" },
         ]}
-        state={exchange}
+        state={setting.bankName}
         setState={setExchange}
       />
-      <SidebarButton>거래소 접속</SidebarButton>
+      <SidebarButton onClick={() => router.push("/main")}>
+        거래소 접속
+      </SidebarButton>
 
-      {exchange === "okx" && (
+      {setting.bankName === "okx" && (
         <>
           <Paper
             elevation={0}

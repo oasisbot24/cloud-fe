@@ -1,15 +1,12 @@
-import { useState } from "react";
 import Image from "next/image";
+import { useAtom } from "jotai";
 import Footer from "@/components/basic/Footer";
 import OasisGoogleLoginButton from "@/components/button/OasisGoogleLoginButton";
 import AfterLogin from "@/components/sidebar/AfterLogin";
+import authAtom from "@/datas/auth";
 
 function SideLogin() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const onSuccess = () => {
-    setIsLoggedIn(true);
-  };
+  const [auth] = useAtom(authAtom);
 
   return (
     <div className="w-full h-full bg-white flex flex-col self-stretch items-center select-none">
@@ -26,10 +23,7 @@ function SideLogin() {
         Search for the vein of money
       </div>
       <div className="flex flex-col flex-grow mt-9 items-center">
-        {!isLoggedIn && (
-          <OasisGoogleLoginButton onSuccess={onSuccess} onError={() => {}} />
-        )}
-        {isLoggedIn && <AfterLogin />}
+        {auth.email === undefined ? <OasisGoogleLoginButton /> : <AfterLogin />}
       </div>
       <Footer />
     </div>
