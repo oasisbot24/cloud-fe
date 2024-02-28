@@ -8,11 +8,15 @@ import TopNavAppBar from "@/components/topnav/TopNavAppBar";
 /* interfaces */
 interface TopNavLayoutProps {
   children: React.ReactNode;
+  hasBackground?: boolean;
 }
 
-export default function TopNavLayout({ children }: TopNavLayoutProps) {
+export default function TopNavLayout({
+  children,
+  hasBackground = true,
+}: TopNavLayoutProps) {
   return (
-    <main className="w-full h-screen">
+    <main className="w-full h-screen bg-[#F3F3F3]">
       <Stack className="h-full">
         <TopNavAppBar />
         <Stack
@@ -31,13 +35,15 @@ export default function TopNavLayout({ children }: TopNavLayoutProps) {
           </Stack>
           <div className="w-1/12 shrink-0" />
         </Stack>
-        <Image
-          src="/main/hero-bg.png"
-          width={1800}
-          height={234}
-          className="w-full h-auto fixed bottom-0 z-0"
-          alt="bg"
-        />
+        {hasBackground && (
+          <Image
+            src="/main/hero-bg.png"
+            width={1800}
+            height={234}
+            className="w-full h-auto fixed bottom-0 z-0"
+            alt="bg"
+          />
+        )}
       </Stack>
     </main>
   );
