@@ -6,8 +6,8 @@ import signin from "@/apis/signin";
 import authAtom, { Auth } from "@/datas/auth";
 
 interface OasisGoogleLoginButtonProps {
-  onSuccess: () => void;
-  onError: () => void;
+  onSuccess?: () => void;
+  onError?: () => void;
 }
 
 export default function OasisGoogleLoginButton({

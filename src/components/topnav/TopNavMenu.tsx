@@ -1,13 +1,15 @@
+import { useRouter } from "next/router";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
 import SettingsIcon from "@mui/icons-material/Settings";
 import StarIcon from "@mui/icons-material/Star";
 import { Divider, MenuItem, MenuList, Paper, Typography } from "@mui/material";
 import { useAtom } from "jotai";
-import authAtom from "@/datas/auth";
+import authAtom, { Auth } from "@/datas/auth";
 
 export default function TopNavMenu() {
-  const [auth] = useAtom(authAtom);
+  const { push } = useRouter();
+  const [auth, setAuth] = useAtom(authAtom);
   return (
     <Paper className="absolute top-[60px] right-0 min-w-[220px] z-[999]">
       <MenuList>
@@ -18,20 +20,42 @@ export default function TopNavMenu() {
           </Typography>
         </div>
         <Divider className="my-2" />
-        <MenuItem onClick={() => {}} className="px-4">
+        <MenuItem
+          onClick={() => {
+            push("/");
+          }}
+          className="px-4"
+        >
           <SettingsIcon className="text-gray-500 mr-2" />
           거래소 변경
         </MenuItem>
-        <MenuItem onClick={() => {}} className="px-4">
+        <MenuItem
+          onClick={() => {
+            push("/fee-info");
+          }}
+          className="px-4"
+        >
           <PersonIcon className="text-gray-500 mr-2" />
           요금 안내
         </MenuItem>
-        <MenuItem onClick={() => {}} className="px-4">
+        <MenuItem
+          onClick={() => {
+            push("/api-connection");
+          }}
+          className="px-4"
+        >
           <StarIcon className="text-gray-500 mr-2" />
           API 연결
         </MenuItem>
         <Divider className="my-2" />
-        <MenuItem onClick={() => {}} className="px-4">
+        <MenuItem
+          onClick={() => {
+            setAuth({} as Auth);
+            localStorage.removeItem("credential");
+            push("/");
+          }}
+          className="px-4"
+        >
           <LogoutIcon className="text-gray-500 mr-2" />
           로그아웃
         </MenuItem>
