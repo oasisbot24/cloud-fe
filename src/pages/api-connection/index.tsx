@@ -17,10 +17,10 @@ export default function ApiConnection() {
               height={124}
               alt="logo"
             />
-            <Typography className="text-4xl font-semibold font-['Poppins']">
+            <Typography className="text-4xl font-semibold font-poppins">
               OASIS
             </Typography>
-            <Typography className="text-xl font-regular font-['Poppins']">
+            <Typography className="text-xl font-regular font-poppins">
               Search for the vein of moeny
             </Typography>
           </Stack>
