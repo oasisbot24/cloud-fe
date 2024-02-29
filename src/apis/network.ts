@@ -1,11 +1,27 @@
 import axios from "axios";
 
-const getAccessTokenFromLocalStorage = () => {
-  const accessToken = localStorage.getItem("accessToken");
+const getAuthorizationFromLocalStorage = () => {
+  const accessToken = localStorage.getItem("authorization");
   if (!accessToken) {
     return null;
   }
   return accessToken;
+};
+
+const getAuthorizationRefreshFromLocalStorage = () => {
+  const refreshToken = localStorage.getItem("authorizationrefresh");
+  if (!refreshToken) {
+    return null;
+  }
+  return refreshToken;
+};
+
+const getExchangeFromLocalStorage = () => {
+  const exchange = localStorage.getItem("exchange");
+  if (!exchange) {
+    return null;
+  }
+  return exchange;
 };
 
 const oasisUrl = "http://3.36.71.228:8080/api/v1";
@@ -18,9 +34,15 @@ const api = axios.create({
 api.interceptors.request.use(
   async config => {
     if (typeof document !== "undefined") {
-      const accessToken = await getAccessTokenFromLocalStorage();
-      if (accessToken)
-        config.headers.set("authorization", `Bearer ${accessToken}`);
+      const authorization = getAuthorizationFromLocalStorage();
+      const authorizationRefresh = getAuthorizationRefreshFromLocalStorage();
+      const exchange = getExchangeFromLocalStorage();
+      config.headers.set("Authorization", `Bearer ${authorization}`);
+      config.headers.set(
+        "AuthorizationRefresh",
+        `Bearer ${authorizationRefresh}`,
+      );
+      config.headers.set("Exchange", exchange);
     }
     return config;
   },

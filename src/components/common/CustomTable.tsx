@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { headers } from "next/headers";
 import {
   Paper,
   Table,
@@ -11,7 +12,7 @@ import {
   tableCellClasses,
 } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import getUserDashboard from "@/apis/getUserDashboard";
 
 const StyledCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -30,29 +31,11 @@ const StyledCell = styled(TableCell)(({ theme }) => ({
 
 const row = ["접속 거래소", "잔고", "닉네임", "사용시간"];
 
-// const oasisUrl = "http://3.36.71.228:8080/api/v1";
-const oasisUrl = "http://localhost:9999";
-
 export default function CustomTable() {
-  const [data, setData] = useState([] as any);
-
-  const dashboard = useQuery({
-    queryKey: ["data"],
-    queryFn: () =>
-      axios.get(oasisUrl + "/user_dashboard").then(res => {
-        return res;
-      }),
+  const data = useQuery({
+    queryKey: ["user_dashboard"],
+    queryFn: getUserDashboard,
   });
-
-  useEffect(() => {
-    const user = dashboard.data?.data.data;
-    const userList = [];
-    userList.push(user.exchange);
-    userList.push(user.balance);
-    userList.push(user.nickName);
-    userList.push(user.usageTime);
-    setData(userList);
-  }, []);
 
   return (
     <div className="h-fit">
@@ -84,20 +67,24 @@ export default function CustomTable() {
           </TableHead>
           <TableBody>
             <TableRow>
-              {data?.map((item: any, index: any) =>
-                index == 0 ? (
-                  <StyledCell key={index} align="left">
-                    {item}
-                  </StyledCell>
-                ) : index == 3 ? (
-                  <StyledCell key={index} align="right">
-                    {item}
-                  </StyledCell>
-                ) : (
-                  <StyledCell key={index} align="center">
-                    {item}
-                  </StyledCell>
-                ),
+              {data && data.data === undefined ? (
+                <></>
+              ) : (
+                data.data?.map((item, index) =>
+                  index == 0 ? (
+                    <StyledCell key={index} align="left">
+                      {item}
+                    </StyledCell>
+                  ) : index == 3 ? (
+                    <StyledCell key={index} align="right">
+                      {item}
+                    </StyledCell>
+                  ) : (
+                    <StyledCell key={index} align="center">
+                      {item}
+                    </StyledCell>
+                  ),
+                )
               )}
             </TableRow>
           </TableBody>

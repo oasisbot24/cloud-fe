@@ -6,10 +6,10 @@ interface CoinItem {
 }
 
 interface TradeData {
-  coin: Array<CoinItem>;
+  tradeCoin: Array<CoinItem>;
 }
 
-export default function ThreeCircularChart({ coin }: TradeData) {
+export default function ThreeCircularChart({ tradeCoin }: TradeData) {
   return (
     <Box sx={{ position: "relative", display: "inline-flex" }}>
       <CircularProgress
@@ -27,7 +27,7 @@ export default function ThreeCircularChart({ coin }: TradeData) {
       />
       <CircularProgress
         variant="determinate"
-        value={coin[0].part + coin[1].part}
+        value={tradeCoin[0].part + tradeCoin[1].part}
         sx={{
           "&.MuiCircularProgress-colorPrimary": {
             color: "#FFD789",
@@ -43,7 +43,7 @@ export default function ThreeCircularChart({ coin }: TradeData) {
 
       <CircularProgress
         variant="determinate"
-        value={coin[0].part}
+        value={tradeCoin[0].part}
         sx={{
           "&.MuiCircularProgress-colorPrimary": {
             color: "#373B5C",
@@ -69,7 +69,7 @@ export default function ThreeCircularChart({ coin }: TradeData) {
         }}
       >
         <Typography variant="caption" component="div" color="#373B5C">
-          {coin[0].part + "%"}
+          {tradeCoin[0].part + "%"}
         </Typography>
       </Box>
     </Box>
