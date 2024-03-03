@@ -42,7 +42,7 @@ export default function TradeLeft({ winRate, lossRate, tradeCoin }: TradeData) {
           <div className="font-bold font-poppins text-lg">거래코인</div>
           {tradeCoin.length === 3 ? (
             <ThreeCircularChart tradeCoin={tradeCoin} />
-          ) : tradeCoin[0].name === undefined ? (
+          ) : tradeCoin.length === 0 ? (
             <TwoCircularChart rate={0} />
           ) : (
             <TwoCircularChart rate={tradeCoin[0].part} />

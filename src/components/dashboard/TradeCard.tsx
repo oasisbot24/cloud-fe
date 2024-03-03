@@ -46,7 +46,11 @@ export default function TradeCard() {
               ? 0
               : 100 - data.data?.data.data.winRate
           }
-          tradeCoin={coin}
+          tradeCoin={
+            data && data.data?.data.data.tradeCoin === undefined
+              ? []
+              : data.data?.data.data.tradeCoin
+          }
         />
       </CardContent>
       <Divider orientation="vertical" variant="middle" flexItem />
