@@ -11,7 +11,7 @@ const BasicPaper = styled(Paper)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   verticalAlign: "middle",
-  paddingLeft: "30px",
+  paddingLeft: "15px",
 }));
 
 interface PaperData {

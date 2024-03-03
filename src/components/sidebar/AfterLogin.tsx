@@ -1,16 +1,26 @@
+import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { Paper } from "@mui/material";
-import { useAtom } from "jotai";
+import { Alert, Paper } from "@mui/material";
 import Selectbox from "@/components/basic/Selectbox";
 import SidebarButton from "@/components/button/SidebarButton";
 import settingAtom from "@/datas/setting";
 
 function AfterLogin() {
+  const [exchange, setExchange] = useState("");
+  const [open, setOpen] = useState(false);
   const router = useRouter();
-  const [setting, setSetting] = useAtom(settingAtom);
+  const handleClick = () => {
+    if (exchange == "") {
+      setOpen(true);
+      return;
+    }
+    localStorage.setItem("exchange", exchange);
+    router.push("/main");
+  };
 
-  const setExchange = (value: string) => {
-    setSetting({ ...setting, bankName: value as "upbit" | "okx" });
+  const handleState = (value: any) => {
+    setOpen(false);
+    setExchange(value);
   };
 
   return (
@@ -22,14 +32,12 @@ function AfterLogin() {
           { value: "upbit", itemLabel: "UPBIT 거래소" },
           { value: "okx", itemLabel: "OKX 거래소" },
         ]}
-        state={setting.bankName}
-        setState={setExchange}
+        state={exchange}
+        setState={handleState}
       />
-      <SidebarButton onClick={() => router.push("/main")}>
-        거래소 접속
-      </SidebarButton>
+      <SidebarButton onClick={handleClick}>거래소 접속</SidebarButton>
 
-      {setting.bankName === "okx" && (
+      {exchange === "okx" && (
         <>
           <Paper
             elevation={0}
@@ -42,9 +50,12 @@ function AfterLogin() {
               수수료 50% 할인 혜택이 적용됩니다.
             </div>
           </Paper>
-          <SidebarButton>OKX 가입 링크</SidebarButton>
+          <SidebarButton onClick={() => console.log("링크")}>
+            OKX 가입 링크
+          </SidebarButton>
         </>
       )}
+      {open && <Alert severity="error">거래소를 선택해 주세요</Alert>}
     </>
   );
 }

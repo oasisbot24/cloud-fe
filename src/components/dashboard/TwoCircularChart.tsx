@@ -1,10 +1,10 @@
 import { Box, CircularProgress, Typography } from "@mui/material";
 
 interface TradeData {
-  income: number;
+  rate: number;
 }
 
-export default function TwoCircularChart({ income }: TradeData) {
+export default function TwoCircularChart({ rate }: TradeData) {
   return (
     <Box sx={{ position: "relative", display: "inline-flex" }}>
       <CircularProgress
@@ -22,7 +22,7 @@ export default function TwoCircularChart({ income }: TradeData) {
       />
       <CircularProgress
         variant="determinate"
-        value={income}
+        value={rate}
         sx={{
           "&.MuiCircularProgress-colorPrimary": {
             color: "#373B5C",
@@ -48,7 +48,7 @@ export default function TwoCircularChart({ income }: TradeData) {
         }}
       >
         <Typography variant="caption" component="div" color="#373B5C">
-          {income + "%"}
+          {rate + "%"}
         </Typography>
       </Box>
     </Box>

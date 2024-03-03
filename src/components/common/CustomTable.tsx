@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { headers } from "next/headers";
 import {
   Paper,
   Table,
@@ -10,6 +11,8 @@ import {
   styled,
   tableCellClasses,
 } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
+import getUserDashboard from "@/apis/getUserDashboard";
 
 const StyledCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -26,12 +29,14 @@ const StyledCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
-interface TableData {
-  row: string[];
-  data: string[];
-}
+const row = ["접속 거래소", "잔고", "닉네임", "사용시간"];
 
-export default function CustomTable({ row, data }: TableData) {
+export default function CustomTable() {
+  const data = useQuery({
+    queryKey: ["user_dashboard"],
+    queryFn: getUserDashboard,
+  });
+
   return (
     <div className="h-fit">
       <TableContainer
@@ -62,20 +67,24 @@ export default function CustomTable({ row, data }: TableData) {
           </TableHead>
           <TableBody>
             <TableRow>
-              {data?.map((item, index) =>
-                index == 0 ? (
-                  <StyledCell key={index} align="left">
-                    {item}
-                  </StyledCell>
-                ) : index == 3 ? (
-                  <StyledCell key={index} align="right">
-                    {item}
-                  </StyledCell>
-                ) : (
-                  <StyledCell key={index} align="center">
-                    {item}
-                  </StyledCell>
-                ),
+              {data && data.data === undefined ? (
+                <></>
+              ) : (
+                data.data?.map((item, index) =>
+                  index == 0 ? (
+                    <StyledCell key={index} align="left">
+                      {item}
+                    </StyledCell>
+                  ) : index == 3 ? (
+                    <StyledCell key={index} align="right">
+                      {item}
+                    </StyledCell>
+                  ) : (
+                    <StyledCell key={index} align="center">
+                      {item}
+                    </StyledCell>
+                  ),
+                )
               )}
             </TableRow>
           </TableBody>

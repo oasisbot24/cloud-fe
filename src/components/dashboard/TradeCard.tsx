@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   Box,
   Card,
@@ -8,6 +9,8 @@ import {
   Typography,
   styled,
 } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
+import getTradeStyle from "@/apis/getTradeStyle";
 import TradeLeft from "./TradeLeft";
 import TradeRight from "./TradeRight";
 import Circular from "./TwoCircularChart";
@@ -17,35 +20,42 @@ const BasicCard = styled(Card)(({ theme }) => ({
   display: "flex",
 }));
 
-interface CoinItem {
-  name: string;
-  part: number;
-}
+const coin = [
+  { name: "비트코인", part: 70 },
+  { name: "이더리움", part: 20 },
+  { name: "기타", part: 10 },
+];
 
-interface TradeData {
-  income: number;
-  lose: number;
-  coin: Array<CoinItem>;
-  trade: {
-    duration: string;
-    holding: string;
-    transactions: string;
-    balance: string;
-    volatility: string;
-    income: string;
-    lose: string;
-  };
-}
+export default function TradeCard() {
+  const data = useQuery({
+    queryKey: ["trade_style"],
+    queryFn: getTradeStyle,
+  });
 
-export default function TradeCard({ income, lose, coin, trade }: TradeData) {
   return (
     <BasicCard>
       <CardContent sx={{ width: "50%" }}>
-        <TradeLeft income={income} lose={lose} coin={coin} />
+        <TradeLeft
+          winRate={
+            data && data.data?.data.data.winRate === undefined
+              ? 0
+              : data.data?.data.data.winRate
+          }
+          lossRate={
+            data && data.data?.data.data.winRate === undefined
+              ? 0
+              : 100 - data.data?.data.data.winRate
+          }
+          tradeCoin={
+            data && data.data?.data.data.tradeCoin === undefined
+              ? []
+              : data.data?.data.data.tradeCoin
+          }
+        />
       </CardContent>
       <Divider orientation="vertical" variant="middle" flexItem />
       <CardContent sx={{ width: "50%" }}>
-        <TradeRight trade={trade} />
+        <TradeRight trade={data && data.data?.data.data} />
       </CardContent>
     </BasicCard>
   );
