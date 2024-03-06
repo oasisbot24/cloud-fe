@@ -5,5 +5,7 @@ import axios from "axios";
 import api from "@/apis/network";
 
 export default function getTradeStyle() {
-  return api.get("/trade_style");
+  return api.get("/trade_style").then(res => {
+    return res.data?.data;
+  });
 }
