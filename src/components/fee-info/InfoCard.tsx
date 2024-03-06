@@ -16,6 +16,27 @@ const bgColorStyle = {
   platunum: "bg-blue-600",
 };
 
+const content = {
+  free: [
+    "유료요금제 동일 기능",
+    "24시간 작동",
+    "지속적인 기능 및 로직 추가",
+    "모바일 확인 가능",
+  ],
+  premium: [
+    "전 거래소 이용 가능",
+    "24시간 작동",
+    "해외거래소 수수료 50% 할인",
+    "거래소 전 종목",
+  ],
+  platunum: [
+    "전 거래소 이용 가능",
+    "24시간 작동",
+    "신규 로직 무료",
+    "셀퍼럴 협의 가능",
+  ],
+};
+
 export default function InfoCard({ type }: InfoCardProps) {
   return (
     <Card className="bg-white h-[450px] w-full shrink-0 lg:shrink">
@@ -45,24 +66,22 @@ export default function InfoCard({ type }: InfoCardProps) {
         </Typography>
         <Stack direction="column" className="gap-2 items-center">
           <Stack direction="row" className="gap-2 items-center">
-            <Chip
-              label="유료요금제 동일 기능"
-              className={`${bgColorStyle[type]} text-white`}
-            />
-            <Chip
-              label="24시간 작동"
-              className={`${bgColorStyle[type]} text-white`}
-            />
+            {content[type].slice(0, 2).map((item, index) => (
+              <Chip
+                key={index}
+                label={item}
+                className={`${bgColorStyle[type]} text-white`}
+              />
+            ))}
           </Stack>
           <Stack direction="row" className="gap-2 items-center">
-            <Chip
-              label="지속적인 기능 및 로직 추가"
-              className={`${bgColorStyle[type]} text-white`}
-            />
-            <Chip
-              label="모바일 확인 가능"
-              className={`${bgColorStyle[type]} text-white`}
-            />
+            {content[type].slice(2, 4).map((item, index) => (
+              <Chip
+                key={index}
+                label={item}
+                className={`${bgColorStyle[type]} text-white`}
+              />
+            ))}
           </Stack>
         </Stack>
       </Stack>
