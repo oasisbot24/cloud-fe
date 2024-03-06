@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import getUserDashboard from "@/apis/getUserDashboard";
+import Time from "./Time";
 
 const StyledCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -77,7 +78,7 @@ export default function CustomTable() {
                     </StyledCell>
                   ) : index == 3 ? (
                     <StyledCell key={index} align="right">
-                      {item}
+                      {Time(item)}
                     </StyledCell>
                   ) : (
                     <StyledCell key={index} align="center">

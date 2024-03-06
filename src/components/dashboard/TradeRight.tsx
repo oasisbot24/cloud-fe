@@ -1,4 +1,5 @@
 import { Divider } from "@mui/material";
+import Time from "../common/Time";
 
 interface TradeData {
   trade: {
@@ -22,7 +23,7 @@ export default function TradeRight({ trade }: TradeData) {
           </div>
 
           <div className="font-light font-poppins text-base">
-            {trade?.avgWaitTime}
+            {Time(trade?.avgWaitTime)}
           </div>
         </div>
         <div className="flex justify-between">
@@ -31,7 +32,7 @@ export default function TradeRight({ trade }: TradeData) {
           </div>
 
           <div className="font-light font-poppins text-base">
-            {trade?.avgCarryTime}
+            {Time(trade?.avgCarryTime)}
           </div>
         </div>
         <div className="flex justify-between">

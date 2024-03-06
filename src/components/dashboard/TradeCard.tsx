@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import getTradeStyle from "@/apis/getTradeStyle";
+import Time from "../common/Time";
 import TradeLeft from "./TradeLeft";
 import TradeRight from "./TradeRight";
 import Circular from "./TwoCircularChart";
@@ -37,25 +38,23 @@ export default function TradeCard() {
       <CardContent sx={{ width: "50%" }}>
         <TradeLeft
           winRate={
-            data && data.data?.data.data.winRate === undefined
-              ? 0
-              : data.data?.data.data.winRate
+            data && data.data?.winRate === undefined ? 0 : data.data?.winRate
           }
           lossRate={
-            data && data.data?.data.data.winRate === undefined
+            data && data.data?.winRate === undefined
               ? 0
-              : 100 - data.data?.data.data.winRate
+              : 100 - data.data?.winRate
           }
           tradeCoin={
-            data && data.data?.data.data.tradeCoin === undefined
+            data && data.data?.tradeCoin === undefined
               ? []
-              : data.data?.data.data.tradeCoin
+              : data.data?.tradeCoin
           }
         />
       </CardContent>
       <Divider orientation="vertical" variant="middle" flexItem />
       <CardContent sx={{ width: "50%" }}>
-        <TradeRight trade={data && data.data?.data.data} />
+        <TradeRight trade={data && data.data} />
       </CardContent>
     </BasicCard>
   );
