@@ -1,8 +1,16 @@
-import React from "react";
-import { Box } from "@mui/material";
+import React, { useState } from "react";
+import SettingsIcon from "@mui/icons-material/Settings";
+import { Box, IconButton, Menu } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import CustomMenuItem from "../basic/CustomMenuItem";
 
 function PresetTable() {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClickSettingBtn = (event: React.MouseEvent<HTMLElement>) =>
+    setAnchorEl(event.currentTarget);
+  const handleClose = () => setAnchorEl(null);
+
   const columns: GridColDef[] = [
     {
       field: "name",
@@ -38,6 +46,35 @@ function PresetTable() {
       flex: 1,
       headerAlign: "center",
       align: "center",
+      renderCell: params => (
+        <>
+          <IconButton
+            id="settingBtn"
+            aria-controls={open ? "settingMenu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            onClick={handleClickSettingBtn}
+          >
+            <SettingsIcon />
+          </IconButton>
+          <Menu
+            id="settingMenu"
+            aria-labelledby="settingBtn"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            sx={{
+              ".MuiMenu-paper": {
+                background: "#F3F3F3",
+              },
+            }}
+          >
+            <CustomMenuItem>매매 비중 변경</CustomMenuItem>
+            <CustomMenuItem>세팅 변경</CustomMenuItem>
+            <CustomMenuItem>프리셋 삭제</CustomMenuItem>
+          </Menu>
+        </>
+      ),
     },
   ];
 
@@ -48,7 +85,7 @@ function PresetTable() {
       settingIndicator: "TD-SEQUENTIAL",
       profitRate: 0.2,
       lossRate: -3,
-      세팅: "",
+      setting: "",
     },
     {
       id: 2,
@@ -56,7 +93,7 @@ function PresetTable() {
       settingIndicator: "TD-SEQUENTIAL",
       profitRate: 0.6,
       lossRate: -2,
-      세팅: "",
+      setting: "",
     },
   ];
 

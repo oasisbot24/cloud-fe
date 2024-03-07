@@ -1,5 +1,5 @@
 import React from "react";
-import { Stack } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import BotUseInfo from "@/components/oasisbot/BotUseInfo";
 import IndicatorExplanation from "@/components/preset/IndicatorExplanation";
 import PresetSetting from "@/components/preset/PresetSetting";
@@ -11,8 +11,15 @@ function Preset() {
     <TopNavLayout>
       <BotUseInfo />
       <Stack direction="column" className="gap-4 mt-10">
-        <div className="grow py-2 pl-4 bg-darkBlue text-white font-roboto font-semibold rounded-md">
+        <div className="grow py-2 pl-4 bg-darkBlue text-white font-roboto font-semibold rounded-md flex justify-between items-center">
           프리셋
+          <Button
+            variant="contained"
+            size="small"
+            className="mx-3 bg-mellowYellow text-black"
+          >
+            프리셋 추가
+          </Button>
         </div>
         <PresetTable />
       </Stack>
