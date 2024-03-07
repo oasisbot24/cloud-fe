@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { Box, IconButton, Menu } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { useAtom } from "jotai";
+import presetsAtom from "@/datas/preset";
 import CustomMenuItem from "../basic/CustomMenuItem";
 
 function PresetTable() {
+  const [presets, setPresets] = useAtom(presetsAtom);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClickSettingBtn = (event: React.MouseEvent<HTMLElement>) =>
@@ -70,30 +73,11 @@ function PresetTable() {
             }}
           >
             <CustomMenuItem>매매 비중 변경</CustomMenuItem>
-            <CustomMenuItem>세팅 변경</CustomMenuItem>
+            <CustomMenuItem>프리셋 설정 변경</CustomMenuItem>
             <CustomMenuItem>프리셋 삭제</CustomMenuItem>
           </Menu>
         </>
       ),
-    },
-  ];
-
-  const rows = [
-    {
-      id: 1,
-      name: "하락장 세팅",
-      settingIndicator: "TD-SEQUENTIAL",
-      profitRate: 0.2,
-      lossRate: -3,
-      setting: "",
-    },
-    {
-      id: 2,
-      name: "상승장 세팅",
-      settingIndicator: "TD-SEQUENTIAL",
-      profitRate: 0.6,
-      lossRate: -2,
-      setting: "",
     },
   ];
 
@@ -102,10 +86,10 @@ function PresetTable() {
       <DataGrid
         className="font-roboto"
         columns={columns}
-        rows={rows}
+        rows={presets}
         initialState={{
           pagination: {
-            paginationModel: { page: 0, pageSize: 10 },
+            paginationModel: { page: 0, pageSize: 5 },
           },
         }}
         pageSizeOptions={[5, 10]}

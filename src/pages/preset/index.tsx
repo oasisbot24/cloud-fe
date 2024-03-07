@@ -1,12 +1,31 @@
 import React from "react";
 import { Button, Stack } from "@mui/material";
+import { useAtom } from "jotai";
 import BotUseInfo from "@/components/oasisbot/BotUseInfo";
 import IndicatorExplanation from "@/components/preset/IndicatorExplanation";
 import PresetSetting from "@/components/preset/PresetSetting";
 import PresetTable from "@/components/preset/PresetTable";
 import TopNavLayout from "@/components/topnav/TopNavLayout";
+import presetsAtom from "@/datas/preset";
 
 function Preset() {
+  const [presets, setPresets] = useAtom(presetsAtom);
+  const addNewPreset = () => {
+    const newId = presets[presets.length - 1].id + 1 || 0;
+    // 프리셋 저장 API 호출로 변경할 부분임.
+    setPresets(prev => [
+      ...prev,
+      {
+        id: newId,
+        name: `신규 프리셋 ${newId}`,
+        settingIndicator: "",
+        profitRate: 0,
+        lossRate: 0,
+        setting: "",
+      },
+    ]);
+  };
+
   return (
     <TopNavLayout>
       <BotUseInfo />
@@ -17,6 +36,7 @@ function Preset() {
             variant="contained"
             size="small"
             className="mx-3 bg-mellowYellow text-black"
+            onClick={addNewPreset}
           >
             프리셋 추가
           </Button>
