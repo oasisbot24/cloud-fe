@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Stack } from "@mui/material";
 import { useAtom } from "jotai";
+import SectionHeader from "@/components/common/SectionHeader";
 import BotUseInfo from "@/components/oasisbot/BotUseInfo";
 import IndicatorExplanation from "@/components/preset/IndicatorExplanation";
 import PresetSetting from "@/components/preset/PresetSetting";
@@ -30,7 +31,7 @@ function Preset() {
     <TopNavLayout>
       <BotUseInfo />
       <Stack direction="column" className="gap-4 mt-10">
-        <div className="grow py-2 pl-4 bg-darkBlue text-white font-roboto font-semibold rounded-md flex justify-between items-center">
+        <SectionHeader className="flex justify-between items-center">
           프리셋
           <Button
             variant="contained"
@@ -40,21 +41,17 @@ function Preset() {
           >
             프리셋 추가
           </Button>
-        </div>
+        </SectionHeader>
         <PresetTable />
       </Stack>
       <Stack direction="row" className="gap-4 mt-10">
         <Stack direction="column" className="grow basis-1/2 gap-4">
-          <div className="grow h-5 py-2 px-4 bg-darkBlue text-white font-roboto font-semibold rounded-md">
-            프리셋 설정
-          </div>
+          <SectionHeader>프리셋 설정</SectionHeader>
           <PresetSetting />
         </Stack>
 
         <Stack direction="column" className="grow basis-1/2 gap-4">
-          <div className="grow h-5 py-2 px-4 bg-darkBlue text-white font-roboto font-semibold rounded-md">
-            (TD Sequential) 보조지표 설명
-          </div>
+          <SectionHeader>(TD Sequential) 보조지표 설명</SectionHeader>
           <IndicatorExplanation />
         </Stack>
       </Stack>

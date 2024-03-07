@@ -3,8 +3,8 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import { Box, IconButton, Menu } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useAtom } from "jotai";
+import CustomMenuItem from "@/components/basic/CustomMenuItem";
 import presetsAtom from "@/datas/preset";
-import CustomMenuItem from "../basic/CustomMenuItem";
 
 function PresetTable() {
   const [presets, setPresets] = useAtom(presetsAtom);

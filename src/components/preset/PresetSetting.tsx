@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Selectbox from "../basic/Selectbox";
-import OasisbotInput from "../input/OasisbotInput";
+import Selectbox from "@/components/basic/Selectbox";
+import OasisbotInput from "@/components/input/OasisbotInput";
 
 function PresetSetting() {
   const [preset, setPreset] = useState<string>("high");
@@ -18,7 +18,7 @@ function PresetSetting() {
       <div className="flex place-content-between mt-4">
         <div className="flex items-center">설정 보조지표</div>
         <Selectbox
-          labelId="preset"
+          labelId="indicator"
           selectLabel=""
           itemList={[
             { value: "high", itemLabel: "상승장 프리셋" },
