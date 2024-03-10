@@ -26,7 +26,7 @@ export default function OasisGoogleLoginButton({
         localStorage.setItem("credential", credential || "");
         const auth = jwtDecode(credential || "") as Auth;
         setAuth(auth);
-        onSuccess();
+        // onSuccess();
       },
     });
   };
@@ -38,7 +38,7 @@ export default function OasisGoogleLoginButton({
       }}
       onError={() => {
         console.log("Login Failed");
-        onError();
+        // onError();
       }}
       size="large"
       width="260"
