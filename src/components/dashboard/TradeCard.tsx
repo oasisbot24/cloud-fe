@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import getTradeStyle from "@/apis/getTradeStyle";
-import Time from "../common/Time";
+import Time from "../common/time";
 import TradeLeft from "./TradeLeft";
 import TradeRight from "./TradeRight";
 import Circular from "./TwoCircularChart";
@@ -21,11 +21,15 @@ const BasicCard = styled(Card)(({ theme }) => ({
   display: "flex",
 }));
 
-const coin = [
-  { name: "비트코인", part: 70 },
-  { name: "이더리움", part: 20 },
-  { name: "기타", part: 10 },
-];
+const trade = {
+  avgWaitTime: 0,
+  avgCarryTime: 0,
+  avgMonthlyTradeCount: 0,
+  maxBalance: 0,
+  volatility: 0,
+  maxProfit: 0,
+  minLoss: 0,
+};
 
 export default function TradeCard() {
   const data = useQuery({
@@ -37,24 +41,14 @@ export default function TradeCard() {
     <BasicCard>
       <CardContent sx={{ width: "50%" }}>
         <TradeLeft
-          winRate={
-            data && data.data?.winRate === undefined ? 0 : data.data?.winRate
-          }
-          lossRate={
-            data && data.data?.winRate === undefined
-              ? 0
-              : 100 - data.data?.winRate
-          }
-          tradeCoin={
-            data && data.data?.tradeCoin === undefined
-              ? []
-              : data.data?.tradeCoin
-          }
+          winRate={data.data?.winRate ?? 0}
+          lossRate={100 - (data.data?.winRate ?? 0)}
+          tradeCoin={data.data?.tradeCoin ?? []}
         />
       </CardContent>
       <Divider orientation="vertical" variant="middle" flexItem />
       <CardContent sx={{ width: "50%" }}>
-        <TradeRight trade={data && data.data} />
+        <TradeRight trade={data.data ?? trade} />
       </CardContent>
     </BasicCard>
   );

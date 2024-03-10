@@ -4,7 +4,7 @@ import TwoCircularChart from "./TwoCircularChart";
 
 interface CoinItem {
   name: string;
-  part: number;
+  ratio: number;
 }
 
 interface TradeData {
@@ -40,12 +40,12 @@ export default function TradeLeft({ winRate, lossRate, tradeCoin }: TradeData) {
       <div className="flex mt-5">
         <div>
           <div className="font-bold font-poppins text-lg">거래코인</div>
-          {tradeCoin.length === 3 ? (
+          {tradeCoin?.length === 3 ? (
             <ThreeCircularChart tradeCoin={tradeCoin} />
-          ) : tradeCoin.length === 0 ? (
+          ) : tradeCoin?.length === 0 ? (
             <TwoCircularChart rate={0} />
           ) : (
-            <TwoCircularChart rate={tradeCoin[0].part} />
+            <TwoCircularChart rate={tradeCoin[0].ratio} />
           )}
         </div>
         <div className="flex flex-col ml-5 gap-3 mt-8 w-full">
@@ -57,7 +57,7 @@ export default function TradeLeft({ winRate, lossRate, tradeCoin }: TradeData) {
                 </div>
 
                 <div className="font-bold font-poppins text-base">
-                  {coin.name === undefined ? "0%" : coin.part + "%"}
+                  {coin.name === undefined ? "0%" : coin.ratio + "%"}
                 </div>
               </div>
             ))}
