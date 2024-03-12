@@ -1,8 +1,9 @@
+import { useEffect, useState } from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
 
 interface CoinItem {
   name: string;
-  part: number;
+  ratio: number;
 }
 
 interface TradeData {
@@ -27,7 +28,7 @@ export default function ThreeCircularChart({ tradeCoin }: TradeData) {
       />
       <CircularProgress
         variant="determinate"
-        value={tradeCoin[0].part + tradeCoin[1].part}
+        value={tradeCoin[0].ratio + tradeCoin[1].ratio}
         sx={{
           "&.MuiCircularProgress-colorPrimary": {
             color: "#FFD789",
@@ -43,7 +44,7 @@ export default function ThreeCircularChart({ tradeCoin }: TradeData) {
 
       <CircularProgress
         variant="determinate"
-        value={tradeCoin[0].part}
+        value={tradeCoin[0].ratio}
         sx={{
           "&.MuiCircularProgress-colorPrimary": {
             color: "#373B5C",
@@ -69,7 +70,7 @@ export default function ThreeCircularChart({ tradeCoin }: TradeData) {
         }}
       >
         <Typography variant="caption" component="div" color="#373B5C">
-          {tradeCoin[0].part + "%"}
+          {tradeCoin[0].ratio + "%"}
         </Typography>
       </Box>
     </Box>
