@@ -8,8 +8,8 @@ function Preset() {
   return (
     <TopNavLayout>
       <BotUseInfo />
-      {/* <MainPreset /> */}
-      <SalesRatio />
+      <MainPreset />
+      {/* <SalesRatio /> */}
     </TopNavLayout>
   );
 }

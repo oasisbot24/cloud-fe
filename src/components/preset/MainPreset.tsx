@@ -1,29 +1,13 @@
 import React from "react";
 import { Button, Stack } from "@mui/material";
-import { useAtom } from "jotai";
-import presetsAtom from "@/datas/preset";
-import SectionHeader from "../common/SectionHeader";
-import IndicatorExplanation from "./IndicatorExplanation";
-import PresetSetting from "./PresetSetting";
-import PresetTable from "./PresetTable";
+import SectionHeader from "@/components/common/SectionHeader";
+import IndicatorExplanation from "@/components/preset/IndicatorExplanation";
+import PresetSetting from "@/components/preset/PresetSetting";
+import PresetTable from "@/components/preset/PresetTable";
+import usePreset from "@/hooks/preset/usePreset";
 
 function MainPreset() {
-  const [presets, setPresets] = useAtom(presetsAtom);
-  const addNewPreset = () => {
-    const newId = presets[presets.length - 1].id + 1 || 0;
-    // 프리셋 저장 API 호출로 변경할 부분임.
-    setPresets(prev => [
-      ...prev,
-      {
-        id: newId,
-        name: `신규 프리셋 ${newId}`,
-        settingIndicator: "",
-        profitRate: 0,
-        lossRate: 0,
-        setting: "",
-      },
-    ]);
-  };
+  const { mutation } = usePreset();
 
   return (
     <>
@@ -34,7 +18,7 @@ function MainPreset() {
             variant="contained"
             size="small"
             className="mx-3 bg-mellowYellow text-black"
-            onClick={addNewPreset}
+            onClick={() => mutation.mutate()}
           >
             프리셋 추가
           </Button>
