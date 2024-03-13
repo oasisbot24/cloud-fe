@@ -46,35 +46,40 @@ function usePresetTable() {
       flex: 1,
       headerAlign: "center",
       align: "center",
-      renderCell: params => (
-        <>
-          <IconButton
-            id="settingBtn"
-            aria-controls={open ? "settingMenu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-            onClick={handleClickSettingBtn}
-          >
-            <SettingsIcon />
-          </IconButton>
-          <Menu
-            id="settingMenu"
-            aria-labelledby="settingBtn"
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            sx={{
-              ".MuiMenu-paper": {
-                background: "#F3F3F3",
-              },
-            }}
-          >
-            <CustomMenuItem>매매 비중 변경</CustomMenuItem>
-            <CustomMenuItem>프리셋 설정 변경</CustomMenuItem>
-            <CustomMenuItem>프리셋 삭제</CustomMenuItem>
-          </Menu>
-        </>
-      ),
+      renderCell: params => {
+        const onClick = () => console.log(params);
+        return (
+          <>
+            <IconButton
+              id={`settingBtn-${params.id}`}
+              aria-controls={open ? `settingMenu-${params.id}` : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleClickSettingBtn}
+            >
+              <SettingsIcon />
+            </IconButton>
+            <Menu
+              id={`settingMenu-${params.id}`}
+              aria-labelledby={`settingBtn-${params.id}`}
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              sx={{
+                ".MuiMenu-paper": {
+                  background: "#F3F3F3",
+                },
+              }}
+            >
+              <CustomMenuItem>매매 비중 변경</CustomMenuItem>
+              <CustomMenuItem onClick={onClick}>
+                프리셋 설정 변경
+              </CustomMenuItem>
+              <CustomMenuItem>프리셋 삭제</CustomMenuItem>
+            </Menu>
+          </>
+        );
+      },
     },
   ];
 

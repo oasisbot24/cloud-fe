@@ -1,6 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import addNewPreset from "@/apis/addNewPreset";
-import getPresets from "@/apis/getPresets";
+import { addNewPreset, getPresets } from "@/apis/presets";
 
 function usePreset() {
   const queryClient = useQueryClient();

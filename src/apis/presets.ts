@@ -1,6 +1,17 @@
-import api from "./network";
+import api from "@/apis/network";
 
-export default function addNewPreset() {
+function getPresets() {
+  return api
+    .get("/preset")
+    .then(res => {
+      return res.data.data;
+    })
+    .catch(err => {
+      console.error(err);
+    });
+}
+
+function addNewPreset() {
   return api
     .post("/preset", {
       presetName: "신규 프리셋",
@@ -17,3 +28,5 @@ export default function addNewPreset() {
       console.error(err);
     });
 }
+
+export { getPresets, addNewPreset };

@@ -2,7 +2,7 @@ import React from "react";
 import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import usePreset from "@/hooks/preset/usePreset";
-import usePresetTable from "@/hooks/preset/usePresetDatagrid";
+import usePresetTable from "@/hooks/preset/usePresetTable";
 
 function PresetTable() {
   const { columns } = usePresetTable();
