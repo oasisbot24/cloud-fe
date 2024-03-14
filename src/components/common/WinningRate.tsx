@@ -11,7 +11,7 @@ function WinningRate({ income, lose }: Props) {
     <div className="flex">
       <div>
         <div className="font-bold font-poppins text-base">승률</div>
-        <TwoCircularChart income={income} />
+        <TwoCircularChart rate={income / 100} />
       </div>
       <div className="flex flex-col gap-3 mt-12 ml-5 w-full">
         <div className="flex justify-between">
