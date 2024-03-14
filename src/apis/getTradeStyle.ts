@@ -1,16 +1,12 @@
-import { useEffect } from "react";
-import { headers } from "next/headers";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import api from "@/apis/network";
 
-interface tradeCoinType {
+interface TradeCoinType {
   name: string;
   ratio: number;
 }
 interface TradeStyleType {
   winRate: number;
-  tradeCoin: Array<tradeCoinType>;
+  tradeCoin: Array<TradeCoinType>;
   avgWaitTime: number;
   avgCarryTime: number;
   avgMonthlyTradeCount: number;

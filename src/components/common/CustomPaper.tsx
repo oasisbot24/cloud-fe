@@ -1,6 +1,6 @@
-import { Box, Paper, Stack, styled } from "@mui/material";
+import { Paper, styled } from "@mui/material";
 
-const BasicPaper = styled(Paper)(({ theme }) => ({
+const BasicPaper = styled(Paper)(() => ({
   // width: '98%',
   height: 40,
   textAlign: "left",

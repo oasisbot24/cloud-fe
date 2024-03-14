@@ -48,7 +48,7 @@ export default function TwoCircularChart({ rate }: TradeData) {
         }}
       >
         <Typography variant="caption" component="div" color="#373B5C">
-          {rate + "%"}
+          {`${rate}%`}
         </Typography>
       </Box>
     </Box>

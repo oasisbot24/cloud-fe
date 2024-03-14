@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
 
 interface CoinItem {
@@ -70,7 +69,7 @@ export default function ThreeCircularChart({ tradeCoin }: TradeData) {
         }}
       >
         <Typography variant="caption" component="div" color="#373B5C">
-          {tradeCoin[0].ratio + "%"}
+          {`${tradeCoin[0].ratio}%`}
         </Typography>
       </Box>
     </Box>
