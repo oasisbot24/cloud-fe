@@ -10,10 +10,6 @@ type Props = {
 };
 
 function OasisbotInput({ id, value, setValue }: Props) {
-  useEffect(() => {
-    console.log(value);
-  }, [value]);
-
   return (
     <TextField
       required
