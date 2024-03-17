@@ -1,4 +1,3 @@
-import WinningRate from "@/components/common/WinningRate";
 import ThreeCircularChart from "@/components/dashboard/ThreeCircularChart";
 import TwoCircularChart from "./TwoCircularChart";
 
@@ -26,13 +25,13 @@ export default function TradeLeft({ winRate, lossRate, tradeCoin }: TradeData) {
             <div className="font-light font-poppins text-base">수익</div>
 
             <div className="font-bold font-poppins text-base">
-              {winRate + "%"}
+              {`${winRate}%`}
             </div>
           </div>
           <div className="flex justify-between">
             <div className="font-light font-poppins text-base">손해</div>
             <div className="font-bold font-poppins text-base">
-              {lossRate + "%"}
+              {`${lossRate}%`}
             </div>
           </div>
         </div>
@@ -57,7 +56,7 @@ export default function TradeLeft({ winRate, lossRate, tradeCoin }: TradeData) {
                 </div>
 
                 <div className="font-bold font-poppins text-base">
-                  {coin.name === undefined ? "0%" : coin.ratio + "%"}
+                  {coin.name === undefined ? "0%" : `${coin.ratio}%`}
                 </div>
               </div>
             ))}

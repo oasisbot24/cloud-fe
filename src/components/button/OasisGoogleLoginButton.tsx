@@ -5,15 +5,7 @@ import { jwtDecode } from "jwt-decode";
 import signin from "@/apis/signin";
 import authAtom, { Auth } from "@/datas/auth";
 
-interface OasisGoogleLoginButtonProps {
-  onSuccess?: () => void;
-  onError?: () => void;
-}
-
-export default function OasisGoogleLoginButton({
-  onSuccess,
-  onError,
-}: OasisGoogleLoginButtonProps) {
+export default function OasisGoogleLoginButton() {
   const [, setAuth] = useAtom(authAtom);
   const signinMutation = useMutation({
     mutationFn: signin,
@@ -26,7 +18,6 @@ export default function OasisGoogleLoginButton({
         localStorage.setItem("credential", credential || "");
         const auth = jwtDecode(credential || "") as Auth;
         setAuth(auth);
-        // onSuccess();
       },
     });
   };
@@ -38,7 +29,6 @@ export default function OasisGoogleLoginButton({
       }}
       onError={() => {
         console.log("Login Failed");
-        // onError();
       }}
       size="large"
       width="260"

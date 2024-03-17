@@ -11,6 +11,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useAtom } from "jotai";
 import { DevTools } from "jotai-devtools";
 import { jwtDecode } from "jwt-decode";
+import { SnackbarProvider } from "notistack";
 import authAtom from "@/datas/auth";
 import "@/styles/globals.css";
 
@@ -30,6 +31,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <DevTools />
       <ReactQueryDevtools />
+      <SnackbarProvider />
       <GoogleOAuthProvider
         clientId={process.env.NEXT_PUBLIC_GOOGLE_OAUTH_CLIENT_ID ?? ""}
       >

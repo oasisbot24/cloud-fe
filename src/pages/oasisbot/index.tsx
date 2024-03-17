@@ -1,5 +1,4 @@
 /* Dependencies */
-import { useState } from "react";
 import { Stack } from "@mui/material";
 import { useAtom } from "jotai";
 import BotSetting from "@/components/oasisbot/BotSetting";

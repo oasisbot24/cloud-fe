@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-import { headers } from "next/headers";
 import {
   Paper,
   Table,
@@ -50,11 +48,11 @@ export default function CustomTable() {
           <TableHead>
             <TableRow>
               {row?.map((item, index) =>
-                index == 0 ? (
+                index === 0 ? (
                   <StyledCell key={index} align="left">
                     {item}
                   </StyledCell>
-                ) : index == 3 ? (
+                ) : index === 3 ? (
                   <StyledCell key={index} align="right">
                     {item}
                   </StyledCell>
@@ -68,15 +66,14 @@ export default function CustomTable() {
           </TableHead>
           <TableBody>
             <TableRow>
-              {data && data.data === undefined ? (
-                <></>
-              ) : (
+              {data &&
+                data.data !== undefined &&
                 data.data?.map((item, index) =>
-                  index == 0 ? (
+                  index === 0 ? (
                     <StyledCell key={index} align="left">
                       {item}
                     </StyledCell>
-                  ) : index == 3 ? (
+                  ) : index === 3 ? (
                     <StyledCell key={index} align="right">
                       <Time seconds={item} />
                     </StyledCell>
@@ -85,8 +82,7 @@ export default function CustomTable() {
                       {item}
                     </StyledCell>
                   ),
-                )
-              )}
+                )}
             </TableRow>
           </TableBody>
         </Table>

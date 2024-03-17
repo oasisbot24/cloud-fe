@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, Stack, TextField, Typography } from "@mui/material";
 import { useAtom } from "jotai";
+import { enqueueSnackbar } from "notistack";
 import settingAtom from "@/datas/setting";
 
 export default function SetKey() {
@@ -8,6 +9,9 @@ export default function SetKey() {
   const [apiKey, setApiKey] = useState("");
   const [secretKey, setSecretKey] = useState("");
   const [password, setPassword] = useState("");
+  const saveApi = () => {
+    enqueueSnackbar("Api key가 저장되었습니다!", { variant: "success" });
+  };
   return (
     <Stack direction="column" className="w-full gap-4 items-center">
       <Typography className="w-full text-lg font-semibold text-start font-poppins">
@@ -31,7 +35,11 @@ export default function SetKey() {
         value={password}
         onChange={e => setPassword(e.target.value)}
       />
-      <Button variant="contained" className="bg-navy w-[324px] mt-4">
+      <Button
+        variant="contained"
+        className="bg-navy w-[324px] mt-4"
+        onClick={saveApi}
+      >
         Api 저장
       </Button>
     </Stack>

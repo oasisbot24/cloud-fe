@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { Alert, Paper } from "@mui/material";
 import Selectbox from "@/components/basic/Selectbox";
 import SidebarButton from "@/components/button/SidebarButton";
-import settingAtom from "@/datas/setting";
 
 function AfterLogin() {
   const [exchange, setExchange] = useState("");
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const handleClick = () => {
-    if (exchange == "") {
+    if (exchange === "") {
       setOpen(true);
       return;
     }
@@ -18,7 +17,7 @@ function AfterLogin() {
     router.push("/main");
   };
 
-  const handleState = (value: any) => {
+  const handleState = (value: string) => {
     setOpen(false);
     setExchange(value);
   };

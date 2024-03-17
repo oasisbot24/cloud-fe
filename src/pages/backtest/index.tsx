@@ -1,4 +1,3 @@
-import React from "react";
 import { Stack } from "@mui/material";
 import BackTestSetting from "@/components/backtest/BackTestSetting";
 import BackTestStatus from "@/components/backtest/BackTestStatus";
