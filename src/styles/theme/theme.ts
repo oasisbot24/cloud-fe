@@ -1,8 +1,8 @@
 import { ThemeOptions, createTheme } from "@mui/material";
-import typographyOption from "@/styles/theme/typography";
+import typographyOptions from "@/styles/theme/typography";
 
 const themeOptions: ThemeOptions = {
-  typography: typographyOption,
+  typography: typographyOptions,
 };
 
 const theme = createTheme(themeOptions);

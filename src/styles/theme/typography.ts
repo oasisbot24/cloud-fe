@@ -66,7 +66,7 @@ declare module "@mui/material/Typography" {
 
 const fontFamily = ["Spoqa Han Sans Neo", "Roboto", "sans-serif"].join(",");
 
-const typographyOption: TypographyOptions = {
+const typographyOptions: TypographyOptions = {
   fontFamily,
   h1: {
     fontSize: "48px",
@@ -232,4 +232,4 @@ const typographyOption: TypographyOptions = {
   },
 };
 
-export default typographyOption;
+export default typographyOptions;
