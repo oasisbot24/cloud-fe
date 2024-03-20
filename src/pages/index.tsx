@@ -1,15 +1,14 @@
-import MainDiscription from "@/components/MainDiscription";
-import SideLogin from "@/components/sidebar/SideLogin";
+import { Stack } from "@mui/material";
+import Footer from "@/screens/Footer";
+import Discription from "@/screens/signin/Discription";
 
 export default function Home() {
   return (
-    <main className="flex w-full h-screen">
-      <div className="h-full md:w-1/3 w-full min-w-[300px] z-[1] shadow-md">
-        <SideLogin />
-      </div>
-      <div className="h-full md:w-2/3 md:block hidden">
-        <MainDiscription />
-      </div>
+    <main className="flex w-full h-screen signup-bg">
+      <Stack className="w-full">
+        <Discription />
+        <Footer color="white" />
+      </Stack>
     </main>
   );
 }
