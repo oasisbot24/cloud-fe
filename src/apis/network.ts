@@ -2,6 +2,7 @@ import axios from "axios";
 
 const getAuthorizationFromLocalStorage = () => {
   const accessToken = localStorage.getItem("authorization");
+
   if (!accessToken) {
     return null;
   }
@@ -22,17 +23,6 @@ const getExchangeFromLocalStorage = () => {
     return null;
   }
   return exchange;
-};
-
-const getNewAccessToken = async (response: any) => {
-  localStorage.clear();
-  if (response.headers.authorization)
-    localStorage.setItem("authorization", response.headers.authorization);
-  if (response.headers.authorizationrefresh)
-    localStorage.setItem(
-      "authorizationrefresh",
-      response.headers.authorizationrefresh,
-    );
 };
 
 const oasisUrl = "http://3.36.71.228:8080/api/v1";
@@ -64,8 +54,9 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   response => {
     if (typeof document !== "undefined") {
-      if (response.headers.authorization)
+      if (response.headers.authorization) {
         localStorage.setItem("authorization", response.headers.authorization);
+      }
       if (response.headers.authorizationrefresh)
         localStorage.setItem(
           "authorizationrefresh",
@@ -75,10 +66,6 @@ api.interceptors.response.use(
     return response;
   },
   error => {
-    if (error.response.status === 406) {
-      console.log("만료된 토큰입니다 재발급 하겠습니다.");
-      // return getNewAccessToken(error.response);
-    }
     return Promise.reject(error);
   },
 );

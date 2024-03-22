@@ -2,14 +2,14 @@ import api from "@/apis/network";
 
 interface HistoryType {
   date: Date;
-  coin: string;
+  // coin: string;
   side: string;
   price: number;
   volume: number;
-  totalPrice: number;
-  profitLossRate: number;
-  profitLoss: number;
-  currencyUnit: string;
+  total_price: number;
+  profit_loss_rate: number;
+  profit_loss: number;
+  // currencyUnit: string;
 }
 interface BotType {
   botId: number;

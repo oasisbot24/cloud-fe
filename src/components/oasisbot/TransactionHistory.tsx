@@ -21,13 +21,13 @@ function TransactionHistory() {
 
   const columns: GridColDef[] = [
     { field: "date", headerName: "거래시각", flex: 1 },
-    {
-      field: "coin",
-      headerName: "종목",
-      flex: 1,
-      headerAlign: "center",
-      align: "center",
-    },
+    // {
+    //   field: "coin",
+    //   headerName: "종목",
+    //   flex: 1,
+    //   headerAlign: "center",
+    //   align: "center",
+    // },
     {
       field: "position",
       headerName: "포지션",
@@ -73,7 +73,7 @@ function TransactionHistory() {
       align: "center",
     },
     {
-      field: "totalPrice",
+      field: "total_price",
       headerName: "총매수/매도금액",
       flex: 1,
       headerAlign: "center",
@@ -89,7 +89,7 @@ function TransactionHistory() {
       ),
     },
     {
-      field: "profitLossRate",
+      field: "profit_loss_rate",
       headerName: "손익률",
       flex: 1,
       headerAlign: "center",
@@ -105,7 +105,7 @@ function TransactionHistory() {
           <Typography
             variant="body2"
             component="span"
-            color={params.formattedValue?.slice(0, 1) === "-" ? "blue" : "red"}
+            // color={params.formattedValue?.slice(0, 1) === "-" ? "blue" : "red"}
           >
             {params.formattedValue}
           </Typography>
@@ -113,7 +113,7 @@ function TransactionHistory() {
       },
     },
     {
-      field: "profitLoss",
+      field: "profit_loss",
       headerName: "실현손익",
       flex: 1,
       headerAlign: "center",
@@ -131,7 +131,21 @@ function TransactionHistory() {
   ];
 
   useEffect(() => {
-    setRows(data.data?.history ?? []);
+    const list: React.SetStateAction<any[]> = [];
+    data.data?.history.map((item: any, index: number) => {
+      const result = {
+        id: index,
+        date: item.date,
+        position: item.position,
+        price: item.price,
+        profit_loss: item.profit_loss,
+        profit_loss_rate: item.profit_loss_rate,
+        total_price: item.total_price,
+        volume: item.volume,
+      };
+      list.push(result);
+    });
+    setRows(list);
   }, [data.data?.history]);
   // const rows = [
   //   {

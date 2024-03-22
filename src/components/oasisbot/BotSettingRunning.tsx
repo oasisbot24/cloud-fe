@@ -1,21 +1,53 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Divider } from "@mui/material";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useAtom } from "jotai";
+import botStop from "@/apis/botStop";
+import getPreset from "@/apis/getPreset";
 import Selectbox from "@/components/basic/Selectbox";
 import settingAtom from "@/datas/setting";
 
 function BotSettingRunning() {
   const [setting, setSetting] = useAtom(settingAtom);
-  const [preset, setPreset] = useState<string>("high");
-
+  const [preset, setPreset] = useState<string>("");
+  const [presetList, setPresetList] = useState<any>([]);
+  const stopBotMutation = useMutation({
+    mutationFn: botStop,
+  });
   const stopBot = () => {
-    setSetting({
-      ...setting,
-      botStatus: {
-        isRunning: false,
+    stopBotMutation.mutate(setting.botStatus.presetId, {
+      onSuccess: () => {
+        setSetting({
+          ...setting,
+          botStatus: {
+            isRunning: false,
+            presetName: "",
+            presetId: 0,
+          },
+        });
       },
     });
   };
+
+  const dataPreset = useQuery({
+    queryKey: ["getPreset"],
+    queryFn: getPreset,
+  });
+
+  useEffect(() => {
+    const list: React.SetStateAction<any[]> = [];
+    if (dataPreset.data && dataPreset.data.length > 0) {
+      if (preset === "") {
+        setPreset(setting.botStatus.presetName);
+      }
+      dataPreset.data.map((item: any) => {
+        const result = { value: item.presetName, itemLabel: item.presetName };
+
+        list.push(result);
+      });
+    }
+    setPresetList(list);
+  }, [dataPreset]);
 
   return (
     <div className="grow p-2.5 bg-white font-poppins font-semibold rounded-xl shadow-md">
@@ -28,10 +60,7 @@ function BotSettingRunning() {
         <Selectbox
           labelId="preset"
           selectLabel=""
-          itemList={[
-            { value: "high", itemLabel: "상승장 프리셋" },
-            { value: "low", itemLabel: "하락장 프리셋" },
-          ]}
+          itemList={presetList}
           state={preset}
           setState={setPreset}
           disabled
