@@ -1,5 +1,6 @@
 import { Box, Stack, Typography } from "@mui/material";
 import Logo from "@/screens/Logo";
+import ServiceCenter from "@/screens/layout/Sidenav/ServiceCenter";
 import SideMenuButton from "@/screens/layout/Sidenav/SideMenuButton";
 import { sideMenu } from "@/screens/layout/Sidenav/sideMenu";
 
@@ -21,9 +22,7 @@ export default function SideNav() {
           ))}
         </Stack>
       ))}
-      <Box className="w-full h-[170px] bg-black rounded-xl">
-        <Typography className="text-white">고객센터</Typography>
-      </Box>
+      <ServiceCenter />
     </Stack>
   );
 }
