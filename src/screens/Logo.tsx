@@ -18,6 +18,11 @@ const textSize: {
   S: "200B",
 };
 
+const iconSrc = {
+  white: "/logo/oasis-white.svg",
+  black: "/logo/oasis-black.svg",
+};
+
 const colorStyle = {
   white: "text-white",
   black: "text-black",
@@ -26,7 +31,7 @@ const colorStyle = {
 export default function Logo({ color, size }: LogoProps) {
   return (
     <Stack className="items-center" direction="row">
-      <Icon src="/logo/oasis-white.svg" size={iconSize[size]} />
+      <Icon src={iconSrc[color]} size={iconSize[size]} />
       <Typography variant={textSize[size]} className={colorStyle[color]}>
         OASIS
       </Typography>

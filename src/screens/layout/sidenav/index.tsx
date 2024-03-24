@@ -1,10 +1,12 @@
 import { Box, Stack, Typography } from "@mui/material";
+import Logo from "@/screens/Logo";
+import SideMenuButton from "@/screens/layout/Sidenav/SideMenuButton";
 import { sideMenu } from "@/screens/layout/Sidenav/sideMenu";
 
 export default function SideNav() {
   return (
     <Stack direction="column" className="sidenav px-4 py-8">
-      <Box>Logo</Box>
+      <Logo color="black" size="L" />
       {sideMenu.map(menu => (
         <Stack
           key={menu.title}
@@ -15,9 +17,7 @@ export default function SideNav() {
             <Typography variant="200M">{menu.title}</Typography>
           </Box>
           {menu.detail?.map(detail => (
-            <Box key={detail.name} className="w-full h-[50px]">
-              <Typography variant="300R">{detail.name}</Typography>
-            </Box>
+            <SideMenuButton key={detail.name} detail={detail} />
           ))}
         </Stack>
       ))}
