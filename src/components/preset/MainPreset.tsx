@@ -7,7 +7,7 @@ import PresetTable from "@/components/preset/PresetTable";
 import usePreset from "@/hooks/preset/usePreset";
 
 function MainPreset() {
-  const { mutation } = usePreset();
+  const { addPresetMutation } = usePreset();
 
   return (
     <>
@@ -18,7 +18,7 @@ function MainPreset() {
             variant="contained"
             size="small"
             className="mx-3 bg-mellowYellow text-black"
-            onClick={() => mutation.mutate()}
+            onClick={() => addPresetMutation.mutate()}
           >
             프리셋 추가
           </Button>

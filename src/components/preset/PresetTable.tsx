@@ -5,8 +5,8 @@ import usePreset from "@/hooks/preset/usePreset";
 import usePresetTable from "@/hooks/preset/usePresetTable";
 
 function PresetTable() {
-  const { columns } = usePresetTable();
   const { presetData, isPresetLoading } = usePreset();
+  const { columns } = usePresetTable();
 
   return (
     <Box className="bg-white rounded-md">

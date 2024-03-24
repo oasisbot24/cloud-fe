@@ -1,5 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { addNewPreset, getPresets } from "@/apis/presets";
+import {
+  addNewPreset,
+  getIndicators,
+  getPresets,
+  updatePreset,
+} from "@/apis/presets";
+import { Indicator } from "@/datas/preset";
 
 function usePreset() {
   const queryClient = useQueryClient();
@@ -9,14 +15,35 @@ function usePreset() {
     queryFn: getPresets,
   });
 
-  const mutation = useMutation({
+  const { data: indicators, isLoading: isIndicatorsLoading } = useQuery({
+    queryKey: ["indicators"],
+    queryFn: getIndicators,
+    select: data =>
+      data.map((item: Indicator) => ({ value: item.indicatorName })),
+  });
+
+  const addPresetMutation = useMutation({
     mutationFn: addNewPreset,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["presets"] });
     },
   });
 
-  return { presetData, isPresetLoading, mutation };
+  const updatePresetMutation = useMutation({
+    mutationFn: () => updatePreset("", {}),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["presets"] });
+    },
+  });
+
+  return {
+    presetData,
+    isPresetLoading,
+    indicators,
+    isIndicatorsLoading,
+    addPresetMutation,
+    updatePresetMutation,
+  };
 }
 
 export default usePreset;

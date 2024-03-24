@@ -11,6 +11,16 @@ function getPresets() {
     });
 }
 
+function getIndicators() {
+  return api
+    .get("/indicator")
+    .then(res => res.data.data)
+    .catch(err => {
+      console.error(err);
+      return [];
+    });
+}
+
 function addNewPreset() {
   return api
     .post("/preset", {
@@ -29,4 +39,15 @@ function addNewPreset() {
     });
 }
 
-export { getPresets, addNewPreset };
+function updatePreset(presetId: string, body) {
+  return api
+    .put(`/preset/${presetId}`, body)
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+}
+
+export { getPresets, getIndicators, addNewPreset, updatePreset };

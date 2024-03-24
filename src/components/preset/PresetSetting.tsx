@@ -1,31 +1,43 @@
-import React, { useState } from "react";
+import React from "react";
+import { Button } from "@mui/material";
+import { useAtom } from "jotai";
 import Selectbox from "@/components/basic/Selectbox";
 import OasisbotInput from "@/components/input/OasisbotInput";
+import {
+  indicatorNameAtom,
+  lossCutRateAtom,
+  positionAtom,
+  presetNameAtom,
+  profitCutRateAtom,
+} from "@/datas/preset";
+import usePreset from "@/hooks/preset/usePreset";
 
 function PresetSetting() {
-  const [preset, setPreset] = useState<string>("high");
-  const [indicator, setIndicator] = useState<string>("high");
-  const [position, setPosition] = useState<string>("pos1");
-  const [profitRate, setProfitRate] = useState<string>("");
-  const [lossRate, setLossRate] = useState<string>("");
+  const { indicators, isIndicatorsLoading } = usePreset();
+  const [presetName, setPresetName] = useAtom<string>(presetNameAtom);
+  const [indicatorName, setIndicatorName] = useAtom<string>(indicatorNameAtom);
+  const [position, setPosition] = useAtom<string>(positionAtom);
+  const [profitCutRate, setProfitCutRate] = useAtom<string>(profitCutRateAtom);
+  const [lossCutRate, setLossCutRate] = useAtom<string>(lossCutRateAtom);
 
   return (
     <div className="grow p-2.5 bg-white font-roboto font-semibold rounded-sm shadow-md">
       <div className="flex place-content-between">
         <div className="flex items-center">프리셋 이름</div>
-        <OasisbotInput id="preset" value={preset} setValue={setPreset} />
+        <OasisbotInput
+          id="presetName"
+          value={presetName}
+          setValue={setPresetName}
+        />
       </div>
       <div className="flex place-content-between mt-4">
         <div className="flex items-center">설정 보조지표</div>
         <Selectbox
-          labelId="indicator"
+          labelId="indicatorName"
           selectLabel=""
-          itemList={[
-            { value: "high", itemLabel: "상승장 프리셋" },
-            { value: "low", itemLabel: "하락장 프리셋" },
-          ]}
-          state={indicator}
-          setState={setIndicator}
+          itemList={isIndicatorsLoading ? [] : indicators}
+          state={indicatorName}
+          setState={setIndicatorName}
         />
       </div>
       <div className="flex place-content-between mt-4">
@@ -34,8 +46,9 @@ function PresetSetting() {
           labelId="position"
           selectLabel=""
           itemList={[
-            { value: "pos1", itemLabel: "포지션1" },
-            { value: "pos2", itemLabel: "포지션2" },
+            { value: "short", itemLabel: "숏" },
+            { value: "long", itemLabel: "롱" },
+            { value: "entry", itemLabel: "진입" },
           ]}
           state={position}
           setState={setPosition}
@@ -45,13 +58,21 @@ function PresetSetting() {
         <div className="flex items-center">익절율</div>
         <OasisbotInput
           id="preset"
-          value={profitRate}
-          setValue={setProfitRate}
+          value={profitCutRate}
+          setValue={setProfitCutRate}
         />
       </div>
       <div className="flex place-content-between mt-4">
         <div className="flex items-center">손절율</div>
-        <OasisbotInput id="preset" value={lossRate} setValue={setLossRate} />
+        <OasisbotInput
+          id="preset"
+          value={lossCutRate}
+          setValue={setLossCutRate}
+        />
+      </div>
+      <div className="flex place-content-between mt-4">
+        <Button onClick={console.log}>세팅 변경</Button>
+        <Button onClick={console.log}>저장</Button>
       </div>
     </div>
   );

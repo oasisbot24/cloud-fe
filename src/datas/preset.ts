@@ -2,31 +2,34 @@ import { atom } from "jotai";
 
 interface Preset {
   id: number;
-  name: string;
-  settingIndicator: string;
-  profitRate: number;
-  lossRate: number;
+  presetName: string;
+  indicatorName: string;
+  presetData: string;
+  position: string;
+  profitCutRate: number;
+  lossCutRate: number;
   setting: string | undefined;
 }
 
-const presetsAtom = atom<Preset[]>([
-  {
-    id: 1,
-    name: "하락장 세팅",
-    settingIndicator: "TD-SEQUENTIAL",
-    profitRate: 0.2,
-    lossRate: -3,
-    setting: "",
-  },
-  {
-    id: 2,
-    name: "상승장 세팅",
-    settingIndicator: "TD-SEQUENTIAL",
-    profitRate: 0.6,
-    lossRate: -2,
-    setting: "",
-  },
-]);
+interface Indicator {
+  id: number;
+  indicatorName: string;
+}
 
-export type { Preset };
-export default presetsAtom;
+const selectedPresetAtom = atom<Preset | null>(null);
+
+const presetNameAtom = atom<string>("");
+const indicatorNameAtom = atom<string>("TD_Sequential");
+const positionAtom = atom<string>("long");
+const profitCutRateAtom = atom<string>("0");
+const lossCutRateAtom = atom<string>("0");
+
+export type { Preset, Indicator };
+export {
+  selectedPresetAtom,
+  presetNameAtom,
+  indicatorNameAtom,
+  positionAtom,
+  profitCutRateAtom,
+  lossCutRateAtom,
+};
