@@ -1,14 +1,14 @@
 import { atom } from "jotai";
 
 interface Preset {
-  id: number;
+  id?: number;
   presetName: string;
   indicatorName: string;
   presetData: string;
   position: string;
   profitCutRate: number;
   lossCutRate: number;
-  setting: string | undefined;
+  setting?: string;
 }
 
 interface Indicator {
@@ -16,8 +16,7 @@ interface Indicator {
   indicatorName: string;
 }
 
-const selectedPresetAtom = atom<Preset | null>(null);
-
+const selectedPresetIdAtom = atom<string>("");
 const presetNameAtom = atom<string>("");
 const indicatorNameAtom = atom<string>("TD_Sequential");
 const positionAtom = atom<string>("long");
@@ -26,7 +25,7 @@ const lossCutRateAtom = atom<string>("0");
 
 export type { Preset, Indicator };
 export {
-  selectedPresetAtom,
+  selectedPresetIdAtom,
   presetNameAtom,
   indicatorNameAtom,
   positionAtom,

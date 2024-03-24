@@ -5,7 +5,7 @@ import {
   getPresets,
   updatePreset,
 } from "@/apis/presets";
-import { Indicator } from "@/datas/preset";
+import { Indicator, Preset } from "@/datas/preset";
 
 function usePreset() {
   const queryClient = useQueryClient();
@@ -30,7 +30,8 @@ function usePreset() {
   });
 
   const updatePresetMutation = useMutation({
-    mutationFn: () => updatePreset("", {}),
+    mutationFn: ({ presetId, body }: { presetId: string; body: Preset }) =>
+      updatePreset(presetId, body),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["presets"] });
     },

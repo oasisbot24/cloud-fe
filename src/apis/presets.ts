@@ -1,4 +1,5 @@
 import api from "@/apis/network";
+import { Preset } from "@/datas/preset";
 
 function getPresets() {
   return api
@@ -39,7 +40,7 @@ function addNewPreset() {
     });
 }
 
-function updatePreset(presetId: string, body) {
+function updatePreset(presetId: string, body: Preset) {
   return api
     .put(`/preset/${presetId}`, body)
     .then(res => {
