@@ -3,6 +3,7 @@ import {
   addNewPreset,
   getIndicators,
   getPresets,
+  removePreset,
   updatePreset,
 } from "@/apis/presets";
 import { Indicator, Preset } from "@/datas/preset";
@@ -37,6 +38,13 @@ function usePreset() {
     },
   });
 
+  const removePresetMutation = useMutation({
+    mutationFn: (presetId: string) => removePreset(presetId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["presets"] });
+    },
+  });
+
   return {
     presetData,
     isPresetLoading,
@@ -44,6 +52,7 @@ function usePreset() {
     isIndicatorsLoading,
     addPresetMutation,
     updatePresetMutation,
+    removePresetMutation,
   };
 }
 

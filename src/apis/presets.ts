@@ -51,4 +51,15 @@ function updatePreset(presetId: string, body: Preset) {
     });
 }
 
-export { getPresets, getIndicators, addNewPreset, updatePreset };
+function removePreset(presetId: string) {
+  return api
+    .delete(`/preset/${presetId}`)
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+}
+
+export { getPresets, getIndicators, addNewPreset, updatePreset, removePreset };

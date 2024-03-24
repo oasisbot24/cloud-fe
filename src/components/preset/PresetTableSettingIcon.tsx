@@ -12,6 +12,7 @@ import {
   profitCutRateAtom,
   selectedPresetIdAtom,
 } from "@/datas/preset";
+import usePreset from "@/hooks/preset/usePreset";
 
 type Props = {
   params: GridRenderCellParams;
@@ -29,6 +30,8 @@ function PresetTableSettingIcon({ params }: Props) {
   const setPosition = useSetAtom(positionAtom);
   const setProfitCutRate = useSetAtom(profitCutRateAtom);
   const setLossCutRate = useSetAtom(lossCutRateAtom);
+
+  const { removePresetMutation } = usePreset();
 
   return (
     <>
@@ -66,7 +69,11 @@ function PresetTableSettingIcon({ params }: Props) {
         >
           프리셋 설정 변경
         </CustomMenuItem>
-        <CustomMenuItem>프리셋 삭제</CustomMenuItem>
+        <CustomMenuItem
+          onClick={() => removePresetMutation.mutate(params.row.id)}
+        >
+          프리셋 삭제
+        </CustomMenuItem>
       </Menu>
     </>
   );
