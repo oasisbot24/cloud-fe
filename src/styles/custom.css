@@ -6,7 +6,10 @@
   box-shadow: 0px 12px 30px 0px #0f148b40;
   background-color: #f9f7f7;
   width: 260px;
+  flex-shrink: 0;
   height: 100%;
   z-index: 10;
+  align-items: center;
+  justify-content: space-between;
   border: 1px solid #ffffff;
 }
