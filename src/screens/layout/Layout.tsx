@@ -1,5 +1,5 @@
 import { Box, Stack } from "@mui/material";
-import SideNav from "@/screens/layout/sidenav/SideNav";
+import SideNav from "@/screens/layout/Sidenav";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

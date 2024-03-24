@@ -1,5 +1,5 @@
 import { Box, Stack, Typography } from "@mui/material";
-import { sideMenu } from "@/screens/layout/sidenav/sideMenu";
+import { sideMenu } from "@/screens/layout/Sidenav/sideMenu";
 
 export default function SideNav() {
   return (
