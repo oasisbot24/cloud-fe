@@ -10,7 +10,7 @@ const style = {
   black: "text-black",
 };
 
-function Header({ color }: HeaderProps) {
+export default function Header({ color }: HeaderProps) {
   return (
     <Box className={`w-full h-[72px] ${style[color]}`}>
       <Stack
@@ -22,5 +22,3 @@ function Header({ color }: HeaderProps) {
     </Box>
   );
 }
-
-export default Header;
