@@ -3,11 +3,15 @@ import { Button, Divider } from "@mui/material";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useAtom } from "jotai";
 import botStop from "@/apis/botStop";
+import { BotType } from "@/apis/getBot";
 import getPreset from "@/apis/getPreset";
 import Selectbox from "@/components/basic/Selectbox";
 import settingAtom from "@/datas/setting";
 
-function BotSettingRunning() {
+interface Props {
+  data: BotType | undefined;
+}
+function BotSettingRunning({ data }: Props) {
   const [setting, setSetting] = useAtom(settingAtom);
   const [preset, setPreset] = useState<string>("");
   const [presetList, setPresetList] = useState<any>([]);

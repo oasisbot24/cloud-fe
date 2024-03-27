@@ -1,6 +1,10 @@
 import api from "./network";
 
-export default function getCoin() {
+interface CoinType {
+  coinName: string;
+  id: number;
+}
+export default function getCoin(): Promise<CoinType[]> {
   return api.get("/coin").then(res => {
     return res.data?.data;
   });

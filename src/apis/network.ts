@@ -25,6 +25,21 @@ const getExchangeFromLocalStorage = () => {
   return exchange;
 };
 
+const getNewAccessToken = async (response: any) => {
+  console.log(response.headers);
+  console.log(response);
+  localStorage.clear();
+  if (response.headers.authorization) {
+    localStorage.setItem("authorization", response.headers.authorization);
+  }
+  if (response.headers.authorizationrefresh) {
+    localStorage.setItem(
+      "authorizationrefresh",
+      response.headers.authorizationrefresh,
+    );
+  }
+};
+
 const oasisUrl = "http://3.36.71.228:8080/api/v1";
 const api = axios.create({
   baseURL: oasisUrl,
@@ -57,15 +72,31 @@ api.interceptors.response.use(
       if (response.headers.authorization) {
         localStorage.setItem("authorization", response.headers.authorization);
       }
-      if (response.headers.authorizationrefresh)
+      if (response.headers.authorizationrefresh) {
         localStorage.setItem(
           "authorizationrefresh",
           response.headers.authorizationrefresh,
         );
+      }
     }
     return response;
   },
   error => {
+    const { response } = error;
+    if (response.status === 406) {
+      if (response.headers.authorization) {
+        localStorage.setItem("authorization", response.headers.authorization);
+      }
+      if (response.headers.authorizationrefresh) {
+        localStorage.setItem(
+          "authorizationrefresh",
+          response.headers.authorizationrefresh,
+        );
+      }
+
+      return response;
+    }
+
     return Promise.reject(error);
   },
 );

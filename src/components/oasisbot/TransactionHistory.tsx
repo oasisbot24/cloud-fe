@@ -10,14 +10,13 @@ import {
   GridValueFormatterParams,
 } from "@mui/x-data-grid";
 import { useQuery } from "@tanstack/react-query";
-import getBotHistory from "@/apis/getBotHistory";
+import getBot, { BotType } from "@/apis/getBot";
 
-function TransactionHistory() {
+interface Props {
+  data: BotType | undefined;
+}
+function TransactionHistory({ data }: Props) {
   const [rows, setRows] = useState<any[]>([]);
-  const data = useQuery({
-    queryKey: ["getBotHistory"],
-    queryFn: getBotHistory,
-  });
 
   const columns: GridColDef[] = [
     { field: "date", headerName: "거래시각", flex: 1 },
@@ -132,21 +131,24 @@ function TransactionHistory() {
 
   useEffect(() => {
     const list: React.SetStateAction<any[]> = [];
-    data.data?.history.map((item: any, index: number) => {
-      const result = {
-        id: index,
-        date: item.date,
-        position: item.position,
-        price: item.price,
-        profit_loss: item.profit_loss,
-        profit_loss_rate: item.profit_loss_rate,
-        total_price: item.total_price,
-        volume: item.volume,
-      };
-      list.push(result);
-    });
+    if (data) {
+      data.history.map((item: any, index: number) => {
+        const result = {
+          id: index,
+          date: item.date,
+          position: item.position,
+          price: item.price,
+          profit_loss: item.profit_loss,
+          profit_loss_rate: item.profit_loss_rate,
+          total_price: item.total_price,
+          volume: item.volume,
+        };
+        list.push(result);
+      });
+    }
+
     setRows(list);
-  }, [data.data?.history]);
+  }, [data]);
   // const rows = [
   //   {
   //     id: 1,

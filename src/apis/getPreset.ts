@@ -9,7 +9,7 @@ interface PrsetType {
   profitCutRate: number;
   lossCutRate: number;
 }
-export default function getPreset() {
+export default function getPreset(): Promise<PrsetType[]> {
   return api.get("/preset").then(res => {
     return res.data?.data;
   });
