@@ -1,24 +1,120 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Divider } from "@mui/material";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useAtom } from "jotai";
+import getCoin from "@/apis/getCoin";
+import getPreset from "@/apis/getPreset";
 import Selectbox from "@/components/basic/Selectbox";
 import OasisbotInput from "@/components/input/OasisbotInput";
 import settingAtom from "@/datas/setting";
+import botStart from "../../apis/botStart";
 
 function BotSetting() {
   const [setting, setSetting] = useAtom(settingAtom);
-  const [preset, setPreset] = useState<string>("high");
-  const [coin, setCoin] = useState<string>("BTC");
+  const [preset, setPreset] = useState<string>("");
+  const [presetId, setPresetId] = useState<number>(0);
+  const [coin, setCoin] = useState<string>("");
+  const [coinId, setCoinId] = useState<number>(0);
   const [price, setPrice] = useState<string>("");
   const [leverage, setLeverage] = useState<string>("");
-
+  const [presetList, setPresetList] = useState<any>([]);
+  const [coinList, setCoinList] = useState<any>([]);
+  const stratBotMutation = useMutation({
+    mutationFn: botStart,
+  });
   const startBot = () => {
-    setSetting({
-      ...setting,
-      botStatus: {
-        isRunning: true,
+    if (price === "") {
+      return;
+    }
+
+    const result = {
+      botName: preset,
+      presetId: presetId,
+      coinId: coinId,
+      startBalance: parseInt(price),
+      leverage: leverage,
+    };
+    stratBotMutation.mutate(result, {
+      onSuccess: () => {
+        setSetting({
+          ...setting,
+          botStatus: {
+            isRunning: true,
+            presetName: preset,
+            presetId: presetId,
+          },
+        });
       },
     });
+  };
+
+  const dataPreset = useQuery({
+    queryKey: ["getPreset"],
+    queryFn: getPreset,
+  });
+
+  const dataCoin = useQuery({
+    queryKey: ["getCoin"],
+    queryFn: getCoin,
+  });
+
+  useEffect(() => {
+    const list: React.SetStateAction<any[]> = [];
+    if (dataPreset.data && dataPreset.data.length > 0) {
+      if (preset === "") {
+        setPreset(dataPreset.data[0].presetName);
+        setPresetId(dataPreset.data[0].id);
+      }
+      dataPreset.data.map((item: any) => {
+        const result = {
+          value: item.presetName,
+          itemLabel: item.presetName,
+          id: item.id,
+        };
+
+        list.push(result);
+      });
+    }
+    setPresetList(list);
+  }, [dataPreset]);
+
+  useEffect(() => {
+    const list: React.SetStateAction<any[]> = [];
+    if (dataCoin.data && dataCoin.data.length > 0) {
+      if (coin === "") {
+        setCoin(dataCoin.data[0].coinName);
+        setCoinId(dataCoin.data[0].id);
+      }
+      dataCoin.data.map((item: any) => {
+        const result = {
+          value: item.coinName,
+          itemLabel: item.coinName,
+          id: item.id,
+        };
+        list.push(result);
+      });
+    }
+
+    setCoinList(list);
+  }, [dataCoin]);
+
+  const handlePreset = (e: any) => {
+    presetList.map((item: any) => {
+      if (item.itemLabel === e) {
+        setPresetId(item.id);
+      }
+    });
+    setPreset(e);
+  };
+
+  const handleCoin = (e: any) => {
+    coinList.map((item: any) => {
+      if (item.itemLabel === e) {
+        setCoinId(item.id);
+      }
+    });
+
+    setCoin(e);
   };
 
   return (
@@ -28,12 +124,9 @@ function BotSetting() {
         <Selectbox
           labelId="preset"
           selectLabel=""
-          itemList={[
-            { value: "high", itemLabel: "상승장 프리셋" },
-            { value: "low", itemLabel: "하락장 프리셋" },
-          ]}
+          itemList={presetList}
           state={preset}
-          setState={setPreset}
+          setState={handlePreset}
         />
       </div>
       <div className="flex place-content-between mt-4">
@@ -41,13 +134,9 @@ function BotSetting() {
         <Selectbox
           labelId="coin"
           selectLabel=""
-          itemList={[
-            { value: "BTC", itemLabel: "비트코인" },
-            { value: "ETH", itemLabel: "이더리움" },
-            { value: "DOGE", itemLabel: "도지코인" },
-          ]}
+          itemList={coinList}
           state={coin}
-          setState={setCoin}
+          setState={handleCoin}
         />
       </div>
       <div className="flex place-content-between mt-4">

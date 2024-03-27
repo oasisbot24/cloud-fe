@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   Paper,
   Table,
@@ -35,6 +36,8 @@ export default function CustomTable() {
     queryKey: ["user_dashboard"],
     queryFn: getUserDashboard,
   });
+
+  useEffect(() => {}, []);
 
   return (
     <div className="h-fit">
