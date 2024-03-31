@@ -1,28 +1,18 @@
 import api from "@/apis/network";
-import { Preset } from "@/datas/preset";
+import { Indicator, Preset } from "@/datas/preset";
+import { Response } from "@/datas/response";
 
-function getPresets() {
-  return api
-    .get("/preset")
-    .then(res => {
-      return res.data.data;
-    })
-    .catch(err => {
-      console.error(err);
-    });
+function getPresets(): Promise<Preset[]> {
+  return api.get("/preset").then(res => {
+    return res.data.data;
+  });
 }
 
-function getIndicators() {
-  return api
-    .get("/indicator")
-    .then(res => res.data.data)
-    .catch(err => {
-      console.error(err);
-      return [];
-    });
+function getIndicators(): Promise<Indicator[]> {
+  return api.get("/indicator").then(res => res.data.data);
 }
 
-function addNewPreset() {
+function addNewPreset(): Promise<void | Response> {
   return api
     .post("/preset", {
       presetName: "신규 프리셋",
@@ -34,32 +24,22 @@ function addNewPreset() {
     })
     .then(res => {
       console.log(res);
-    })
-    .catch(err => {
-      console.error(err);
     });
 }
 
-function updatePreset(presetId: string, body: Preset) {
-  return api
-    .put(`/preset/${presetId}`, body)
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => {
-      console.error(err);
-    });
+function updatePreset(
+  presetId: string,
+  body: Preset,
+): Promise<void | Response> {
+  return api.put(`/preset/${presetId}`, body).then(res => {
+    console.log(res);
+  });
 }
 
-function removePreset(presetId: string) {
-  return api
-    .delete(`/preset/${presetId}`)
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => {
-      console.error(err);
-    });
+function removePreset(presetId: string): Promise<void | Response> {
+  return api.delete(`/preset/${presetId}`).then(res => {
+    console.log(res);
+  });
 }
 
 export { getPresets, getIndicators, addNewPreset, updatePreset, removePreset };
