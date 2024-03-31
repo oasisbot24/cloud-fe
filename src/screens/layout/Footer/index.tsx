@@ -29,7 +29,7 @@ export default function Footer({ color }: FooterProps) {
             </Typography>
           </Stack>
         </Stack>
-        <Stack direction="row">
+        <Stack direction="row" className="gap-1">
           {(["facebook", "linkedin", "naver", "kakao"] as SocialType[]).map(
             social => (
               <SocialIcon key={social} social={social} color={color} />
