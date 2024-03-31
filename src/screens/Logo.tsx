@@ -19,8 +19,8 @@ const textSize: {
 };
 
 const iconSrc = {
-  white: "/logo/oasis-white.svg",
-  black: "/logo/oasis-black.svg",
+  white: "/logo/oasis.png",
+  black: "/logo/oasis.png",
 };
 
 const colorStyle = {
