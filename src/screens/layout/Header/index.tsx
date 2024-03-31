@@ -2,7 +2,7 @@ import { Box, Stack } from "@mui/material";
 import Logo from "@/screens/Logo";
 
 interface HeaderProps {
-  color: "white" | "black";
+  color: LayoutColorType;
 }
 
 const style = {

@@ -1,9 +1,10 @@
 import { Box, Divider, Stack, Typography } from "@mui/material";
 import Logo from "@/screens/Logo";
+import SocialIcon from "@/screens/SocialIcon";
 import FooterBreadcrumbs from "@/screens/layout/Footer/FooterBreadcrumbs";
 
-export interface FooterProps {
-  color: "white" | "black";
+interface FooterProps {
+  color: LayoutColorType;
 }
 
 const style = {
@@ -29,10 +30,11 @@ export default function Footer({ color }: FooterProps) {
           </Stack>
         </Stack>
         <Stack direction="row">
-          <icon>naver</icon>
-          <icon>kakao</icon>
-          <icon>linkedin</icon>
-          <icon>facebook</icon>
+          {(["facebook", "linkedin", "naver", "kakao"] as SocialType[]).map(
+            social => (
+              <SocialIcon key={social} social={social} color={color} />
+            ),
+          )}
         </Stack>
       </Stack>
     </Box>

@@ -3,7 +3,7 @@ import { Breadcrumbs, ButtonBase, Typography } from "@mui/material";
 import footerMenu from "@/screens/layout/Footer/footerMenu";
 
 interface FooterBreadcrumbsProps {
-  color: "white" | "black";
+  color: LayoutColorType;
 }
 
 const style = {
