@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Button, Divider } from "@mui/material";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useAtom } from "jotai";
-import getCoin from "@/apis/getCoin";
-import getPreset from "@/apis/getPreset";
 import Selectbox from "@/components/basic/Selectbox";
 import OasisbotInput from "@/components/input/OasisbotInput";
 import settingAtom from "@/datas/setting";
-import botStart from "../../apis/botStart";
+import useBot from "@/hooks/bot";
 
 function BotSetting() {
   const [setting, setSetting] = useAtom(settingAtom);
@@ -19,9 +17,8 @@ function BotSetting() {
   const [leverage, setLeverage] = useState<string>("");
   const [presetList, setPresetList] = useState<any>([]);
   const [coinList, setCoinList] = useState<any>([]);
-  const stratBotMutation = useMutation({
-    mutationFn: botStart,
-  });
+
+  const { stratBotMutation, dataPreset, dataCoin } = useBot();
   const startBot = () => {
     if (price === "") {
       return;
@@ -48,16 +45,6 @@ function BotSetting() {
     });
   };
 
-  const dataPreset = useQuery({
-    queryKey: ["getPreset"],
-    queryFn: getPreset,
-  });
-
-  const dataCoin = useQuery({
-    queryKey: ["getCoin"],
-    queryFn: getCoin,
-  });
-
   useEffect(() => {
     const list: React.SetStateAction<any[]> = [];
     if (dataPreset.data && dataPreset.data.length > 0) {
@@ -76,7 +63,7 @@ function BotSetting() {
       });
     }
     setPresetList(list);
-  }, [dataPreset]);
+  }, [dataPreset.data]);
 
   useEffect(() => {
     const list: React.SetStateAction<any[]> = [];
@@ -96,7 +83,7 @@ function BotSetting() {
     }
 
     setCoinList(list);
-  }, [dataCoin]);
+  }, [dataCoin.data]);
 
   const handlePreset = (e: any) => {
     presetList.map((item: any) => {

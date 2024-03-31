@@ -11,33 +11,24 @@ import ProfitPart from "@/components/oasisbot/ProfitPart";
 import TransactionHistory from "@/components/oasisbot/TransactionHistory";
 import TopNavLayout from "@/components/topnav/TopNavLayout";
 import settingAtom from "@/datas/setting";
+import useBot from "@/hooks/bot";
 
 function OasisBot() {
   // const [setting] = useAtom(settingAtom);
   const [setting, setSetting] = useAtom(settingAtom);
-  const [interval, setInterval] = useState(true);
-  const data = useQuery({
-    queryKey: ["getBot"],
-    queryFn: getBot,
-    refetchInterval: interval === true ? 5000 : 0,
-  });
-
+  const { dataBot } = useBot();
   useEffect(() => {
-    if (data.data?.status === "waiting") {
-      setInterval(false);
-    }
-
-    if (data.data?.isRunning) {
+    if (dataBot.data?.isRunning) {
       setSetting({
         ...setting,
         botStatus: {
           isRunning: true,
-          presetName: data.data?.presetName,
-          presetId: data.data?.id,
+          presetName: dataBot.data?.presetName,
+          presetId: dataBot.data?.id,
         },
       });
     }
-  }, [data.data]);
+  }, [dataBot.data]);
 
   return (
     <TopNavLayout>
@@ -48,7 +39,7 @@ function OasisBot() {
             오아시스봇
           </div>
           {setting.botStatus.isRunning ? (
-            <BotSettingRunning data={data.data} />
+            <BotSettingRunning data={dataBot.data} />
           ) : (
             <BotSetting />
           )}
@@ -66,7 +57,7 @@ function OasisBot() {
         <div className="grow py-2 pl-4 bg-darkBlue text-white font-roboto font-semibold rounded-md">
           거래내역
         </div>
-        <TransactionHistory data={data.data} />
+        <TransactionHistory data={dataBot.data} />
       </Stack>
     </TopNavLayout>
   );

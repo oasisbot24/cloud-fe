@@ -104,7 +104,7 @@ function TransactionHistory({ data }: Props) {
           <Typography
             variant="body2"
             component="span"
-            // color={params.formattedValue?.slice(0, 1) === "-" ? "blue" : "red"}
+            color={params.formattedValue?.slice(0, 1) === "-" ? "blue" : "red"}
           >
             {params.formattedValue}
           </Typography>

@@ -7,6 +7,7 @@ import { BotType } from "@/apis/getBot";
 import getPreset from "@/apis/getPreset";
 import Selectbox from "@/components/basic/Selectbox";
 import settingAtom from "@/datas/setting";
+import useBot from "@/hooks/bot";
 
 interface Props {
   data: BotType | undefined;
@@ -15,9 +16,9 @@ function BotSettingRunning({ data }: Props) {
   const [setting, setSetting] = useAtom(settingAtom);
   const [preset, setPreset] = useState<string>("");
   const [presetList, setPresetList] = useState<any>([]);
-  const stopBotMutation = useMutation({
-    mutationFn: botStop,
-  });
+
+  const { stopBotMutation, dataPreset } = useBot();
+
   const stopBot = () => {
     stopBotMutation.mutate(setting.botStatus.presetId, {
       onSuccess: () => {
@@ -33,11 +34,6 @@ function BotSettingRunning({ data }: Props) {
     });
   };
 
-  const dataPreset = useQuery({
-    queryKey: ["getPreset"],
-    queryFn: getPreset,
-  });
-
   useEffect(() => {
     const list: React.SetStateAction<any[]> = [];
     if (dataPreset.data && dataPreset.data.length > 0) {
@@ -51,7 +47,7 @@ function BotSettingRunning({ data }: Props) {
       });
     }
     setPresetList(list);
-  }, [dataPreset]);
+  }, [dataPreset.data]);
 
   return (
     <div className="grow p-2.5 bg-white font-poppins font-semibold rounded-xl shadow-md">
