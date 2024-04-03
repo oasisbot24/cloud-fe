@@ -7,7 +7,7 @@ const config: Config = {
     extend: {
       colors: {
         brand: "#223CE9",
-        "sub-1": "#f5f5f5",
+        "sub-1": "#022579",
         "sub-2": "#2BB7F5",
         "sub-3": "#DE4B4B",
         "sub-4": "#6F6C99",
