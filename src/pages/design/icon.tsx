@@ -1,4 +1,5 @@
 import { Box, Stack, Typography } from "@mui/material";
+import AlertIcon from "@/screens/Icon/AlertIcon";
 import CharacterIcon from "@/screens/Icon/CharacterIcon";
 import DashboardIcon from "@/screens/Icon/DashboardIcon";
 import SidenavIcon from "@/screens/Icon/SidenavIcon";
@@ -83,6 +84,10 @@ export default function Icon() {
             <DashboardIcon key={id} id={id} />
           ))}
         </Stack>
+      </Box>
+      <Box>
+        <Typography variant="h1">Alert Icon</Typography>
+        <AlertIcon />
       </Box>
     </Stack>
   );
