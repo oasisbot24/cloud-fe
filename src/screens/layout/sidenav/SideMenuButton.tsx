@@ -1,6 +1,6 @@
 import { ButtonBase, Stack, Typography } from "@mui/material";
 import Icon from "@/screens/Icon";
-import { MenuDetail } from "@/screens/layout/Sidenav/sideMenu";
+import { MenuDetail } from "@/screens/Layout/Sidenav/sideMenu";
 
 interface SideMenuButtonProps {
   detail: MenuDetail;

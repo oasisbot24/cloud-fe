@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { Breadcrumbs, ButtonBase, Typography } from "@mui/material";
-import footerMenu from "@/screens/layout/Footer/footerMenu";
+import footerMenu from "@/screens/Layout/Footer/footerMenu";
 
 interface FooterBreadcrumbsProps {
   color: LayoutColorType;

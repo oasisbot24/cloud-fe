@@ -1,7 +1,7 @@
 import { Box, Divider, Stack, Typography } from "@mui/material";
+import FooterBreadcrumbs from "@/screens/Layout/Footer/FooterBreadcrumbs";
 import Logo from "@/screens/Logo";
 import SocialIcon from "@/screens/SocialIcon";
-import FooterBreadcrumbs from "@/screens/layout/Footer/FooterBreadcrumbs";
 
 interface FooterProps {
   color: LayoutColorType;

@@ -1,8 +1,8 @@
 import { Box, Stack, Typography } from "@mui/material";
+import ServiceCenter from "@/screens/Layout/Sidenav/ServiceCenter";
+import SideMenuButton from "@/screens/Layout/Sidenav/SideMenuButton";
+import { sideMenu } from "@/screens/Layout/Sidenav/sideMenu";
 import Logo from "@/screens/Logo";
-import ServiceCenter from "@/screens/layout/Sidenav/ServiceCenter";
-import SideMenuButton from "@/screens/layout/Sidenav/SideMenuButton";
-import { sideMenu } from "@/screens/layout/Sidenav/sideMenu";
 
 export default function SideNav() {
   return (
