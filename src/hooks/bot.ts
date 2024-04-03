@@ -9,16 +9,17 @@ export default function useBot() {
   const queryClient = useQueryClient();
   const stratBotMutation = useMutation({
     mutationFn: botStart,
-
+    mutationKey: ["startBot"],
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["startBot"] });
+      queryClient.invalidateQueries({ queryKey: ["getBot"] });
     },
   });
 
   const stopBotMutation = useMutation({
     mutationFn: botStop,
+    mutationKey: ["stopBot"],
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["stopBot"] });
+      queryClient.invalidateQueries({ queryKey: ["getBot"] });
     },
   });
 

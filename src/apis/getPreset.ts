@@ -1,6 +1,6 @@
 import api from "./network";
 
-interface PrsetType {
+interface PresetType {
   id: number;
   presetName: string;
   indicatorName: string;
@@ -9,7 +9,7 @@ interface PrsetType {
   profitCutRate: number;
   lossCutRate: number;
 }
-export default function getPreset(): Promise<PrsetType[]> {
+export default function getPreset(): Promise<PresetType[]> {
   return api.get("/preset").then(res => {
     return res.data?.data;
   });

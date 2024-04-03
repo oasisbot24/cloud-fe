@@ -9,8 +9,7 @@ import {
   GridValidRowModel,
   GridValueFormatterParams,
 } from "@mui/x-data-grid";
-import { useQuery } from "@tanstack/react-query";
-import getBot, { BotType } from "@/apis/getBot";
+import { BotType } from "@/apis/getBot";
 
 interface Props {
   data: BotType | undefined;

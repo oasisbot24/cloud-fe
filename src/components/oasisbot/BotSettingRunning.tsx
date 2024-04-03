@@ -16,6 +16,8 @@ function BotSettingRunning({ data }: Props) {
   const [setting, setSetting] = useAtom(settingAtom);
   const [preset, setPreset] = useState<string>("");
   const [presetList, setPresetList] = useState<any>([]);
+  const [lossPrice, setLossPrice] = useState("");
+  const [profitPrice, setProfitPrice] = useState("");
 
   const { stopBotMutation, dataPreset } = useBot();
 
@@ -47,6 +49,8 @@ function BotSettingRunning({ data }: Props) {
       });
     }
     setPresetList(list);
+    setLossPrice(data?.lossCutPrice || "");
+    setProfitPrice(data?.profitCutPrice || "");
   }, [dataPreset.data]);
 
   return (
@@ -70,11 +74,11 @@ function BotSettingRunning({ data }: Props) {
       <div className="flex place-content-between items-center">
         <div className="flex w-2/5 place-content-between items-center">
           <div className="font-semibold flex-start">목표가</div>
-          <div className="font-normal">30,424,122 KRW</div>
+          <div className="font-normal">{profitPrice} KRW</div>
         </div>
         <div className="flex w-2/5 place-content-between items-center">
           <div className="font-semibold">손절가</div>
-          <div className="font-normal">30,171,233 KRW</div>
+          <div className="font-normal">{lossPrice} KRW</div>
         </div>
       </div>
       <div className="flex place-content-between mt-3">
