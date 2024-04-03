@@ -1,7 +1,17 @@
+type MenuDetailIdType =
+  | "dashboard"
+  | "oasisbot"
+  | "backtest"
+  | "api"
+  | "exchange"
+  | "preset"
+  | "subscribe"
+  | "notice";
+
 interface MenuDetail {
+  id: MenuDetailIdType;
   name: string;
   path: string;
-  icon: string;
 }
 
 interface SideMenuType {
@@ -14,35 +24,35 @@ const sideMenu: SideMenuType[] = [
     title: "시스템",
     detail: [
       {
+        id: "dashboard",
         name: "대시보드",
         path: "/dashboard",
-        icon: "/icon/menu/dashboard.svg",
       },
       {
+        id: "oasisbot",
         name: "오아시스Bot",
         path: "/oasisbot",
-        icon: "/icon/menu/oasisbot.svg",
       },
-      { name: "백테스트", path: "/backtest", icon: "/icon/menu/backtest.svg" },
+      { id: "backtest", name: "백테스트", path: "/backtest" },
     ],
   },
   {
     title: "세팅",
     detail: [
       {
+        id: "api",
         name: "API 연결",
         path: "/api",
-        icon: "/icon/menu/api.svg",
       },
       {
+        id: "exchange",
         name: "접속 거래소 변경",
         path: "/exchange",
-        icon: "/icon/menu/exchange.svg",
       },
       {
+        id: "preset",
         name: "프리셋 설정",
         path: "/preset",
-        icon: "/icon/menu/preset.svg",
       },
     ],
   },
@@ -50,13 +60,18 @@ const sideMenu: SideMenuType[] = [
     title: "이용",
     detail: [
       {
+        id: "subscribe",
         name: "서비스 구독하기",
         path: "/subscribe",
-        icon: "/icon/menu/subscribe.svg",
+      },
+      {
+        id: "notice",
+        name: "공지사항",
+        path: "/notice",
       },
     ],
   },
 ];
 
-export type { MenuDetail, SideMenuType };
+export type { MenuDetail, SideMenuType, MenuDetailIdType };
 export { sideMenu };
