@@ -1,13 +1,3 @@
-type MenuDetailIdType =
-  | "dashboard"
-  | "oasisbot"
-  | "backtest"
-  | "api"
-  | "exchange"
-  | "preset"
-  | "subscribe"
-  | "notice";
-
 interface MenuDetail {
   id: MenuDetailIdType;
   name: string;
@@ -73,5 +63,5 @@ const sideMenu: SideMenuType[] = [
   },
 ];
 
-export type { MenuDetail, SideMenuType, MenuDetailIdType };
 export { sideMenu };
+export type { MenuDetail, SideMenuType };

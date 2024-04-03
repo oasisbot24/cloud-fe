@@ -1,5 +1,7 @@
 import { Box, Stack, Typography } from "@mui/material";
 import CharacterIcon from "@/screens/Icon/CharacterIcon";
+import DashboardIcon from "@/screens/Icon/DashboardIcon";
+import SidenavIcon from "@/screens/Icon/SidenavIcon";
 import SocialIcon from "@/screens/Icon/SocialIcon";
 
 export default function Icon() {
@@ -29,7 +31,58 @@ export default function Icon() {
         </Stack>
       </Box>
       <Box>
-        <Typography variant="h1">Font</Typography>
+        <Typography variant="h1">Sidenav Icon</Typography>
+        <Stack direction="row" className="gap-2">
+          {(
+            [
+              "dashboard",
+              "oasisbot",
+              "backtest",
+              "api",
+              "exchange",
+              "preset",
+              "subscribe",
+              "notice",
+            ] as MenuDetailIdType[]
+          ).map(id => (
+            <SidenavIcon key={id} id={id} />
+          ))}
+        </Stack>
+        <Stack direction="row" className="gap-2">
+          {(
+            [
+              "dashboard",
+              "oasisbot",
+              "backtest",
+              "api",
+              "exchange",
+              "preset",
+              "subscribe",
+              "notice",
+            ] as MenuDetailIdType[]
+          ).map(id => (
+            <SidenavIcon key={id} id={id} isFocus />
+          ))}
+        </Stack>
+      </Box>
+      <Box>
+        <Typography variant="h1">Dashboard Icon</Typography>
+        <Stack direction="row" className="gap-2 bg-black p-2">
+          {(
+            [
+              "bar-graph",
+              "bot-start",
+              "history",
+              "pie-chart",
+              "ranking",
+              "rise-arrow",
+              "setting",
+              "wallet",
+            ] as DashboardIdType[]
+          ).map(id => (
+            <DashboardIcon key={id} id={id} />
+          ))}
+        </Stack>
       </Box>
     </Stack>
   );

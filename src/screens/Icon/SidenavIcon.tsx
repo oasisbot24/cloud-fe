@@ -1,5 +1,4 @@
 import Icon from "@/screens/Icon";
-import { MenuDetailIdType } from "@/screens/Layout/Sidenav/sideMenu";
 
 interface SidenavIconProps {
   id: MenuDetailIdType;

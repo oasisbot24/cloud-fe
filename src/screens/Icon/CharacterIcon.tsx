@@ -4,8 +4,6 @@ interface CharacterIconProps {
   happiness: number;
 }
 
-type HappinessType = 1 | 2 | 3 | 4 | 5 | 6 | 7;
-
 const iconSrc = {
   1: "/icons/character/01.png",
   2: "/icons/character/02.png",
