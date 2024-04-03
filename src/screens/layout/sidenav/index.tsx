@@ -15,7 +15,9 @@ export default function SideNav() {
           className="w-full px-4 gap-1"
         >
           <Box className="w-full">
-            <Typography variant="200M">{menu.title}</Typography>
+            <Typography variant="200M" className="text-sub-4">
+              {menu.title}
+            </Typography>
           </Box>
           {menu.detail?.map(detail => (
             <SideMenuButton key={detail.name} detail={detail} />

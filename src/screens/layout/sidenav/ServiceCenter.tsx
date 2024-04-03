@@ -1,15 +1,21 @@
+import Image from "next/image";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import Icon from "@/screens/Icon";
 
 export default function ServiceCenter() {
   return (
-    <Box className="w-full h-[170px] bg-[#888888] rounded-xl p-4">
-      <Stack className="h-full justify-between">
-        <Icon
-          src="/dashboard/card-media.png"
-          size={35}
-          className="rounded-xl"
-        />
+    <Box className="w-full h-[170px] rounded-xl relative overflow-hidden">
+      <Image
+        src="/nav-cover.png"
+        alt="cover"
+        layout="fill"
+        objectFit="cover"
+        className="absolute z-0"
+      />
+      <Stack className="absolute h-full w-full p-4 justify-between z-[10]">
+        <Stack className="rounded-xl w-[35px] h-[35px] bg-white justify-center items-center">
+          <Icon src="/icons/control/info.png" size={18} />
+        </Stack>
         <Stack className="gap-3">
           <Stack className="gap-1">
             <Typography variant="200B" className="text-white">
