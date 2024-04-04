@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Chip, Typography } from "@mui/material";
 import { amber, purple } from "@mui/material/colors";
 import {
@@ -9,17 +9,23 @@ import {
   GridValidRowModel,
   GridValueFormatterParams,
 } from "@mui/x-data-grid";
+import { BotType } from "@/apis/getBot";
 
-function TransactionHistory() {
+interface Props {
+  data: BotType | undefined;
+}
+function TransactionHistory({ data }: Props) {
+  const [rows, setRows] = useState<any[]>([]);
+
   const columns: GridColDef[] = [
-    { field: "time", headerName: "거래시각", flex: 1 },
-    {
-      field: "item",
-      headerName: "종목",
-      flex: 1,
-      headerAlign: "center",
-      align: "center",
-    },
+    { field: "date", headerName: "거래시각", flex: 1 },
+    // {
+    //   field: "coin",
+    //   headerName: "종목",
+    //   flex: 1,
+    //   headerAlign: "center",
+    //   align: "center",
+    // },
     {
       field: "position",
       headerName: "포지션",
@@ -58,14 +64,14 @@ function TransactionHistory() {
       ),
     },
     {
-      field: "amount",
+      field: "volume",
       headerName: "매수/매도수량",
       flex: 1,
       headerAlign: "center",
       align: "center",
     },
     {
-      field: "totalPrice",
+      field: "total_price",
       headerName: "총매수/매도금액",
       flex: 1,
       headerAlign: "center",
@@ -81,7 +87,7 @@ function TransactionHistory() {
       ),
     },
     {
-      field: "profitRatio",
+      field: "profit_loss_rate",
       headerName: "손익률",
       flex: 1,
       headerAlign: "center",
@@ -105,7 +111,7 @@ function TransactionHistory() {
       },
     },
     {
-      field: "realizedProfit",
+      field: "profit_loss",
       headerName: "실현손익",
       flex: 1,
       headerAlign: "center",
@@ -122,30 +128,50 @@ function TransactionHistory() {
     },
   ];
 
-  const rows = [
-    {
-      id: 1,
-      time: "22-06-23 22:09:11",
-      item: "비트코인",
-      position: "BUY",
-      price: 30122334,
-      amount: 0.1,
-      totalPrice: 3012233,
-      profitRatio: "+0.1%",
-      realizedProfit: 2122,
-    },
-    {
-      id: 2,
-      time: "22-06-23 22:09:11",
-      item: "스테이터스네트워크토큰",
-      position: "SELL",
-      price: 30122334,
-      amount: 0.1,
-      totalPrice: 3012233,
-      profitRatio: "-0.1%",
-      realizedProfit: 2122,
-    },
-  ];
+  useEffect(() => {
+    const list: React.SetStateAction<any[]> = [];
+    if (data) {
+      data.history.map((item: any, index: number) => {
+        const result = {
+          id: index,
+          date: item.date,
+          position: item.position,
+          price: item.price,
+          profit_loss: item.profit_loss,
+          profit_loss_rate: item.profit_loss_rate,
+          total_price: item.total_price,
+          volume: item.volume,
+        };
+        list.push(result);
+      });
+    }
+
+    setRows(list);
+  }, [data]);
+  // const rows = [
+  //   {
+  //     id: 1,
+  //     time: "22-06-23 22:09:11",
+  //     item: "비트코인",
+  //     position: "BUY",
+  //     price: 30122334,
+  //     amount: 0.1,
+  //     totalPrice: 3012233,
+  //     profitRatio: "+0.1%",
+  //     realizedProfit: 2122,
+  //   },
+  //   {
+  //     id: 2,
+  //     time: "22-06-23 22:09:11",
+  //     item: "스테이터스네트워크토큰",
+  //     position: "SELL",
+  //     price: 30122334,
+  //     amount: 0.1,
+  //     totalPrice: 3012233,
+  //     profitRatio: "-0.1%",
+  //     realizedProfit: 2122,
+  //   },
+  // ];
   return (
     <Box className="bg-white rounded-md">
       <DataGrid
