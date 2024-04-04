@@ -1,5 +1,4 @@
 import { Card as MuiCard } from "@mui/material";
-import CardContent from "@mui/material/CardContent";
 
 interface CardProps {
   children: React.ReactNode;
@@ -7,8 +6,6 @@ interface CardProps {
 
 export default function Card({ children }: CardProps) {
   return (
-    <MuiCard className="w-full h-full rounded-lg bg-white">
-      <CardContent>{children}</CardContent>
-    </MuiCard>
+    <MuiCard className="w-full h-full rounded-lg bg-white">{children}</MuiCard>
   );
 }
