@@ -2,6 +2,7 @@ import axios from "axios";
 
 const getAuthorizationFromLocalStorage = () => {
   const accessToken = localStorage.getItem("authorization");
+
   if (!accessToken) {
     return null;
   }
@@ -53,17 +54,34 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   response => {
     if (typeof document !== "undefined") {
-      if (response.headers.authorization)
+      if (response.headers.authorization) {
         localStorage.setItem("authorization", response.headers.authorization);
-      if (response.headers.authorizationrefresh)
+      }
+      if (response.headers.authorizationrefresh) {
         localStorage.setItem(
           "authorizationrefresh",
           response.headers.authorizationrefresh,
         );
+      }
     }
     return response;
   },
   error => {
+    const { response } = error;
+    if (response.status === 406) {
+      if (response.headers.authorization) {
+        localStorage.setItem("authorization", response.headers.authorization);
+      }
+      if (response.headers.authorizationrefresh) {
+        localStorage.setItem(
+          "authorizationrefresh",
+          response.headers.authorizationrefresh,
+        );
+      }
+
+      return response;
+    }
+
     return Promise.reject(error);
   },
 );

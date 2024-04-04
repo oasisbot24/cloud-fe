@@ -13,6 +13,7 @@ export default function OasisGoogleLoginButton() {
 
   const handleCredentialResponse = (credentialResponse: CredentialResponse) => {
     const { credential } = credentialResponse;
+
     signinMutation.mutate(credential || "", {
       onSuccess: () => {
         localStorage.setItem("credential", credential || "");
@@ -21,6 +22,7 @@ export default function OasisGoogleLoginButton() {
       },
     });
   };
+
   return (
     <GoogleLogin
       onSuccess={credentialResponse => {

@@ -1,21 +1,57 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Divider } from "@mui/material";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useAtom } from "jotai";
+import botStop from "@/apis/botStop";
+import { BotType } from "@/apis/getBot";
+import getPreset from "@/apis/getPreset";
 import Selectbox from "@/components/basic/Selectbox";
 import settingAtom from "@/datas/setting";
+import useBot from "@/hooks/bot";
 
-function BotSettingRunning() {
+interface Props {
+  data: BotType | undefined;
+}
+function BotSettingRunning({ data }: Props) {
   const [setting, setSetting] = useAtom(settingAtom);
-  const [preset, setPreset] = useState<string>("high");
+  const [preset, setPreset] = useState<string>("");
+  const [presetList, setPresetList] = useState<any>([]);
+  const [lossPrice, setLossPrice] = useState("");
+  const [profitPrice, setProfitPrice] = useState("");
+
+  const { stopBotMutation, dataPreset } = useBot();
 
   const stopBot = () => {
-    setSetting({
-      ...setting,
-      botStatus: {
-        isRunning: false,
+    stopBotMutation.mutate(setting.botStatus.presetId, {
+      onSuccess: () => {
+        setSetting({
+          ...setting,
+          botStatus: {
+            isRunning: false,
+            presetName: "",
+            presetId: 0,
+          },
+        });
       },
     });
   };
+
+  useEffect(() => {
+    const list: React.SetStateAction<any[]> = [];
+    if (dataPreset.data && dataPreset.data.length > 0) {
+      if (preset === "") {
+        setPreset(setting.botStatus.presetName);
+      }
+      dataPreset.data.map((item: any) => {
+        const result = { value: item.presetName, itemLabel: item.presetName };
+
+        list.push(result);
+      });
+    }
+    setPresetList(list);
+    setLossPrice(data?.lossCutPrice || "");
+    setProfitPrice(data?.profitCutPrice || "");
+  }, [dataPreset.data]);
 
   return (
     <div className="grow p-2.5 bg-white font-poppins font-semibold rounded-xl shadow-md">
@@ -28,10 +64,7 @@ function BotSettingRunning() {
         <Selectbox
           labelId="preset"
           selectLabel=""
-          itemList={[
-            { value: "high", itemLabel: "상승장 프리셋" },
-            { value: "low", itemLabel: "하락장 프리셋" },
-          ]}
+          itemList={presetList}
           state={preset}
           setState={setPreset}
           disabled
@@ -41,11 +74,11 @@ function BotSettingRunning() {
       <div className="flex place-content-between items-center">
         <div className="flex w-2/5 place-content-between items-center">
           <div className="font-semibold flex-start">목표가</div>
-          <div className="font-normal">30,424,122 KRW</div>
+          <div className="font-normal">{profitPrice} KRW</div>
         </div>
         <div className="flex w-2/5 place-content-between items-center">
           <div className="font-semibold">손절가</div>
-          <div className="font-normal">30,171,233 KRW</div>
+          <div className="font-normal">{lossPrice} KRW</div>
         </div>
       </div>
       <div className="flex place-content-between mt-3">
