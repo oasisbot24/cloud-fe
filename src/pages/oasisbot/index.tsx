@@ -1,13 +1,13 @@
 /* Dependencies */
 import { Stack } from "@mui/material";
 import { useAtom } from "jotai";
-import BotSetting from "@/components/oasisbot/BotSetting";
-import BotSettingRunning from "@/components/oasisbot/BotSettingRunning";
-import BotUseInfo from "@/components/oasisbot/BotUseInfo";
-import ProfitPart from "@/components/oasisbot/ProfitPart";
-import TransactionHistory from "@/components/oasisbot/TransactionHistory";
 import TopNavLayout from "@/components/topnav/TopNavLayout";
 import settingAtom from "@/datas/setting";
+import BotSetting from "@/screens/oasisbot/BotSetting";
+import BotSettingRunning from "@/screens/oasisbot/BotSettingRunning";
+import BotUseInfo from "@/screens/oasisbot/BotUseInfo";
+import ProfitPart from "@/screens/oasisbot/ProfitPart";
+import TransactionHistory from "@/screens/oasisbot/TransactionHistory";
 
 function OasisBot() {
   const [setting] = useAtom(settingAtom);

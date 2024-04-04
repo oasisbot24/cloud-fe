@@ -1,7 +1,7 @@
 import { Card, Stack } from "@mui/material";
-import Discription from "@/components/api-connection/Discription";
-import SetKey from "@/components/api-connection/SetKey";
 import TopNavLayout from "@/components/topnav/TopNavLayout";
+import Discription from "@/screens/api-connection/Discription";
+import SetKey from "@/screens/api-connection/SetKey";
 
 export default function ApiConnection() {
   return (

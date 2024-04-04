@@ -1,9 +1,9 @@
 import { Stack } from "@mui/material";
-import BackTestSetting from "@/components/backtest/BackTestSetting";
-import BackTestStatus from "@/components/backtest/BackTestStatus";
-import BotUseInfo from "@/components/oasisbot/BotUseInfo";
-import TransactionHistory from "@/components/oasisbot/TransactionHistory";
 import TopNavLayout from "@/components/topnav/TopNavLayout";
+import BackTestSetting from "@/screens/backtest/BackTestSetting";
+import BackTestStatus from "@/screens/backtest/BackTestStatus";
+import BotUseInfo from "@/screens/oasisbot/BotUseInfo";
+import TransactionHistory from "@/screens/oasisbot/TransactionHistory";
 
 function BackTest() {
   return (

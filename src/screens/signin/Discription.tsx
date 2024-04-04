@@ -1,5 +1,5 @@
 import { Stack, Typography } from "@mui/material";
-import RoundButton from "@/screens/RoundButton";
+import RoundButton from "@/components/RoundButton";
 
 function Discription() {
   return (

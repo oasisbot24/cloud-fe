@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Stack, Typography } from "@mui/material";
-import InfoCard from "@/components/fee-info/InfoCard";
 import TopNavLayout from "@/components/topnav/TopNavLayout";
+import InfoCard from "@/screens/fee-info/InfoCard";
 
 export default function FeeInfo() {
   return (

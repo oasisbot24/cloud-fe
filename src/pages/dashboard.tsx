@@ -1,6 +1,6 @@
-import CustomCheckbox from "@/screens/CustomCheckbox";
-import CustomSwitch from "@/screens/CustomSwitch";
-import Layout from "@/screens/Layout";
+import CustomCheckbox from "@/components/CustomCheckbox";
+import CustomSwitch from "@/components/CustomSwitch";
+import Layout from "@/components/Layout";
 
 export default function Home() {
   return (

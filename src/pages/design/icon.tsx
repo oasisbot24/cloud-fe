@@ -1,9 +1,9 @@
 import { Box, Stack, Typography } from "@mui/material";
-import AlertIcon from "@/screens/Icon/AlertIcon";
-import CharacterIcon from "@/screens/Icon/CharacterIcon";
-import DashboardIcon from "@/screens/Icon/DashboardIcon";
-import SidenavIcon from "@/screens/Icon/SidenavIcon";
-import SocialIcon from "@/screens/Icon/SocialIcon";
+import AlertIcon from "@/components/Icon/AlertIcon";
+import CharacterIcon from "@/components/Icon/CharacterIcon";
+import DashboardIcon from "@/components/Icon/DashboardIcon";
+import SidenavIcon from "@/components/Icon/SidenavIcon";
+import SocialIcon from "@/components/Icon/SocialIcon";
 
 export default function Icon() {
   return (
