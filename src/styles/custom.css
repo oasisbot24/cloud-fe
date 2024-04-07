@@ -1,0 +1,16 @@
+.signup-bg {
+  background: linear-gradient(96.75deg, #04267f -0.41%, #3a75dd 100.56%);
+}
+
+.sidenav {
+  box-shadow: 0px 12px 30px 0px #0f148b40;
+  background-color: #f9f7f7;
+  width: 260px;
+  flex-shrink: 0;
+  height: 100%;
+  z-index: 10;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ffffff;
+  position: fixed;
+}

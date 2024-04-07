@@ -1,15 +1,28 @@
-import MainDiscription from "@/components/MainDiscription";
-import SideLogin from "@/components/sidebar/SideLogin";
+import Image from "next/image";
+import { Box, Stack } from "@mui/material";
+import Footer from "@/components/Layout/Footer";
+import Header from "@/components/Layout/Header";
+import Discription from "@/screens/signin/Discription";
 
 export default function Home() {
   return (
-    <main className="flex w-full h-screen">
-      <div className="h-full md:w-1/3 w-full min-w-[300px] z-[1] shadow-md">
-        <SideLogin />
-      </div>
-      <div className="h-full md:w-2/3 md:block hidden">
-        <MainDiscription />
-      </div>
+    <main className="flex w-full h-screen signup-bg">
+      <Stack className="w-full">
+        <Header color="white" />
+        <Stack direction="row" className="w-full h-full relative">
+          <Discription />
+          <Box className="absolute right-0 bottom-10 h-full w-full overflow-hidden">
+            <Image
+              src="/mobius.png"
+              alt="mobius"
+              height={1080}
+              width={1080}
+              className="absolute right-[-40px] h-full w-fit object-contain z-1"
+            />
+          </Box>
+        </Stack>
+        <Footer color="white" />
+      </Stack>
     </main>
   );
 }

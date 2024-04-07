@@ -25,7 +25,7 @@ const getExchangeFromLocalStorage = () => {
   return exchange;
 };
 
-const oasisUrl = "http://3.36.71.228:8080/api/v1";
+const oasisUrl = "https://api.oasisbot24.com/api/v1";
 const api = axios.create({
   baseURL: oasisUrl,
   validateStatus: status => {
