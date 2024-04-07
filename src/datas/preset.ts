@@ -4,7 +4,7 @@ interface Preset {
   id?: number;
   presetName: string;
   indicatorName: string;
-  presetData: string;
+  presetData?: string; // 별도의 인터페이스로 분리
   position: string;
   profitCutRate: number;
   lossCutRate: number;
@@ -16,19 +16,14 @@ interface Indicator {
   indicatorName: string;
 }
 
-const selectedPresetIdAtom = atom<string>("");
-const presetNameAtom = atom<string>("");
-const indicatorNameAtom = atom<string>("TD_Sequential");
-const positionAtom = atom<string>("long");
-const profitCutRateAtom = atom<string>("0");
-const lossCutRateAtom = atom<string>("0");
+const selectedPresetAtom = atom<Preset>({
+  id: 0,
+  presetName: "",
+  indicatorName: "TD_Sequential",
+  position: "long",
+  profitCutRate: 0,
+  lossCutRate: 0,
+});
 
 export type { Preset, Indicator };
-export {
-  selectedPresetIdAtom,
-  presetNameAtom,
-  indicatorNameAtom,
-  positionAtom,
-  profitCutRateAtom,
-  lossCutRateAtom,
-};
+export { selectedPresetAtom };

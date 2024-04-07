@@ -14,13 +14,27 @@ function usePreset() {
   const { data: presetData, isLoading: isPresetLoading } = useQuery({
     queryKey: ["presets"],
     queryFn: getPresets,
+    select: data => {
+      if (data.data.state === "success") {
+        return data.data.data ? data.data.data : [];
+      }
+      return [];
+    },
   });
 
   const { data: indicators, isLoading: isIndicatorsLoading } = useQuery({
     queryKey: ["indicators"],
     queryFn: getIndicators,
-    select: data =>
-      data.map((item: Indicator) => ({ value: item.indicatorName })),
+    select: data => {
+      if (data.data.state === "success") {
+        return data.data.data
+          ? data.data.data.map((item: Indicator) => ({
+              value: item.indicatorName,
+            }))
+          : [];
+      }
+      return [];
+    },
   });
 
   const addPresetMutation = useMutation({
@@ -31,7 +45,7 @@ function usePreset() {
   });
 
   const updatePresetMutation = useMutation({
-    mutationFn: ({ presetId, body }: { presetId: string; body: Preset }) =>
+    mutationFn: ({ presetId, body }: { presetId: number; body: Preset }) =>
       updatePreset(presetId, body),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["presets"] });

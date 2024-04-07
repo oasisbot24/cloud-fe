@@ -1,45 +1,38 @@
+import { AxiosResponse } from "axios";
 import api from "@/apis/network";
 import { Indicator, Preset } from "@/datas/preset";
-import { Response } from "@/datas/response";
+import { CommonResponse } from "@/datas/response";
 
-function getPresets(): Promise<Preset[]> {
-  return api.get("/preset").then(res => {
-    return res.data.data;
+function getPresets(): Promise<AxiosResponse<CommonResponse<Preset[]>>> {
+  return api.get("/preset");
+}
+
+function getIndicators(): Promise<AxiosResponse<CommonResponse<Indicator[]>>> {
+  return api.get("/indicator");
+}
+
+function addNewPreset(): Promise<AxiosResponse<CommonResponse<void>>> {
+  return api.post("/preset", {
+    presetName: "신규 프리셋",
+    indicatorName: "TD_Sequential",
+    presetData: "",
+    position: "long",
+    profitCutRate: 0.2,
+    lossCutRate: -1.0,
   });
-}
-
-function getIndicators(): Promise<Indicator[]> {
-  return api.get("/indicator").then(res => res.data.data);
-}
-
-function addNewPreset(): Promise<void | Response> {
-  return api
-    .post("/preset", {
-      presetName: "신규 프리셋",
-      indicatorName: "TD_Sequential",
-      presetData: "",
-      position: "long",
-      profitCutRate: 0.2,
-      lossCutRate: -1.0,
-    })
-    .then(res => {
-      console.log(res);
-    });
 }
 
 function updatePreset(
-  presetId: string,
+  presetId: number,
   body: Preset,
-): Promise<void | Response> {
-  return api.put(`/preset/${presetId}`, body).then(res => {
-    console.log(res);
-  });
+): Promise<AxiosResponse<CommonResponse<void>>> {
+  return api.put(`/preset/${presetId}`, body);
 }
 
-function removePreset(presetId: string): Promise<void | Response> {
-  return api.delete(`/preset/${presetId}`).then(res => {
-    console.log(res);
-  });
+function removePreset(
+  presetId: string,
+): Promise<AxiosResponse<CommonResponse<void>>> {
+  return api.delete(`/preset/${presetId}`);
 }
 
 export { getPresets, getIndicators, addNewPreset, updatePreset, removePreset };

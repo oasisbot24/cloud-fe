@@ -1,9 +1,5 @@
-export interface Response {
-  state: State;
+export interface CommonResponse<T> {
   msg: string;
-}
-
-enum State {
-  "success",
-  "fail",
+  state: "success" | "fail";
+  data?: T;
 }

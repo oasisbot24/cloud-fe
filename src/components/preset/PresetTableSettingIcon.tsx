@@ -4,14 +4,7 @@ import { IconButton, Menu } from "@mui/material";
 import { GridRenderCellParams } from "@mui/x-data-grid";
 import { useSetAtom } from "jotai";
 import CustomMenuItem from "@/components/basic/CustomMenuItem";
-import {
-  indicatorNameAtom,
-  lossCutRateAtom,
-  positionAtom,
-  presetNameAtom,
-  profitCutRateAtom,
-  selectedPresetIdAtom,
-} from "@/datas/preset";
+import { selectedPresetAtom } from "@/datas/preset";
 import usePreset from "@/hooks/preset/usePreset";
 
 type Props = {
@@ -24,12 +17,7 @@ function PresetTableSettingIcon({ params }: Props) {
   const handleClickSettingBtn = (event: React.MouseEvent<HTMLElement>) =>
     setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
-  const setSelectedPresetId = useSetAtom(selectedPresetIdAtom);
-  const setPresetName = useSetAtom(presetNameAtom);
-  const setIndicatorName = useSetAtom(indicatorNameAtom);
-  const setPosition = useSetAtom(positionAtom);
-  const setProfitCutRate = useSetAtom(profitCutRateAtom);
-  const setLossCutRate = useSetAtom(lossCutRateAtom);
+  const setSelectedPreset = useSetAtom(selectedPresetAtom);
 
   const { removePresetMutation } = usePreset();
 
@@ -59,12 +47,7 @@ function PresetTableSettingIcon({ params }: Props) {
         <CustomMenuItem>매매 비중 변경</CustomMenuItem>
         <CustomMenuItem
           onClick={() => {
-            setSelectedPresetId(params.row.id);
-            setPresetName(params.row.presetName);
-            setIndicatorName(params.row.indicatorName);
-            setPosition(params.row.position);
-            setProfitCutRate(params.row.profitCutRate);
-            setLossCutRate(params.row.lossCutRate);
+            setSelectedPreset(params.row);
           }}
         >
           프리셋 설정 변경

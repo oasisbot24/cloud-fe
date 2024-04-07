@@ -1,26 +1,14 @@
 import React from "react";
 import { Button } from "@mui/material";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom } from "jotai";
 import Selectbox from "@/components/basic/Selectbox";
 import OasisbotInput from "@/components/input/OasisbotInput";
-import {
-  indicatorNameAtom,
-  lossCutRateAtom,
-  positionAtom,
-  presetNameAtom,
-  profitCutRateAtom,
-  selectedPresetIdAtom,
-} from "@/datas/preset";
+import { selectedPresetAtom } from "@/datas/preset";
 import usePreset from "@/hooks/preset/usePreset";
 
 function PresetSetting() {
   const { indicators, isIndicatorsLoading } = usePreset();
-  const selectedPresetId = useAtomValue<string>(selectedPresetIdAtom);
-  const [presetName, setPresetName] = useAtom<string>(presetNameAtom);
-  const [indicatorName, setIndicatorName] = useAtom<string>(indicatorNameAtom);
-  const [position, setPosition] = useAtom<string>(positionAtom);
-  const [profitCutRate, setProfitCutRate] = useAtom<string>(profitCutRateAtom);
-  const [lossCutRate, setLossCutRate] = useAtom<string>(lossCutRateAtom);
+  const [selectedPreset, setSelectedPreset] = useAtom(selectedPresetAtom);
 
   const { updatePresetMutation } = usePreset();
 
@@ -30,8 +18,10 @@ function PresetSetting() {
         <div className="flex items-center">프리셋 이름</div>
         <OasisbotInput
           id="presetName"
-          value={presetName}
-          setValue={setPresetName}
+          value={selectedPreset.presetName}
+          setValue={value =>
+            setSelectedPreset({ ...selectedPreset, presetName: value })
+          } // 확인
         />
       </div>
       <div className="flex place-content-between mt-4">
@@ -39,9 +29,11 @@ function PresetSetting() {
         <Selectbox
           labelId="indicatorName"
           selectLabel=""
-          itemList={isIndicatorsLoading ? [] : indicators}
-          state={indicatorName}
-          setState={setIndicatorName}
+          itemList={indicators ?? []}
+          state={selectedPreset.indicatorName}
+          setState={value =>
+            setSelectedPreset({ ...selectedPreset, indicatorName: value })
+          }
         />
       </div>
       <div className="flex place-content-between mt-4">
@@ -54,42 +46,49 @@ function PresetSetting() {
             { value: "long", itemLabel: "롱" },
             { value: "entry", itemLabel: "진입" },
           ]}
-          state={position}
-          setState={setPosition}
+          state={selectedPreset.position}
+          setState={value =>
+            setSelectedPreset({ ...selectedPreset, position: value })
+          }
         />
       </div>
       <div className="flex place-content-between mt-4">
         <div className="flex items-center">익절율</div>
         <OasisbotInput
           id="preset"
-          value={profitCutRate}
-          setValue={setProfitCutRate}
+          value={selectedPreset.profitCutRate}
+          setValue={value =>
+            setSelectedPreset({
+              ...selectedPreset,
+              profitCutRate: parseFloat(value),
+            })
+          }
         />
       </div>
       <div className="flex place-content-between mt-4">
         <div className="flex items-center">손절율</div>
         <OasisbotInput
           id="preset"
-          value={lossCutRate}
-          setValue={setLossCutRate}
+          value={selectedPreset.lossCutRate}
+          setValue={value =>
+            setSelectedPreset({
+              ...selectedPreset,
+              lossCutRate: parseFloat(value),
+            })
+          }
         />
       </div>
       <div className="flex place-content-between mt-4">
         <Button onClick={console.log}>세팅 변경</Button>
         <Button
-          onClick={() =>
+          onClick={() => {
+            if (!selectedPreset.id) return;
+
             updatePresetMutation.mutate({
-              presetId: selectedPresetId,
-              body: {
-                presetName,
-                indicatorName,
-                presetData: "", // 지금은 입력하는 부분이 없어 빈 문자열로 처리
-                position,
-                profitCutRate: Number(profitCutRate),
-                lossCutRate: Number(lossCutRate),
-              },
-            })
-          }
+              presetId: selectedPreset.id,
+              body: { ...selectedPreset, presetData: "" },
+            });
+          }}
         >
           저장
         </Button>
