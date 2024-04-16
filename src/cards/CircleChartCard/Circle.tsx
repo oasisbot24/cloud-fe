@@ -1,7 +1,7 @@
 import { Box, Stack, Typography } from "@mui/material";
 import CircleSvg from "@/cards/CircleChartCard/CircleSvg";
 
-function CircleChart({
+function ElementCircle({
   fillColorStart = "",
   fillColorEnd = "",
   startAngle = 0,
@@ -23,8 +23,8 @@ function CircleChart({
           fillColorStart={fillColorStart}
           fillColorEnd={fillColorEnd}
           radius={size}
-          startAngle={startAngle}
-          endAngle={endAngle}
+          startAngle={startAngle - 90}
+          endAngle={endAngle - 90}
         />
       </Box>
     </Box>
@@ -92,4 +92,4 @@ function BaseCircle() {
   );
 }
 
-export { CircleChart, CenterCircle, BaseCircle };
+export { ElementCircle, CenterCircle, BaseCircle };
