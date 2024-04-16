@@ -50,10 +50,25 @@ function CenterCircle({ percent = "50%", amount = "₩ 12,112,112" }) {
 		top-1/2 right-1/2 justify-center"
         >
           <Box className="text-center">
-            <Typography variant="h4">{percent}</Typography>
+            <Typography
+              fontFamily="San Francisco"
+              fontWeight={800}
+              fontSize={28}
+              lineHeight="36px"
+            >
+              {percent}
+            </Typography>
           </Box>
           <Box className="text-center">
-            <Typography variant="100M">{amount}</Typography>
+            <Typography
+              fontFamily="San Francisco"
+              fontWeight={600}
+              fontSize={12}
+              lineHeight="14px"
+              className="text-font-3"
+            >
+              {amount}
+            </Typography>
           </Box>
         </Stack>
       </Box>
