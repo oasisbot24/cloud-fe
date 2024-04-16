@@ -5,7 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SnackbarProvider } from "notistack";
 import "@/styles/custom.css";
-import "@/styles/font/font.css";
+import "@/styles/font/font-sans.css";
+import "@/styles/font/font-sfp.css";
 import "@/styles/globals.css";
 import theme from "@/styles/theme/theme";
 
