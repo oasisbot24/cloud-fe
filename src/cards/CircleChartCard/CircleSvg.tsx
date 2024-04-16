@@ -60,6 +60,7 @@ export default function CircleSvg({
       width={radius * 2}
       height={radius * 2}
       viewBox={`0 0 ${radius * 2} ${radius * 2}`}
+      style={{ filter: "drop-shadow(0px -5px 20px 0px #0000001F)" }}
     >
       <defs>
         <radialGradient
