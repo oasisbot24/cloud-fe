@@ -1,6 +1,12 @@
 import React from "react";
 import Image from "next/image";
-import { CardActions, CardContent, CardHeader, Chip } from "@mui/material";
+import {
+  CardActions,
+  CardContent,
+  CardHeader,
+  Chip,
+  IconButton,
+} from "@mui/material";
 import {
   DataGrid,
   GridColDef,
@@ -16,6 +22,19 @@ const columns: GridColDef[] = [
     headerName: "프리셋 이름",
     flex: 1,
     headerClassName: "text-slate-500",
+    renderCell: (params: GridRenderCellParams<GridValidRowModel, string>) => (
+      <div className="flex items-center">
+        <div className="w-4/5 whitespace-normal">{params.value}</div>
+        <IconButton sx={{ width: "24px", height: "24px" }}>
+          <Image
+            src="/icons/basic/setting.png"
+            alt="세팅"
+            width={24}
+            height={24}
+          />
+        </IconButton>
+      </div>
+    ),
   },
   {
     field: "executeBudget",
@@ -28,12 +47,18 @@ const columns: GridColDef[] = [
     headerName: "운영 기간",
     flex: 1,
     headerClassName: "text-slate-500",
+    renderCell: (params: GridRenderCellParams<GridValidRowModel, string>) => (
+      <div className="whitespace-normal">{params.value}</div>
+    ),
   },
   {
     field: "stockItem",
     headerName: "종목",
     flex: 1,
     headerClassName: "text-slate-500",
+    renderCell: (params: GridRenderCellParams<GridValidRowModel, string>) => (
+      <div className="whitespace-normal">{params.value}</div>
+    ),
   },
   {
     field: "status",
