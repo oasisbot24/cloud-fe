@@ -5,6 +5,15 @@ const config: Config = {
   important: "#__next",
   theme: {
     extend: {
+      keyframes: {
+        "circle-appear": {
+          "0%": { transform: "scale(0.5)" },
+          "100%": { transform: "scale(1)" },
+        },
+      },
+      animation: {
+        "circle-chart": "circle-appear 0.5s ease-in",
+      },
       colors: {
         brand: "#223CE9",
         "sub-1": "#022579",
