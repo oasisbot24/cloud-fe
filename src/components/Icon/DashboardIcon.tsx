@@ -8,11 +8,15 @@ interface DashboardIconProps {
 const iconSrc = {
   "bar-graph": "/icons/dashboard/bar-graph.png",
   "bot-start": "/icons/dashboard/bot-start.png",
+  lab: "/icons/dashboard/lab.png",
+  "lab-on": "/icons/dashboard/lab-on.png",
+  "lab-result": "/icons/dashboard/lab-result.png",
   history: "/icons/dashboard/history.png",
   "pie-chart": "/icons/dashboard/pie-chart.png",
   ranking: "/icons/dashboard/ranking.png",
   "rise-arrow": "/icons/dashboard/rise-arrow.png",
   setting: "/icons/dashboard/setting.png",
+  transaction: "/icons/dashboard/transaction.png",
   wallet: "/icons/dashboard/wallet.png",
 };
 

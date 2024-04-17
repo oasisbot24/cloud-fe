@@ -73,11 +73,15 @@ export default function Icon() {
             [
               "bar-graph",
               "bot-start",
+              "lab",
+              "lab-on",
+              "lab-result",
               "history",
               "pie-chart",
               "ranking",
               "rise-arrow",
               "setting",
+              "transaction",
               "wallet",
             ] as DashboardIdType[]
           ).map(id => (

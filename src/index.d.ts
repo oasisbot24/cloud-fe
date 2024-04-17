@@ -16,9 +16,13 @@ type DashboardIdType =
   | "bar-graph"
   | "bot-start"
   | "history"
+  | "lab"
+  | "lab-on"
+  | "lab-result"
   | "pie-chart"
   | "ranking"
   | "rise-arrow"
   | "setting"
+  | "transaction"
   | "wallet";
 type SocialType = "linkedin" | "facebook" | "naver" | "kakao";
