@@ -1,4 +1,5 @@
 import { Box, Stack } from "@mui/material";
+import AdvertisementCard from "@/cards/AdvertisementCard/index";
 import BotListCard from "@/cards/BotListCard/index";
 import ChartCard from "@/cards/ChartCard";
 import CircleChartCard from "@/cards/CircleChartCard/index";
@@ -12,7 +13,7 @@ export default function Home() {
         <Stack direction="row" className="gap-4 h-[340px]">
           <BotListCard />
           <CircleChartCard />
-          <BotListCard />
+          <AdvertisementCard />
         </Stack>
         <Stack direction="row" className="gap-4 h-[436px]">
           <Box className="w-7/12">
