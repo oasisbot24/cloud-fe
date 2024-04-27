@@ -1,16 +1,17 @@
+import { Box } from "@mui/material";
 import Card from "@/cards/Card";
 import CustomChart from "./CustomChart";
-import CustomPanel from "./CustomPanel";
+import Panel from "./Panel";
 
 export default function ChartCard() {
   return (
     <Card>
-      <div className="p-5">
-        <CustomPanel />
-      </div>
-      <div className="w-full">
+      <Box p={2}>
+        <Panel />
+      </Box>
+      <Box>
         <CustomChart />
-      </div>
+      </Box>
     </Card>
   );
 }

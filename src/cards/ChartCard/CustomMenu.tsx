@@ -1,54 +1,65 @@
 import Image from "next/image";
-import { Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
+import DashboardIcon from "@/components/Icon/DashboardIcon";
 
 export default function CustomMenu() {
   return (
-    <div className="flex flex-row w-1/2 h-[80px] bg-[#898FC3] rounded-lg justify-around  items-center p-2">
-      <div className=" flex flex-row w-full gap-2  items-center">
-        <div className="flex bg-white rounded-lg border-[#F6F6F6] p-1 ">
-          <Image
-            src="/icons/dashboard/bar-graph.png"
-            alt="all"
-            width={45}
-            height={45}
-          />
-        </div>
-        <div className="flex flex-col gap-1">
-          <Typography
-            fontFamily="Inter"
-            fontWeight={700}
-            fontSize={16}
-            lineHeight="18px"
-            color={"#FFFFFF"}
-          >
-            종합
+    <Stack
+      direction="row"
+      justifyContent="center"
+      alignItems="center"
+      sx={{
+        bgcolor: "white",
+        width: "auto",
+        height: "auto",
+        padding: 2,
+        borderRadius: "16px",
+        // borderColor: "#898FC3",
+        border: 1,
+        cursor: "pointer",
+      }}
+    >
+      <Stack direction="row" alignItems="center" spacing={2} sx={{ width: 1 }}>
+        <Image
+          src="/icons/crypto/btc-30.png"
+          alt="btc"
+          width={25}
+          height={30}
+        />
+
+        <Stack direction="column" spacing={1}>
+          <Typography variant="300B">BTCUSDT</Typography>
+
+          <Typography variant="200R" color={"#B0B3B7"}>
+            Bitcoin
           </Typography>
-          <Typography
-            fontFamily="Inter"
-            fontWeight={400}
-            fontSize={14}
-            lineHeight="18px"
-            color={"#FFFFFF"}
-          >
-            ALL
-          </Typography>
-        </div>
-      </div>
-      <div className="flex flex-row gap-2 ">
-        <div className="flex flex-col gap-1 ">
-          <div className="flex w-full justify-end">
+        </Stack>
+      </Stack>
+      <Stack direction="row" spacing={2}>
+        <Stack direction="column" spacing={1}>
+          <Stack direction="row" justifyContent="flex-end" sx={{ width: 1 }}>
             <Typography
+              variant="200R"
               fontFamily="SF Pro Display"
               fontWeight={600}
               fontSize={18}
               lineHeight="22px"
-              color={"#FFFFFF"}
             >
               $230,7777
             </Typography>
-          </div>
-          <div className="flex w-full justify-end">
-            <div className="flex flex-row bg-[#D1D6F9] rounded-full w-[58px] h-[24px] items-center justify-center ">
+          </Stack>
+          <Stack direction="row" justifyContent="flex-end" sx={{ width: 1 }}>
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="center"
+              sx={{
+                bgcolor: "#D1D6F9",
+                width: "58px",
+                height: "24px",
+                borderRadius: "16px",
+              }}
+            >
               <Image
                 src="/icons/arrow/profitloss/down-small.png"
                 width={16}
@@ -64,18 +75,10 @@ export default function CustomMenu() {
               >
                 23%
               </Typography>
-            </div>
-          </div>
-        </div>
-        <div className="flex justify-center items-center">
-          <Image
-            src="/icons/arrow/down-circle.png"
-            alt="circle"
-            width={20}
-            height={20}
-          />
-        </div>
-      </div>
-    </div>
+            </Stack>
+          </Stack>
+        </Stack>
+      </Stack>
+    </Stack>
   );
 }
