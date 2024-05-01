@@ -126,9 +126,9 @@ const rows = [
 ];
 
 function PresetsCard() {
-  const [priceStatus, PriceStatusSelect] = usePriceStatusSelect();
-  const [currency, CurrencySelect] = useCurrencySelect();
-  const [market, MarketSelect] = useMarketSelect();
+  const { priceStatus, PriceStatusSelect } = usePriceStatusSelect();
+  const { currency, CurrencySelect } = useCurrencySelect();
+  const { market, MarketSelect } = useMarketSelect();
 
   return (
     <Card>

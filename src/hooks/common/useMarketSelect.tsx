@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { KeyboardArrowDown } from "@mui/icons-material";
 import CustomSelect from "@/components/common/CustomSelect";
-import { CustomSelectHook } from "@/datas/basic";
 
-function useMarketSelect(): CustomSelectHook {
+function useMarketSelect() {
   const [market, setMarket] = useState<string>("");
 
   function MarketSelect() {
@@ -20,7 +19,7 @@ function useMarketSelect(): CustomSelectHook {
       />
     );
   }
-  return [market, MarketSelect];
+  return { market, MarketSelect };
 }
 
 export default useMarketSelect;

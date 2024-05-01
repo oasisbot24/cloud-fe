@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { UnfoldMore } from "@mui/icons-material";
 import CustomSelect from "@/components/common/CustomSelect";
-import { CustomSelectHook } from "@/datas/basic";
 
-function useCurrencySelect(): CustomSelectHook {
+function useCurrencySelect() {
   const [currency, setCurrency] = useState<string>("won");
 
   function CurrencySelect() {
@@ -21,7 +20,7 @@ function useCurrencySelect(): CustomSelectHook {
     );
   }
 
-  return [currency, CurrencySelect];
+  return { currency, CurrencySelect };
 }
 
 export default useCurrencySelect;

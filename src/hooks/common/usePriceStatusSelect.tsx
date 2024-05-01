@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { UnfoldMore } from "@mui/icons-material";
 import CustomSelect from "@/components/common/CustomSelect";
-import { CustomSelectHook } from "@/datas/basic";
 
-function usePriceStatusSelect(): CustomSelectHook {
+function usePriceStatusSelect() {
   const [priceStatus, setPriceStatus] = useState<string>("current");
 
   function PriceStatusSelect() {
@@ -20,7 +19,7 @@ function usePriceStatusSelect(): CustomSelectHook {
     );
   }
 
-  return [priceStatus, PriceStatusSelect];
+  return { priceStatus, PriceStatusSelect };
 }
 
 export default usePriceStatusSelect;
