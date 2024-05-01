@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
-import { KeyboardArrowDown, UnfoldMore } from "@mui/icons-material";
 import {
   CardActions,
   CardContent,
@@ -16,7 +15,9 @@ import {
 } from "@mui/x-data-grid";
 import Card from "@/cards/Card";
 import CustomSwitch from "@/components/CustomSwitch";
-import CustomSelect from "@/components/common/CustomSelect";
+import useCurrencySelect from "@/hooks/common/useCurrencySelect";
+import useMarketSelect from "@/hooks/common/useMarketSelect";
+import usePriceStatusSelect from "@/hooks/common/usePriceStatusSelect";
 
 const columns: GridColDef[] = [
   {
@@ -125,9 +126,9 @@ const rows = [
 ];
 
 function PresetsCard() {
-  const [priceStatus, setPriceStatus] = useState<string>("current");
-  const [currency, setCurrency] = useState<string>("won");
-  const [market, setMarket] = useState<string>("");
+  const [priceStatus, PriceStatusSelect] = usePriceStatusSelect();
+  const [currency, CurrencySelect] = useCurrencySelect();
+  const [market, MarketSelect] = useMarketSelect();
 
   return (
     <Card>
@@ -146,35 +147,9 @@ function PresetsCard() {
         subheader="오늘 16:29 기준" // 추후 날짜/시간 라이브러리 사용해 수정할 것
         action={
           <>
-            <CustomSelect
-              options={[
-                { value: "current", label: "현재가" },
-                { value: "future", label: "미래가" },
-              ]}
-              state={priceStatus}
-              setState={setPriceStatus}
-              indicator={UnfoldMore}
-            />
-            <CustomSelect
-              options={[
-                { value: "won", label: "원화로" },
-                { value: "dollar", label: "달러로" },
-                { value: "yen", label: "엔화로" },
-              ]}
-              state={currency}
-              setState={setCurrency}
-              indicator={UnfoldMore}
-            />
-            <CustomSelect
-              label="거래소별 보기"
-              options={[
-                { value: "upbit", label: "업비트" },
-                { value: "okx", label: "OKX" },
-              ]}
-              state={market}
-              setState={setMarket}
-              indicator={KeyboardArrowDown}
-            />
+            <PriceStatusSelect />
+            <CurrencySelect />
+            <MarketSelect />
           </>
         }
         titleTypographyProps={{
