@@ -14,7 +14,10 @@ import {
   GridValidRowModel,
 } from "@mui/x-data-grid";
 import Card from "@/cards/Card";
-import IosSwitch from "@/components/common/IosSwitch";
+import CustomSwitch from "@/components/CustomSwitch";
+import useCurrencySelect from "@/hooks/common/useCurrencySelect";
+import useMarketSelect from "@/hooks/common/useMarketSelect";
+import usePriceStatusSelect from "@/hooks/common/usePriceStatusSelect";
 
 const columns: GridColDef[] = [
   {
@@ -66,7 +69,7 @@ const columns: GridColDef[] = [
     flex: 0.5,
     headerClassName: "text-slate-500",
     renderCell: (params: GridRenderCellParams<GridValidRowModel, boolean>) => (
-      <IosSwitch defaultChecked={params.value} />
+      <CustomSwitch defaultChecked={params.value} />
     ),
   },
 ];
@@ -123,6 +126,10 @@ const rows = [
 ];
 
 function PresetsCard() {
+  const { priceStatus, PriceStatusSelect } = usePriceStatusSelect();
+  const { currency, CurrencySelect } = useCurrencySelect();
+  const { market, MarketSelect } = useMarketSelect();
+
   return (
     <Card>
       <CardHeader
@@ -138,6 +145,13 @@ function PresetsCard() {
         }
         title="실행중인 프리셋 목록"
         subheader="오늘 16:29 기준" // 추후 날짜/시간 라이브러리 사용해 수정할 것
+        action={
+          <>
+            <PriceStatusSelect />
+            <CurrencySelect />
+            <MarketSelect />
+          </>
+        }
         titleTypographyProps={{
           fontSize: "16px",
           fontWeight: 700,
