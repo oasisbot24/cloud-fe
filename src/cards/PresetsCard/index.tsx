@@ -1,12 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import {
-  CardActions,
-  CardContent,
-  CardHeader,
-  Chip,
-  IconButton,
-} from "@mui/material";
+import { CardActions, CardContent, Chip, IconButton } from "@mui/material";
 import {
   DataGrid,
   GridColDef,
@@ -14,6 +8,7 @@ import {
   GridValidRowModel,
 } from "@mui/x-data-grid";
 import Card from "@/cards/Card";
+import CardHeader from "@/cards/CardHeader";
 import CustomSwitch from "@/components/CustomSwitch";
 import useCurrencySelect from "@/hooks/common/useCurrencySelect";
 import useMarketSelect from "@/hooks/common/useMarketSelect";
@@ -133,18 +128,8 @@ function PresetsCard() {
   return (
     <Card>
       <CardHeader
-        avatar={
-          <div className="w-11 h-11 rounded-xl bg-slate-100 flex justify-center items-center">
-            <Image
-              src="/icons/dashboard/setting.png"
-              alt="프리셋 세팅"
-              width={36}
-              height={30}
-            />
-          </div>
-        }
+        id="setting"
         title="실행중인 프리셋 목록"
-        subheader="오늘 16:29 기준" // 추후 날짜/시간 라이브러리 사용해 수정할 것
         action={
           <>
             <PriceStatusSelect />
@@ -152,14 +137,6 @@ function PresetsCard() {
             <MarketSelect />
           </>
         }
-        titleTypographyProps={{
-          fontSize: "16px",
-          fontWeight: 700,
-        }}
-        subheaderTypographyProps={{
-          color: "#B0B3B7",
-          fontSize: "12px",
-        }}
       />
       <CardContent
         sx={{ paddingTop: "0", maxHeight: "290px", overflow: "auto" }}
