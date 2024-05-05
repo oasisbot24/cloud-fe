@@ -6,9 +6,15 @@ interface CardHeaderProps {
   id: DashboardIdType;
   title: string;
   action?: React.ReactNode;
+  isDark?: boolean;
 }
 
-export default function CardHeader({ id, title, action }: CardHeaderProps) {
+export default function CardHeader({
+  id,
+  title,
+  action,
+  isDark,
+}: CardHeaderProps) {
   const hm = dayjs().format("HH:mm");
   return (
     <MuiCardHeader
@@ -20,12 +26,15 @@ export default function CardHeader({ id, title, action }: CardHeaderProps) {
       avatar={<DashboardIcon id={id} />}
       title={
         <Stack className="gap-1">
-          <Typography variant="300B" className="text-font-1">
+          <Typography
+            variant="300B"
+            className={!isDark ? "text-font-1" : "text-neutral-100"}
+          >
             {title}
           </Typography>
           <Typography
             variant="100R"
-            className="text-neutral-500"
+            className={!isDark ? "text-neutral-500" : "text-neutral-300"}
           >{`오늘 ${hm} 기준`}</Typography>
         </Stack>
       }
