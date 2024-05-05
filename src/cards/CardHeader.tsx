@@ -12,6 +12,11 @@ export default function CardHeader({ id, title, action }: CardHeaderProps) {
   const hm = dayjs().format("HH:mm");
   return (
     <MuiCardHeader
+      sx={{
+        "& .MuiCardHeader-action": {
+          margin: "auto 0",
+        },
+      }}
       avatar={<DashboardIcon id={id} />}
       title={
         <Stack className="gap-1">
