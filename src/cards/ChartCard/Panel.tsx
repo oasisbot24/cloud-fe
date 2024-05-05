@@ -120,6 +120,7 @@ export default function Panel() {
           </Stack>
         </Stack>
       </Stack>
+
       <Menu
         anchorEl={anchorEl}
         open={open}
@@ -129,7 +130,7 @@ export default function Panel() {
           "& .MuiPaper-root": {
             bgcolor: "transparent",
             boxShadow: "none",
-            width: "21.7%",
+            width: anchorEl && anchorEl.offsetWidth,
           },
         }}
       >
