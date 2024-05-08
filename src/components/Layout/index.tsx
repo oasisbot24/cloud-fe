@@ -1,13 +1,27 @@
-import { useState } from "react";
-import MenuIcon from "@mui/icons-material/Menu";
-import { Box, IconButton, Stack } from "@mui/material";
-import SideNav from "@/components/Layout/Sidenav";
+import { useEffect, useState } from "react";
+import { Box, Stack } from "@mui/material";
+import SideNav from "@/components/Layout/SideNav";
+import TopNav from "@/components/Layout/TopNav/index";
+import useComponentSize from "@/hooks/useComponentSize";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const { size, componentRef } = useComponentSize();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  useEffect(() => {
+    if (size.width <= 1440) {
+      setIsMenuOpen(false);
+    } else {
+      setIsMenuOpen(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log(size);
+  }, [size]);
+
   return (
-    <main className="w-full bg-[#F5F6FA]">
+    <main className="w-full bg-[#F5F6FA]" ref={componentRef}>
       <Stack direction="row" className="w-full">
         <SideNav isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
         <Stack
@@ -15,18 +29,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           justifyContent="space-between"
           className="w-full h-full"
         >
-          <Stack
-            direction="row"
-            className="w-full h-[70px] px-4 shrink-0 bg-white shadow-sm justify-between items-center"
-          >
-            <IconButton onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              <MenuIcon />
-            </IconButton>
-            User info
-          </Stack>
+          <TopNav isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
           <Box
             className={
-              isMenuOpen
+              isMenuOpen && size.width > 1440
                 ? "ml-[260px] transition-all duration-300"
                 : "ml-[0px] transition-all duration-300"
             }
