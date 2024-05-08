@@ -1,11 +1,15 @@
-import { Box, Stack } from "@mui/material";
+import { useState } from "react";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Box, IconButton, Stack } from "@mui/material";
 import SideNav from "@/components/Layout/Sidenav";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <main className="w-full bg-[#F5F6FA]">
       <Stack direction="row" className="w-full">
-        <SideNav />
+        <SideNav isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
         <Stack
           direction="column"
           justifyContent="space-between"
@@ -13,11 +17,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         >
           <Stack
             direction="row"
-            className="w-full h-[70px] shrink-0 bg-white shadow-sm justify-end items-center"
+            className="w-full h-[70px] px-4 shrink-0 bg-white shadow-sm justify-between items-center"
           >
+            <IconButton onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              <MenuIcon />
+            </IconButton>
             User info
           </Stack>
-          <Box className="ml-[260px]">
+          <Box
+            className={
+              isMenuOpen
+                ? "ml-[260px] transition-all duration-300"
+                : "ml-[0px] transition-all duration-300"
+            }
+          >
             <Box className="w-full p-4 pl-8">{children}</Box>
           </Box>
         </Stack>

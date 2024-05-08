@@ -1,13 +1,37 @@
-import { Box, Stack, Typography } from "@mui/material";
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import { Box, IconButton, Stack, Typography } from "@mui/material";
 import ServiceCenter from "@/components/Layout/Sidenav/ServiceCenter";
 import SideMenuButton from "@/components/Layout/Sidenav/SideMenuButton";
 import { sideMenu } from "@/components/Layout/Sidenav/sideMenu";
 import Logo from "@/components/Logo";
 
-export default function SideNav() {
+interface SideNavProps {
+  isMenuOpen: boolean;
+  setIsMenuOpen: (value: boolean) => void;
+}
+
+export default function SideNav({ isMenuOpen, setIsMenuOpen }: SideNavProps) {
   return (
-    <Stack direction="column" className="sidenav px-4 py-8">
-      <Logo color="black" size="L" />
+    <Stack
+      direction="column"
+      className={
+        isMenuOpen
+          ? "sidenav px-4 py-8 ml-0 transition-all duration-300"
+          : "sidenav px-4 py-8 ml-[-260px] transition-all duration-300"
+      }
+    >
+      <Stack
+        direction="row"
+        className="w-full relative justify-center items-center"
+      >
+        <Logo color="black" size="L" />
+        <IconButton
+          onClick={() => setIsMenuOpen(false)}
+          className="absolute right-0"
+        >
+          <KeyboardDoubleArrowLeftIcon />
+        </IconButton>
+      </Stack>
       {sideMenu.map(menu => (
         <Stack
           key={menu.title}
