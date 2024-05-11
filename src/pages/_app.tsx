@@ -8,6 +8,7 @@ import "@/styles/custom.css";
 import "@/styles/font/font-sans.css";
 import "@/styles/font/font-sfp.css";
 import "@/styles/globals.css";
+import "@/styles/liquid.scss";
 import theme from "@/styles/theme";
 
 const queryClient = new QueryClient();

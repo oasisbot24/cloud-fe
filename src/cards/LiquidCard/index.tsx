@@ -1,36 +1,34 @@
 import { useEffect, useRef, useState } from "react";
 import { Stack } from "@mui/material";
-import { CircularFluidMeter, Speed } from "fluid-meter";
 import Card from "../Card";
-import FluidMeter from "./liquid";
 
 export default function LiquidCard() {
-  const ref = useRef(null);
-  let m = null;
+  const [value, setValue] = useState("60");
+  const progress = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    const target = ref.current as unknown as HTMLElement;
-    m = new CircularFluidMeter(target, {
-      initialProgress: 50,
-      fluidConfiguration: {
-        color: "#3d85c6",
-      },
-      padding: 100,
-    });
-    m.backgroundColor = "#dde2e6";
-    m.borderColor = "#3d85c6";
-    m.borderWidth = 10;
-    m.dropShadow = false;
-    m.use3D = false;
-    m.showBubbles = false;
-    m.textColor = "#000000";
-    m.textDropShadow = false;
-    m.fontSize = 50;
-    console.log(m);
+    progress.current!.style.setProperty(`--progress-value`, value);
+    // if (Number(value) > 50) {
+
+    //   progress.current!.classList.add(`progress--upper-half-value`);
+    // } else {
+    //   progress.current!.classList.contains("progress--upper-half-value") &&
+    //     progress.current!.classList.remove(`progress--upper-half-value`);
+    // }
   }, []);
 
   return (
     <Card>
-      <div ref={ref} className=" h-[300px] w-[300px] "></div>
+      <div className="progress" role="progressbar" ref={progress}>
+        <div className="progress-inner">
+          <div className="progress-indicator"></div>
+          <div className="progress-indicator"></div>
+        </div>
+        <span className="progress-label">
+          <strong>{value}</strong>
+          <span>%</span>
+        </span>
+      </div>
     </Card>
   );
 }
