@@ -5,6 +5,7 @@ import BotTransactionCard from "@/cards/BotTransactionCard";
 import ChartCard from "@/cards/ChartCard";
 import CircleChartCard from "@/cards/CircleChartCard/index";
 import PresetsCard from "@/cards/PresetsCard";
+import ProfitRankCard from "@/cards/ProfitRankCard";
 import Layout from "@/components/Layout";
 
 export default function Home() {
@@ -29,7 +30,7 @@ export default function Home() {
             <BotTransactionCard />
           </Box>
           <Box className="w-7/12">
-            <BotListCard />
+            <ProfitRankCard />
           </Box>
         </Stack>
       </Stack>

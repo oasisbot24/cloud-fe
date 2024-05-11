@@ -9,28 +9,10 @@ import {
 import ArrowDownIcon from "@/components/Icon/ArrowDownIcon";
 import ArrowUpIcon from "@/components/Icon/ArrowUpIcon";
 import { BotTransactionProfit } from "@/datas/botTransaction";
+import useMarket from "@/hooks/common/useMarket";
 
 function useBotTransaction() {
-  const marketName = (market: string | undefined) => {
-    switch (market) {
-      case "upbit":
-        return "업비트";
-      case "okx":
-        return "OKX";
-      default:
-        return "";
-    }
-  };
-  const marketIcon = (market: string | undefined): string => {
-    switch (market) {
-      case "upbit":
-        return "/icons/crypto/upbit.png";
-      case "okx":
-        return "/icons/crypto/okx.png";
-      default:
-        return "";
-    }
-  };
+  const { marketName, marketIcon } = useMarket();
 
   const columns: GridColDef[] = [
     {
