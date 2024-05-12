@@ -6,16 +6,26 @@ import {
   GridRenderCellParams,
   GridValidRowModel,
 } from "@mui/x-data-grid";
+import { useQuery } from "@tanstack/react-query";
+import { PresetType, getPreset } from "@/apis/presets";
 import CustomSwitch from "@/components/CustomSwitch";
+import useMarketSelect from "@/hooks/common/useMarketSelect";
 
 function usePresets() {
+  const { market } = useMarketSelect();
+
   const columns: GridColDef[] = [
     {
       field: "presetName",
       headerName: "프리셋 이름",
       flex: 1,
       headerClassName: "text-slate-500",
-      renderCell: (params: GridRenderCellParams<GridValidRowModel, string>) => (
+      renderCell: (
+        params: GridRenderCellParams<
+          GridValidRowModel,
+          PresetType["presetName"]
+        >,
+      ) => (
         <div className="flex items-center">
           <div className="w-4/5 whitespace-normal">{params.value}</div>
           <IconButton sx={{ width: "24px", height: "24px" }}>
@@ -30,92 +40,52 @@ function usePresets() {
       ),
     },
     {
-      field: "executeBudget",
+      field: "startBalance",
       headerName: "실행 금액",
       flex: 1,
       headerClassName: "text-slate-500",
     },
     {
-      field: "operationPeriod",
+      field: "runningTime",
       headerName: "운영 기간",
       flex: 1,
       headerClassName: "text-slate-500",
-      renderCell: (params: GridRenderCellParams<GridValidRowModel, string>) => (
-        <div className="whitespace-normal">{params.value}</div>
-      ),
+      renderCell: (
+        params: GridRenderCellParams<
+          GridValidRowModel,
+          PresetType["runningTime"]
+        >,
+      ) => <div className="whitespace-normal">{params.value}</div>,
     },
     {
-      field: "stockItem",
+      field: "coinType",
       headerName: "종목",
       flex: 1,
       headerClassName: "text-slate-500",
-      renderCell: (params: GridRenderCellParams<GridValidRowModel, string>) => (
-        <div className="whitespace-normal">{params.value}</div>
-      ),
+      renderCell: (
+        params: GridRenderCellParams<GridValidRowModel, PresetType["coinType"]>,
+      ) => <div className="whitespace-normal">{params.value}</div>,
     },
     {
-      field: "status",
+      field: "isRunning",
       headerName: "상태",
       flex: 0.5,
       headerClassName: "text-slate-500",
       renderCell: (
-        params: GridRenderCellParams<GridValidRowModel, boolean>,
+        params: GridRenderCellParams<
+          GridValidRowModel,
+          PresetType["isRunning"]
+        >,
       ) => <CustomSwitch defaultChecked={params.value} />,
     },
   ];
 
-  const rows = [
-    {
-      id: 1,
-      presetName: "상승장 프리셋임",
-      executeBudget: "₩ 1,000,000,000",
-      operationPeriod: "365일 12시간 34분 56초",
-      stockItem: "STARXEA USDT",
-      status: true,
-    },
-    {
-      id: 2,
-      presetName: "상승장 프리셋임",
-      executeBudget: "₩ 1,000,000,000",
-      operationPeriod: "365일 12시간 34분 56초",
-      stockItem: "STARXEA USDT",
-      status: true,
-    },
-    {
-      id: 3,
-      presetName: "상승장 프리셋임",
-      executeBudget: "₩ 1,000,000,000",
-      operationPeriod: "365일 12시간 34분 56초",
-      stockItem: "STARXEA USDT",
-      status: false,
-    },
-    {
-      id: 4,
-      presetName: "상승장 프리셋임",
-      executeBudget: "₩ 1,000,000,000",
-      operationPeriod: "365일 12시간 34분 56초",
-      stockItem: "STARXEA USDT",
-      status: false,
-    },
-    {
-      id: 5,
-      presetName: "상승장 프리셋임",
-      executeBudget: "₩ 1,000,000,000",
-      operationPeriod: "365일 12시간 34분 56초",
-      stockItem: "STARXEA USDT",
-      status: false,
-    },
-    {
-      id: 6,
-      presetName: "상승장 프리셋임",
-      executeBudget: "₩ 1,000,000,000",
-      operationPeriod: "365일 12시간 34분 56초",
-      stockItem: "STARXEA USDT",
-      status: false,
-    },
-  ];
+  const { data: presetRows, isLoading: isPresetsLoading } = useQuery({
+    queryKey: ["presets", market],
+    queryFn: () => getPreset(market),
+  });
 
-  return { columns, rows };
+  return { columns, presetRows, isPresetsLoading };
 }
 
 export default usePresets;

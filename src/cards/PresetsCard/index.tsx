@@ -9,7 +9,7 @@ import usePresets from "@/hooks/dashboard/usePresets";
 import CardIcon from "../CardIcon";
 
 function PresetsCard() {
-  const { columns, rows } = usePresets();
+  const { columns, presetRows, isPresetsLoading } = usePresets();
   const { priceStatus, PriceStatusSelect } = usePriceStatusSelect();
   const { currency, CurrencySelect } = useCurrencySelect();
   const { market, MarketSelect } = useMarketSelect();
@@ -43,9 +43,13 @@ function PresetsCard() {
       >
         <DataGrid
           columns={columns}
-          rows={rows}
+          rows={presetRows ?? []}
+          loading={isPresetsLoading}
           hideFooter
-          sx={{ border: "none" }}
+          sx={{
+            ".MuiDataGrid-overlayWrapper": { height: "215px" },
+            border: "none",
+          }}
         />
       </CardContent>
       <CardActions className="flex justify-center mt-3">
