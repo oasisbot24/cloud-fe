@@ -1,9 +1,21 @@
 import { Stack, Typography } from "@mui/material";
-import RoundButton from "@/components/RoundButton";
+import useModal from "@/hooks/useModal";
+import GoogleSigninButton from "@/screens/signin/GoogleSigninButton";
+import SigninDialog from "@/screens/signin/dialog/SigninDialog";
+import Agreement from "./dialog/Agreement";
 
 function Discription() {
+  const { modal, openModal, closeModal } = useModal();
+  const handleOpen = () => {
+    openModal(
+      <SigninDialog handleClose={closeModal}>
+        <Agreement />
+      </SigninDialog>,
+    );
+  };
+
   return (
-    <Stack className="h-full z-[1] justify-center ml-4 md:ml-32 gap-4">
+    <Stack className="h-full z-[1] justify-center ml-4 md:ml-32 gap-4 pb-8">
       <Stack className="text-white gap-2">
         <Typography variant="bodyL">Search for the vein of money</Typography>
         <Stack>
@@ -14,7 +26,8 @@ function Discription() {
           <Typography variant="display3">오직 오아시스에서</Typography>
         </Stack>
       </Stack>
-      <RoundButton>Hello</RoundButton>
+      <GoogleSigninButton onClick={handleOpen} />
+      {modal}
     </Stack>
   );
 }
