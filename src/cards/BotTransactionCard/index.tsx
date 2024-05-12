@@ -2,30 +2,31 @@ import React from "react";
 import { CardActions, CardContent, CardHeader, Chip } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import Card from "@/cards/Card";
-import useCurrencySelect from "@/hooks/common/useCurrencySelect";
+import CardIcon from "@/cards/CardIcon";
 import useMarketSelect from "@/hooks/common/useMarketSelect";
-import usePriceStatusSelect from "@/hooks/common/usePriceStatusSelect";
-import usePresets from "@/hooks/dashboard/usePresets";
-import CardIcon from "../CardIcon";
+import useOrderSelect from "@/hooks/common/useOrderSelect";
+import useTransactionStatusSelect from "@/hooks/common/useTransactionStatusSelect";
+import useBotTransaction from "@/hooks/dashboard/useBotTransaction";
 
-function PresetsCard() {
-  const { columns, presetRows, isPresetsLoading } = usePresets();
-  const { priceStatus, PriceStatusSelect } = usePriceStatusSelect();
-  const { currency, CurrencySelect } = useCurrencySelect();
+function BotTransactionCard() {
+  const { columns, rows } = useBotTransaction();
+  const { order, OrderSelect } = useOrderSelect();
+  const { transactionStatus, TransactionStatusSelect } =
+    useTransactionStatusSelect();
   const { market, MarketSelect } = useMarketSelect();
 
   return (
     <Card>
       <CardHeader
         avatar={
-          <CardIcon src="/icons/dashboard/setting.png" alt="프리셋 세팅" />
+          <CardIcon src="/icons/dashboard/history.png" alt="실시간 거래내역" />
         }
-        title="실행중인 프리셋 목록"
+        title="실시간 BOT 거래내역"
         subheader="오늘 16:29 기준" // 추후 날짜/시간 라이브러리 사용해 수정할 것
         action={
           <>
-            <PriceStatusSelect />
-            <CurrencySelect />
+            <OrderSelect />
+            <TransactionStatusSelect />
             <MarketSelect />
           </>
         }
@@ -43,13 +44,9 @@ function PresetsCard() {
       >
         <DataGrid
           columns={columns}
-          rows={presetRows ?? []}
-          loading={isPresetsLoading}
+          rows={rows}
           hideFooter
-          sx={{
-            ".MuiDataGrid-overlayWrapper": { height: "215px" },
-            border: "none",
-          }}
+          sx={{ border: "none" }}
         />
       </CardContent>
       <CardActions className="flex justify-center mt-3">
@@ -63,4 +60,4 @@ function PresetsCard() {
   );
 }
 
-export default PresetsCard;
+export default BotTransactionCard;

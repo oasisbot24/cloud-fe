@@ -3,7 +3,7 @@ import { KeyboardArrowDown } from "@mui/icons-material";
 import CustomSelect from "@/components/common/CustomSelect";
 
 function useMarketSelect() {
-  const [market, setMarket] = useState<string>("");
+  const [market, setMarket] = useState<string>("all");
 
   function MarketSelect() {
     return (

@@ -3,7 +3,7 @@ import botStart from "@/apis/botStart";
 import botStop from "@/apis/botStop";
 import getBot from "@/apis/getBot";
 import getCoin from "@/apis/getCoin";
-import getPreset from "@/apis/getPreset";
+import getPreset from "@/apis/presets";
 
 export default function useBot() {
   const queryClient = useQueryClient();
