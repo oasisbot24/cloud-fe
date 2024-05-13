@@ -2,9 +2,11 @@ import { Box, Stack } from "@mui/material";
 import AdvertisementCard from "@/cards/AdvertisementCard/index";
 import AssetStatusCard from "@/cards/AssetStatusCard/index";
 import BotListCard from "@/cards/BotListCard/index";
+import BotTransactionCard from "@/cards/BotTransactionCard";
 import ChartCard from "@/cards/ChartCard";
 import CircleChartCard from "@/cards/CircleChartCard/index";
 import PresetsCard from "@/cards/PresetsCard";
+import ProfitRankCard from "@/cards/ProfitRankCard";
 import Layout from "@/components/Layout";
 
 export default function Home() {
@@ -24,12 +26,12 @@ export default function Home() {
             <PresetsCard />
           </Box>
         </Stack>
-        <Stack direction="row" className="gap-4 h-[340px]">
+        <Stack direction="row" className="gap-4 h-[436px]">
           <Box className="w-5/12">
-            <BotListCard />
+            <BotTransactionCard />
           </Box>
           <Box className="w-7/12">
-            <BotListCard />
+            <ProfitRankCard />
           </Box>
         </Stack>
       </Stack>

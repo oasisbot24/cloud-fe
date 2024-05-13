@@ -4,7 +4,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useAtom } from "jotai";
 import botStop from "@/apis/botStop";
 import { BotType } from "@/apis/getBot";
-import getPreset from "@/apis/getPreset";
+import { getPreset } from "@/apis/presets";
 import Selectbox from "@/components/basic/Selectbox";
 import settingAtom from "@/datas/setting";
 import useBot from "@/hooks/bot";
