@@ -1,24 +1,48 @@
-import { Checkbox, styled } from "@mui/material";
+import { Checkbox, CheckboxProps, styled } from "@mui/material";
+import checkwhite from "@/../public/checkbox/check-white.png";
 
-const CustomCheckbox = styled(Checkbox)(({ theme }) => ({
+const CustomIcon = styled("span")(() => ({
   borderRadius: 100,
-  width: 30,
-  height: 30,
-  padding: 2,
-  backgroundColor: theme.palette.mode === "dark" ? "#394b59" : "#f5f8fa",
+  width: 26,
+  height: 26,
+  boxShadow: "none",
+  backgroundColor: "#E1E6EA",
+  "&::before": {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    display: "block",
+    width: 12.5,
+    height: 9.8,
+    backgroundImage: `url(${checkwhite.src})`,
+    backgroundSize: "cover",
+    content: '""',
+  },
   "input:hover ~ &": {
-    backgroundColor: theme.palette.mode === "dark" ? "#30404d" : "#ebf1f5",
+    backgroundColor: "#B0B3B7",
   },
   "input:disabled ~ &": {
-    boxShadow: "none",
-    background:
-      theme.palette.mode === "dark"
-        ? "rgba(57,75,89,.5)"
-        : "rgba(206,217,224,.5)",
-  },
-  "& .MuiSvgIcon-root": {
-    color: "#000",
+    background: "#909498",
   },
 }));
 
-export default CustomCheckbox;
+const CustomCheckedIcon = styled(CustomIcon)({
+  backgroundColor: "#223CE9",
+  "input:hover ~ &": {
+    backgroundColor: "#223CE9",
+  },
+});
+
+export default function CustomCheckbox(props: CheckboxProps) {
+  return (
+    <Checkbox
+      sx={{
+        "&:hover": { bgcolor: "transparent" },
+      }}
+      icon={<CustomIcon />}
+      checkedIcon={<CustomCheckedIcon />}
+      {...props}
+    />
+  );
+}
