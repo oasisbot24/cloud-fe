@@ -7,7 +7,7 @@ export default function NotificationBadge() {
       sx={{
         background:
           "linear-gradient(111.59deg, #223CE9 14.14%, #2BB7F5 123.41%)",
-        "box-shadow": "0px 4px 34px 0px #0F148B6B",
+        boxShadow: "0px 4px 34px 0px #0F148B6B",
       }}
       className="rounded-full px-4 py-2.5"
     >

@@ -18,7 +18,7 @@ export default function SigninDialog({
       <Paper
         className="bg-white rounded-xl w-fit p-4 absolute 
         top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-        sx={{ "box-shadow": "0px 30px 40px 0px #252D3538" }}
+        sx={{ boxShadow: "0px 30px 40px 0px #252D3538" }}
         onClick={e => {
           e.stopPropagation();
         }}
