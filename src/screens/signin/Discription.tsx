@@ -1,15 +1,23 @@
 import { Stack, Typography } from "@mui/material";
 import useModal from "@/hooks/useModal";
 import GoogleSigninButton from "@/screens/signin/GoogleSigninButton";
+import SelectExchange from "@/screens/signin/dialog/SelectExchange";
 import SigninDialog from "@/screens/signin/dialog/SigninDialog";
 import Agreement from "./dialog/Agreement";
 
 function Discription() {
   const { modal, openModal, closeModal } = useModal();
-  const handleOpen = () => {
+  const openSelectExchange = () => {
     openModal(
       <SigninDialog handleClose={closeModal}>
-        <Agreement />
+        <SelectExchange />
+      </SigninDialog>,
+    );
+  };
+  const openAgreement = () => {
+    openModal(
+      <SigninDialog handleClose={closeModal}>
+        <Agreement handleClose={closeModal} handleOK={openSelectExchange} />
       </SigninDialog>,
     );
   };
@@ -26,7 +34,7 @@ function Discription() {
           <Typography variant="display3">오직 오아시스에서</Typography>
         </Stack>
       </Stack>
-      <GoogleSigninButton onClick={handleOpen} />
+      <GoogleSigninButton onClick={openAgreement} />
       {modal}
     </Stack>
   );
