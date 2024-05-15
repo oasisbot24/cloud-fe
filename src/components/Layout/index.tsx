@@ -1,23 +1,42 @@
+import { useEffect, useState } from "react";
 import { Box, Stack } from "@mui/material";
-import SideNav from "@/components/Layout/Sidenav";
+import SideNav from "@/components/Layout/SideNav";
+import TopNav from "@/components/Layout/TopNav/index";
+import useComponentSize from "@/hooks/useComponentSize";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const { size, componentRef } = useComponentSize();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (size.width <= 1440) {
+      setIsMenuOpen(false);
+    } else {
+      setIsMenuOpen(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log(size);
+  }, [size]);
+
   return (
-    <main className="w-full bg-[#F5F6FA]">
+    <main className="w-full bg-[#F5F6FA]" ref={componentRef}>
       <Stack direction="row" className="w-full">
-        <SideNav />
+        <SideNav isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
         <Stack
           direction="column"
           justifyContent="space-between"
           className="w-full h-full"
         >
-          <Stack
-            direction="row"
-            className="w-full h-[70px] shrink-0 bg-white shadow-sm justify-end items-center"
+          <TopNav isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+          <Box
+            className={
+              isMenuOpen && size.width > 1440
+                ? "ml-[260px] transition-all duration-300"
+                : "ml-[0px] transition-all duration-300"
+            }
           >
-            User info
-          </Stack>
-          <Box className="ml-[260px]">
             <Box className="w-full p-4 pl-8">{children}</Box>
           </Box>
         </Stack>

@@ -1,23 +1,44 @@
-import React from "react";
-import { CardHeaderProps, CardHeader as MuiCardHeader } from "@mui/material";
+import { CardHeader as MuiCardHeader, Stack, Typography } from "@mui/material";
+import dayjs from "dayjs";
+import DashboardIcon from "@/components/Icon/DashboardIcon";
 
-function CardHeader({ avatar, title, subheader, action }: CardHeaderProps) {
+interface CardHeaderProps {
+  id: DashboardIdType;
+  title: string;
+  action?: React.ReactNode;
+  isDark?: boolean;
+}
+
+export default function CardHeader({
+  id,
+  title,
+  action,
+  isDark,
+}: CardHeaderProps) {
+  const hm = dayjs().format("HH:mm");
   return (
     <MuiCardHeader
-      avatar={avatar}
-      title={title}
-      subheader={subheader} // 추후 날짜/시간 라이브러리 사용해 수정할 것
+      sx={{
+        "& .MuiCardHeader-action": {
+          margin: "auto 0",
+        },
+      }}
+      avatar={<DashboardIcon id={id} />}
+      title={
+        <Stack className="gap-1">
+          <Typography
+            variant="300B"
+            className={!isDark ? "text-font-1" : "text-neutral-100"}
+          >
+            {title}
+          </Typography>
+          <Typography
+            variant="100R"
+            className={!isDark ? "text-neutral-500" : "text-neutral-300"}
+          >{`오늘 ${hm} 기준`}</Typography>
+        </Stack>
+      }
       action={action}
-      titleTypographyProps={{
-        fontSize: "16px",
-        fontWeight: 700,
-      }}
-      subheaderTypographyProps={{
-        color: "#B0B3B7",
-        fontSize: "12px",
-      }}
     />
   );
 }
-
-export default CardHeader;

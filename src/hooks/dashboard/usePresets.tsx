@@ -8,7 +8,7 @@ import {
 } from "@mui/x-data-grid";
 import { useQuery } from "@tanstack/react-query";
 import { PresetType, getPreset } from "@/apis/presets";
-import CustomSwitch from "@/components/CustomSwitch";
+import CustomSwitch from "@/components/common/CustomSwitch";
 import useMarketSelect from "@/hooks/common/useMarketSelect";
 
 function usePresets() {
