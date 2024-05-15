@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import DashboardIcon from "@/components/Icon/DashboardIcon";
 
 export default function CustomMenu() {
@@ -14,8 +14,9 @@ export default function CustomMenu() {
         height: "auto",
         padding: 2,
         borderRadius: "16px",
-        // borderColor: "#898FC3",
-        border: 1,
+        borderColor: "#898FC3",
+        borderStyle: "solid",
+        borderWidth: 1,
         cursor: "pointer",
       }}
     >
@@ -39,9 +40,8 @@ export default function CustomMenu() {
         <Stack direction="column" spacing={1}>
           <Stack direction="row" justifyContent="flex-end" sx={{ width: 1 }}>
             <Typography
-              variant="200R"
               fontFamily="SF Pro Display"
-              fontWeight={600}
+              fontWeight={500}
               fontSize={18}
               lineHeight="22px"
             >
@@ -77,6 +77,14 @@ export default function CustomMenu() {
               </Typography>
             </Stack>
           </Stack>
+        </Stack>
+        <Stack justifyContent="center" alignItems="center">
+          <Image
+            src="/icons/arrow/down-circle.png"
+            alt="circle"
+            width={20}
+            height={20}
+          />
         </Stack>
       </Stack>
     </Stack>
