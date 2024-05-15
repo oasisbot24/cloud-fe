@@ -8,9 +8,13 @@ interface SideMenuButtonProps {
 }
 
 export default function SideMenuButton({ detail }: SideMenuButtonProps) {
+  const { push } = useRouter();
   const { pathname } = useRouter();
   return (
-    <ButtonBase className="w-full h-[50px]">
+    <ButtonBase
+      className="w-full h-[50px] px-4 rounded-full"
+      onClick={() => push(detail.path)}
+    >
       <Stack direction="row" className="w-full h-full items-center gap-4">
         <SidenavIcon id={detail.id} isFocus={pathname === detail.path} />
         {pathname === detail.path ? (

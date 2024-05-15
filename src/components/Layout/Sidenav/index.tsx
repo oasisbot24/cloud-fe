@@ -33,12 +33,8 @@ export default function SideNav({ isMenuOpen, setIsMenuOpen }: SideNavProps) {
         </IconButton>
       </Stack>
       {sideMenu.map(menu => (
-        <Stack
-          key={menu.title}
-          direction="column"
-          className="w-full px-4 gap-1"
-        >
-          <Box className="w-full">
+        <Stack key={menu.title} direction="column" className="w-full gap-1">
+          <Box className="w-full px-4">
             <Typography variant="200M" className="text-sub-4">
               {menu.title}
             </Typography>
