@@ -6,6 +6,7 @@ import ChartCard from "@/cards/ChartCard";
 import CircleChartCard from "@/cards/CircleChartCard/index";
 import PresetsCard from "@/cards/PresetsCard";
 import ProfitRankCard from "@/cards/ProfitRankCard";
+import TestResultCard from "@/cards/TestResultCard";
 import Layout from "@/components/Layout";
 
 export default function Home() {
