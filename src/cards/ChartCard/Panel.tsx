@@ -125,7 +125,7 @@ export default function Panel() {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        TransitionComponent={Fade}
+        transitionDuration={0}
         sx={{
           "& .MuiPaper-root": {
             bgcolor: "transparent",
