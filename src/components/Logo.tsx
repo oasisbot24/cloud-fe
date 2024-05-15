@@ -4,6 +4,7 @@ import Icon from "@/components/Icon";
 interface LogoProps {
   color: "white" | "black";
   size: "L" | "S";
+  logoOnly?: boolean;
 }
 
 const iconSize = {
@@ -28,13 +29,15 @@ const colorStyle = {
   black: "text-black",
 };
 
-export default function Logo({ color, size }: LogoProps) {
+export default function Logo({ color, size, logoOnly }: LogoProps) {
   return (
     <Stack className="items-center" direction="row">
       <Icon src={iconSrc[color]} size={iconSize[size]} />
-      <Typography variant={textSize[size]} className={colorStyle[color]}>
-        OASIS
-      </Typography>
+      {!logoOnly && (
+        <Typography variant={textSize[size]} className={colorStyle[color]}>
+          OASIS
+        </Typography>
+      )}
     </Stack>
   );
 }

@@ -29,12 +29,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           justifyContent="space-between"
           className="w-full h-full"
         >
-          <TopNav isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+          <TopNav />
           <Box
             className={
               isMenuOpen && size.width > 1440
                 ? "ml-[260px] transition-all duration-300"
-                : "ml-[0px] transition-all duration-300"
+                : "ml-[80px] transition-all duration-300"
             }
           >
             <Box className="w-full p-4 pl-8">{children}</Box>
