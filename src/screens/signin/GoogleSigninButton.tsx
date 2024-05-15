@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { ButtonBase, Typography } from "@mui/material";
 import {
   CredentialResponse,
@@ -13,6 +14,7 @@ import Icon from "@/components/Icon/index";
 import authAtom, { Auth } from "@/datas/auth";
 
 function GoogleSigninButton({ onClick }: { onClick?: () => void }) {
+  const { push } = useRouter();
   const [, setAuth] = useAtom(authAtom);
   const signinMutation = useMutation({
     mutationFn: signin,
@@ -25,6 +27,7 @@ function GoogleSigninButton({ onClick }: { onClick?: () => void }) {
         localStorage.setItem("credential", credential || "");
         const auth = jwtDecode(credential || "") as Auth;
         setAuth(auth);
+        push("/dashboard");
       },
     });
     onClick?.();
