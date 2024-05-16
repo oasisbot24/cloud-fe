@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { Breadcrumbs, ButtonBase, Typography } from "@mui/material";
 import footerMenu from "@/components/Layout/Footer/footerMenu";
 
@@ -18,7 +17,6 @@ const breadcrumbsStyle = {
 };
 
 export default function FooterBreadcrumbs({ color }: FooterBreadcrumbsProps) {
-  const { push } = useRouter();
   return (
     <Breadcrumbs
       separator="·"
@@ -27,7 +25,7 @@ export default function FooterBreadcrumbs({ color }: FooterBreadcrumbsProps) {
       sx={breadcrumbsStyle}
     >
       {footerMenu.map((menu, index) => (
-        <ButtonBase key={index} onClick={() => push(menu.href)}>
+        <ButtonBase key={index} href={menu.href} target={menu.target}>
           <Typography
             variant={menu.title === "개인정보처리방침" ? "200B" : "200R"}
             className={style[color]}
