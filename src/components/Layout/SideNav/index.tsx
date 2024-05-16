@@ -37,7 +37,9 @@ export default function SideNav({ isMenuOpen, setIsMenuOpen }: SideNavProps) {
       </Stack>
       {sideMenu.map(menu => (
         <Stack key={menu.title} direction="column" className="w-full gap-1">
-          <Box className={`w-full ${isMenuOpen ? "px-4" : "text-center"}`}>
+          <Box
+            className={`transition-all duration-300 ${isMenuOpen ? "ml-4" : "mx-auto"}`}
+          >
             <Typography variant="200M" className="text-sub-4">
               {menu.title}
             </Typography>

@@ -21,7 +21,7 @@ export default function SideMenuButton({
     >
       <Stack
         direction="row"
-        className={`w-full h-full items-center gap-4 ${iconOnly ? "justify-center" : "px-4"}`}
+        className={`w-full h-full items-center gap-4 overflow-x-hidden ${iconOnly ? "justify-center" : "px-4"}`}
       >
         <SidenavIcon id={detail.id} isFocus={pathname === detail.path} />
         {!iconOnly &&

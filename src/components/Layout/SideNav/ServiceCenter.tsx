@@ -21,7 +21,7 @@ export default function ServiceCenter({ iconOnly }: { iconOnly?: boolean }) {
           <Icon src="/icons/control/info.png" size={18} />
         </Stack>
         {!iconOnly && (
-          <Stack className="gap-3">
+          <Stack className="gap-3 overflow-x-hidden">
             <Stack className="gap-1">
               <Typography variant="200B" className="text-white">
                 도움이 필요하신가요?
