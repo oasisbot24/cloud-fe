@@ -2,21 +2,16 @@ import { useState } from "react";
 import { Button, Divider, IconButton, Stack, Typography } from "@mui/material";
 import Icon from "@/components/Icon/index";
 import CustomCheckbox from "@/components/common/CustomCheckbox";
-import { DetailType } from "@/screens/signin/dialog/AgreementDetail";
 
+type AgreementType = "over14" | "service" | "privacy" | "marketing";
 interface CheckItemProps {
   title: string;
   checked?: boolean;
   onClick?: () => void;
-  onClickViewDetail?: () => void;
+  href?: string;
 }
 
-function CheckItem({
-  title,
-  checked = false,
-  onClick,
-  onClickViewDetail,
-}: CheckItemProps) {
+function CheckItem({ title, checked = false, onClick, href }: CheckItemProps) {
   return (
     <Stack
       direction="row"
@@ -28,8 +23,8 @@ function CheckItem({
           {title}
         </Typography>
       </Stack>
-      {onClickViewDetail && (
-        <IconButton onClick={onClickViewDetail}>
+      {href && (
+        <IconButton href={href} target="_blank">
           <Icon src="/icons/arrow/right.png" size={28} />
         </IconButton>
       )}
@@ -40,21 +35,25 @@ function CheckItem({
 interface AgreementListProps {
   handleClose: () => void;
   handleOK: () => void;
-  setDetailType: (type: DetailType) => void;
 }
 
 export default function AgreementList({
   handleClose,
   handleOK,
-  setDetailType,
 }: AgreementListProps) {
-  const titleObject: Record<DetailType, string> = {
+  const titleObject: Record<AgreementType, string> = {
     over14: "[필수] 만 14세 이상입니다.",
     service: "[필수] 서비스 이용약관 동의",
     privacy: "[필수] 개인정보 처리방침 동의",
     marketing: "[선택] 마케팅 수신 동의",
   };
-  const [checked, setChecked] = useState<Record<DetailType, boolean>>({
+  const pdfObject: Record<AgreementType, string> = {
+    over14: "/pdf/오아시스서비스이용약관.pdf",
+    service: "/pdf/오아시스서비스이용약관.pdf",
+    privacy: "/pdf/오아시스서비스이용약관.pdf",
+    marketing: "/pdf/마케팅수신동의.pdf",
+  };
+  const [checked, setChecked] = useState<Record<AgreementType, boolean>>({
     over14: false,
     service: false,
     privacy: false,
@@ -90,15 +89,15 @@ export default function AgreementList({
         {Object.keys(titleObject).map(key => (
           <CheckItem
             key={key}
-            title={titleObject[key as DetailType]}
-            checked={checked[key as DetailType]}
+            title={titleObject[key as AgreementType]}
+            checked={checked[key as AgreementType]}
             onClick={() =>
               setChecked({
                 ...checked,
-                [key as DetailType]: !checked[key as DetailType],
+                [key as AgreementType]: !checked[key as AgreementType],
               })
             }
-            onClickViewDetail={() => setDetailType(key as DetailType)}
+            href={pdfObject[key as AgreementType]}
           />
         ))}
       </Stack>

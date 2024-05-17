@@ -1,23 +1,21 @@
+import { useRouter } from "next/router";
 import { Stack, Typography } from "@mui/material";
 import useModal from "@/hooks/useModal";
 import GoogleSigninButton from "@/screens/signin/GoogleSigninButton";
-import SelectExchange from "@/screens/signin/dialog/SelectExchange";
 import SigninDialog from "@/screens/signin/dialog/SigninDialog";
 import Agreement from "./dialog/Agreement";
 
 function Discription() {
+  const { push } = useRouter();
   const { modal, openModal, closeModal } = useModal();
-  const openSelectExchange = () => {
-    openModal(
-      <SigninDialog handleClose={closeModal}>
-        <SelectExchange />
-      </SigninDialog>,
-    );
+  const agree = () => {
+    // TODO: 동의정보 backend로 전송
+    push("/dashboard");
   };
   const openAgreement = () => {
     openModal(
       <SigninDialog handleClose={closeModal}>
-        <Agreement handleClose={closeModal} handleOK={openSelectExchange} />
+        <Agreement handleClose={closeModal} handleOK={agree} />
       </SigninDialog>,
     );
   };
