@@ -16,10 +16,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  useEffect(() => {
-    console.log(size);
-  }, [size]);
-
   return (
     <main className="w-full bg-[#F5F6FA]" ref={componentRef}>
       <Stack direction="row" className="w-full">
