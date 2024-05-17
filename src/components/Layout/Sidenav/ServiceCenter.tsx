@@ -5,7 +5,7 @@ import Icon from "@/components/Icon";
 export default function ServiceCenter({ iconOnly }: { iconOnly?: boolean }) {
   return (
     <Box
-      className={`relative overflow-hidden ${iconOnly ? "rounded-full w-[60px] h-[60px]" : "rounded-xl w-full h-[170px]"}`}
+      className={`relative shrink-0 overflow-hidden ${iconOnly ? "rounded-full w-[60px] h-[60px]" : "rounded-xl w-full h-[170px]"}`}
     >
       <Image
         src="/nav-cover.png"

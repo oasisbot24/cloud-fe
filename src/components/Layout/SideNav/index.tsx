@@ -16,8 +16,8 @@ export default function SideNav({ isMenuOpen, setIsMenuOpen }: SideNavProps) {
       direction="column"
       className={
         isMenuOpen
-          ? "sidenav px-4 py-8 ml-0 transition-all duration-300"
-          : "sidenav px-4 py-8 w-[80px] transition-all duration-300"
+          ? "sidenav px-4 py-8 ml-0 transition-all duration-300 justify-between"
+          : "sidenav px-4 py-8 w-[80px] transition-all duration-300 justify-between"
       }
     >
       <Stack direction="row" className="w-full justify-center items-center">
