@@ -46,6 +46,7 @@ function GoogleSigninButton({ onClick }: { onClick?: () => void }) {
         })
         .then(res => res.data);
       console.log(userInfo);
+      onClick?.();
     },
   });
 

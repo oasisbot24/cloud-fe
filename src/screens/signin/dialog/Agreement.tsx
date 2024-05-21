@@ -1,8 +1,4 @@
-import { useState } from "react";
 import { Stack, Typography } from "@mui/material";
-import AgreementDetail, {
-  DetailType,
-} from "@/screens/signin/dialog/AgreementDetail";
 import AgreementList from "@/screens/signin/dialog/AgreementList";
 
 interface AgreementProps {
@@ -11,7 +7,6 @@ interface AgreementProps {
 }
 
 export default function Agreement({ handleClose, handleOK }: AgreementProps) {
-  const [detailType, setDetailType] = useState<DetailType | null>(null);
   return (
     <Stack className="min-w-[428px] gap-6">
       <Stack>
@@ -22,18 +17,7 @@ export default function Agreement({ handleClose, handleOK }: AgreementProps) {
           여러분의 개인정보와 서비스 이용권리, 잘 지켜드릴게요.
         </Typography>
       </Stack>
-      {detailType ? (
-        <AgreementDetail
-          detailType={detailType}
-          setDetailType={setDetailType}
-        />
-      ) : (
-        <AgreementList
-          handleClose={handleClose}
-          handleOK={handleOK}
-          setDetailType={setDetailType}
-        />
-      )}
+      <AgreementList handleClose={handleClose} handleOK={handleOK} />
     </Stack>
   );
 }
