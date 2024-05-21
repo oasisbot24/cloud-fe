@@ -17,7 +17,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <main className="w-full bg-[#F5F6FA]" ref={componentRef}>
+    <main className="w-full h-screen bg-[#F5F6FA]" ref={componentRef}>
       <Stack direction="row" className="w-full">
         <SideNav isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
         <Stack
