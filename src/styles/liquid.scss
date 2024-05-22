@@ -62,7 +62,7 @@
     color: color(light-gray) !important;
   }
 
-  &-label {
+  &-label-value {
     @include absolute(50%, 50%);
     @include size(90%);
     transform: translate(-50%, -50%);
@@ -70,13 +70,34 @@
     color: color(black);
     text-align: center;
     overflow: hidden;
-
+ 
     strong {
       font-size: 200%;
     }
     span {
       font-size: 120%;
     }
+
+
+  }
+
+  &-label {
+    @include absolute(70%, 50%);
+    @include size(90%);
+    transform: translate(-50%, -50%);
+    display: inline-block;
+    color: color(black);
+    text-align: center;
+    overflow: hidden;
+ 
+    strong {
+      font-size: 200%;
+    }
+    span {
+      font-size: 120%;
+    }
+
+
   }
 
   &-indicator {

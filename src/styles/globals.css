@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  .font-outline-2 {
+    -webkit-text-stroke: 2px #00000033;
+  }
+
+}
+
+
 html {
   font-family: "Spoqa Han Sans Neo", "Roboto", sans-serif;
 }

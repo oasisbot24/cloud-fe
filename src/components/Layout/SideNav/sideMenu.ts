@@ -13,9 +13,20 @@ const sideMenu: SideMenuType[] = [
   {
     title: "시스템",
     detail: [
-      { id: "dashboard", name: "대시보드", path: "/dashboard" },
-      { id: "oasisbot", name: "오아시스 Bot", path: "/oasisbot" },
-      { id: "backtest", name: "오아시스 연구소", path: "/oasislab" },
+      {
+        id: "dashboard",
+        name: "대시보드",
+        path: "/dashboard",
+      },
+      // {
+      //   id: "oasisbot",
+      //   name: "오아시스Bot",
+      //   path: "/oasisbot",
+      // },
+      { id: "oasislab", 
+        name: "오아시스 연구소", 
+        path: "/oasislab" 
+      },
     ],
   },
   {
