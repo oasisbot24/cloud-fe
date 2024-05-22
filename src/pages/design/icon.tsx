@@ -38,7 +38,7 @@ export default function Icon() {
             [
               "dashboard",
               "oasisbot",
-              "backtest",
+              "oasislab",
               "api",
               "exchange",
               "preset",
@@ -54,7 +54,7 @@ export default function Icon() {
             [
               "dashboard",
               "oasisbot",
-              "backtest",
+              "oasislab",
               "api",
               "exchange",
               "preset",

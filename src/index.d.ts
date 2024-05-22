@@ -3,7 +3,7 @@ type LayoutColorType = "white" | "black";
 type MenuDetailIdType =
   | "dashboard"
   | "oasisbot"
-  | "backtest"
+  | "oasislab"
   | "api"
   | "exchange"
   | "preset"
@@ -26,3 +26,5 @@ type DashboardIdType =
   | "transaction"
   | "wallet";
 type SocialType = "linkedin" | "facebook" | "naver" | "kakao";
+type OasisLabIdType = 
+  | "test-result"
