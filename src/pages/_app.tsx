@@ -6,7 +6,6 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useAtom } from "jotai";
-import { jwtDecode } from "jwt-decode";
 import { SnackbarProvider } from "notistack";
 import authAtom from "@/datas/auth";
 import "@/styles/custom.css";
@@ -23,8 +22,8 @@ export default function App({ Component, pageProps }: AppProps) {
   const [, setAuth] = useAtom(authAtom);
 
   useEffect(() => {
-    const credential = localStorage.getItem("credential");
-    if (credential) setAuth(jwtDecode(credential));
+    const auth = localStorage.getItem("auth");
+    if (auth) setAuth(JSON.parse(auth));
     else router.push("/");
   }, []);
 

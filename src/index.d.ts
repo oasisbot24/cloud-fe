@@ -26,5 +26,13 @@ type DashboardIdType =
   | "transaction"
   | "wallet";
 type SocialType = "linkedin" | "facebook" | "naver" | "kakao";
-type OasisLabIdType = 
-  | "test-result"
+
+// apis
+interface ApiResponseType<T> {
+  data: T;
+  status: number;
+  msg: string;
+}
+
+// oasislab
+type OasisLabIdType = "test-result";

@@ -10,6 +10,7 @@ function Discription() {
   const { modal, openModal, closeModal } = useModal();
   const agree = () => {
     // TODO: 동의정보 backend로 전송
+    closeModal();
     push("/dashboard");
   };
   const openAgreement = () => {

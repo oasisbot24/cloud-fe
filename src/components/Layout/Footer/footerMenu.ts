@@ -16,8 +16,8 @@ const footerMenu = [
   },
   {
     title: "이메일주소무단수집거부",
-    href: "/",
-    target: "",
+    href: "/pdf/오아시스 이메일 무단 수집 거부.pdf",
+    target: "_blank",
   },
 ];
 
