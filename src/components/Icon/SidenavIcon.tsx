@@ -8,7 +8,7 @@ interface SidenavIconProps {
 const iconSrcFocused = {
   dashboard: "/icons/sidenav/dashboard-on.png",
   oasisbot: "/icons/sidenav/oasisbot-on.png",
-  backtest: "/icons/sidenav/backtest-on.png",
+  oasislab: "/icons/sidenav/lab-on.png",
   api: "/icons/sidenav/api-on.png",
   exchange: "/icons/sidenav/exchange-on.png",
   preset: "/icons/sidenav/preset-on.png",
@@ -19,7 +19,7 @@ const iconSrcFocused = {
 const iconSrcUnfocused = {
   dashboard: "/icons/sidenav/dashboard-off.png",
   oasisbot: "/icons/sidenav/oasisbot-off.png",
-  backtest: "/icons/sidenav/backtest-off.png",
+  oasislab: "/icons/sidenav/lab-off.png",
   api: "/icons/sidenav/api-off.png",
   exchange: "/icons/sidenav/exchange-off.png",
   preset: "/icons/sidenav/preset-off.png",

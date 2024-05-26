@@ -3,7 +3,7 @@ type LayoutColorType = "white" | "black";
 type MenuDetailIdType =
   | "dashboard"
   | "oasisbot"
-  | "backtest"
+  | "oasislab"
   | "api"
   | "exchange"
   | "preset"
@@ -33,3 +33,6 @@ interface ApiResponseType<T> {
   status: number;
   msg: string;
 }
+
+// oasislab
+type OasisLabIdType = "test-result";
