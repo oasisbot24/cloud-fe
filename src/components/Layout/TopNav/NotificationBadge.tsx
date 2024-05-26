@@ -1,7 +1,10 @@
 import { ButtonBase, Stack, Typography } from "@mui/material";
 import Icon from "@/components/Icon/index";
 
-export default function NotificationBadge() {
+interface NotificationBadgeProps {
+  onClick?: () => void;
+}
+export default function NotificationBadge({ onClick }: NotificationBadgeProps) {
   return (
     <ButtonBase
       sx={{
@@ -10,6 +13,7 @@ export default function NotificationBadge() {
         boxShadow: "0px 4px 34px 0px #0F148B6B",
       }}
       className="rounded-full px-4 py-2.5"
+      onClick={onClick}
     >
       <Stack direction="row" className="items-center gap-1">
         <Icon src="/icons/basic/notification.png" size={24} />
