@@ -7,6 +7,7 @@ import ChartCard from "@/cards/ChartCard";
 import CircleChartCard from "@/cards/CircleChartCard/index";
 import PresetsCard from "@/cards/PresetsCard";
 import ProfitRankCard from "@/cards/ProfitRankCard";
+import RunOasisBotCard from "@/cards/RunOasisBotCard";
 import TestResultCard from "@/cards/TestResultCard";
 import Layout from "@/components/Layout";
 
@@ -16,7 +17,7 @@ export default function OasisLab() {
       <Stack className="gap-4">
         <Stack direction="row" className="gap-4 h-[495px]">
           <Box className="w-3/12">
-            <BotListCard />
+            <RunOasisBotCard />
           </Box>
           <Box className="w-9/12">
             <Stack className="gap-4 h-[495px]">
