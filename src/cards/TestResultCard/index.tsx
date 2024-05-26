@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from "react";
 import { Stack, Typography } from "@mui/material";
 import OasisLabIcon from "@/components/Icon/OasisLabIcon";
 import Card from "../Card";
@@ -10,12 +9,11 @@ export default function TestResultCard() {
       <Stack p={2}>
         <Stack direction="row" spacing={2}>
           <OasisLabIcon id="test-result" />
-
           <Stack>
-            <Typography variant="300B" color={"#222222"}>
+            <Typography variant="300B" className="text-[#222222]">
               테스트 연구 결과 (진행률/승률)
             </Typography>
-            <Typography variant="100R" color={"#B0B3B7"}>
+            <Typography variant="100R" className="text-[#B0B3B7]">
               오늘 16:29/월 평균 매매 횟 420회
             </Typography>
           </Stack>

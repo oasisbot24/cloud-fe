@@ -18,15 +18,12 @@ const sideMenu: SideMenuType[] = [
         name: "대시보드",
         path: "/dashboard",
       },
-      // {
-      //   id: "oasisbot",
-      //   name: "오아시스Bot",
-      //   path: "/oasisbot",
-      // },
-      { id: "oasislab", 
-        name: "오아시스 연구소", 
-        path: "/oasislab" 
+      {
+        id: "oasisbot",
+        name: "오아시스Bot",
+        path: "/oasisbot",
       },
+      { id: "oasislab", name: "오아시스 연구소", path: "/oasislab" },
     ],
   },
   {

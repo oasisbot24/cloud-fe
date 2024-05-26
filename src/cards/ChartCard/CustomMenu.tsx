@@ -1,6 +1,5 @@
 import Image from "next/image";
-import { Box, Stack, Typography } from "@mui/material";
-import DashboardIcon from "@/components/Icon/DashboardIcon";
+import { Stack, Typography } from "@mui/material";
 
 export default function CustomMenu() {
   return (
@@ -30,8 +29,7 @@ export default function CustomMenu() {
 
         <Stack direction="column" spacing={1}>
           <Typography variant="300B">BTCUSDT</Typography>
-
-          <Typography variant="200R" color={"#B0B3B7"}>
+          <Typography variant="200R" className="text-[#B0B3B7]">
             Bitcoin
           </Typography>
         </Stack>
@@ -71,7 +69,7 @@ export default function CustomMenu() {
                 fontWeight={700}
                 fontSize={14}
                 lineHeight="16px"
-                color={"#223CE9"}
+                className="text-[#223CE9]"
               >
                 23%
               </Typography>

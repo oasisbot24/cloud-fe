@@ -1,17 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
-import {
-  Avatar,
-  Box,
-  Card,
-  Chip,
-  Fade,
-  Menu,
-  Stack,
-  Theme,
-  Typography,
-  makeStyles,
-} from "@mui/material";
+import { Box, Menu, Stack, Typography } from "@mui/material";
 import DashboardIcon from "@/components/Icon/DashboardIcon";
 import CustomMenu from "./CustomMenu";
 
@@ -57,11 +46,10 @@ export default function Panel() {
             <DashboardIcon id="bar-graph" />
           </Stack>
           <Stack direction="column" spacing={1}>
-            <Typography variant="300B" color={"#FFFFFF"}>
+            <Typography variant="300B" className="test-[#FFFFFF]">
               종합
             </Typography>
-
-            <Typography variant="200R" color={"#FFFFFF"}>
+            <Typography variant="200R" className="text-[#FFFFFF]">
               ALL
             </Typography>
           </Stack>
@@ -75,7 +63,7 @@ export default function Panel() {
                 fontWeight={600}
                 fontSize={18}
                 lineHeight="22px"
-                color={"#FFFFFF"}
+                className="text-white"
               >
                 $230,7777
               </Typography>
@@ -103,7 +91,7 @@ export default function Panel() {
                   fontWeight={700}
                   fontSize={14}
                   lineHeight="16px"
-                  color={"#223CE9"}
+                  className="text-[#223CE9]"
                 >
                   23%
                 </Typography>
@@ -120,7 +108,6 @@ export default function Panel() {
           </Stack>
         </Stack>
       </Stack>
-
       <Menu
         anchorEl={anchorEl}
         open={open}

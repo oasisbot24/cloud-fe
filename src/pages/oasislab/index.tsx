@@ -1,12 +1,5 @@
 import { Box, Stack } from "@mui/material";
-import AdvertisementCard from "@/cards/AdvertisementCard/index";
-import AssetStatusCard from "@/cards/AssetStatusCard/index";
 import BotListCard from "@/cards/BotListCard/index";
-import BotTransactionCard from "@/cards/BotTransactionCard";
-import ChartCard from "@/cards/ChartCard";
-import CircleChartCard from "@/cards/CircleChartCard/index";
-import PresetsCard from "@/cards/PresetsCard";
-import ProfitRankCard from "@/cards/ProfitRankCard";
 import TestResultCard from "@/cards/TestResultCard";
 import Layout from "@/components/Layout";
 
