@@ -17,7 +17,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <main className="w-full h-screen bg-[#F5F6FA]" ref={componentRef}>
+    <main className="w-full h-fit bg-[#F5F6FA]" ref={componentRef}>
       <Stack direction="row" className="w-full">
         <SideNav isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
         <Stack
@@ -33,7 +33,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 : "ml-[80px] transition-all duration-300"
             }
           >
-            <Box className="w-full p-4 pl-8">{children}</Box>
+            <Box className="w-full min-h-screen p-4 pl-8">{children}</Box>
           </Box>
         </Stack>
       </Stack>
