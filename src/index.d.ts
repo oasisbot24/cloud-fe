@@ -26,3 +26,10 @@ type DashboardIdType =
   | "transaction"
   | "wallet";
 type SocialType = "linkedin" | "facebook" | "naver" | "kakao";
+
+// apis
+interface ApiResponseType<T> {
+  data: T;
+  status: number;
+  msg: string;
+}

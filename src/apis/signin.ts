@@ -1,13 +1,15 @@
 import api from "@/apis/network";
 
-export function signin(credential: string) {
-  return api.post("/signin", { credential });
+async function signin(credential: string) {
+  await api.post("/signin", { credential });
 }
 
-export function signinAccessToken(accessToken: string) {
-  return api.post("/signin-accesstoken", { token: accessToken });
+async function signinAccessToken(accessToken: string) {
+  await api.post("/signin-accesstoken", { token: accessToken });
 }
 
-export function signinCredential(credential: string) {
-  return api.post("/signin-credential", { token: credential });
+async function signinCredential(credential: string) {
+  await api.post("/signin-credential", { token: credential });
 }
+
+export { signin, signinAccessToken, signinCredential };
