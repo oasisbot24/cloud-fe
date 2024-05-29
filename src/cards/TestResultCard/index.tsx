@@ -2,6 +2,7 @@ import { Stack, Typography } from "@mui/material";
 import OasisLabIcon from "@/components/Icon/OasisLabIcon";
 import Card from "../Card";
 import LiquidProgress from "./LiquidProgress";
+import PieChart from "./PieChart";
 
 export default function TestResultCard() {
   return (
@@ -18,8 +19,12 @@ export default function TestResultCard() {
             </Typography>
           </Stack>
         </Stack>
-
-        <LiquidProgress />
+        <Stack direction="row" sx={{ padding: "20px", marginTop: "25px" }}>
+          <div className="mt-3">
+            <LiquidProgress />
+          </div>
+          <PieChart />
+        </Stack>
       </Stack>
     </Card>
   );
