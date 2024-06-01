@@ -3,11 +3,12 @@ import OasisLabIcon from "@/components/Icon/OasisLabIcon";
 import Card from "../Card";
 import LiquidProgress from "./LiquidProgress";
 import PieChart from "./PieChart";
+import PieSvg from "./PieSvg";
 
 export default function TestResultCard() {
   return (
     <Card>
-      <Stack p={2}>
+      <Stack spacing={3}>
         <Stack direction="row" spacing={2}>
           <OasisLabIcon id="test-result" />
           <Stack>
@@ -19,10 +20,8 @@ export default function TestResultCard() {
             </Typography>
           </Stack>
         </Stack>
-        <Stack direction="row" sx={{ padding: "20px", marginTop: "25px" }}>
-          <div className="mt-3">
-            <LiquidProgress />
-          </div>
+        <Stack direction="row" justifyContent={"center"} alignItems={"center"}>
+          <LiquidProgress />
           <PieChart />
         </Stack>
       </Stack>
