@@ -6,13 +6,15 @@ interface OasisLabIconProps {
 }
 
 const iconSrc = {
-  "test-result": "/icons/oasislab/test-result.png",
+  set: "/icons/oasislab/setting-price.png",
+  current: "/icons/oasislab/current-price.png",
+  max: "/icons/oasislab/max-price.png",
 };
 
 export default function OasisLabIcon({ id }: OasisLabIconProps) {
   return (
-    <Stack className="justify-center items-center rounded-xl bg-neutral-200 w-[44px] h-[44px]">
-      <Icon src={iconSrc[id]} size={30} />
+    <Stack className="justify-center items-center rounded-xl bg-brand w-[40px] h-[40px]">
+      <Icon src={iconSrc[id]} size={32} />
     </Stack>
   );
 }
