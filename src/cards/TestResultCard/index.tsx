@@ -1,5 +1,5 @@
 import { Stack, Typography } from "@mui/material";
-import OasisLabIcon from "@/components/Icon/OasisLabIcon";
+import DashboardIcon from "@/components/Icon/DashboardIcon";
 import Card from "../Card";
 import LiquidProgress from "./LiquidProgress";
 
@@ -8,7 +8,7 @@ export default function TestResultCard() {
     <Card>
       <Stack p={2}>
         <Stack direction="row" spacing={2}>
-          <OasisLabIcon id="test-result" />
+          <DashboardIcon id="lab-on" />
           <Stack>
             <Typography variant="300B" className="text-[#222222]">
               테스트 연구 결과 (진행률/승률)
