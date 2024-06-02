@@ -37,7 +37,7 @@ export default function PieSvg({
   return (
     <svg
       width={radius * 2}
-      height={radius * 3}
+      height={radius * 2 + 10}
       viewBox={`0 0 ${radius * 2} ${radius * 2}`}
     >
       <defs>
