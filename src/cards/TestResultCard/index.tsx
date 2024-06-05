@@ -20,7 +20,11 @@ export default function TestResultCard() {
             </Typography>
           </Stack>
         </Stack>
-        <Stack direction="row" justifyContent={"center"} alignItems={"center"}>
+        <Stack
+          direction="row"
+          justifyContent={"space-around"}
+          alignItems={"center"}
+        >
           <LiquidProgress />
           <PieChart />
         </Stack>

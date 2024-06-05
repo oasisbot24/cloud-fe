@@ -14,7 +14,7 @@ export default function PieSvg({
 }: PieSvgProps) {
   // 부채꼴의 중심을 계산합니다.
   const centerX = radius - 1;
-  const centerY = radius;
+  const centerY = radius + 3;
 
   const basicStartAngleRad = (-90 * Math.PI) / 180;
   const basicEndAngleRad = (((360 * percent) / 100 - 90) * Math.PI) / 180;
