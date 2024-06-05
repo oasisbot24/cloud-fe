@@ -2,11 +2,13 @@ import { Stack, Typography } from "@mui/material";
 import DashboardIcon from "@/components/Icon/DashboardIcon";
 import Card from "../Card";
 import LiquidProgress from "./LiquidProgress";
+import PieChart from "./PieChart";
+import PieSvg from "./PieSvg";
 
 export default function TestResultCard() {
   return (
     <Card>
-      <Stack p={2}>
+      <Stack spacing={3}>
         <Stack direction="row" spacing={2}>
           <DashboardIcon id="lab-on" />
           <Stack>
@@ -18,8 +20,14 @@ export default function TestResultCard() {
             </Typography>
           </Stack>
         </Stack>
-
-        <LiquidProgress />
+        <Stack
+          direction="row"
+          justifyContent={"space-around"}
+          alignItems={"center"}
+        >
+          <LiquidProgress />
+          <PieChart />
+        </Stack>
       </Stack>
     </Card>
   );
