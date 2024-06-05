@@ -5,6 +5,7 @@ import DashboardIcon from "@/components/Icon/DashboardIcon";
 interface CardHeaderProps {
   id: DashboardIdType;
   title: string;
+  description?: string;
   action?: React.ReactNode;
   isDark?: boolean;
 }
@@ -12,6 +13,7 @@ interface CardHeaderProps {
 export default function CardHeader({
   id,
   title,
+  description,
   action,
   isDark,
 }: CardHeaderProps) {
@@ -35,7 +37,9 @@ export default function CardHeader({
           <Typography
             variant="100R"
             className={!isDark ? "text-neutral-500" : "text-neutral-300"}
-          >{`오늘 ${hm} 기준`}</Typography>
+          >
+            {description ?? `오늘 ${hm} 기준`}
+          </Typography>
         </Stack>
       }
       action={action}
