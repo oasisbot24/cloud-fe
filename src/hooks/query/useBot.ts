@@ -3,7 +3,7 @@ import { botStart, botStop, getBot } from "@/apis/bot";
 
 export default function useBot() {
   const queryClient = useQueryClient();
-  const stratBotMutation = useMutation({
+  const startBotMutation = useMutation({
     mutationFn: botStart,
     mutationKey: ["startBot"],
     onSuccess: () => {
@@ -25,7 +25,7 @@ export default function useBot() {
   });
 
   return {
-    stratBotMutation,
+    startBotMutation,
     stopBotMutation,
     dataBot,
   };
