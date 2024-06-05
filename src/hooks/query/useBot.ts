@@ -19,14 +19,14 @@ export default function useBot() {
     },
   });
 
-  const dataBot = useQuery({
-    queryKey: ["getBot"],
+  const botQuery = useQuery({
+    queryKey: ["bot"],
     queryFn: getBot,
   });
 
   return {
     startBotMutation,
     stopBotMutation,
-    dataBot,
+    botQuery,
   };
 }
