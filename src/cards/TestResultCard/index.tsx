@@ -2,11 +2,13 @@ import { Stack, Typography } from "@mui/material";
 import OasisLabIcon from "@/components/Icon/OasisLabIcon";
 import Card from "../Card";
 import LiquidProgress from "./LiquidProgress";
+import PieChart from "./PieChart";
+import PieSvg from "./PieSvg";
 
 export default function TestResultCard() {
   return (
     <Card>
-      <Stack p={2}>
+      <Stack spacing={3}>
         <Stack direction="row" spacing={2}>
           <OasisLabIcon id="test-result" />
           <Stack>
@@ -18,8 +20,14 @@ export default function TestResultCard() {
             </Typography>
           </Stack>
         </Stack>
-
-        <LiquidProgress />
+        <Stack
+          direction="row"
+          justifyContent={"space-around"}
+          alignItems={"center"}
+        >
+          <LiquidProgress />
+          <PieChart />
+        </Stack>
       </Stack>
     </Card>
   );
