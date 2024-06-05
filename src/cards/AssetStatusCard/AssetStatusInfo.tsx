@@ -1,13 +1,16 @@
 import { Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
+import { TradeStyleType } from "@/apis/getTradeStyle";
 import DisplayPL from "@/cards/AssetStatusCard/DisplayPL";
 import authAtom from "@/datas/auth";
-import useTradeStyle from "@/hooks/query/useTradeStyle";
 
-export default function AssetStatusInfo() {
+interface AssetStatusInfoProps {
+  tradeStyleData?: TradeStyleType;
+}
+export default function AssetStatusInfo({
+  tradeStyleData,
+}: AssetStatusInfoProps) {
   const [user] = useAtom(authAtom);
-  const { tradeStyleQuery } = useTradeStyle();
-  const { data: tradeStyleData } = tradeStyleQuery;
   const userName = user.name;
   return (
     <Stack className="w-full h-full justify-between">

@@ -1,6 +1,6 @@
 import api from "@/apis/network";
 
-interface TradeStyleType {
+export interface TradeStyleType {
   tag: string[];
   accountBalance: number;
   winRate: number;
