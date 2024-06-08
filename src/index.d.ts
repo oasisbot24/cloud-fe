@@ -36,3 +36,5 @@ interface ApiResponseType<T> {
 
 // oasislab
 type OasisLabIdType = "test-result";
+
+

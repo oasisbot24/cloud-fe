@@ -3,15 +3,14 @@ import OasisLabIcon from "@/components/Icon/OasisLabIcon";
 import Card from "../Card";
 import LiquidProgress from "./LiquidProgress";
 import PieChart from "./PieChart";
-import PieSvg from "./PieSvg";
 
 export default function TestResultCard() {
   return (
     <Card>
       <Stack spacing={3}>
-        <Stack direction="row" spacing={2}>
+        <Stack direction="row" spacing={2} className="p-3">
           <OasisLabIcon id="test-result" />
-          <Stack>
+          <Stack className="mt-1">
             <Typography variant="300B" className="text-[#222222]">
               테스트 연구 결과 (진행률/승률)
             </Typography>
