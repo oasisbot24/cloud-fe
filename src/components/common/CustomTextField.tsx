@@ -14,7 +14,13 @@ function CustomTextField({ id, title, variant, mb }: Props) {
       <InputLabel shrink htmlFor={id} size="normal">
         {title}
       </InputLabel>
-      <TextField fullWidth defaultValue="" id={id} variant={variant} />
+      <TextField
+        fullWidth
+        defaultValue=""
+        id={id}
+        variant={variant}
+        size="small"
+      />
     </div>
   );
 }

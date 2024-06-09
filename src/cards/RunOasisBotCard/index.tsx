@@ -66,7 +66,7 @@ function RunOasisBotCard() {
           mb="0"
         />
       </CardContent>
-      <CardActions style={{ padding: 0 }}>
+      <CardActions style={{ paddingLeft: 0, paddingRight: 0 }}>
         <OasisBotButton
           backgroundColor="#68696C"
           textColor="#fff"
