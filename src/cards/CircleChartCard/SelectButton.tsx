@@ -2,17 +2,20 @@ import { Box, ButtonBase, Stack, Typography } from "@mui/material";
 
 interface SelectButtonProps {
   children: React.ReactNode;
+  onClick?: () => void;
   color?: string;
   isFocused?: boolean;
 }
 
 function SelectButton({
   children,
+  onClick,
   color,
   isFocused = false,
 }: SelectButtonProps) {
   return (
     <ButtonBase
+      onClick={onClick}
       className="rounded-full bg-netural-200"
       sx={{
         border: "1px solid",
