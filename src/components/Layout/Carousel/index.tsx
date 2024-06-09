@@ -12,10 +12,15 @@ const buttonStyle =
 
 export default function Carousel({ children, minWidth }: CarouselProps) {
   const { size, componentRef } = useComponentSize();
+  const { size: childSize, componentRef: childRef } = useComponentSize();
   const [align, setAlign] = useState<"left" | "right">("left");
   return (
-    <Box ref={componentRef} className="w-full">
-      <Box className="relative w-full" sx={{ minWidth: `${minWidth}px` }}>
+    <Box
+      ref={componentRef}
+      className="w-full"
+      sx={{ height: `${childSize.height}px` }}
+    >
+      <Box className="absolute w-full" sx={{ minWidth: `${minWidth}px` }}>
         {size.width <= minWidth && align === "right" && (
           <IconButton
             className={`left-[calc(80px + 4rem)] ${buttonStyle}`}
@@ -25,6 +30,7 @@ export default function Carousel({ children, minWidth }: CarouselProps) {
           </IconButton>
         )}
         <Box
+          ref={childRef}
           className="absolute w-full transition-all duration-500"
           sx={{
             left: align === "left" ? "0" : `calc(-100% + ${size.width}px)`,

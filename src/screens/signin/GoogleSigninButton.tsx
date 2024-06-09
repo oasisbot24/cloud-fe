@@ -1,53 +1,24 @@
-import { useRouter } from "next/router";
 import { ButtonBase, Typography } from "@mui/material";
-import {
-  CredentialResponse,
-  useGoogleLogin,
-  useGoogleOneTapLogin,
-} from "@react-oauth/google";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import { useAtom } from "jotai";
-import { jwtDecode } from "jwt-decode";
-import signin from "@/apis/signin";
+import { useGoogleLogin } from "@react-oauth/google";
 import Icon from "@/components/Icon/index";
-import authAtom, { Auth } from "@/datas/auth";
+import useLogin from "@/hooks/login";
 
 function GoogleSigninButton({ onClick }: { onClick?: () => void }) {
-  const { push } = useRouter();
-  const [, setAuth] = useAtom(authAtom);
-  const signinMutation = useMutation({
-    mutationFn: signin,
-  });
-  const onSuccess = (credentialResponse: CredentialResponse) => {
-    console.log(credentialResponse);
-    const { credential } = credentialResponse;
-    signinMutation.mutate(credential || "", {
-      onSuccess: () => {
-        localStorage.setItem("credential", credential || "");
-        const auth = jwtDecode(credential || "") as Auth;
-        setAuth(auth);
-        push("/dashboard");
-      },
-    });
-    onClick?.();
-  };
+  const { signinAccessTokenMutation } = useLogin();
 
+  /*
   useGoogleOneTapLogin({
-    onSuccess,
+    onSuccess: credentialResponse =>
+      signinCredentialMutation.mutate(credentialResponse.credential || "", {
+        onSuccess: () => onClick?.(),
+      }),
   });
-
+  */
   const handleClick = useGoogleLogin({
-    onSuccess: async tokenResponse => {
-      console.log(tokenResponse);
-      const userInfo = await axios
-        .get("https://www.googleapis.com/oauth2/v3/userinfo", {
-          headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
-        })
-        .then(res => res.data);
-      console.log(userInfo);
-      onClick?.();
-    },
+    onSuccess: tokenResponse =>
+      signinAccessTokenMutation.mutate(tokenResponse.access_token, {
+        onSuccess: () => onClick?.(),
+      }),
   });
 
   return (

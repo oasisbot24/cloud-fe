@@ -18,8 +18,8 @@
 
 .progress {
   @include set-var(progress-value, 50);
-  @include set-var(progress-indicator-size, 350px);
-  @include set-var(progress-size, 190px);
+  @include set-var(progress-indicator-size, 450px);
+  @include set-var(progress-size, 240px);
   @include set-var(progress-inner-size, calc(#{val(progress-size)} - 20px));
   border: 5px solid color(progress-alpha);
 

@@ -9,11 +9,12 @@ interface PresetType {
   coinType: string;
 }
 
-const getPreset = (exchangeName: string): Promise<PresetType[]> => {
-  return api.get(`/bot?exchange=${exchangeName}`).then(res => {
-    return res.data?.data;
-  });
-};
+async function getPreset(exchangeName: string): Promise<PresetType[]> {
+  const res = await api.get<ApiResponseType<PresetType[]>>(
+    `/bot?exchange=${exchangeName}`,
+  );
+  return res.data?.data;
+}
 
 export type { PresetType };
 export { getPreset };
