@@ -11,7 +11,7 @@ export default function TestResultCard() {
         <CardHeader
           title="테스트 연구 결과 (진행률/승률)"
           id="lab-on"
-          description="오늘 16:29/월 평균 매매 횟 420회"
+          subtitle="오늘 16:29/월 평균 매매 횟 420회"
         />
         <Stack
           direction="row"

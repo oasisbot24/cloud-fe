@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import PieSvg from "./PieSvg";
 
 export default function PieChart() {
@@ -11,23 +11,15 @@ export default function PieChart() {
       }}
     >
       <div
-        className={
-          "absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-[#F6F7F7]  rounded-full w-[100%] h-[100%] "
-        }
+        className="absolute top-[50%] left-[50%]
+      translate-x-[-50%] translate-y-[-50%] bg-[#F6F7F7]
+      rounded-full w-[100%] h-[100%]"
       >
-        <div
-          className={
-            "absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-[#898FC3]  rounded-full w-[75%] h-[75%] border-2 border-[#022579] border-solid"
-          }
-        >
-          <div
-            className={
-              "absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] "
-            }
-          >
+        <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-[#898FC3] rounded-full w-[75%] h-[75%] border-2 border-[#022579] border-solid">
+          <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
             <PieSvg
-              fillColor={"#F46565"}
-              borderColor={"#022579"}
+              fillColor="#F46565"
+              borderColor="#022579"
               radius={110}
               percent={60}
             />
