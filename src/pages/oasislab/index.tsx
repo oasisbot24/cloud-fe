@@ -3,6 +3,7 @@ import BotListCard from "@/cards/BotListCard/index";
 import RunOasisBotCard from "@/cards/RunOasisBotCard";
 import TestInfoCard from "@/cards/TestInfoCard/index";
 import TestResultChartCard from "@/cards/TestResultChartCard/index";
+import TestResultInfoCard from "@/cards/TestResultInfoCard/index";
 import Layout from "@/components/Layout";
 import Carousel from "@/components/Layout/Carousel";
 
@@ -22,11 +23,11 @@ export default function OasisLab() {
                 <TestInfoCard type="max" />
               </Stack>
               <Stack direction="row" className="gap-4 h-[385px] shrink-0">
-                <Box className="w-6/12">
+                <Box className="w-7/12">
                   <TestResultChartCard />
                 </Box>
-                <Box className="w-6/12">
-                  <BotListCard />
+                <Box className="w-5/12">
+                  <TestResultInfoCard />
                 </Box>
               </Stack>
             </Stack>
