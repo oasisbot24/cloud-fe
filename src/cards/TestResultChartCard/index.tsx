@@ -4,7 +4,7 @@ import Card from "../Card";
 import LiquidProgress from "./LiquidProgress";
 import PieChart from "./PieChart";
 
-export default function TestResultCard() {
+export default function TestResultChartCard() {
   return (
     <Card>
       <Stack spacing={3}>
