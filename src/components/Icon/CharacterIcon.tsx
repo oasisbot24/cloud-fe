@@ -1,4 +1,4 @@
-import Icon from "@/components/Icon/index";
+import Image from "next/image";
 
 interface CharacterIconProps {
   happiness: number;
@@ -22,5 +22,13 @@ export default function CharacterIcon({ happiness }: CharacterIconProps) {
   if (happiness < 1) {
     happinessNumber = 1;
   }
-  return <Icon src={iconSrc[happinessNumber]} size={280} />;
+  return (
+    <Image
+      className="z-[999]"
+      src={iconSrc[happinessNumber]}
+      height={280}
+      width={290}
+      alt="happyicon"
+    />
+  );
 }

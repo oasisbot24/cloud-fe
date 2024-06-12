@@ -3,7 +3,6 @@ import React from "react";
 interface CircleSvgProps {
   fillColorStart: string;
   fillColorEnd: string;
-  radius: number;
   startAngle: number;
   endAngle: number;
 }
@@ -12,11 +11,11 @@ interface CircleSvgProps {
 export default function CircleSvg({
   fillColorStart,
   fillColorEnd,
-  radius,
   startAngle,
   endAngle,
 }: CircleSvgProps) {
   // 부채꼴의 중심을 계산합니다.
+  const radius = 100;
   const centerX = radius;
   const centerY = radius;
 
@@ -60,7 +59,11 @@ export default function CircleSvg({
       width={radius * 2}
       height={radius * 2}
       viewBox={`0 0 ${radius * 2} ${radius * 2}`}
-      style={{ filter: "drop-shadow(0px -5px 20px 0px #0000001F)" }}
+      style={{
+        filter: "drop-shadow(0px -5px 20px 0px #0000001F)",
+        width: "100%",
+        height: "100%",
+      }}
     >
       <defs>
         <radialGradient

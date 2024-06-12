@@ -1,34 +1,19 @@
 import api from "@/apis/network";
 
-interface TradeCoinType {
-  name: string;
-  ratio: number;
-}
-interface TradeStyleType {
+export interface TradeStyleType {
+  tag: string[];
+  accountBalance: number;
   winRate: number;
-  tradeCoin: Array<TradeCoinType>;
-  avgWaitTime: number;
-  avgCarryTime: number;
-  avgMonthlyTradeCount: number;
-  maxBalance: number;
-  volatility: number;
-  maxProfit: number;
-  minLoss: number;
+  totalProfitLossRate: number;
 }
-export default function getTradeStyle(): Promise<TradeStyleType> {
-  return api.get("/trade_style").then(res => {
-    const result = {
-      winRate: res.data?.data.winRate,
-      tradeCoin: res.data?.data.tradeCoin,
-      avgWaitTime: res.data?.data.avgWaitTime,
-      avgCarryTime: res.data?.data.avgCarryTime,
-      avgMonthlyTradeCount: res.data?.data.avgMonthlyTradeCount,
-      maxBalance: res.data?.data.maxBalance,
-      volatility: res.data?.data.volatility,
-      maxProfit: res.data?.data.maxProfit,
-      minLoss: res.data?.data.minLoss,
-    };
 
-    return result;
-  });
+export default async function getTradeStyle(): Promise<TradeStyleType> {
+  const res = await api.get<ApiResponseType<TradeStyleType>>("/trade_style");
+  const result: TradeStyleType = {
+    tag: res.data?.data.tag,
+    accountBalance: res.data?.data.accountBalance,
+    winRate: res.data?.data.winRate,
+    totalProfitLossRate: res.data?.data.totalProfitLossRate,
+  };
+  return result;
 }
