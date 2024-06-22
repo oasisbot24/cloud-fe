@@ -21,7 +21,7 @@ export default function PieChart() {
               fillColor="#F46565"
               borderColor="#022579"
               radius={110}
-              percent={60}
+              percent={80}
             />
           </div>
 

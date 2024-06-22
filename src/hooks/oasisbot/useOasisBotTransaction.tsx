@@ -6,6 +6,9 @@ import {
   GridRenderCellParams,
   GridValidRowModel,
 } from "@mui/x-data-grid";
+import { useQuery } from "@tanstack/react-query";
+import { getTransaction } from "@/apis/getTransaction";
+import { getPreset } from "@/apis/presets";
 import ArrowDownIcon from "@/components/Icon/ArrowDownIcon";
 import ArrowUpIcon from "@/components/Icon/ArrowUpIcon";
 import {
@@ -53,7 +56,13 @@ function useOasisBotTransaction() {
       renderCell: (params: GridRenderCellParams<GridValidRowModel, string>) => (
         <Chip
           label={params.value === "sell" ? "판매" : "구매"}
-          color={params.value === "sell" ? "secondary" : "primary"}
+          // color={params.value === "sell" ? "secondary" : "primary"}
+          sx={
+            params.value === "sell"
+              ? { bgcolor: "#898FC3" }
+              : { bgcolor: "#2BB7F5" }
+          }
+          className="text-[14px] font-bold leading-[16px] text-white"
         />
       ),
     },
@@ -69,7 +78,8 @@ function useOasisBotTransaction() {
           <div className="text-[16px] font-bold leading-[18px] ">
             ￦{params.value?.money.toLocaleString("ko-kr")}
           </div>
-          <div className="text-[14px] font-bold leading-[16px]">
+
+          <div className="text-[14px] font-bold leading-[16px] mt-1">
             {params.value?.rate}
           </div>
         </div>
@@ -87,9 +97,7 @@ function useOasisBotTransaction() {
           <div className="text-[16px] font-bold leading-[18px]">
             ￦{params.value?.money.toLocaleString("ko-kr")}
           </div>
-          <Typography variant="200M" className="text-[#404040]">
-            {params.value?.contents}
-          </Typography>
+          <div className="whitespace-normal mt-1">{params.value?.contents}</div>
         </div>
       ),
     },
@@ -137,6 +145,11 @@ function useOasisBotTransaction() {
       ),
     },
   ];
+
+  // const { data: presetRows, isLoading: isPresetsLoading } = useQuery({
+  //   queryKey: ["transaction"],
+  //   queryFn: () => getTransaction(),
+  // });
 
   const rows = [
     {
