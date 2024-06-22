@@ -1,8 +1,7 @@
 import { Box, Stack } from "@mui/material";
 import BotListCard from "@/cards/BotListCard";
-// import OasisBotTransactionCard from "@/cards/OasisBotTransactionCard";
-import Layout from "@/components/Layout";
 import Carousel from "@/components/Layout/Carousel";
+import Layout from "@/components/Layout/index";
 
 function OasisBot() {
   return (
@@ -20,7 +19,6 @@ function OasisBot() {
             </Stack>
             <Stack direction="row" className="h-[460px]">
               {/* <OasisBotTransactionCard /> */}
-              <BotListCard />
             </Stack>
           </Stack>
           <Stack className="w-4/12">
