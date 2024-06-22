@@ -78,7 +78,7 @@ function useOasisBotTransaction() {
             ￦{params.value?.money.toLocaleString("ko-kr")}
           </div>
 
-          <div className="text-[14px] font-bold leading-[16px] mt-1">
+          <div className="text-[14px] font-bold leading-[16px] mt-2">
             {params.value?.rate}
           </div>
         </div>
@@ -96,7 +96,7 @@ function useOasisBotTransaction() {
           <div className="text-[16px] font-bold leading-[18px]">
             ￦{params.value?.money.toLocaleString("ko-kr")}
           </div>
-          <div className="whitespace-normal mt-1">{params.value?.contents}</div>
+          <div className="whitespace-normal mt-2">{params.value?.contents}</div>
         </div>
       ),
     },
@@ -145,7 +145,7 @@ function useOasisBotTransaction() {
     },
   ];
 
-  // const { data: presetRows, isLoading: isPresetsLoading } = useQuery({
+  // const data = useQuery({
   //   queryKey: ["transaction"],
   //   queryFn: () => getTransaction(),
   // });
