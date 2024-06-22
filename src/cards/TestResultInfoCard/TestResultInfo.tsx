@@ -1,15 +1,17 @@
 import { Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
-import { TradeStyleType } from "@/apis/getTradeStyle";
 import DisplayPL from "@/cards/AssetStatusCard/DisplayPL";
 import authAtom from "@/datas/auth";
 
-interface AssetStatusInfoProps {
-  tradeStyleData?: TradeStyleType;
+interface TestResultInfoProps {
+  testResult?: {
+    profitLossAmount: number;
+    profit: number;
+    loss: number;
+    tag: string[];
+  } | null;
 }
-export default function AssetStatusInfo({
-  tradeStyleData,
-}: AssetStatusInfoProps) {
+export default function TestResultInfo({ testResult }: TestResultInfoProps) {
   const [user] = useAtom(authAtom);
   const userName = user.name;
   return (
@@ -19,7 +21,7 @@ export default function AssetStatusInfo({
           Hi! {userName}님
         </Typography>
         <Stack direction="row" className="gap-1">
-          {tradeStyleData?.tag.map(keyword => (
+          {testResult?.tag.map(keyword => (
             <Typography key={keyword} variant="200R" className="text-white">
               #{keyword}
             </Typography>
@@ -28,24 +30,24 @@ export default function AssetStatusInfo({
       </Stack>
       <Stack direction="column" className="gap-1">
         <Typography variant="300R" className="text-neutral-200">
-          총 자산금액
+          총 손익금액
         </Typography>
         <Typography variant="h4" className="text-white">
-          ₩ {tradeStyleData?.accountBalance ?? 0}
+          ₩ {testResult?.profitLossAmount ?? 0}
         </Typography>
       </Stack>
       <Stack direction="row" className="w-full">
         <Stack direction="column" className="w-1/2 gap-1">
           <Typography variant="300R" className="text-neutral-200">
-            총현황
+            수익
           </Typography>
-          <DisplayPL pl={tradeStyleData?.totalProfitLossRate ?? 0} />
+          <DisplayPL pl={testResult?.profit ?? 0} />
         </Stack>
         <Stack direction="column" className="w-1/2 gap-1">
           <Typography variant="300R" className="text-neutral-200">
-            승률
+            손해
           </Typography>
-          <DisplayPL pl={tradeStyleData?.winRate ?? 0} />
+          <DisplayPL pl={testResult?.loss ?? 0} />
         </Stack>
       </Stack>
     </Stack>

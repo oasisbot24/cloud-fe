@@ -35,6 +35,4 @@ interface ApiResponseType<T> {
 }
 
 // oasislab
-type OasisLabIdType = "test-result";
-
-
+type OasisLabIdType = "set" | "current" | "max";

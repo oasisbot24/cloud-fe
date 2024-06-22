@@ -17,12 +17,12 @@ function ElementCircle({
         }}
         className={`absolute
 		translate-x-1/2 -translate-y-1/2
-		top-1/2 right-1/2`}
+		top-1/2 right-1/2 duration-300 
+    transition-width transition-height ease-out`}
       >
         <CircleSvg
           fillColorStart={fillColorStart}
           fillColorEnd={fillColorEnd}
-          radius={size}
           startAngle={startAngle - 90}
           endAngle={endAngle - 90}
         />
@@ -31,7 +31,7 @@ function ElementCircle({
   );
 }
 
-function CenterCircle({ percent = "50%", amount = "₩ 12,112,112" }) {
+function CenterCircle({ percent = 50, amount = "₩ 12,112,112" }) {
   return (
     <Box className="absolute w-full h-full">
       <Box
@@ -56,7 +56,7 @@ function CenterCircle({ percent = "50%", amount = "₩ 12,112,112" }) {
               fontSize={28}
               lineHeight="36px"
             >
-              {percent}
+              {percent}%
             </Typography>
           </Box>
           <Box className="text-center">
