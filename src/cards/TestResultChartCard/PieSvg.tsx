@@ -13,7 +13,7 @@ export default function PieSvg({
   percent,
 }: PieSvgProps) {
   // 부채꼴의 중심을 계산합니다.
-  const centerX = radius + 1;
+  const centerX = radius - 1;
   const centerY = radius + 3;
 
   const basicStartAngleRad = (-90 * Math.PI) / 180;
@@ -38,7 +38,7 @@ export default function PieSvg({
     <svg
       width={radius * 2}
       height={radius * 2 + 10}
-      viewBox={`0 0 ${radius * 2 + 2} ${radius * 2}`}
+      viewBox={`0 0 ${radius * 2} ${radius * 2}`}
     >
       <defs>
         <radialGradient
