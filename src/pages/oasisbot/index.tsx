@@ -1,5 +1,6 @@
 import { Box, Stack } from "@mui/material";
 import BotListCard from "@/cards/BotListCard";
+import OasisBotTransactionCard from "@/cards/OasisBotTransactionCard";
 import RealtimeTransactionCard from "@/cards/RealtimeTransactionCard";
 import RunOasisBotCard from "@/cards/RunOasisBotCard";
 import TempCard from "@/cards/TempCard";
@@ -21,7 +22,7 @@ function OasisBot() {
               </Box>
             </Stack>
             <Stack direction="row" className="gap-4 h-[400px]">
-              <BotListCard />
+              <OasisBotTransactionCard />
             </Stack>
           </Stack>
           <Stack className="w-2/6 gap-4">
