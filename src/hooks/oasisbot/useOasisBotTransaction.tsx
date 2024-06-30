@@ -7,6 +7,8 @@ import {
   GridValidRowModel,
 } from "@mui/x-data-grid";
 import { useQuery } from "@tanstack/react-query";
+import { getTransaction } from "@/apis/getTransaction";
+import { getPreset } from "@/apis/presets";
 import ArrowDownIcon from "@/components/Icon/ArrowDownIcon";
 import ArrowUpIcon from "@/components/Icon/ArrowUpIcon";
 import {
@@ -15,9 +17,11 @@ import {
   BotTransactionQuantity,
 } from "@/datas/oasisbotTransaction";
 import useMarket from "@/hooks/common/useMarket";
+import useMarketSelect from "../common/useMarketSelect";
 
 function useOasisBotTransaction() {
   const { marketName, marketIcon } = useMarket();
+  const { market } = useMarketSelect();
 
   const columns: GridColDef[] = [
     {
@@ -144,10 +148,10 @@ function useOasisBotTransaction() {
     },
   ];
 
-  // const data = useQuery({
-  //   queryKey: ["transaction"],
-  //   queryFn: () => getTransaction(),
-  // });
+  const { data: botrows, isLoading: isPresetsLoading } = useQuery({
+    queryKey: ["transaction", market],
+    queryFn: () => getTransaction(market),
+  });
 
   const rows = [
     {
