@@ -1,8 +1,8 @@
 import { Box, Stack } from "@mui/material";
 import BotListCard from "@/cards/BotListCard";
+import OasisBotListCard from "@/cards/OasisBotListCard/index";
+import OasisBotRunCard from "@/cards/OasisBotRunCard";
 import RealtimeTransactionCard from "@/cards/RealtimeTransactionCard";
-import RunOasisBotCard from "@/cards/RunOasisBotCard";
-import TempCard from "@/cards/TempCard";
 import Carousel from "@/components/Layout/Carousel";
 import Layout from "@/components/Layout/index";
 
@@ -14,10 +14,10 @@ function OasisBot() {
           <Stack className="w-4/6 gap-4">
             <Stack direction="row" className="gap-4 h-[495px]">
               <Box className="w-2/5">
-                <RunOasisBotCard />
+                <OasisBotRunCard />
               </Box>
               <Box className="w-3/5 gap-4 h-[495px]">
-                <TempCard />
+                <OasisBotListCard />
               </Box>
             </Stack>
             <Stack direction="row" className="gap-4 h-[400px]">

@@ -7,7 +7,7 @@ import useMarketSelect from "@/hooks/common/useMarketSelect";
 import usePriceStatusSelect from "@/hooks/common/usePriceStatusSelect";
 import usePresets from "@/hooks/dashboard/usePresets";
 
-function PresetsCard() {
+export default function OasisBotListCard() {
   const { columns, presetRows, isPresetsLoading } = usePresets();
   const { PriceStatusSelect } = usePriceStatusSelect();
   const { CurrencySelect } = useCurrencySelect();
@@ -50,5 +50,3 @@ function PresetsCard() {
     </Card>
   );
 }
-
-export default PresetsCard;
