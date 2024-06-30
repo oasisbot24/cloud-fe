@@ -4,7 +4,7 @@ import AssetStatusCard from "@/cards/AssetStatusCard/index";
 import BotTransactionCard from "@/cards/BotTransactionCard";
 import ChartCard from "@/cards/ChartCard";
 import CircleChartCard from "@/cards/CircleChartCard/index";
-import PresetsCard from "@/cards/PresetsCard";
+import OasisBotListCard from "@/cards/OasisBotListCard";
 import ProfitRankCard from "@/cards/ProfitRankCard";
 import Layout from "@/components/Layout";
 import Carousel from "@/components/Layout/Carousel/index";
@@ -24,7 +24,7 @@ export default function Home() {
               <ChartCard />
             </Box>
             <Box className="w-5/12">
-              <PresetsCard />
+              <OasisBotListCard />
             </Box>
           </Stack>
           <Stack direction="row" className="gap-4 h-[436px]">
