@@ -31,7 +31,7 @@ export default function Carousel({ children, minWidth }: CarouselProps) {
         )}
         <Box
           ref={childRef}
-          className="absolute w-full transition-all duration-500"
+          className="absolute w-full transition-all duration-500 pb-4"
           sx={{
             left: align === "left" ? "0" : `calc(-100% + ${size.width}px)`,
           }}

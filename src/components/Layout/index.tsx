@@ -33,7 +33,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 : "ml-[80px] transition-all duration-300"
             }
           >
-            <Box className="w-full min-h-screen p-4 pl-8">{children}</Box>
+            <Box className="w-full h-[calc(100vh-70px)] p-4 pl-8">
+              {children}
+            </Box>
           </Box>
         </Stack>
       </Stack>
