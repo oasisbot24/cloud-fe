@@ -1,6 +1,6 @@
 import { Box, Stack } from "@mui/material";
 import BotListCard from "@/cards/BotListCard/index";
-import RunOasisBotCard from "@/cards/RunOasisBotCard";
+import RunOasisBotCard from "@/cards/OasisBotRunCard";
 import TestInfoCard from "@/cards/TestInfoCard/index";
 import TestResultChartCard from "@/cards/TestResultChartCard/index";
 import TestResultInfoCard from "@/cards/TestResultInfoCard/index";
