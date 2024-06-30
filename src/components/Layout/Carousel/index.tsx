@@ -17,7 +17,7 @@ export default function Carousel({ children, minWidth }: CarouselProps) {
   return (
     <Box
       ref={componentRef}
-      className="w-full"
+      className="relative w-full"
       sx={{ height: `${childSize.height}px` }}
     >
       <Box className="absolute w-full" sx={{ minWidth: `${minWidth}px` }}>
