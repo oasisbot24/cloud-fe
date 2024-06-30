@@ -7,7 +7,7 @@ import OasisBotButton from "@/components/oasisbot/OasisBotButton";
 import OasisBotMarketSelect from "@/components/oasisbot/OasisBotMarketSelect";
 import OasisBotSelect from "@/components/oasisbot/OasisBotSelect";
 
-function RunOasisBotCard() {
+function OasisBotRunCard() {
   const [selectedMarket, setSelectedMarket] = useState<string>("");
   const [selectedPreset, setSelectedPreset] = useState<string>("");
   const [selectedTradeItem, setSelectedTradeItem] = useState<string>("");
@@ -86,4 +86,4 @@ function RunOasisBotCard() {
   );
 }
 
-export default RunOasisBotCard;
+export default OasisBotRunCard;
