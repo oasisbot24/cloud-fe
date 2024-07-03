@@ -4,6 +4,7 @@ import RunOasisBotCard from "@/cards/OasisBotRunCard";
 import TestInfoCard from "@/cards/TestInfoCard/index";
 import TestResultChartCard from "@/cards/TestResultChartCard/index";
 import TestResultInfoCard from "@/cards/TestResultInfoCard/index";
+import TradingPortionCard from "@/cards/TradingPortionCard";
 import Layout from "@/components/Layout";
 import Carousel from "@/components/Layout/Carousel";
 
@@ -33,7 +34,7 @@ export default function OasisLab() {
             </Stack>
           </Stack>
           <Stack direction="row" className="gap-4 h-[400px]">
-            <BotListCard />
+            <TradingPortionCard />
           </Stack>
         </Stack>
       </Carousel>

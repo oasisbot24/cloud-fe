@@ -42,7 +42,7 @@ function useOasisBotTransaction() {
       ),
     },
     {
-      field: "item",
+      field: "coinName",
       headerName: "종목",
       flex: 1,
       headerClassName: "text-slate-500",
@@ -78,11 +78,11 @@ function useOasisBotTransaction() {
       ) => (
         <div>
           <div className="text-[16px] font-bold leading-[18px] ">
-            ￦{params.value?.money.toLocaleString("ko-kr")}
+            ￦{params.value?.totalPrice.toLocaleString("ko-kr")}
           </div>
 
           <div className="text-[14px] font-bold leading-[16px] mt-2">
-            {params.value?.rate}
+            {params.value?.volume}
           </div>
         </div>
       ),
@@ -97,9 +97,11 @@ function useOasisBotTransaction() {
       ) => (
         <div>
           <div className="text-[16px] font-bold leading-[18px]">
-            ￦{params.value?.money.toLocaleString("ko-kr")}
+            ￦{params.value?.startBalance.toLocaleString("ko-kr")}
           </div>
-          <div className="whitespace-normal mt-2">{params.value?.contents}</div>
+          <div className="whitespace-normal mt-2">
+            {params.value?.presetName}
+          </div>
         </div>
       ),
     },
@@ -123,23 +125,28 @@ function useOasisBotTransaction() {
       ) => (
         <div>
           <div
-            className={`whitespace-normal ${params.value?.money && params.value.money > 0 ? "text-sub-3" : ""}`}
+            className={`whitespace-normal ${params.value?.profitLoss && params.value.profitLoss > 0 ? "text-sub-3" : ""}`}
           >
-            {params.value?.money ? "￦" : ""}
+            {params.value?.profitLoss ? "￦" : ""}
             <span className="font-bold text-ellipsis">
-              {params.value?.money.toLocaleString("ko-kr") ?? "-"}
+              {params.value?.profitLoss.toLocaleString("ko-kr") ?? "-"}
             </span>
           </div>
-          {params.value?.rate && (
+          {params.value?.profitLossRate && (
             <Chip
-              className={`font-bold ${params.value?.rate ? "text-sub-3" : "bg-brand"}`}
+              className={`font-bold ${params.value?.profitLossRate ? "text-sub-3" : "bg-brand"}`}
               icon={
-                params.value?.rate > 0 ? <ArrowUpIcon /> : <ArrowDownIcon />
+                params.value?.profitLossRate > 0 ? (
+                  <ArrowUpIcon />
+                ) : (
+                  <ArrowDownIcon />
+                )
               }
-              label={`${params.value?.rate}%`}
+              label={`${params.value?.profitLossRate}%`}
               size="small"
               style={{
-                background: params.value?.rate > 0 ? "#FDE0E0" : "#DCE1FF",
+                background:
+                  params.value?.profitLossRate > 0 ? "#FDE0E0" : "#DCE1FF",
               }}
             />
           )}
@@ -148,145 +155,12 @@ function useOasisBotTransaction() {
     },
   ];
 
-  const { data: botrows, isLoading: isPresetsLoading } = useQuery({
+  const { data: botRows, isLoading: isLoading } = useQuery({
     queryKey: ["transaction", market],
     queryFn: () => getTransaction(market),
   });
 
-  const rows = [
-    {
-      id: 1,
-      market: "upbit",
-      item: "STARXEA USDT",
-      status: "sell",
-      quantity: {
-        money: 1000000000,
-        rate: 0.1,
-      },
-      price: {
-        money: 1000000000,
-        contents: "상승장프리셋임",
-      },
-      tradeTime: "2024.03.29 15:03",
-      profit: {
-        money: 1000000000,
-        rate: 11,
-      },
-    },
-    {
-      id: 2,
-      market: "upbit",
-      item: "STARXEA USDT",
-      status: "buy",
-      quantity: {
-        money: 1000000000,
-        rate: 0.1,
-      },
-      price: {
-        money: 1000000000,
-        contents: "상승장프리셋임",
-      },
-      tradeTime: "2024.03.29 15:03",
-      profit: null,
-    },
-    {
-      id: 3,
-      market: "upbit",
-      item: "STARXEA USDT",
-      status: "sell",
-      quantity: {
-        money: 1000000000,
-        rate: 0.1,
-      },
-      price: {
-        money: 1000000000,
-        contents: "상승장프리셋임",
-      },
-      tradeTime: "2024.03.29 15:03",
-      profit: {
-        money: 1000000000,
-        rate: 11,
-      },
-    },
-    {
-      id: 4,
-      market: "upbit",
-      item: "STARXEA USDT",
-      status: "sell",
-      quantity: {
-        money: 1000000000,
-        rate: 0.1,
-      },
-      price: {
-        money: 1000000000,
-        contents: "상승장프리셋임",
-      },
-      tradeTime: "2024.03.29 15:03",
-      profit: {
-        money: 1000000000,
-        rate: 11,
-      },
-    },
-    {
-      id: 5,
-      market: "upbit",
-      item: "STARXEA USDT",
-      status: "sell",
-      quantity: {
-        money: 1000000000,
-        rate: 0.1,
-      },
-      price: {
-        money: 1000000000,
-        contents: "상승장프리셋임",
-      },
-      tradeTime: "2024.03.29 15:03",
-      profit: {
-        money: 1000000000,
-        rate: 11,
-      },
-    },
-    {
-      id: 6,
-      market: "upbit",
-      item: "STARXEA USDT",
-      status: "sell",
-      quantity: {
-        money: 1000000000,
-        rate: 0.1,
-      },
-      price: {
-        money: 1000000000,
-        contents: "상승장프리셋임",
-      },
-      tradeTime: "2024.03.29 15:03",
-      profit: {
-        money: 1000000000,
-        rate: 11,
-      },
-    },
-    {
-      id: 7,
-      market: "upbit",
-      item: "STARXEA USDT",
-      status: "buy",
-      quantity: {
-        money: 1000000000,
-        rate: 0.1,
-      },
-      price: {
-        money: 1000000000,
-        contents: "상승장프리셋임",
-      },
-      tradeTime: "2024.03.29 15:03",
-      profit: {
-        money: 1000000000,
-        rate: 11,
-      },
-    },
-  ];
-
-  return { columns, rows };
+  return { columns, botRows, isLoading };
 }
 
 export default useOasisBotTransaction;
