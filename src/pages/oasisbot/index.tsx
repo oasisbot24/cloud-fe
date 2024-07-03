@@ -1,10 +1,10 @@
 import { Box, Stack } from "@mui/material";
-import BotListCard from "@/cards/BotListCard";
 import RealtimeTransactionCard from "@/cards/RealtimeTransactionCard";
-import OasisBotListCard from "@/cards/oasisbot/OasisBotListCard/index";
+import OasisBotListCard from "@/cards/oasisbot/OasisBotListCard";
 import OasisBotRunCard from "@/cards/oasisbot/OasisBotRunCard";
+import OasisBotTransactionCard from "@/cards/oasisbot/OasisBotTransactionCard";
+import Layout from "@/components/Layout";
 import Carousel from "@/components/Layout/Carousel";
-import Layout from "@/components/Layout/index";
 
 function OasisBot() {
   return (
@@ -21,7 +21,7 @@ function OasisBot() {
               </Box>
             </Stack>
             <Stack direction="row" className="gap-4 h-[400px]">
-              <BotListCard />
+              <OasisBotTransactionCard />
             </Stack>
           </Stack>
           <Stack className="w-2/6 gap-4">

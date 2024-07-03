@@ -83,7 +83,7 @@ function RealtimeTransactionItem({ item }: Props) {
         className="gap-4 p-3 py-2 items-center justify-between"
       >
         <Stack direction="row" className="gap-4 items-center">
-          <Chip label="구매" color="primary" />
+          <Chip label="구매" className="text-white bg-sub-2" />
           <Image
             src={marketIcon(item.buyInfo.exchange)}
             alt={item.buyInfo.exchange ?? ""}
