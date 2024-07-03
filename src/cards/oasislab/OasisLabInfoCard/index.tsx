@@ -1,6 +1,6 @@
 import { Stack, Typography } from "@mui/material";
+import Card from "@/cards/Card";
 import OasisLabIcon from "@/components/Icon/OasisLabIcon";
-import Card from "../Card";
 
 interface TestInfoCardProps {
   type: OasisLabIdType;
@@ -12,7 +12,7 @@ const title = {
   max: "최대 도달 잔고",
 };
 
-export default function TestInfoCard({ type }: TestInfoCardProps) {
+export default function OasisLabInfoCard({ type }: TestInfoCardProps) {
   return (
     <Card>
       <Stack

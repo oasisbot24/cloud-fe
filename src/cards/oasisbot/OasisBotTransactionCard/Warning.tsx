@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import Icon from "@/components/Icon/index";
 
 export default function Warning() {

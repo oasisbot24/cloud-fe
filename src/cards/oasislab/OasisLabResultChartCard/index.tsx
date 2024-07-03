@@ -1,10 +1,10 @@
 import { Stack } from "@mui/material";
+import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
-import Card from "../Card";
 import LiquidProgress from "./LiquidProgress";
 import PieChart from "./PieChart";
 
-export default function TestResultChartCard() {
+export default function OasisLabResultChartCard() {
   return (
     <Card>
       <Stack spacing={3}>

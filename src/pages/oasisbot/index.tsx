@@ -1,8 +1,8 @@
 import { Box, Stack } from "@mui/material";
 import BotListCard from "@/cards/BotListCard";
-import OasisBotListCard from "@/cards/OasisBotListCard/index";
-import OasisBotRunCard from "@/cards/OasisBotRunCard";
 import RealtimeTransactionCard from "@/cards/RealtimeTransactionCard";
+import OasisBotListCard from "@/cards/oasisbot/OasisBotListCard/index";
+import OasisBotRunCard from "@/cards/oasisbot/OasisBotRunCard";
 import Carousel from "@/components/Layout/Carousel";
 import Layout from "@/components/Layout/index";
 

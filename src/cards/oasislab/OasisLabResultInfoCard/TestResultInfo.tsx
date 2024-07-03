@@ -1,7 +1,7 @@
 import { Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
-import DisplayPL from "@/cards/AssetStatusCard/DisplayPL";
 import authAtom from "@/datas/auth";
+import DisplayPL from "./DisplayPL";
 
 interface TestResultInfoProps {
   testResult?: {

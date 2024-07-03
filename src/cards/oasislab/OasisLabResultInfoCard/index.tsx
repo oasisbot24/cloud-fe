@@ -2,9 +2,9 @@ import Image from "next/image";
 import { Box, CardContent, Stack } from "@mui/material";
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
-import TestResultInfo from "@/cards/TestResultInfoCard/TestResultInfo";
 import CharacterIcon from "@/components/Icon/CharacterIcon";
 import useTradeStyle from "@/hooks/query/useTradeStyle";
+import TestResultInfo from "./TestResultInfo";
 
 function calculateHappiness(totalProfitLossRate: number) {
   if (totalProfitLossRate <= -11) return 1;
@@ -16,7 +16,7 @@ function calculateHappiness(totalProfitLossRate: number) {
   return 7;
 }
 
-export default function TestResultInfoCard() {
+export default function OasisLabResultInfoCard() {
   const { tradeStyleQuery } = useTradeStyle();
   const { data: tradeStyleData } = tradeStyleQuery;
   return (
