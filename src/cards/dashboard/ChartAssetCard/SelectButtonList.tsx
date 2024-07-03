@@ -1,6 +1,6 @@
 import { Stack } from "@mui/material";
-import SelectButton from "@/cards/CircleChartCard/SelectButton";
-import { CoinRatio } from "../../apis/getCoinRatio";
+import SelectButton from "@/cards/dashboard/ChartAssetCard/SelectButton";
+import { CoinRatio } from "../../../apis/getCoinRatio";
 
 const colorList = ["#223CE9", "#FEBD38", "#2BB7F5", "#BEBEC3"];
 

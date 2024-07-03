@@ -1,8 +1,8 @@
 import { Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
 import { TradeStyleType } from "@/apis/getTradeStyle";
-import DisplayPL from "@/cards/AssetStatusCard/DisplayPL";
 import authAtom from "@/datas/auth";
+import DisplayPL from "./DisplayPL";
 
 interface AssetStatusInfoProps {
   tradeStyleData?: TradeStyleType;

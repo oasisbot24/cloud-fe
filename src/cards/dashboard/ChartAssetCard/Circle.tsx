@@ -1,5 +1,5 @@
 import { Box, Stack, Typography } from "@mui/material";
-import CircleSvg from "@/cards/CircleChartCard/CircleSvg";
+import CircleSvg from "@/cards/dashboard/ChartAssetCard/CircleSvg";
 
 function ElementCircle({
   fillColorStart = "",

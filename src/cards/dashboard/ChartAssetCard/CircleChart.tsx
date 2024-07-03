@@ -4,7 +4,7 @@ import {
   BaseCircle,
   CenterCircle,
   ElementCircle,
-} from "@/cards/CircleChartCard/Circle";
+} from "@/cards/dashboard/ChartAssetCard/Circle";
 import { numberToCurrency } from "@/libs/string";
 
 interface CircleChartProps {

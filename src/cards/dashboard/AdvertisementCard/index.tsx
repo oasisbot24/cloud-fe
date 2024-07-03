@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Stack } from "@mui/material";
-import AdvertisementIndex from "@/cards/AdvertisementCard/AdvertisementIndex";
-import AdvertisementInfo from "@/cards/AdvertisementCard/AdvertisementInfo";
 import Card from "@/cards/Card";
+import AdvertisementIndex from "./AdvertisementIndex";
+import AdvertisementInfo from "./AdvertisementInfo";
 
 export default function AdvertisementCard() {
   const MAX_INDEX = 3;
