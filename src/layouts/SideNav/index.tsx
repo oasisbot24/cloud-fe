@@ -1,9 +1,9 @@
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
-import ServiceCenter from "@/components/Layout/SideNav/ServiceCenter";
-import SideMenuButton from "@/components/Layout/SideNav/SideMenuButton";
-import { sideMenu } from "@/components/Layout/SideNav/sideMenu";
 import Logo from "@/components/Logo";
+import ServiceCenter from "@/layouts/SideNav/ServiceCenter";
+import SideMenuButton from "@/layouts/SideNav/SideMenuButton";
+import { sideMenu } from "@/layouts/SideNav/sideMenu";
 
 interface SideNavProps {
   isMenuOpen: boolean;

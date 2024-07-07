@@ -4,8 +4,8 @@ import RunOasisBotCard from "@/cards/oasisbot/OasisBotRunCard";
 import OasisLabInfoCard from "@/cards/oasislab/OasisLabInfoCard";
 import OasisLabResultChartCard from "@/cards/oasislab/OasisLabResultChartCard";
 import OasisLabResultInfoCard from "@/cards/oasislab/OasisLabResultInfoCard";
-import Layout from "@/components/Layout";
-import Carousel from "@/components/Layout/Carousel";
+import Layout from "@/layouts";
+import Carousel from "@/layouts/Carousel";
 
 export default function OasisLab() {
   return (

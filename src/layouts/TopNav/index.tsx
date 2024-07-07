@@ -1,9 +1,9 @@
 import { Stack } from "@mui/material";
-import NotificationBadge from "@/components/Layout/TopNav/NotificationBadge";
-import NotificationDialog from "@/components/Layout/TopNav/NotificationDialog";
-import { NotificationDataType } from "@/components/Layout/TopNav/NotificationItem";
-import UserProfile from "@/components/Layout/TopNav/UserProfile";
 import useModal from "@/hooks/useModal";
+import NotificationBadge from "@/layouts/TopNav/NotificationBadge";
+import NotificationDialog from "@/layouts/TopNav/NotificationDialog";
+import { NotificationDataType } from "@/layouts/TopNav/NotificationItem";
+import UserProfile from "@/layouts/TopNav/UserProfile";
 
 const notiList: NotificationDataType[] = [
   { title: "title1", type: "preset", content: "content1", date: "2022-01-01" },

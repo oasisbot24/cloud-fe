@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Box, Stack } from "@mui/material";
-import SideNav from "@/components/Layout/SideNav";
-import TopNav from "@/components/Layout/TopNav/index";
 import useComponentSize from "@/hooks/useComponentSize";
+import SideNav from "@/layouts/SideNav";
+import TopNav from "@/layouts/TopNav/index";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { size, componentRef } = useComponentSize();

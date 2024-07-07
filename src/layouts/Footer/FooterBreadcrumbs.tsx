@@ -1,5 +1,5 @@
 import { Breadcrumbs, ButtonBase, Typography } from "@mui/material";
-import footerMenu from "@/components/Layout/Footer/footerMenu";
+import footerMenu from "@/layouts/Footer/footerMenu";
 
 interface FooterBreadcrumbsProps {
   color: LayoutColorType;

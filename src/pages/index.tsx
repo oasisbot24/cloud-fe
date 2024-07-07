@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Box, Stack } from "@mui/material";
-import Footer from "@/components/Layout/Footer";
-import Header from "@/components/Layout/Header";
+import Footer from "@/layouts/Footer";
+import Header from "@/layouts/Header";
 import Discription from "@/screens/signin/Discription";
 
 export default function Home() {

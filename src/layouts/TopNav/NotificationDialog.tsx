@@ -1,7 +1,7 @@
 import { Box, ButtonBase, Paper, Stack, Typography } from "@mui/material";
 import NotificationItem, {
   NotificationDataType,
-} from "@/components/Layout/TopNav/NotificationItem";
+} from "@/layouts/TopNav/NotificationItem";
 
 interface NotificationDialogProps {
   handleClose: () => void;

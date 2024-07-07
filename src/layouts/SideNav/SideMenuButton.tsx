@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { ButtonBase, Stack, Typography } from "@mui/material";
 import SidenavIcon from "@/components/Icon/SidenavIcon";
-import { MenuDetail } from "@/components/Layout/SideNav/sideMenu";
+import { MenuDetail } from "@/layouts/SideNav/sideMenu";
 
 interface SideMenuButtonProps {
   detail: MenuDetail;

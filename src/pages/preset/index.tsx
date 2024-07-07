@@ -4,8 +4,8 @@ import PresetInfoCard from "@/cards/PresetInfoCard/index";
 import PresetSettingCard from "@/cards/PresetSettingCard/index";
 import PresetWeightInfoCard from "@/cards/PresetWeightInfoCard/index";
 import PresetWeightSettingCard from "@/cards/PresetWeightSettingCard/index";
-import Carousel from "@/components/Layout/Carousel/index";
-import Layout from "@/components/Layout/index";
+import Carousel from "@/layouts/Carousel/index";
+import Layout from "@/layouts/Layout";
 
 function OasisBot() {
   return (

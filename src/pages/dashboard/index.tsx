@@ -6,8 +6,8 @@ import CircleChartCard from "@/cards/dashboard/ChartAssetCard/index";
 import ChartCard from "@/cards/dashboard/ChartBotCard";
 import ProfitRankCard from "@/cards/dashboard/ProfitRankCard";
 import OasisBotListCard from "@/cards/oasisbot/OasisBotListCard";
-import Layout from "@/components/Layout";
-import Carousel from "@/components/Layout/Carousel/index";
+import Layout from "@/layouts";
+import Carousel from "@/layouts/Carousel/index";
 
 export default function Home() {
   return (
