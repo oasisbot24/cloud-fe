@@ -5,8 +5,8 @@ import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
 import CardButton from "@/components/common/CardButton";
 import CustomTextField from "@/components/common/CustomTextField";
-import OasisBotMarketSelect from "@/components/oasisbot/OasisBotMarketSelect";
-import OasisBotSelect from "@/components/oasisbot/OasisBotSelect";
+import OasisBotMarketSelect from "@/components/control/OasisBotMarketSelect";
+import OasisBotSelect from "@/components/control/OasisBotSelect";
 
 function OasisBotRunCard() {
   const [selectedMarket, setSelectedMarket] = useState<string>("");

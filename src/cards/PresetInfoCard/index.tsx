@@ -5,7 +5,7 @@ import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
 import GeneralInfo from "@/cards/PresetInfoCard/GeneralInfo";
 import CardButton from "@/components/common/CardButton";
-import OasisBotMarketSelect from "@/components/oasisbot/OasisBotMarketSelect";
+import OasisBotMarketSelect from "@/components/control/OasisBotMarketSelect";
 
 export default function PresetInfoCard() {
   const [selectedMarket, setSelectedMarket] = useState<string>("");
