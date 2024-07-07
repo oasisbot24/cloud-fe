@@ -3,8 +3,8 @@ import RealtimeTransactionCard from "@/cards/RealtimeTransactionCard";
 import OasisBotListCard from "@/cards/oasisbot/OasisBotListCard";
 import OasisBotRunCard from "@/cards/oasisbot/OasisBotRunCard";
 import OasisBotTransactionCard from "@/cards/oasisbot/OasisBotTransactionCard";
-import Layout from "@/layouts";
 import Carousel from "@/layouts/Carousel";
+import Layout from "@/layouts/Layout";
 
 function OasisBot() {
   return (

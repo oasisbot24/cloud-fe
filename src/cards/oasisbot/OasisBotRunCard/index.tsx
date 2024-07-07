@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { CardActions, CardContent, Stack } from "@mui/material";
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
+import CardButton from "@/components/common/CardButton";
 import CustomTextField from "@/components/common/CustomTextField";
-import OasisBotButton from "@/components/oasisbot/OasisBotButton";
 import OasisBotMarketSelect from "@/components/oasisbot/OasisBotMarketSelect";
 import OasisBotSelect from "@/components/oasisbot/OasisBotSelect";
 
@@ -63,20 +63,16 @@ function OasisBotRunCard() {
         </Stack>
       </CardContent>
       <CardActions style={{ paddingLeft: 0, paddingRight: 0 }}>
-        <OasisBotButton
-          backgroundColor="#68696C"
-          textColor="#fff"
+        <CardButton
+          text="초기화"
+          className="text-white bg-neutral-700"
           onClick={() => console.log("초기화")}
-        >
-          초기화
-        </OasisBotButton>
-        <OasisBotButton
-          backgroundColor="#223CE9"
-          textColor="#fff"
+        />
+        <CardButton
+          text="저장 및 실행"
+          className="text-white bg-brand"
           onClick={() => console.log("저장 및 실행")}
-        >
-          저장 및 실행
-        </OasisBotButton>
+        />
       </CardActions>
     </Card>
   );

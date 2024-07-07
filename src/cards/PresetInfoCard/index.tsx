@@ -9,7 +9,7 @@ import {
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
 import GeneralInfo from "@/cards/PresetInfoCard/GeneralInfo";
-import OasisBotButton from "@/components/oasisbot/OasisBotButton";
+import CardButton from "@/components/common/CardButton";
 import OasisBotMarketSelect from "@/components/oasisbot/OasisBotMarketSelect";
 
 export default function PresetInfoCard() {
@@ -54,20 +54,16 @@ export default function PresetInfoCard() {
         </Stack>
       </CardContent>
       <CardActions style={{ paddingLeft: 0, paddingRight: 0 }}>
-        <OasisBotButton
-          backgroundColor="#68696C"
-          textColor="#fff"
+        <CardButton
+          text="삭제"
+          className="text-white bg-neutral-700"
           onClick={() => console.log("삭제")}
-        >
-          삭제
-        </OasisBotButton>
-        <OasisBotButton
-          backgroundColor="#223CE9"
-          textColor="#fff"
+        />
+        <CardButton
+          text="수정"
+          className="text-white bg-brand"
           onClick={() => console.log("수정")}
-        >
-          수정
-        </OasisBotButton>
+        />
       </CardActions>
       <CardActions />
     </Card>
