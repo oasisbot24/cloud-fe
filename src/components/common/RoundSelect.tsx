@@ -11,7 +11,7 @@ type Props = {
   onChange: Dispatch<SetStateAction<string>>;
 };
 
-function OasisBotMarketSelect({ label, items, value, onChange }: Props) {
+function RoundSelect({ label, items, value, onChange }: Props) {
   return (
     <Select
       displayEmpty
@@ -39,4 +39,4 @@ function OasisBotMarketSelect({ label, items, value, onChange }: Props) {
   );
 }
 
-export default OasisBotMarketSelect;
+export default RoundSelect;
