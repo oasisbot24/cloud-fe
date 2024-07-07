@@ -3,9 +3,9 @@ import { DataGrid } from "@mui/x-data-grid";
 import Card from "@/cards/Card";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
-import useMarketSelect from "@/hooks/common/useMarketSelect";
-import useOrderSelect from "@/hooks/common/useOrderSelect";
-import useTransactionStatusSelect from "@/hooks/common/useTransactionStatusSelect";
+import useMarketSelect from "@/hooks/card/useMarketSelect";
+import useOrderSelect from "@/hooks/card/useOrderSelect";
+import useTransactionStatusSelect from "@/hooks/card/useTransactionStatusSelect";
 import useBotTransaction from "@/hooks/dashboard/useBotTransaction";
 
 function BotTransactionCard() {

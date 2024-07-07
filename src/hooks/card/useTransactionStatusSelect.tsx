@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { KeyboardArrowDown } from "@mui/icons-material";
-import CustomSelect from "@/components/common/CustomSelect";
+import CardHeaderSelect from "@/components/common/CardHeaderSelect";
 
 function useTransactionStatusSelect() {
   const [transactionStatus, setTransactionStatus] = useState<string>("");
 
   function TransactionStatusSelect() {
     return (
-      <CustomSelect
+      <CardHeaderSelect
         label="전체(판매,구매)"
         options={[
           { value: "sell", label: "판매" },

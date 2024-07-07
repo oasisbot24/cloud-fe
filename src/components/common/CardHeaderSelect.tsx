@@ -27,7 +27,7 @@ const MenuProps = {
   },
 };
 
-function CustomSelect({
+function CardHeaderSelect({
   label,
   options,
   state,
@@ -79,4 +79,4 @@ function CustomSelect({
   );
 }
 
-export default CustomSelect;
+export default CardHeaderSelect;

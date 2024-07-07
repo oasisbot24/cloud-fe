@@ -15,7 +15,7 @@ interface FormSelectProps {
   }[];
 }
 
-function FormSelect(props: FormSelectProps & SelectProps<typeof Select>) {
+function FormSelect(props: FormSelectProps & SelectProps<string>) {
   const { id, label, items, className } = props;
   return (
     <Stack className={className}>

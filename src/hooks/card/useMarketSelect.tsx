@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { KeyboardArrowDown } from "@mui/icons-material";
-import CustomSelect from "@/components/common/CustomSelect";
+import CardHeaderSelect from "@/components/common/CardHeaderSelect";
 
 function useMarketSelect() {
   const [market, setMarket] = useState<string>("all");
 
   function MarketSelect() {
     return (
-      <CustomSelect
+      <CardHeaderSelect
         label="거래소별 보기"
         options={[
           { value: "upbit", label: "업비트" },

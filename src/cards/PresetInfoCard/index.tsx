@@ -5,7 +5,7 @@ import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
 import GeneralInfo from "@/cards/PresetInfoCard/GeneralInfo";
 import CardButton from "@/components/common/CardButton";
-import OasisBotMarketSelect from "@/components/control/OasisBotMarketSelect";
+import RoundSelect from "@/components/common/RoundSelect";
 
 export default function PresetInfoCard() {
   const [selectedMarket, setSelectedMarket] = useState<string>("");
@@ -33,7 +33,7 @@ export default function PresetInfoCard() {
         title="오아시스 BOT 실행"
         subtitle="거래소를 선택해주세요."
         action={
-          <OasisBotMarketSelect
+          <RoundSelect
             label="거래소 선택"
             items={[{ label: "하락장 세팅", value: "down" }]}
             value={selectedMarket}

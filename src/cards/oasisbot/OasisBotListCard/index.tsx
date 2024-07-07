@@ -3,9 +3,9 @@ import { DataGrid } from "@mui/x-data-grid";
 import Card from "@/cards/Card";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
-import useCurrencySelect from "@/hooks/common/useCurrencySelect";
-import useMarketSelect from "@/hooks/common/useMarketSelect";
-import usePriceStatusSelect from "@/hooks/common/usePriceStatusSelect";
+import useCurrencySelect from "@/hooks/card/useCurrencySelect";
+import useMarketSelect from "@/hooks/card/useMarketSelect";
+import usePriceStatusSelect from "@/hooks/card/usePriceStatusSelect";
 import usePresets from "@/hooks/dashboard/usePresets";
 
 export default function OasisBotListCard() {

@@ -3,9 +3,9 @@ import { Box, Stack } from "@mui/material";
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
 import SelectButtonList from "@/cards/dashboard/ChartAssetCard/SelectButtonList";
-import useCurrencySelect from "@/hooks/common/useCurrencySelect";
-import useMarketSelect from "@/hooks/common/useMarketSelect";
-import usePriceStatusSelect from "@/hooks/common/usePriceStatusSelect";
+import useCurrencySelect from "@/hooks/card/useCurrencySelect";
+import useMarketSelect from "@/hooks/card/useMarketSelect";
+import usePriceStatusSelect from "@/hooks/card/usePriceStatusSelect";
 import useCoinRatio from "@/hooks/query/useCoinRatio";
 import CircleChart from "./CircleChart";
 

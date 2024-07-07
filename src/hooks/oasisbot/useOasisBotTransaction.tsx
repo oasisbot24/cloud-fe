@@ -15,7 +15,7 @@ import {
   BotTransactionQuantity,
 } from "@/datas/oasisbotTransaction";
 import useMarket from "@/hooks/common/useMarket";
-import useMarketSelect from "../common/useMarketSelect";
+import useMarketSelect from "../card/useMarketSelect";
 
 function useOasisBotTransaction() {
   const { marketName, marketIcon } = useMarket();

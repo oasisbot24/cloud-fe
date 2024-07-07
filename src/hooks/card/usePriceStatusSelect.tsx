@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { UnfoldMore } from "@mui/icons-material";
-import CustomSelect from "@/components/common/CustomSelect";
+import CardHeaderSelect from "@/components/common/CardHeaderSelect";
 
 function usePriceStatusSelect() {
   const [priceStatus, setPriceStatus] = useState<string>("current");
 
   function PriceStatusSelect() {
     return (
-      <CustomSelect
+      <CardHeaderSelect
         options={[
           { value: "current", label: "현재가" },
           { value: "future", label: "미래가" },
