@@ -2,13 +2,13 @@ import React, { Dispatch, SetStateAction } from "react";
 import { MenuItem, Select } from "@mui/material";
 
 type Props = {
-  label: string;
+  label?: string;
   items: {
     label: string;
     value: string;
   }[];
   value: string;
-  onChange: Dispatch<SetStateAction<string>>;
+  onChange?: Dispatch<SetStateAction<string>>;
 };
 
 function RoundSelect({ label, items, value, onChange }: Props) {
@@ -29,7 +29,7 @@ function RoundSelect({ label, items, value, onChange }: Props) {
       }}
       sx={{ borderRadius: "30px" }}
     >
-      <MenuItem value="">{label}</MenuItem>
+      {label && <MenuItem value="">{label}</MenuItem>}
       {items.map(item => (
         <MenuItem key={item.value} value={item.value}>
           {item.label}

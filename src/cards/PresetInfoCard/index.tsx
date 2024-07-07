@@ -1,62 +1,44 @@
-import { useState } from "react";
-import { Avatar, CardContent, Stack, Typography } from "@mui/material";
+import { CardContent, Divider } from "@mui/material";
 import Card from "@/cards/Card";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
-import GeneralInfo from "@/cards/PresetInfoCard/GeneralInfo";
+import PresetInfo from "@/cards/PresetInfoCard/PresetInfo";
+import UserInfo from "@/cards/PresetInfoCard/UserInfo";
 import CardButton from "@/components/common/CardButton";
 import RoundSelect from "@/components/common/RoundSelect";
 
 export default function PresetInfoCard() {
-  const [selectedMarket, setSelectedMarket] = useState<string>("");
+  // const [preset] = useAtom(presetAtom);
 
   return (
     <Card>
       <CardContent>
-        <Stack className="w-full items-center gap-8">
-          <Stack className="items-center gap-3">
-            <Avatar className="w-[108px] h-[108px]" />
-            <Typography variant="300B" className="text-font-1">
-              유저네임
-            </Typography>
-            <Typography variant="200R" className="text-font-3">
-              #PLATINUM #단타 #도전적투자자
-            </Typography>
-          </Stack>
-          <GeneralInfo type="exchange" />
-          <GeneralInfo type="balance" />
-          <GeneralInfo type="time" />
-        </Stack>
+        <UserInfo />
       </CardContent>
+      <Divider className="border-0 my-8" />
       <CardHeader
-        id="bot-start"
-        title="오아시스 BOT 실행"
+        id="setting"
+        title="프리셋"
         subtitle="거래소를 선택해주세요."
         action={
           <RoundSelect
-            label="거래소 선택"
             items={[{ label: "하락장 세팅", value: "down" }]}
-            value={selectedMarket}
-            onChange={setSelectedMarket}
+            value="down"
           />
         }
       />
       <CardContent>
-        <Stack className="w-full items-center gap-8">
-          <GeneralInfo type="exchange" />
-          <GeneralInfo type="balance" />
-          <GeneralInfo type="time" />
-        </Stack>
+        <PresetInfo />
       </CardContent>
       <CardFooter>
         <CardButton
           text="삭제"
-          className="text-white bg-neutral-700"
+          className="text-white bg-sub-3"
           onClick={() => console.log("삭제")}
         />
         <CardButton
           text="수정"
-          className="text-white bg-brand"
+          className="text-white bg-neutral-700"
           onClick={() => console.log("수정")}
         />
       </CardFooter>
