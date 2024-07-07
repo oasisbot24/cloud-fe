@@ -14,19 +14,13 @@ function CardButton({
 }: CardButtonProps) {
   return (
     <Button
-      sx={{
-        flex: 1,
-        margin: 0,
-        padding: 12,
-        borderRadius: 0,
-      }}
-      className={className}
+      className={`w-full flex m-0 p-3 rounded-none ${className}`}
       onClick={onClick}
     >
       <Typography
         sx={{
           fontFamily: "Spoqa Han Sans Neo",
-          fontSize: "15px",
+          fontSize: 15,
           fontWeight: 700,
           lineHeight: "18.78px",
           textAlign: "left",

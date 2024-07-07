@@ -1,12 +1,7 @@
 import { useState } from "react";
-import {
-  Avatar,
-  CardActions,
-  CardContent,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Avatar, CardContent, Stack, Typography } from "@mui/material";
 import Card from "@/cards/Card";
+import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
 import GeneralInfo from "@/cards/PresetInfoCard/GeneralInfo";
 import CardButton from "@/components/common/CardButton";
@@ -53,7 +48,7 @@ export default function PresetInfoCard() {
           <GeneralInfo type="time" />
         </Stack>
       </CardContent>
-      <CardActions style={{ paddingLeft: 0, paddingRight: 0 }}>
+      <CardFooter>
         <CardButton
           text="삭제"
           className="text-white bg-neutral-700"
@@ -64,8 +59,7 @@ export default function PresetInfoCard() {
           className="text-white bg-brand"
           onClick={() => console.log("수정")}
         />
-      </CardActions>
-      <CardActions />
+      </CardFooter>
     </Card>
   );
 }

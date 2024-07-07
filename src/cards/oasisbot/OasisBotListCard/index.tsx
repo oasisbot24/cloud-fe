@@ -1,6 +1,7 @@
-import { CardActions, CardContent, Chip } from "@mui/material";
+import { CardContent, Chip } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import Card from "@/cards/Card";
+import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
 import useCurrencySelect from "@/hooks/common/useCurrencySelect";
 import useMarketSelect from "@/hooks/common/useMarketSelect";
@@ -40,13 +41,13 @@ export default function OasisBotListCard() {
           }}
         />
       </CardContent>
-      <CardActions className="flex justify-center mt-3">
+      <CardFooter>
         <Chip
           label="자세히 보기"
           variant="outlined"
           onClick={() => console.log("clicked")}
         />
-      </CardActions>
+      </CardFooter>
     </Card>
   );
 }

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { CardActions, CardContent, Stack } from "@mui/material";
+import { useState } from "react";
+import { CardContent, Stack } from "@mui/material";
 import Card from "@/cards/Card";
+import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
 import CardButton from "@/components/common/CardButton";
 import CustomTextField from "@/components/common/CustomTextField";
@@ -62,7 +63,7 @@ function OasisBotRunCard() {
           <CustomTextField id="leverage" label="레버리지를 입력해 주세요" />
         </Stack>
       </CardContent>
-      <CardActions style={{ paddingLeft: 0, paddingRight: 0 }}>
+      <CardFooter>
         <CardButton
           text="초기화"
           className="text-white bg-neutral-700"
@@ -73,7 +74,7 @@ function OasisBotRunCard() {
           className="text-white bg-brand"
           onClick={() => console.log("저장 및 실행")}
         />
-      </CardActions>
+      </CardFooter>
     </Card>
   );
 }
