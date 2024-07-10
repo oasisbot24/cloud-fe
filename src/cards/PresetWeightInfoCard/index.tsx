@@ -1,11 +1,54 @@
 import { useState } from "react";
 import Image from "next/image";
-import { CardContent, Stack, Typography } from "@mui/material";
+import {
+  CardContent,
+  Stack,
+  Step,
+  StepContent,
+  StepLabel,
+  Stepper,
+  Typography,
+} from "@mui/material";
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
 
 export default function PresetWeightInfoCard() {
-  const [isExist, setIsExist] = useState<boolean>(false); // 임시 조치
+  const [isExist, setIsExist] = useState<boolean>(true); // 임시 조치
+
+  const steps = [
+    {
+      label: "카운팅 1에서 10% 매수합니다.",
+      description: `첫번째로 진입합니다.`,
+    },
+    {
+      label: "카운팅 2에서 20% 매수합니다.",
+      description: `두번째로 진입합니다.`,
+    },
+    {
+      label: "카운팅 3에서 10% 매수합니다.",
+      description: `세번째로 진입합니다.`,
+    },
+    {
+      label: "카운팅 4에서 10% 매수합니다.",
+      description: `네번째로 진입합니다.`,
+    },
+    {
+      label: "카운팅 5에서 10% 매수합니다.",
+      description: `다섯번째로 진입합니다.`,
+    },
+    {
+      label: "카운팅 6에서 20% 매수합니다.",
+      description: `여섯번째로 진입합니다.`,
+    },
+    {
+      label: "카운팅 7에서 10% 매수합니다.",
+      description: `일곱번째로 진입합니다.`,
+    },
+    {
+      label: "카운팅 8에서 10% 매수합니다.",
+      description: `여덟번째로 진입합니다.`,
+    },
+  ];
 
   return (
     <Card>
@@ -42,7 +85,20 @@ export default function PresetWeightInfoCard() {
             </Stack>
           </Stack>
         )}
-        {isExist && <div>hello</div>}
+        {isExist && (
+          <Stepper orientation="vertical" activeStep={steps.length}>
+            {steps.map((step, index) => (
+              <Step key={index} expanded>
+                <StepLabel className="text-sm">{step.label}</StepLabel>
+                <StepContent>
+                  <Typography className="text-xs">
+                    {step.description}
+                  </Typography>
+                </StepContent>
+              </Step>
+            ))}
+          </Stepper>
+        )}
       </CardContent>
     </Card>
   );
