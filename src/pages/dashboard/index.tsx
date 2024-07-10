@@ -1,13 +1,13 @@
 import { Box, Stack } from "@mui/material";
-import AdvertisementCard from "@/cards/AdvertisementCard/index";
-import AssetStatusCard from "@/cards/AssetStatusCard/index";
 import BotTransactionCard from "@/cards/BotTransactionCard";
-import ChartCard from "@/cards/ChartCard";
-import CircleChartCard from "@/cards/CircleChartCard/index";
-import OasisBotListCard from "@/cards/OasisBotListCard";
-import ProfitRankCard from "@/cards/ProfitRankCard";
-import Layout from "@/components/Layout";
-import Carousel from "@/components/Layout/Carousel/index";
+import AdvertisementCard from "@/cards/dashboard/AdvertisementCard";
+import AssetStatusCard from "@/cards/dashboard/AssetStatusCard";
+import CircleChartCard from "@/cards/dashboard/ChartAssetCard/index";
+import ChartCard from "@/cards/dashboard/ChartBotCard";
+import ProfitRankCard from "@/cards/dashboard/ProfitRankCard";
+import OasisBotListCard from "@/cards/oasisbot/OasisBotListCard";
+import Carousel from "@/layouts/Carousel/index";
+import Layout from "@/layouts/Layout";
 
 export default function Home() {
   return (

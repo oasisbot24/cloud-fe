@@ -3,26 +3,26 @@ import { DataGrid } from "@mui/x-data-grid";
 import Card from "@/cards/Card";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
+import useCurrencySelect from "@/hooks/card/useCurrencySelect";
 import useMarketSelect from "@/hooks/card/useMarketSelect";
-import useOrderSelect from "@/hooks/card/useOrderSelect";
-import useTransactionStatusSelect from "@/hooks/card/useTransactionStatusSelect";
-import useBotTransaction from "@/hooks/dashboard/useBotTransaction";
+import usePriceStatusSelect from "@/hooks/card/usePriceStatusSelect";
+import usePresets from "@/hooks/dashboard/usePresets";
 
-function BotTransactionCard() {
-  const { columns, rows } = useBotTransaction();
-  const { OrderSelect } = useOrderSelect();
-  const { TransactionStatusSelect } = useTransactionStatusSelect();
+export default function OasisBotListCard() {
+  const { columns, presetRows, isPresetsLoading } = usePresets();
+  const { PriceStatusSelect } = usePriceStatusSelect();
+  const { CurrencySelect } = useCurrencySelect();
   const { MarketSelect } = useMarketSelect();
 
   return (
     <Card>
       <CardHeader
-        id="history"
-        title="실시간 BOT 거래내역"
+        id="setting"
+        title="실행중인 Bot 목록"
         action={
           <>
-            <OrderSelect />
-            <TransactionStatusSelect />
+            <PriceStatusSelect />
+            <CurrencySelect />
             <MarketSelect />
           </>
         }
@@ -32,9 +32,13 @@ function BotTransactionCard() {
       >
         <DataGrid
           columns={columns}
-          rows={rows}
+          rows={presetRows ?? []}
+          loading={isPresetsLoading}
           hideFooter
-          sx={{ border: "none" }}
+          sx={{
+            ".MuiDataGrid-overlayWrapper": { height: "215px" },
+            border: "none",
+          }}
         />
       </CardContent>
       <CardFooter>
@@ -47,5 +51,3 @@ function BotTransactionCard() {
     </Card>
   );
 }
-
-export default BotTransactionCard;

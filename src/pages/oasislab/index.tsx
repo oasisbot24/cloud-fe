@@ -1,11 +1,11 @@
 import { Box, Stack } from "@mui/material";
 import BotListCard from "@/cards/BotListCard/index";
-import RunOasisBotCard from "@/cards/OasisBotRunCard";
-import TestInfoCard from "@/cards/TestInfoCard/index";
-import TestResultChartCard from "@/cards/TestResultChartCard/index";
-import TestResultInfoCard from "@/cards/TestResultInfoCard/index";
-import Layout from "@/components/Layout";
-import Carousel from "@/components/Layout/Carousel";
+import RunOasisBotCard from "@/cards/oasisbot/OasisBotRunCard";
+import OasisLabInfoCard from "@/cards/oasislab/OasisLabInfoCard";
+import OasisLabResultChartCard from "@/cards/oasislab/OasisLabResultChartCard";
+import OasisLabResultInfoCard from "@/cards/oasislab/OasisLabResultInfoCard";
+import Carousel from "@/layouts/Carousel";
+import Layout from "@/layouts/Layout";
 
 export default function OasisLab() {
   return (
@@ -18,16 +18,16 @@ export default function OasisLab() {
             </Box>
             <Stack className="w-9/12 gap-4 h-[495px]">
               <Stack direction="row" className="w-full h-full gap-4">
-                <TestInfoCard type="set" />
-                <TestInfoCard type="current" />
-                <TestInfoCard type="max" />
+                <OasisLabInfoCard type="set" />
+                <OasisLabInfoCard type="current" />
+                <OasisLabInfoCard type="max" />
               </Stack>
               <Stack direction="row" className="gap-4 h-[385px] shrink-0">
                 <Box className="w-7/12">
-                  <TestResultChartCard />
+                  <OasisLabResultChartCard />
                 </Box>
                 <Box className="w-5/12">
-                  <TestResultInfoCard />
+                  <OasisLabResultInfoCard />
                 </Box>
               </Stack>
             </Stack>

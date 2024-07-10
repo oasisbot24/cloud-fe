@@ -1,4 +1,4 @@
-import Layout from "@/components/Layout/index";
+import Layout from "@/layouts/Layout";
 
 function OasisBot() {
   return <Layout>Notion</Layout>;
