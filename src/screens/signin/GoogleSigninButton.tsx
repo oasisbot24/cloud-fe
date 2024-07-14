@@ -1,10 +1,12 @@
+import { useRouter } from "next/router";
 import { ButtonBase, Typography } from "@mui/material";
 import { useGoogleLogin } from "@react-oauth/google";
 import Icon from "@/components/Icon/index";
-import useLogin from "@/hooks/query/useLogin";
+import useSignin from "@/hooks/query/useSignin";
 
 function GoogleSigninButton({ onClick }: { onClick?: () => void }) {
-  const { signinAccessTokenMutation } = useLogin();
+  const { push } = useRouter();
+  const { signinAccessTokenMutation } = useSignin();
 
   /*
   useGoogleOneTapLogin({
@@ -17,7 +19,10 @@ function GoogleSigninButton({ onClick }: { onClick?: () => void }) {
   const handleClick = useGoogleLogin({
     onSuccess: tokenResponse =>
       signinAccessTokenMutation.mutate(tokenResponse.access_token, {
-        onSuccess: () => onClick?.(),
+        onSuccess: data => {
+          if (data.isAgree) push("/dashboard");
+          else onClick?.();
+        },
       }),
   });
 

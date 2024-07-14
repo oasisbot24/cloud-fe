@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { Stack, Typography } from "@mui/material";
+import useSignin from "@/hooks/query/useSignin";
 import useModal from "@/hooks/useModal";
 import GoogleSigninButton from "@/screens/signin/GoogleSigninButton";
 import SigninDialog from "@/screens/signin/dialog/SigninDialog";
@@ -7,12 +8,20 @@ import Agreement from "./dialog/Agreement";
 
 function Discription() {
   const { push } = useRouter();
+  const { postAgreementMutation } = useSignin();
   const { modal, openModal, closeModal } = useModal();
-  const agree = () => {
-    // TODO: 동의정보 backend로 전송
-    closeModal();
-    push("/dashboard");
+  const agree = (data: Record<AgreementType, boolean>) => {
+    const body = { essentialAgreement: false, adAgreement: false };
+    body.essentialAgreement = data.over14 && data.privacy && data.service;
+    body.adAgreement = data.marketing;
+    postAgreementMutation.mutate(body, {
+      onSuccess: () => {
+        closeModal();
+        push("/dashboard");
+      },
+    });
   };
+
   const openAgreement = () => {
     openModal(
       <SigninDialog handleClose={closeModal}>

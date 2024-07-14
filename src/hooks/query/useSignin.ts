@@ -2,7 +2,8 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useAtom } from "jotai";
 import { jwtDecode } from "jwt-decode";
-import { signinAccessToken, signinCredential } from "@/apis/signin";
+import { postAgreement } from "@/apis/signin/agreement";
+import { signinAccessToken, signinCredential } from "@/apis/signin/signin";
 import authAtom, { Auth } from "@/datas/auth";
 
 async function getUserInfo(accesstoken: string): Promise<Auth> {
@@ -15,13 +16,13 @@ async function getUserInfo(accesstoken: string): Promise<Auth> {
   return userInfo.data;
 }
 
-export default function useLogin() {
+export default function useSignin() {
   const [, setAuth] = useAtom(authAtom);
   const signinAccessTokenMutation = useMutation({
     mutationFn: async (accesstoken: string) => {
-      await signinAccessToken(accesstoken);
+      const { isAgree } = await signinAccessToken(accesstoken);
       const userInfo = await getUserInfo(accesstoken);
-      return userInfo;
+      return { ...userInfo, isAgree };
     },
     mutationKey: ["signinAccessToken"],
     onSuccess: data => {
@@ -31,6 +32,7 @@ export default function useLogin() {
     },
   });
 
+  // deprecated
   const signinCredentialMutation = useMutation({
     mutationFn: signinCredential,
     mutationKey: ["signinCredential"],
@@ -41,5 +43,14 @@ export default function useLogin() {
     },
   });
 
-  return { signinAccessTokenMutation, signinCredentialMutation };
+  const postAgreementMutation = useMutation({
+    mutationFn: postAgreement,
+    mutationKey: ["postAgreement"],
+  });
+
+  return {
+    signinAccessTokenMutation,
+    signinCredentialMutation,
+    postAgreementMutation,
+  };
 }

@@ -3,7 +3,6 @@ import { Button, Divider, IconButton, Stack, Typography } from "@mui/material";
 import Icon from "@/components/Icon/index";
 import CustomCheckbox from "@/components/common/CustomCheckbox";
 
-type AgreementType = "over14" | "service" | "privacy" | "marketing";
 interface CheckItemProps {
   title: string;
   checked?: boolean;
@@ -34,7 +33,7 @@ function CheckItem({ title, checked = false, onClick, href }: CheckItemProps) {
 
 interface AgreementListProps {
   handleClose: () => void;
-  handleOK: () => void;
+  handleOK: (data: Record<AgreementType, boolean>) => void;
 }
 
 export default function AgreementList({
@@ -112,7 +111,7 @@ export default function AgreementList({
         <Button
           variant="contained"
           className="w-full rounded-full"
-          onClick={handleOK}
+          onClick={() => handleOK(checked)}
           disabled={!checked.over14 || !checked.service || !checked.privacy}
         >
           확인
