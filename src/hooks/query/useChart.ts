@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import getCoinRatio from "@/apis/getCoinRatio";
+import { getCoinRatio } from "@/apis/chart/coinRatio";
 
-export default function useCoinRatio(exchangeName: string) {
+export function useChart(exchangeName: string) {
   const coinRatioQuery = useQuery({
     queryKey: ["coinRatio", exchangeName],
     queryFn: () => getCoinRatio(exchangeName),

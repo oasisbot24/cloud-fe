@@ -33,3 +33,4 @@ async function deletePreset(id: number): Promise<void> {
 }
 
 export { getPreset, postPreset, putPreset, deletePreset };
+export type { PresetType, PresetBody };
