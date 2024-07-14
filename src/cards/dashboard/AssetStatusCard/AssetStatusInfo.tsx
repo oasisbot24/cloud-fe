@@ -1,6 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
-import { TradeStyleType } from "@/apis/getTradeStyle";
+import { TradeStyleType } from "@/apis/info/tradeStyle";
 import authAtom from "@/datas/auth";
 import DisplayPL from "./DisplayPL";
 

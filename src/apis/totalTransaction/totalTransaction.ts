@@ -32,3 +32,5 @@ async function getTotalTransaction(): Promise<
     );
   return res.data;
 }
+
+export { getTotalTransaction };

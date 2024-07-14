@@ -8,7 +8,6 @@ import {
 } from "@mui/x-data-grid";
 import ArrowDownIcon from "@/components/Icon/ArrowDownIcon";
 import ArrowUpIcon from "@/components/Icon/ArrowUpIcon";
-import { BotTransactionProfit } from "@/datas/botTransaction";
 import useMarket from "@/hooks/common/useMarket";
 
 function useBotTransaction() {
