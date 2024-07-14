@@ -17,10 +17,10 @@ function OasisBot() {
           </Box>
           <Stack className="w-3/4 h-full gap-4">
             <Stack direction="row" className="w-full h-1/2 min-h-[436px] gap-4">
-              <Box className="w-1/3 h-full">
+              <Box className="w-full h-full">
                 <PresetSettingCard />
               </Box>
-              <Box className="w-2/3 h-full">
+              <Box className="w-[768px] shrink-0 h-full">
                 <PresetIndicatorInfoCard />
               </Box>
             </Stack>
