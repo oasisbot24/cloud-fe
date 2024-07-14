@@ -20,8 +20,14 @@ function FormTextField(
         {...props}
         fullWidth
         size="small"
-        className="h-[30px] flex-0 items-center justify-center" // TODO: flex 안늘어나게 (30px 안먹음)
+        className="h-[30px] flex-0 items-center justify-center leading-[16px] font-[14px]" // TODO: flex 안늘어나게 (30px 안먹음)
         label={undefined}
+        sx={{
+          "MuiInputBase-root": {
+            height: 30,
+            fontSize: 14,
+          },
+        }}
       />
     </Stack>
   );

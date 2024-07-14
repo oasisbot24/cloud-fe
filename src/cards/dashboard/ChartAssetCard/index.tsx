@@ -6,7 +6,7 @@ import SelectButtonList from "@/cards/dashboard/ChartAssetCard/SelectButtonList"
 import useCurrencySelect from "@/hooks/card/useCurrencySelect";
 import useMarketSelect from "@/hooks/card/useMarketSelect";
 import usePriceStatusSelect from "@/hooks/card/usePriceStatusSelect";
-import useCoinRatio from "@/hooks/query/useCoinRatio";
+import { useChart } from "@/hooks/query/useChart";
 import CircleChart from "./CircleChart";
 
 export default function ChartAssetCard() {
@@ -15,7 +15,7 @@ export default function ChartAssetCard() {
   const { market, MarketSelect } = useMarketSelect();
   const {
     coinRatioQuery: { data: coinRatioData },
-  } = useCoinRatio(market);
+  } = useChart(market);
   const [focus, setFocus] = useState<string>(coinRatioData?.[0]?.name ?? "");
 
   return (

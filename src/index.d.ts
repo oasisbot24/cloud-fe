@@ -34,6 +34,9 @@ interface ApiResponseType<T> {
   msg: string;
 }
 
+// agreement
+type AgreementType = "over14" | "service" | "privacy" | "marketing";
+
 // oasislab
 type OasisLabIdType = "set" | "current" | "max";
 

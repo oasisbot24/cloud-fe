@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { CoinRatio } from "@/apis/getCoinRatio";
+import { CoinRatio } from "@/apis/chart/coinRatio";
 import {
   BaseCircle,
   CenterCircle,

@@ -3,7 +3,7 @@ import { Box, CardContent, Stack } from "@mui/material";
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
 import CharacterIcon from "@/components/Icon/CharacterIcon";
-import useTradeStyle from "@/hooks/query/useTradeStyle";
+import { useInfoTradeStyle } from "@/hooks/query/useInfo";
 import AssetStatusInfo from "./AssetStatusInfo";
 
 function calculateHappiness(totalProfitLossRate: number) {
@@ -17,7 +17,7 @@ function calculateHappiness(totalProfitLossRate: number) {
 }
 
 export default function AssetStatusCard() {
-  const { tradeStyleQuery } = useTradeStyle();
+  const { tradeStyleQuery } = useInfoTradeStyle();
   const { data: tradeStyleData } = tradeStyleQuery;
   return (
     <Card sx={{ background: "url('/assetstatus/bg.png')" }}>

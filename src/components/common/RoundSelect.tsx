@@ -17,7 +17,7 @@ function RoundSelect({ label, items, value, onChange }: Props) {
       displayEmpty
       size="small"
       value={value}
-      onChange={e => onChange(e.target.value)}
+      onChange={e => onChange && onChange(e.target.value)}
       inputProps={{
         "aria-label": "Without label",
       }}
