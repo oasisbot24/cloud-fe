@@ -6,13 +6,11 @@ export interface CoinRatio {
   ratio: number;
 }
 
-export default async function getTradeStyle(
-  exchangeName: string,
-): Promise<CoinRatio[]> {
+async function getCoinRatio(exchange: string): Promise<CoinRatio[]> {
   const res = await api.get<ApiResponseType<CoinRatio[]>>("/coin_ratio", {
-    params: {
-      exchange: exchangeName,
-    },
+    params: { exchange },
   });
   return res.data.data;
 }
+
+export { getCoinRatio };

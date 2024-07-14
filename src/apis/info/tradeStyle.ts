@@ -7,7 +7,7 @@ export interface TradeStyleType {
   totalProfitLossRate: number;
 }
 
-export default async function getTradeStyle(): Promise<TradeStyleType> {
+async function getTradeStyle(): Promise<TradeStyleType> {
   const res = await api.get<ApiResponseType<TradeStyleType>>("/trade_style");
   const result: TradeStyleType = {
     tag: res.data?.data.tag,
@@ -17,3 +17,5 @@ export default async function getTradeStyle(): Promise<TradeStyleType> {
   };
   return result;
 }
+
+export { getTradeStyle };

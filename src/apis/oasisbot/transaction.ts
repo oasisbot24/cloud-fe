@@ -1,6 +1,6 @@
 import api from "@/apis/network";
 
-interface BotType {
+interface TransactionType {
   coinName: string;
   date: string;
   exchane: string;
@@ -12,13 +12,14 @@ interface BotType {
   totalPrice: number;
 }
 
-async function getTransaction(exchangeName: string): Promise<BotType[]> {
-  const res = await api.get<ApiResponseType<BotType[]>>(
-    `/transaction?exchange=${exchangeName}`,
+async function getTransaction(exchange: string): Promise<TransactionType[]> {
+  const res = await api.get<ApiResponseType<TransactionType[]>>(
+    "/transaction",
+    { params: { exchange } },
   );
 
   return res.data?.data;
 }
 
-export type { BotType };
 export { getTransaction };
+export type { TransactionType };
