@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { Box, Stack } from "@mui/material";
+import Discription from "@/components/signin/Discription";
 import Footer from "@/layouts/Footer";
 import Header from "@/layouts/Header";
-import Discription from "@/screens/signin/Discription";
 
 export default function Home() {
   return (
