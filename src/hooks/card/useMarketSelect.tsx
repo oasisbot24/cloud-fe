@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { KeyboardArrowDown } from "@mui/icons-material";
-import CardHeaderSelect from "@/components/common/CardHeaderSelect";
+import CardHeaderSelect from "./CardHeaderSelect";
 
 function useMarketSelect() {
   const [market, setMarket] = useState<string>("all");

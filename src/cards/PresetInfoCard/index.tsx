@@ -1,10 +1,10 @@
 import { CardContent, Divider } from "@mui/material";
 import Card from "@/cards/Card";
+import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
 import PresetInfo from "@/cards/PresetInfoCard/PresetInfo";
 import UserInfo from "@/cards/PresetInfoCard/UserInfo";
-import CardButton from "@/components/common/CardButton";
 import RoundSelect from "@/components/common/RoundSelect";
 
 export default function PresetInfoCard() {

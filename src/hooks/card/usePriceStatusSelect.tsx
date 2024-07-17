@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { UnfoldMore } from "@mui/icons-material";
-import CardHeaderSelect from "@/components/common/CardHeaderSelect";
+import CardHeaderSelect from "./CardHeaderSelect";
 
 function usePriceStatusSelect() {
   const [priceStatus, setPriceStatus] = useState<string>("current");
