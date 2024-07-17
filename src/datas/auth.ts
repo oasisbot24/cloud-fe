@@ -19,6 +19,7 @@ interface Auth {
 }
 
 const authAtom = atom<Auth>({} as Auth);
+authAtom.debugLabel = "authAtom";
 
 export type { Auth };
 export default authAtom;
