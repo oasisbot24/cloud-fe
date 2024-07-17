@@ -9,9 +9,7 @@ export default function ChartBotCard() {
       <Box p={2}>
         <Panel />
       </Box>
-      <Box>
-        <CustomChart />
-      </Box>
+      <CustomChart />
     </Card>
   );
 }

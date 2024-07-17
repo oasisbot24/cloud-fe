@@ -22,7 +22,7 @@ const iconSrc = {
 
 export default function DashboardIcon({ id }: DashboardIconProps) {
   return (
-    <Stack className="justify-center items-center rounded-xl bg-neutral-200 w-[44px] h-[44px]">
+    <Stack className="justify-center items-center rounded-xl bg-neutral-200 w-[44px] h-[44px] shrink-0">
       <Icon src={iconSrc[id]} size={30} />
     </Stack>
   );
