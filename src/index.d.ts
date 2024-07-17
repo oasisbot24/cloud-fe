@@ -27,6 +27,9 @@ type DashboardIdType =
   | "wallet";
 type SocialType = "linkedin" | "facebook" | "naver" | "kakao";
 
+// exchange
+type ExchangeType = "okx" | "upbit";
+
 // apis
 interface ApiResponseType<T> {
   data: T;
