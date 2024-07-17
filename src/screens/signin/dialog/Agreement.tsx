@@ -3,7 +3,7 @@ import AgreementList from "@/screens/signin/dialog/AgreementList";
 
 interface AgreementProps {
   handleClose: () => void;
-  handleOK: () => void;
+  handleOK: (data: Record<AgreementType, boolean>) => void;
 }
 
 export default function Agreement({ handleClose, handleOK }: AgreementProps) {

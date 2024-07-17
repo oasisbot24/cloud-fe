@@ -6,7 +6,6 @@ import {
   GridRenderCellParams,
   GridValidRowModel,
 } from "@mui/x-data-grid";
-import ProfitRank from "@/datas/profitRank";
 import useMarket from "@/hooks/common/useMarket";
 import useCoinItem from "../common/useCoinItem";
 

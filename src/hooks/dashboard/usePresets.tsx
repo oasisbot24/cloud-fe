@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 import { IconButton } from "@mui/material";
 import {
@@ -7,9 +6,9 @@ import {
   GridValidRowModel,
 } from "@mui/x-data-grid";
 import { useQuery } from "@tanstack/react-query";
-import { PresetType, getPreset } from "@/apis/presets";
+import { BotType, getBot } from "@/apis/oasisbot/bot";
 import CustomSwitch from "@/components/common/CustomSwitch";
-import useMarketSelect from "@/hooks/common/useMarketSelect";
+import useMarketSelect from "@/hooks/card/useMarketSelect";
 
 function usePresets() {
   const { market } = useMarketSelect();
@@ -21,10 +20,7 @@ function usePresets() {
       flex: 1,
       headerClassName: "text-slate-500",
       renderCell: (
-        params: GridRenderCellParams<
-          GridValidRowModel,
-          PresetType["presetName"]
-        >,
+        params: GridRenderCellParams<GridValidRowModel, BotType["presetName"]>,
       ) => (
         <div className="flex items-center">
           <div className="w-4/5 whitespace-normal">{params.value}</div>
@@ -51,10 +47,7 @@ function usePresets() {
       flex: 1,
       headerClassName: "text-slate-500",
       renderCell: (
-        params: GridRenderCellParams<
-          GridValidRowModel,
-          PresetType["runningTime"]
-        >,
+        params: GridRenderCellParams<GridValidRowModel, BotType["runningTime"]>,
       ) => <div className="whitespace-normal">{params.value}</div>,
     },
     {
@@ -63,7 +56,7 @@ function usePresets() {
       flex: 1,
       headerClassName: "text-slate-500",
       renderCell: (
-        params: GridRenderCellParams<GridValidRowModel, PresetType["coinType"]>,
+        params: GridRenderCellParams<GridValidRowModel, BotType["coinType"]>,
       ) => <div className="whitespace-normal">{params.value}</div>,
     },
     {
@@ -72,17 +65,14 @@ function usePresets() {
       flex: 0.5,
       headerClassName: "text-slate-500",
       renderCell: (
-        params: GridRenderCellParams<
-          GridValidRowModel,
-          PresetType["isRunning"]
-        >,
+        params: GridRenderCellParams<GridValidRowModel, BotType["isRunning"]>,
       ) => <CustomSwitch defaultChecked={params.value} />,
     },
   ];
 
   const { data: presetRows, isLoading: isPresetsLoading } = useQuery({
     queryKey: ["presets", market],
-    queryFn: () => getPreset(market),
+    queryFn: () => getBot(market),
   });
 
   return { columns, presetRows, isPresetsLoading };
