@@ -9,7 +9,7 @@ import Agreement from "./dialog/Agreement";
 import ExchangeSelect from "./dialog/ExchangeSelect";
 import SigninDialog from "./dialog/SigninDialog";
 
-function Discription() {
+function Description() {
   const { push } = useRouter();
   const [, setExchange] = useAtom(exchangeAtom);
   const { postAgreementMutation } = useSignin();
@@ -74,4 +74,4 @@ function Discription() {
     </Stack>
   );
 }
-export default Discription;
+export default Description;

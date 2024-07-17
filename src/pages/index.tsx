@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Box, Stack } from "@mui/material";
-import Discription from "@/components/signin/Discription";
+import Description from "@/components/signin/Description";
 import Footer from "@/layouts/Footer";
 import Header from "@/layouts/Header";
 
@@ -10,7 +10,7 @@ export default function Home() {
       <Stack className="w-full">
         <Header color="white" />
         <Stack direction="row" className="w-full h-full relative">
-          <Discription />
+          <Description />
           <Box className="absolute right-0 bottom-10 h-full w-full overflow-hidden">
             <Image
               src="/mobius.png"
