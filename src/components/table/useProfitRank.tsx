@@ -7,7 +7,7 @@ import {
   GridValidRowModel,
 } from "@mui/x-data-grid";
 import useMarket from "@/hooks/common/useMarket";
-import useCoinItem from "../common/useCoinItem";
+import useCoinItem from "../../hooks/common/useCoinItem";
 
 function useProfitRank() {
   const { marketName, marketIcon } = useMarket();
