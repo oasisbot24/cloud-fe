@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
+import Carousel from "@/layouts/Carousel/vertical";
 
 export default function PresetWeightInfoCard() {
   const [isExist, setIsExist] = useState<boolean>(true); // 임시 조치
@@ -57,7 +58,7 @@ export default function PresetWeightInfoCard() {
         title="매매비중 설정 내역"
         subtitle="총합의 값이 100%가 되도록 채워주세요."
       />
-      <CardContent>
+      <CardContent className="p-0">
         {!isExist && (
           <Stack justifyContent="center" alignItems="center">
             <Image
@@ -86,18 +87,20 @@ export default function PresetWeightInfoCard() {
           </Stack>
         )}
         {isExist && (
-          <Stepper orientation="vertical" activeStep={steps.length}>
-            {steps.map((step, index) => (
-              <Step key={index} expanded>
-                <StepLabel className="text-sm">{step.label}</StepLabel>
-                <StepContent>
-                  <Typography className="text-xs">
-                    {step.description}
-                  </Typography>
-                </StepContent>
-              </Step>
-            ))}
-          </Stepper>
+          <Carousel height={300}>
+            <Stepper orientation="vertical" activeStep={steps.length}>
+              {steps.map((step, index) => (
+                <Step key={index} expanded>
+                  <StepLabel className="text-sm">{step.label}</StepLabel>
+                  <StepContent>
+                    <Typography className="text-xs">
+                      {step.description}
+                    </Typography>
+                  </StepContent>
+                </Step>
+              ))}
+            </Stepper>
+          </Carousel>
         )}
       </CardContent>
     </Card>
