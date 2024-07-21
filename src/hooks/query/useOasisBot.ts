@@ -1,9 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useAtom } from "jotai";
 import { botStart, botStop, getBot } from "@/apis/oasisbot/bot";
 import { getCoin } from "@/apis/oasisbot/coin";
 import { getTransaction } from "@/apis/oasisbot/transaction";
+import exchangeAtom from "@/datas/exchange";
 
-export function useBotMutation() {
+export function useBot() {
   const queryClient = useQueryClient();
   const startBotMutation = useMutation({
     mutationFn: botStart,
@@ -27,10 +29,12 @@ export function useBotMutation() {
   };
 }
 
-export function useBotQuery(exchangeName: string) {
+export function useBotQuery() {
+  const [exchange] = useAtom(exchangeAtom);
   const botQuery = useQuery({
-    queryKey: ["getBot", exchangeName],
-    queryFn: () => getBot(exchangeName),
+    queryKey: ["getBot", exchange],
+    queryFn: () => getBot(exchange),
+    refetchOnMount: false,
   });
 
   return {
@@ -38,15 +42,16 @@ export function useBotQuery(exchangeName: string) {
   };
 }
 
-export function useBotInfo(exchangeName: string) {
+export function useBotInfo() {
+  const [exchange] = useAtom(exchangeAtom);
   const coinQuery = useQuery({
-    queryKey: ["getCoin", exchangeName],
-    queryFn: () => getCoin(exchangeName),
+    queryKey: ["getCoin", exchange],
+    queryFn: () => getCoin(exchange),
   });
 
   const transactionQuery = useQuery({
-    queryKey: ["getTransaction", exchangeName],
-    queryFn: () => getTransaction(exchangeName),
+    queryKey: ["getTransaction", exchange],
+    queryFn: () => getTransaction(exchange),
   });
 
   return {

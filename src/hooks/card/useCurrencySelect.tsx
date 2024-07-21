@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { UnfoldMore } from "@mui/icons-material";
-import CardHeaderSelect from "@/components/common/CardHeaderSelect";
+import CardHeaderSelect from "./CardHeaderSelect";
 
 function useCurrencySelect() {
   const [currency, setCurrency] = useState<string>("won");

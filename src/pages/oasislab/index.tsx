@@ -1,5 +1,4 @@
 import { Box, Stack } from "@mui/material";
-import BotListCard from "@/cards/BotListCard/index";
 import RunOasisBotCard from "@/cards/oasisbot/OasisBotRunCard";
 import OasisLabInfoCard from "@/cards/oasislab/OasisLabInfoCard";
 import OasisLabResultChartCard from "@/cards/oasislab/OasisLabResultChartCard";
@@ -33,7 +32,7 @@ export default function OasisLab() {
             </Stack>
           </Stack>
           <Stack direction="row" className="gap-4 h-[400px]">
-            <BotListCard />
+            개발중
           </Stack>
         </Stack>
       </Carousel>

@@ -1,15 +1,34 @@
 import { useRouter } from "next/router";
 import { Stack, Typography } from "@mui/material";
+import { useAtom } from "jotai";
+import exchangeAtom from "@/datas/exchange";
 import useSignin from "@/hooks/query/useSignin";
 import useModal from "@/hooks/useModal";
-import GoogleSigninButton from "@/screens/signin/GoogleSigninButton";
-import SigninDialog from "@/screens/signin/dialog/SigninDialog";
+import GoogleSigninButton from "./GoogleSigninButton";
 import Agreement from "./dialog/Agreement";
+import ExchangeSelect from "./dialog/ExchangeSelect";
+import SigninDialog from "./dialog/SigninDialog";
 
-function Discription() {
+function Description() {
   const { push } = useRouter();
+  const [, setExchange] = useAtom(exchangeAtom);
   const { postAgreementMutation } = useSignin();
   const { modal, openModal, closeModal } = useModal();
+
+  const openExchangeSelect = () => {
+    openModal(
+      <SigninDialog onClose={closeModal}>
+        <ExchangeSelect
+          onClick={(type: ExchangeType) => {
+            setExchange(type);
+            closeModal();
+            push("/dashboard");
+          }}
+        />
+      </SigninDialog>,
+    );
+  };
+
   const agree = (data: Record<AgreementType, boolean>) => {
     const body = { essentialAgreement: false, adAgreement: false };
     body.essentialAgreement = data.over14 && data.privacy && data.service;
@@ -17,17 +36,25 @@ function Discription() {
     postAgreementMutation.mutate(body, {
       onSuccess: () => {
         closeModal();
-        push("/dashboard");
+        openExchangeSelect();
       },
     });
   };
 
   const openAgreement = () => {
     openModal(
-      <SigninDialog handleClose={closeModal}>
-        <Agreement handleClose={closeModal} handleOK={agree} />
+      <SigninDialog onClose={closeModal}>
+        <Agreement onClose={closeModal} onAgree={agree} />
       </SigninDialog>,
     );
+  };
+
+  const handleSuccess = (data: { isAgree: boolean }) => {
+    if (data.isAgree) {
+      openExchangeSelect();
+    } else {
+      openAgreement();
+    }
   };
 
   return (
@@ -42,9 +69,9 @@ function Discription() {
           <Typography variant="display3">오직 오아시스에서</Typography>
         </Stack>
       </Stack>
-      <GoogleSigninButton onClick={openAgreement} />
+      <GoogleSigninButton onSuccess={handleSuccess} />
       {modal}
     </Stack>
   );
 }
-export default Discription;
+export default Description;

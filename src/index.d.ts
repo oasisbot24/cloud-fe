@@ -28,6 +28,9 @@ type DashboardIdType =
   | "counting";
 type SocialType = "linkedin" | "facebook" | "naver" | "kakao";
 
+// exchange
+type ExchangeType = "okx" | "upbit";
+
 // apis
 interface ApiResponseType<T> {
   data: T;
@@ -74,7 +77,24 @@ interface ProfitRank {
     nickname: string;
   };
   accumulatedProfit: number;
-  market: string;
+  market: ExchangeType;
   item: string;
   period: string;
+}
+
+// transaction
+interface RealtimeTransaction {
+  id: number;
+  presetName: string;
+  coinName: string;
+  sellInfo: {
+    exchange: ExchangeType;
+    price: number;
+    date: string;
+  };
+  buyInfo: {
+    exchange: ExchangeType;
+    price: number;
+    date: string;
+  };
 }

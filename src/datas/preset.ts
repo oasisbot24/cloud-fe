@@ -17,6 +17,7 @@ const presetAtom = atom<Preset>({
   lossRate: 0,
   weight: {},
 } as Preset);
+presetAtom.debugLabel = "presetAtom";
 
 export type { Preset };
 export default presetAtom;

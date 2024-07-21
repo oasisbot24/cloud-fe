@@ -32,13 +32,13 @@ function CheckItem({ title, checked = false, onClick, href }: CheckItemProps) {
 }
 
 interface AgreementListProps {
-  handleClose: () => void;
-  handleOK: (data: Record<AgreementType, boolean>) => void;
+  onClose: () => void;
+  onAgree: (data: Record<AgreementType, boolean>) => void;
 }
 
 export default function AgreementList({
-  handleClose,
-  handleOK,
+  onClose,
+  onAgree,
 }: AgreementListProps) {
   const titleObject: Record<AgreementType, string> = {
     over14: "[필수] 만 14세 이상입니다.",
@@ -104,14 +104,14 @@ export default function AgreementList({
         <Button
           variant="outlined"
           className="w-full rounded-full"
-          onClick={handleClose}
+          onClick={onClose}
         >
           취소
         </Button>
         <Button
           variant="contained"
           className="w-full rounded-full"
-          onClick={() => handleOK(checked)}
+          onClick={() => onAgree(checked)}
           disabled={!checked.over14 || !checked.service || !checked.privacy}
         >
           확인

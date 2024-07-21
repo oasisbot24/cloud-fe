@@ -2,18 +2,15 @@ import { IconButton, Paper, Stack } from "@mui/material";
 import Icon from "@/components/Icon/index";
 
 interface SigninDialogProps {
-  handleClose: () => void;
+  onClose: () => void;
   children: React.ReactNode;
 }
 
-export default function SigninDialog({
-  handleClose,
-  children,
-}: SigninDialogProps) {
+export default function SigninDialog({ onClose, children }: SigninDialogProps) {
   return (
     <Stack
       className="fixed w-full h-full bg-transparent top-0 left-0"
-      onClick={handleClose}
+      onClick={onClose}
     >
       <Paper
         className="bg-white rounded-xl w-fit p-4 absolute 
@@ -23,7 +20,7 @@ export default function SigninDialog({
           e.stopPropagation();
         }}
       >
-        <IconButton className="absolute top-4 right-4" onClick={handleClose}>
+        <IconButton className="absolute top-4 right-4" onClick={onClose}>
           <Icon src="/icons/control/close-dark.png" size={32} />
         </IconButton>
         {children}

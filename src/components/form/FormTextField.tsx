@@ -1,4 +1,10 @@
-import { InputLabel, Stack, TextField, TextFieldProps } from "@mui/material";
+import {
+  InputBase,
+  InputBaseProps,
+  InputLabel,
+  Stack,
+  Typography,
+} from "@mui/material";
 
 interface FormTextFieldProps {
   id: string;
@@ -6,27 +12,24 @@ interface FormTextFieldProps {
 }
 
 function FormTextField(
-  props: FormTextFieldProps & Omit<TextFieldProps, "variant">,
+  props: FormTextFieldProps & Omit<InputBaseProps, "variant">,
 ) {
   const { id, label, className } = props;
   return (
     <Stack className={`w-full ${className}`}>
       {label && (
-        <InputLabel shrink htmlFor={id} size="normal">
-          {label}
+        <InputLabel htmlFor={id}>
+          <Typography variant="100R" className="text-neutral-600">
+            {label}
+          </Typography>
         </InputLabel>
       )}
-      <TextField
+      <InputBase
         {...props}
         fullWidth
-        size="small"
-        className="h-[30px] flex-0 items-center justify-center leading-[16px] font-[14px]" // TODO: flex 안늘어나게 (30px 안먹음)
-        label={undefined}
-        sx={{
-          "MuiInputBase-root": {
-            height: 30,
-            fontSize: 14,
-          },
+        classes={{
+          input:
+            "h-[30px] p-0 flex-0 items-center justify-center leading-[16px] text-[14px] border-solid border-b-[1px] border-x-0 border-t-0 border-neutral-300 font-[500] text-font-2",
         }}
       />
     </Stack>

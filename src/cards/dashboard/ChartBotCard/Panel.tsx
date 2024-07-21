@@ -1,8 +1,9 @@
 import { useState } from "react";
-import Image from "next/image";
-import { Box, Menu, Stack, Typography } from "@mui/material";
+import { Box, Menu, Stack } from "@mui/material";
+import Icon from "@/components/Icon";
 import DashboardIcon from "@/components/Icon/DashboardIcon";
 import CustomMenu from "./CustomMenu";
+import PanelDescription from "./PanelDescription";
 
 export default function Panel() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -18,93 +19,14 @@ export default function Panel() {
     <Box width={1}>
       <Stack
         direction="row"
-        justifyContent="center"
-        alignItems="center"
-        sx={{
-          bgcolor: "#898FC3",
-          width: 1 / 2,
-          height: "auto",
-          padding: 2,
-          borderRadius: "16px",
-          cursor: "pointer",
-        }}
+        className="justify-center items-center bg-[#898FC3] cursor-pointer w-[380px] rounded-xl p-4 gap-2"
         onClick={handleClick}
       >
-        <Stack
-          direction="row"
-          alignItems="center"
-          spacing={1}
-          sx={{ width: 1 }}
-        >
-          <Stack
-            sx={{
-              bgcolor: "white",
-              borderRadius: "16px",
-              borderColor: "#F6F6F6",
-            }}
-          >
-            <DashboardIcon id="bar-graph" />
-          </Stack>
-          <Stack direction="column" spacing={1}>
-            <Typography variant="300B" className="test-[#FFFFFF]">
-              종합
-            </Typography>
-            <Typography variant="200R" className="text-[#FFFFFF]">
-              ALL
-            </Typography>
-          </Stack>
-        </Stack>
+        <DashboardIcon id="bar-graph" />
+        <PanelDescription />
         <Stack direction="row" spacing={2}>
-          <Stack direction="column" spacing={1}>
-            <Stack direction="row" justifyContent="flex-end" sx={{ width: 1 }}>
-              <Typography
-                variant="200R"
-                fontFamily="SF Pro Display"
-                fontWeight={600}
-                fontSize={18}
-                lineHeight="22px"
-                className="text-white"
-              >
-                $230,7777
-              </Typography>
-            </Stack>
-            <Stack direction="row" justifyContent="flex-end" sx={{ width: 1 }}>
-              <Stack
-                direction="row"
-                alignItems="center"
-                justifyContent="center"
-                sx={{
-                  bgcolor: "#D1D6F9",
-                  width: "58px",
-                  height: "24px",
-                  borderRadius: "16px",
-                }}
-              >
-                <Image
-                  src="/icons/arrow/profitloss/down-small.png"
-                  width={16}
-                  height={16}
-                  alt="small"
-                />
-                <Typography
-                  fontFamily="SF Pro Display"
-                  fontWeight={700}
-                  fontSize={14}
-                  lineHeight="16px"
-                  className="text-[#223CE9]"
-                >
-                  23%
-                </Typography>
-              </Stack>
-            </Stack>
-          </Stack>
           <Stack justifyContent="center" alignItems="center">
-            <Image
-              src="/icons/arrow/down-circle.png"
-              alt="circle"
-              width={20}
-              height={20}
-            />
+            <Icon src="/icons/arrow/down-circle.png" size={20} />
           </Stack>
         </Stack>
       </Stack>

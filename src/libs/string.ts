@@ -8,4 +8,15 @@ function dateToKorean(date: Date) {
   return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
 }
 
-export { numberToCurrency, dateToKorean };
+const exchangeToKorean = (market: ExchangeType | undefined) => {
+  switch (market) {
+    case "upbit":
+      return "업비트";
+    case "okx":
+      return "OKX";
+    default:
+      return "";
+  }
+};
+
+export { numberToCurrency, dateToKorean, exchangeToKorean };
