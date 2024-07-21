@@ -5,7 +5,7 @@ interface textProps {
 }
 function GraphText({ text }: textProps) {
   return (
-    <Typography variant="400B" className="text-neutral-500">
+    <Typography variant="400R" className="text-neutral-500">
       {text}
     </Typography>
   );

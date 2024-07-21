@@ -1,4 +1,5 @@
 import { Slider, styled } from "@mui/material";
+import internal from "stream";
 import Card from "@/cards/Card";
 
 const PortaionSlider = styled(Slider)({
@@ -24,16 +25,24 @@ const PortaionSlider = styled(Slider)({
   },
 });
 
-function valuetext(value: number) {
-  return `${value}`;
+interface valueProps {
+  value: number | number[];
+  setValue: React.Dispatch<React.SetStateAction<number | number[]>>;
+  max: number;
 }
-function VerticalSlider() {
+
+function VerticalSlider({ value, setValue, max }: valueProps) {
+  const handleChange = (e: any, newValue: number | number[]) => {
+    if ((newValue as number) <= max) {
+      setValue(newValue);
+    }
+  };
   return (
     <PortaionSlider
       orientation="vertical"
-      defaultValue={0}
+      value={value}
       valueLabelDisplay="auto"
-      // getAriaValueText={valuetext}
+      onChange={handleChange}
     />
   );
 }
