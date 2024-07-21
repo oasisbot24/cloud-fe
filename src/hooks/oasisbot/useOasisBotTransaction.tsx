@@ -1,27 +1,16 @@
-import React from "react";
 import Image from "next/image";
-import { Chip, Typography } from "@mui/material";
+import { Chip } from "@mui/material";
 import {
   GridColDef,
   GridRenderCellParams,
   GridValidRowModel,
 } from "@mui/x-data-grid";
-import { useQuery } from "@tanstack/react-query";
-import { getTransaction } from "@/apis/getTransaction";
-import { getPreset } from "@/apis/presets";
 import ArrowDownIcon from "@/components/Icon/ArrowDownIcon";
 import ArrowUpIcon from "@/components/Icon/ArrowUpIcon";
-import {
-  BotTransactionPrice,
-  BotTransactionProfit,
-  BotTransactionQuantity,
-} from "@/datas/oasisbotTransaction";
 import useMarket from "@/hooks/common/useMarket";
-import useMarketSelect from "../common/useMarketSelect";
 
 function useOasisBotTransaction() {
   const { marketName, marketIcon } = useMarket();
-  const { market } = useMarketSelect();
 
   const columns: GridColDef[] = [
     {
@@ -147,11 +136,6 @@ function useOasisBotTransaction() {
       ),
     },
   ];
-
-  const { data: botrows, isLoading: isPresetsLoading } = useQuery({
-    queryKey: ["transaction", market],
-    queryFn: () => getTransaction(market),
-  });
 
   const rows = [
     {

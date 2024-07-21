@@ -2,7 +2,7 @@ import React from "react";
 import { CardContent } from "@mui/material";
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
-import RealtimeTransactionItem from "@/components/oasisbot/RealtimeTransactionItem";
+import RealtimeTransactionItem from "./RealtimeTransactionItem";
 
 function RealtimeTransactionCard() {
   const items = [

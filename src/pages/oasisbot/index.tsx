@@ -1,11 +1,10 @@
 import { Box, Stack } from "@mui/material";
-import BotListCard from "@/cards/BotListCard";
-import OasisBotTransactionCard from "@/cards/OasisBotTransactionCard";
-import OasisBotListCard from "@/cards/OasisBotListCard/index";
-import OasisBotRunCard from "@/cards/OasisBotRunCard";
 import RealtimeTransactionCard from "@/cards/RealtimeTransactionCard";
-import Carousel from "@/components/Layout/Carousel";
-import Layout from "@/components/Layout/index";
+import OasisBotListCard from "@/cards/oasisbot/OasisBotListCard";
+import OasisBotRunCard from "@/cards/oasisbot/OasisBotRunCard";
+import OasisBotTransactionCard from "@/cards/oasisbot/OasisBotTransactionCard";
+import Carousel from "@/layouts/Carousel";
+import Layout from "@/layouts/Layout";
 
 function OasisBot() {
   return (
