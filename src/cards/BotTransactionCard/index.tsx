@@ -3,36 +3,20 @@ import { DataGrid } from "@mui/x-data-grid";
 import Card from "@/cards/Card";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
-import useMarketSelect from "@/hooks/card/useMarketSelect";
-import useOrderSelect from "@/hooks/card/useOrderSelect";
-import useTransactionStatusSelect from "@/hooks/card/useTransactionStatusSelect";
-import useBotTransaction from "@/hooks/dashboard/useBotTransaction";
+import OasisBotTransactionCompactColumns, {
+  OasisBotTransactionCompactMockRows,
+} from "@/components/table/OasisBotTransactionCompactColumns";
 
 function BotTransactionCard() {
-  const { columns, rows } = useBotTransaction();
-  const { OrderSelect } = useOrderSelect();
-  const { TransactionStatusSelect } = useTransactionStatusSelect();
-  const { MarketSelect } = useMarketSelect();
-
   return (
     <Card>
-      <CardHeader
-        id="history"
-        title="실시간 BOT 거래내역"
-        action={
-          <>
-            <OrderSelect />
-            <TransactionStatusSelect />
-            <MarketSelect />
-          </>
-        }
-      />
+      <CardHeader id="history" title="오아시스 BOT 실시간 거래내역" />
       <CardContent
         sx={{ paddingTop: "0", maxHeight: "290px", overflow: "auto" }}
       >
         <DataGrid
-          columns={columns}
-          rows={rows}
+          columns={OasisBotTransactionCompactColumns}
+          rows={OasisBotTransactionCompactMockRows}
           hideFooter
           sx={{ border: "none" }}
         />

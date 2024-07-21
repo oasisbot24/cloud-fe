@@ -76,7 +76,24 @@ interface ProfitRank {
     nickname: string;
   };
   accumulatedProfit: number;
-  market: string;
+  market: ExchangeType;
   item: string;
   period: string;
+}
+
+// transaction
+interface RealtimeTransaction {
+  id: number;
+  presetName: string;
+  coinName: string;
+  sellInfo: {
+    exchange: ExchangeType;
+    price: number;
+    date: string;
+  };
+  buyInfo: {
+    exchange: ExchangeType;
+    price: number;
+    date: string;
+  };
 }

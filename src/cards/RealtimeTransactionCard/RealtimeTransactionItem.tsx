@@ -1,31 +1,14 @@
-import React from "react";
 import Image from "next/image";
 import { Chip, Divider, IconButton, Stack, Typography } from "@mui/material";
-import useCoinItem from "@/hooks/common/useCoinItem";
-import useMarket from "@/hooks/common/useMarket";
+import CoinIcon from "@/components/Icon/CoinIcon";
+import ExchangeIcon from "@/components/Icon/ExchangeIcon";
+import { exchangeToKorean } from "@/libs/string";
 
-type Props = {
-  item: {
-    id: number;
-    presetName: string;
-    coinName: string;
-    sellInfo: {
-      exchange: string;
-      price: number;
-      date: string;
-    };
-    buyInfo: {
-      exchange: string;
-      price: number;
-      date: string;
-    };
-  };
-};
+interface Props {
+  item: RealtimeTransaction;
+}
 
 function RealtimeTransactionItem({ item }: Props) {
-  const { coinIcon } = useCoinItem();
-  const { marketName, marketIcon } = useMarket();
-
   return (
     <>
       <Stack direction="row" className="items-center gap-1 px-3 py-1">
@@ -46,12 +29,7 @@ function RealtimeTransactionItem({ item }: Props) {
         <Typography className="text-sm font-bold text-neutral-700">
           {item.coinName}
         </Typography>
-        <Image
-          src={coinIcon(item.coinName)}
-          alt={item.coinName ?? ""}
-          width={16}
-          height={16}
-        />
+        <CoinIcon coin={item.coinName} size={16} />
       </Stack>
       <Stack
         direction="row"
@@ -59,14 +37,9 @@ function RealtimeTransactionItem({ item }: Props) {
       >
         <Stack direction="row" className="gap-4 items-center">
           <Chip label="판매" color="secondary" />
-          <Image
-            src={marketIcon(item.sellInfo.exchange)}
-            alt={item.sellInfo.exchange ?? ""}
-            width={24}
-            height={24}
-          />
+          <ExchangeIcon exchange={item.sellInfo.exchange} size={24} />
           <Typography className="text-xs font-medium">
-            {marketName(item.buyInfo.exchange)}
+            {exchangeToKorean(item.buyInfo.exchange)}
           </Typography>
         </Stack>
         <Stack direction="row" className="gap-4 items-center">
@@ -84,14 +57,9 @@ function RealtimeTransactionItem({ item }: Props) {
       >
         <Stack direction="row" className="gap-4 items-center">
           <Chip label="구매" className="text-white bg-sub-2" />
-          <Image
-            src={marketIcon(item.buyInfo.exchange)}
-            alt={item.buyInfo.exchange ?? ""}
-            width={24}
-            height={24}
-          />
+          <ExchangeIcon exchange={item.buyInfo.exchange} size={24} />
           <Typography className="text-xs font-medium">
-            {marketName(item.buyInfo.exchange)}
+            {exchangeToKorean(item.buyInfo.exchange)}
           </Typography>
         </Stack>
         <Stack direction="row" className="gap-4 items-center">

@@ -5,7 +5,7 @@ import CardHeader from "@/cards/CardHeader";
 import RealtimeTransactionItem from "./RealtimeTransactionItem";
 
 function RealtimeTransactionCard() {
-  const items = [
+  const items: RealtimeTransaction[] = [
     {
       id: 1,
       presetName: "상승장 프리셋임",
