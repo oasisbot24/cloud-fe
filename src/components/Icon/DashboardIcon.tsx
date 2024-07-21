@@ -18,6 +18,7 @@ const iconSrc = {
   setting: "/icons/dashboard/setting.png",
   transaction: "/icons/dashboard/transaction.png",
   wallet: "/icons/dashboard/wallet.png",
+  counting:"/icons/dashboard/counting.png"
 };
 
 export default function DashboardIcon({ id }: DashboardIconProps) {

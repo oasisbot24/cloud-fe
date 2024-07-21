@@ -24,7 +24,8 @@ type DashboardIdType =
   | "rise-arrow"
   | "setting"
   | "transaction"
-  | "wallet";
+  | "wallet"
+  | "counting";
 type SocialType = "linkedin" | "facebook" | "naver" | "kakao";
 
 // exchange
