@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
-import Carousel from "@/layouts/Carousel/vertical";
+import VerticalCarousel from "@/layouts/Carousel/vertical";
 
 export default function PresetWeightInfoCard() {
   const [isExist, setIsExist] = useState<boolean>(true); // 임시 조치
@@ -87,7 +87,7 @@ export default function PresetWeightInfoCard() {
           </Stack>
         )}
         {isExist && (
-          <Carousel height={300}>
+          <VerticalCarousel height={340}>
             <Stepper orientation="vertical" activeStep={steps.length}>
               {steps.map((step, index) => (
                 <Step key={index} expanded>
@@ -100,7 +100,7 @@ export default function PresetWeightInfoCard() {
                 </Step>
               ))}
             </Stepper>
-          </Carousel>
+          </VerticalCarousel>
         )}
       </CardContent>
     </Card>

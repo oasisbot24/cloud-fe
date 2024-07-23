@@ -8,37 +8,40 @@ interface CarouselProps {
   height: number;
 }
 const buttonStyle =
-  "rounded-full bg-[#FFFFFF9D] z-10 w-[33px] h-[33px] border border-solid border-black shadow-md";
+  "rounded-full bg-[#FFFFFF9D] z-10 w-[33px] h-[33px] border border-solid border-black shadow-md absolute right-1/2 translate-x-1/2";
 
-export default function Carousel({ children, height }: CarouselProps) {
+export default function VerticalCarousel({ children, height }: CarouselProps) {
   const { size, componentRef } = useComponentSize();
-  const { size: childSize, componentRef: childRef } = useComponentSize();
-  const [align, setAlign] = useState<"top" | "bottom">("top");
+  const [carouselHeight, setCarouselHeight] = useState<number>(0);
 
   return (
-    <Box className="w-full h-full px-6">
-      {size.height <= height && align === "bottom" && (
+    <Box className="relative w-full" sx={{ height: `${height}px` }}>
+      {carouselHeight > 0 && (
         <IconButton
           className={`${buttonStyle}`}
-          onClick={() => setAlign("top")}
+          onClick={() => setCarouselHeight(prev => prev - 100)}
         >
           <KeyboardArrowUp fontSize="medium" />
         </IconButton>
       )}
       <Box
-        ref={childRef}
-        className="transition-all duration-500 pb-4"
-        sx={{
-          top: align === "top" ? "0" : `calc(-100% + ${childSize.height}px)`,
-        }}
-        height={300}
+        className="absolute w-full overflow-hidden top-1/2 -translate-y-1/2"
+        height={height - 66}
       >
-        {children}
+        <Box
+          ref={componentRef}
+          className="absolute w-full px-6 transition-all duration-500"
+          sx={{
+            top: `calc(-${carouselHeight}px)`,
+          }}
+        >
+          {children}
+        </Box>
       </Box>
-      {size.height <= height && align === "top" && (
+      {size.height - height > carouselHeight - 30 && ( // -30 부분 하드코딩 처리됨. 변경 필요.
         <IconButton
-          className={`${buttonStyle}`}
-          onClick={() => setAlign("bottom")}
+          className={`${buttonStyle} bottom-0`}
+          onClick={() => setCarouselHeight(prev => prev + 100)}
         >
           <KeyboardArrowDown fontSize="medium" />
         </IconButton>
