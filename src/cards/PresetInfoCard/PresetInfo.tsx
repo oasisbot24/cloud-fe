@@ -11,7 +11,7 @@ export default function PresetInfo() {
       <FormSelect
         id="name"
         label="설정 보조지표"
-        items={[]}
+        items={[{ label: "프리셋1", value: "preset1" }]}
         value={preset.indicator}
         disabled
       />

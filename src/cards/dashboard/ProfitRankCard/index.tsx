@@ -2,34 +2,18 @@ import { CardContent } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
-import useCurrencySelect from "@/hooks/card/useCurrencySelect";
-import useMarketSelect from "@/hooks/card/useMarketSelect";
-import usePriceStatusSelect from "@/hooks/card/usePriceStatusSelect";
-import useProfitRank from "@/hooks/dashboard/useProfitRank";
+import ProfitRankColumns, {
+  ProfitRankMockRows,
+} from "@/components/table/ProfitRankColumns";
 
 function ProfitRankCard() {
-  const { columns, rows } = useProfitRank();
-  const { CurrencySelect } = useCurrencySelect();
-  const { PriceStatusSelect } = usePriceStatusSelect();
-  const { MarketSelect } = useMarketSelect();
-
   return (
     <Card>
-      <CardHeader
-        id="ranking"
-        title="실시간 수익 Top5"
-        action={
-          <>
-            <CurrencySelect />
-            <PriceStatusSelect />
-            <MarketSelect />
-          </>
-        }
-      />
+      <CardHeader id="ranking" title="실시간 수익 Top5" />
       <CardContent sx={{ paddingTop: "0", overflow: "auto" }}>
         <DataGrid
-          columns={columns}
-          rows={rows}
+          columns={ProfitRankColumns}
+          rows={ProfitRankMockRows}
           hideFooter
           sx={{ border: "none" }}
         />

@@ -1,9 +1,9 @@
 import { CardContent } from "@mui/material";
 import Card from "@/cards/Card";
+import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
 import PresetSetting from "@/cards/PresetSettingCard/PresetSetting";
-import CardButton from "@/components/common/CardButton";
 
 export default function PresetSettingCard() {
   return (

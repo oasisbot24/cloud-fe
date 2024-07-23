@@ -7,7 +7,7 @@ import presetAtom from "@/datas/preset";
 export default function PresetSetting() {
   const [preset] = useAtom(presetAtom);
   return (
-    <Stack className="w-full items-center gap-2">
+    <Stack className="w-full items-center gap-1">
       <FormSelect id="name" label="프리셋이름" items={[]} value={preset.name} />
       <FormSelect
         id="indicator"

@@ -1,9 +1,11 @@
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import {
   InputLabel,
   MenuItem,
   Select,
   SelectProps,
   Stack,
+  Typography,
 } from "@mui/material";
 
 interface FormSelectProps {
@@ -20,17 +22,25 @@ function FormSelect(props: FormSelectProps & SelectProps<string>) {
   return (
     <Stack className={`w-full ${className}`}>
       {label && (
-        <InputLabel shrink htmlFor={id} size="normal">
-          {label}
+        <InputLabel htmlFor={id}>
+          <Typography variant="100R" className="text-neutral-600">
+            {label}
+          </Typography>
         </InputLabel>
       )}
       <Select
+        variant="standard"
         {...props}
         fullWidth
-        className="h-[30px] items-center justify-center"
+        classes={{
+          root: "before:border-none",
+          select:
+            "h-[30px] p-0 flex-0 flex items-center leading-[16px] text-[14px] border-solid border-b-[1px] border-x-0 border-t-0 border-neutral-300 font-[500] text-font-2",
+        }}
+        IconComponent={KeyboardArrowDownIcon}
       >
         {items.map(item => (
-          <MenuItem key={item.value} value={item.value}>
+          <MenuItem key={item.value} value={item.value} className="">
             {item.label}
           </MenuItem>
         ))}

@@ -18,11 +18,12 @@ const iconSrc = {
   setting: "/icons/dashboard/setting.png",
   transaction: "/icons/dashboard/transaction.png",
   wallet: "/icons/dashboard/wallet.png",
+  counting:"/icons/dashboard/counting.png"
 };
 
 export default function DashboardIcon({ id }: DashboardIconProps) {
   return (
-    <Stack className="justify-center items-center rounded-xl bg-neutral-200 w-[44px] h-[44px]">
+    <Stack className="justify-center items-center rounded-xl bg-neutral-200 w-[44px] h-[44px] shrink-0">
       <Icon src={iconSrc[id]} size={30} />
     </Stack>
   );

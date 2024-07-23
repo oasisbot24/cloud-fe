@@ -3,37 +3,25 @@ import { DataGrid } from "@mui/x-data-grid";
 import Card from "@/cards/Card";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
-import useCurrencySelect from "@/hooks/card/useCurrencySelect";
-import useMarketSelect from "@/hooks/card/useMarketSelect";
-import usePriceStatusSelect from "@/hooks/card/usePriceStatusSelect";
-import usePresets from "@/hooks/dashboard/usePresets";
+import OasisBotListColumns from "@/components/table/OasisBotListColumns";
+import { useBotQuery } from "@/hooks/query/useOasisBot";
 
 export default function OasisBotListCard() {
-  const { columns, presetRows, isPresetsLoading } = usePresets();
-  const { PriceStatusSelect } = usePriceStatusSelect();
-  const { CurrencySelect } = useCurrencySelect();
-  const { MarketSelect } = useMarketSelect();
+  const columns = OasisBotListColumns;
+  const {
+    botQuery: { data, isLoading },
+  } = useBotQuery();
 
   return (
     <Card>
-      <CardHeader
-        id="setting"
-        title="실행중인 Bot 목록"
-        action={
-          <>
-            <PriceStatusSelect />
-            <CurrencySelect />
-            <MarketSelect />
-          </>
-        }
-      />
+      <CardHeader id="setting" title="실행중인 Bot 목록" />
       <CardContent
         sx={{ paddingTop: "0", maxHeight: "290px", overflow: "auto" }}
       >
         <DataGrid
           columns={columns}
-          rows={presetRows ?? []}
-          loading={isPresetsLoading}
+          rows={data ?? []}
+          loading={isLoading}
           hideFooter
           sx={{
             ".MuiDataGrid-overlayWrapper": { height: "215px" },
@@ -45,6 +33,7 @@ export default function OasisBotListCard() {
         <Chip
           label="자세히 보기"
           variant="outlined"
+          className="my-2"
           onClick={() => console.log("clicked")}
         />
       </CardFooter>

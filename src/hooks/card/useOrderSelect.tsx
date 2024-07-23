@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { UnfoldMore } from "@mui/icons-material";
-import CardHeaderSelect from "@/components/common/CardHeaderSelect";
+import CardHeaderSelect from "./CardHeaderSelect";
 
 function useOrderSelect() {
   const [order, setOrder] = useState<string>("latest");
