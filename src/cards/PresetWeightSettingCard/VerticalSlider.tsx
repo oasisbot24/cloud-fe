@@ -1,15 +1,13 @@
 import { Slider, styled } from "@mui/material";
-import internal from "stream";
-import Card from "@/cards/Card";
 
-const PortaionSlider = styled(Slider)({
+const PortaionSlider = styled(Slider)(({ value }) => ({
   color: "#223CE9",
   height: 250,
   backgroundColor: "#E1E6EA",
   "& .MuiSlider-track": {
     border: "none",
     width: 30,
-    borderRadius: "0 0 10px 10px",
+    borderRadius: value === 100 ? "10px 10px 10px 10px" : "0 0 10px 10px",
   },
   "& .MuiSlider-thumb": {
     width: 42,
@@ -23,7 +21,7 @@ const PortaionSlider = styled(Slider)({
     backgroundColor: "#E1E6EA",
     borderRadius: "10px",
   },
-});
+}));
 
 interface valueProps {
   value: number | number[];
@@ -40,6 +38,9 @@ function VerticalSlider({ value, setValue, max }: valueProps) {
   return (
     <PortaionSlider
       orientation="vertical"
+      min={0}
+      max={100}
+      step={1}
       value={value}
       valueLabelDisplay="auto"
       onChange={handleChange}

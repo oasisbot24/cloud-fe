@@ -1,15 +1,16 @@
 import { CardContent } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import OasisBotTransactionColumns, {
-  OasisBotTransactionMockRows,
-} from "@/components/table/OasisBotTransactionColumns";
+import useOasisBotTransactionColumns from "@/components/table/useOasisBotTransactionColumns";
 
 export default function BotTransaction() {
+  const { columns, OasisBotTransactionCompactRows, isLoading } =
+    useOasisBotTransactionColumns();
   return (
     <CardContent sx={{ paddingTop: "0", maxHeight: "410px", overflow: "auto" }}>
       <DataGrid
-        columns={OasisBotTransactionColumns}
-        rows={OasisBotTransactionMockRows}
+        loading={isLoading}
+        columns={columns}
+        rows={OasisBotTransactionCompactRows ?? []}
         hideFooter
         sx={{ border: "none" }}
       />
