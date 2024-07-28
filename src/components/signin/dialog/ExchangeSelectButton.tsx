@@ -1,5 +1,5 @@
 import { ButtonBase, Typography } from "@mui/material";
-import Icon from "@/components/Icon/index";
+import ExchangeIcon from "@/components/Icon/ExchangeIcon";
 
 interface ExchangeSelectButtonProps {
   type: ExchangeType;
@@ -20,7 +20,7 @@ function ExchangeSelectButton({ type, onClick }: ExchangeSelectButtonProps) {
       }}
       onClick={() => onClick && onClick(type)}
     >
-      <Icon src={`/exchange/${type}.png`} size={24} />
+      <ExchangeIcon exchange={type} />
       <Typography variant="bodyS">{title[type]}</Typography>
     </ButtonBase>
   );
