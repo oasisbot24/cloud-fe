@@ -10,7 +10,7 @@ function OasisBot() {
         <ApiConnectionTitleCard />
       </Box>
       <Stack className="relative items-center justify-start mt-[-250px] pb-4">
-        <Box className="w-[480px] h-[628px]">
+        <Box className="w-[480px]">
           <ApiConnectionCard />
         </Box>
       </Stack>

@@ -26,7 +26,6 @@ export default function openScrap(
   const sampleScrapParams: ScrapParams = {
     uid,
     lang: "ko",
-    site: "upbit",
   };
 
   const scrapUrl = pluginURL + pluginPath + qs.stringify(sampleScrapParams);

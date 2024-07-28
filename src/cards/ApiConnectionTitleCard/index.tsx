@@ -39,7 +39,7 @@ export default function ApiConnectionTitleCard() {
           연결할 거래소를 선택해 주세요.
         </Typography>
         <Typography variant="300R" className="mt-2 text-white">
-          아직 4개 거래소만 연결이 가능합니다.
+          아직 2개 거래소만 연결이 가능합니다.
         </Typography>
         <Typography variant="300R" className="text-white">
           추가로 원하시는 거래소가 있으시면 요청해 주세요.
