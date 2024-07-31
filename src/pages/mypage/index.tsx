@@ -1,17 +1,17 @@
 import { Box, Stack } from "@mui/material";
-import ApiConnectionCard from "@/cards/ApiConnectionCard";
-import ApiConnectionTitleCard from "@/cards/ApiConnectionTitleCard";
+import MypageCard from "@/cards/mypage/MypageCard";
+import MypageTitleCard from "@/cards/mypage/MypageTitleCard";
 import Layout from "@/layouts/Layout";
 
 function OasisBot() {
   return (
     <Layout>
       <Box className="w-full h-[530px]">
-        <ApiConnectionTitleCard />
+        <MypageTitleCard />
       </Box>
       <Stack className="relative items-center justify-start mt-[-250px] pb-4">
         <Box className="w-[480px]">
-          <ApiConnectionCard />
+          <MypageCard />
         </Box>
       </Stack>
     </Layout>
