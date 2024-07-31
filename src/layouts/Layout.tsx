@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Box, Stack, Typography } from "@mui/material";
+import { useAtom } from "jotai";
+import sideNavAtom from "@/datas/sideNav";
 import useComponentSize from "@/hooks/useComponentSize";
 import SideNav from "@/layouts/SideNav";
 import TopNav from "@/layouts/TopNav/index";
@@ -7,7 +9,7 @@ import TopNav from "@/layouts/TopNav/index";
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { size, componentRef } = useComponentSize();
   const [isMobile, setIsMobile] = useState<boolean | null>(false);
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean | null>(null);
+  const [sideNav, setSideNav] = useAtom(sideNavAtom);
 
   useEffect(() => {
     if (size.width === 0) return;
@@ -20,12 +22,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, [size]);
 
   useEffect(() => {
-    if (isMenuOpen === null) {
+    if (sideNav === null) {
       if (size.width === 0) return;
       if (size.width <= 1440) {
-        setIsMenuOpen(false);
+        setSideNav(false);
       } else {
-        setIsMenuOpen(true);
+        setSideNav(true);
       }
     }
   }, [size]);
@@ -43,10 +45,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </Stack>
       ) : (
         <Stack direction="row" className="w-full">
-          <SideNav
-            isMenuOpen={isMenuOpen ?? false}
-            setIsMenuOpen={setIsMenuOpen}
-          />
+          <SideNav isMenuOpen={sideNav ?? false} setIsMenuOpen={setSideNav} />
           <Stack
             direction="column"
             justifyContent="space-between"
@@ -55,7 +54,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <TopNav />
             <Box
               className={
-                isMenuOpen && size.width > 1440
+                sideNav && size.width > 1440
                   ? "ml-[260px] transition-all duration-300"
                   : "ml-[80px] transition-all duration-300"
               }
