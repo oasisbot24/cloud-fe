@@ -54,7 +54,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <TopNav />
             <Box
               className={
-                sideNav && size.width > 1440
+                sideNav
                   ? "ml-[260px] transition-all duration-300"
                   : "ml-[80px] transition-all duration-300"
               }
