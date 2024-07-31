@@ -7,6 +7,7 @@ type MenuDetailIdType =
   | "api"
   | "exchange"
   | "preset"
+  | "mypage"
   | "subscribe"
   | "notice";
 
