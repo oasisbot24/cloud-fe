@@ -11,10 +11,7 @@ import {
 interface FormSelectProps {
   id: string;
   label?: string;
-  items: {
-    label: string;
-    value: string;
-  }[];
+  items: SelectItem[];
 }
 
 function FormSelect(props: FormSelectProps & SelectProps<string>) {

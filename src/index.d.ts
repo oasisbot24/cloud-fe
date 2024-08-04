@@ -98,3 +98,8 @@ interface RealtimeTransaction {
     date: string;
   };
 }
+
+interface SelectItem {
+  label: string;
+  value: string | number;
+}

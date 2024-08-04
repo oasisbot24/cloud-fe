@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { CardContent, Stack } from "@mui/material";
+import { PresetType } from "@/apis/preset/preset";
 import Card from "@/cards/Card";
 import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
@@ -7,11 +8,21 @@ import CardHeader from "@/cards/CardHeader";
 import RoundSelect from "@/components/common/RoundSelect";
 import FormSelect from "@/components/form/FormSelect";
 import FormTextField from "@/components/form/FormTextField";
+import { usePresetQuery } from "@/hooks/query/usePreset";
 
 function OasisBotRunCard() {
   const [selectedMarket, setSelectedMarket] = useState<string>("");
   const [selectedPreset, setSelectedPreset] = useState<string>("");
   const [selectedTradeItem, setSelectedTradeItem] = useState<string>("");
+
+  const { presetQuery } = usePresetQuery();
+
+  const selectPresetList = (list: PresetType[]): SelectItem[] =>
+    list.map(item => ({ label: item.presetName, value: item.id }));
+  const presetList = useMemo(
+    () => (presetQuery.data ? selectPresetList(presetQuery.data) : []),
+    [presetQuery.data],
+  );
 
   return (
     <Card>
@@ -42,10 +53,7 @@ function OasisBotRunCard() {
             id="presets"
             label="설정 프리셋"
             variant="standard"
-            items={[
-              { label: "프리셋1", value: "preset1" },
-              { label: "프리셋2", value: "preset2" },
-            ]}
+            items={presetList}
             value={selectedPreset}
             onChange={e => setSelectedPreset(e.target.value)}
           />
