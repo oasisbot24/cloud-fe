@@ -1,6 +1,6 @@
 import { Box, Stack } from "@mui/material";
-import ApiConnectionCard from "@/cards/ApiConnectionCard";
-import ApiConnectionTitleCard from "@/cards/ApiConnectionTitleCard";
+import ApiConnectionCard from "@/cards/api-connection/ApiConnectionCard";
+import ApiConnectionTitleCard from "@/cards/api-connection/ApiConnectionTitleCard";
 import Layout from "@/layouts/Layout";
 
 function OasisBot() {

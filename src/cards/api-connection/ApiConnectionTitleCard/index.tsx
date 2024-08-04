@@ -3,7 +3,7 @@ import { Box, ButtonBase, Stack, Typography } from "@mui/material";
 import Card from "@/cards/Card";
 import Icon from "@/components/Icon";
 import Logo from "@/components/Logo";
-import CardHeader from "../CardHeader";
+import CardHeader from "../../CardHeader";
 import bg from "./bg.png";
 
 function Tag({ title, id }: { title: string; id: string }) {
