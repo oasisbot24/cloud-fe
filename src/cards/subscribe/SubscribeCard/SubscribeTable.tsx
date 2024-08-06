@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import {
   Table,
   TableBody,
@@ -10,32 +9,12 @@ import {
 } from "@mui/material";
 import { useAtom } from "jotai";
 import { subscribeMonthAtom, subscribeTypeAtom } from "@/datas/subscribe";
+import { CustomChip, CustomTableCell } from "./SubscribeTableComponents";
 import tableData from "./SubscribeTableData";
 import TableRowMeta, { tableRowData } from "./SubscribeTableRow";
 
-interface CustomTableCellProps {
-  children: React.ReactNode;
-  type: "free" | "promotion" | "allinone";
-}
-
-function CustomTableCell({ children, type }: CustomTableCellProps) {
-  const { push } = useRouter();
-  const [month] = useAtom(subscribeMonthAtom);
-  const [, setType] = useAtom(subscribeTypeAtom);
-  return (
-    <TableCell
-      width={220}
-      className="cursor-pointer items-center text-center"
-      onMouseEnter={() => setType(type)}
-      onMouseLeave={() => setType(null)}
-      onClick={() => push(`/subscribe/payment?month=${month}&type=${type}`)}
-    >
-      {children}
-    </TableCell>
-  );
-}
-
 export default function SubscribeTable() {
+  const [month] = useAtom(subscribeMonthAtom);
   const [type] = useAtom(subscribeTypeAtom);
 
   return (
@@ -46,12 +25,25 @@ export default function SubscribeTable() {
             <TableCell />
             <CustomTableCell type="free">
               <Typography variant="h6">Free</Typography>
-            </CustomTableCell>
-            <CustomTableCell type="allinone">
-              <Typography variant="h6">코인원 프로모션</Typography>
+              <CustomChip type="free" />
             </CustomTableCell>
             <CustomTableCell type="promotion">
+              <Typography variant="h6">코인원 프로모션</Typography>
+              {month === 3 && (
+                <Typography variant="200R" className="text-sub-4 line-through">
+                  ￦57,000
+                </Typography>
+              )}
+              <CustomChip type="promotion" />
+            </CustomTableCell>
+            <CustomTableCell type="allinone">
               <Typography variant="h6">All in One</Typography>
+              {month === 3 && (
+                <Typography variant="200R" className="text-sub-4 line-through">
+                  ￦129,000
+                </Typography>
+              )}
+              <CustomChip type="allinone" />
             </CustomTableCell>
           </TableRow>
         </TableHead>
@@ -61,19 +53,25 @@ export default function SubscribeTable() {
               <TableRowMeta type={key} />
               <CustomTableCell type="free">
                 <Typography
-                  variant="200R"
+                  variant={type === "free" ? "200B" : "200R"}
                   className={type === "free" ? "font-bold text-brand" : ""}
                 >
                   {tableData.free[key]}
                 </Typography>
               </CustomTableCell>
-              <CustomTableCell type="allinone">
-                <Typography variant="200R">
+              <CustomTableCell type="promotion">
+                <Typography
+                  variant={type === "promotion" ? "200B" : "200R"}
+                  className={type === "promotion" ? "font-bold text-brand" : ""}
+                >
                   {tableData.promotion[key]}
                 </Typography>
               </CustomTableCell>
-              <CustomTableCell type="promotion">
-                <Typography variant="200R">
+              <CustomTableCell type="allinone">
+                <Typography
+                  variant={type === "allinone" ? "200B" : "200R"}
+                  className={type === "allinone" ? "font-bold text-brand" : ""}
+                >
                   {tableData.allinone[key]}
                 </Typography>
               </CustomTableCell>
