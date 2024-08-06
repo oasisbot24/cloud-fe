@@ -43,21 +43,28 @@ const OasisBotTransactionCompactColumns: GridColDef[] = [
     ) => (
       <div>
         <div
-          className={`whitespace-normal ${params.value?.money && params.value.money > 0 ? "text-sub-3" : ""}`}
+          className={`whitespace-normal ${params.value?.profitLoss && params.value.profitLoss > 0 ? "text-sub-3" : ""}`}
         >
-          {params.value?.money ? "￦" : ""}
+          {params.value?.profitLoss ? "￦" : ""}
           <span className="font-bold text-ellipsis">
-            {params.value?.money.toLocaleString("ko-kr") ?? "-"}
+            {params.value?.profitLoss.toLocaleString("ko-kr") ?? "-"}
           </span>
         </div>
-        {params.value?.rate && (
+        {params.value?.profitLossRate && (
           <Chip
-            className={`font-bold ${params.value?.rate ? "text-sub-3" : "bg-brand"}`}
-            icon={params.value?.rate > 0 ? <ArrowUpIcon /> : <ArrowDownIcon />}
-            label={`${params.value?.rate}%`}
+            className={`font-bold ${params.value?.profitLossRate ? "text-sub-3" : "bg-brand"}`}
+            icon={
+              params.value?.profitLossRate > 0 ? (
+                <ArrowUpIcon />
+              ) : (
+                <ArrowDownIcon />
+              )
+            }
+            label={`${params.value?.profitLossRate}%`}
             size="small"
             style={{
-              background: params.value?.rate > 0 ? "#FDE0E0" : "#DCE1FF",
+              background:
+                params.value?.profitLossRate > 0 ? "#FDE0E0" : "#DCE1FF",
             }}
           />
         )}
@@ -93,8 +100,8 @@ const OasisBotTransactionCompactMockRows = [
     market: "upbit",
     item: "STARXEA USDT",
     profit: {
-      money: 1000000000,
-      rate: 11,
+      profitLoss: 1000000000,
+      profitLossRate: 11,
     },
     tradeTime: "2024.03.29 15:03",
     status: "sell",
@@ -112,8 +119,8 @@ const OasisBotTransactionCompactMockRows = [
     market: "upbit",
     item: "STARXEA USDT",
     profit: {
-      money: 1000000000,
-      rate: 11,
+      profitLoss: 1000000000,
+      profitLossprofitLossRate: 11,
     },
     tradeTime: "2024.03.29 15:03",
     status: "sell",
@@ -123,8 +130,8 @@ const OasisBotTransactionCompactMockRows = [
     market: "upbit",
     item: "STARXEA USDT",
     profit: {
-      money: 1000000000,
-      rate: 11,
+      profitLoss: 1000000000,
+      profitLossRate: 11,
     },
     tradeTime: "2024.03.29 15:03",
     status: "sell",
@@ -134,8 +141,8 @@ const OasisBotTransactionCompactMockRows = [
     market: "upbit",
     item: "STARXEA USDT",
     profit: {
-      money: 1000000000,
-      rate: 11,
+      profitLoss: 1000000000,
+      profitLossRate: 11,
     },
     tradeTime: "2024.03.29 15:03",
     status: "sell",
