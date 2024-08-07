@@ -1,9 +1,9 @@
 import { atom } from "jotai";
 
-const subscribeMonthAtom = atom<1 | 3>(3);
+const subscribeMonthAtom = atom<SubscribeMonth>(3);
 subscribeMonthAtom.debugLabel = "subscribeMonthAtom";
 
-const subscribeTypeAtom = atom<"free" | "promotion" | "allinone" | null>(null);
+const subscribeTypeAtom = atom<SubscribeType | null>(null);
 subscribeTypeAtom.debugLabel = "subscribeTypeAtom";
 
 export { subscribeMonthAtom, subscribeTypeAtom };

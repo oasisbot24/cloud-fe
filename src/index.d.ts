@@ -99,3 +99,7 @@ interface RealtimeTransaction {
     date: string;
   };
 }
+
+// subscribe
+type SubscribeType = "free" | "promotion" | "allinone";
+type SubscribeMonth = 1 | 3;

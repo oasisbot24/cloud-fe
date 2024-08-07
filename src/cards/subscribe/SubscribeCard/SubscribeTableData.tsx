@@ -36,4 +36,24 @@ const tableData: TableType = {
     partner: <Check />,
   },
 };
-export default tableData;
+
+const subcribeTitleData = {
+  free: "Free",
+  promotion: "코인원 프로모션",
+  allinone: "All in One",
+};
+
+const paymentData = {
+  1: {
+    free: "₩0",
+    promotion: "₩19,000",
+    allinone: "₩49,000",
+  },
+  3: {
+    free: "₩0",
+    promotion: "₩49,000",
+    allinone: "₩147,000",
+  },
+};
+
+export { tableData, subcribeTitleData, paymentData };

@@ -1,10 +1,9 @@
-import { Box, ButtonBase, Stack, Typography } from "@mui/material";
-import { useAtom } from "jotai";
+import { Box, Stack, Typography } from "@mui/material";
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
 import Icon from "@/components/Icon";
 import Logo from "@/components/Logo";
-import { subscribeMonthAtom } from "@/datas/subscribe";
+import SubscribeTitleMonthButton from "./SubscribeTitleMonthButton";
 import bg from "./bg.png";
 
 function Tag({ title, id }: { title: string; id: string }) {
@@ -18,13 +17,7 @@ function Tag({ title, id }: { title: string; id: string }) {
   );
 }
 
-const buttonStyle = {
-  focused: "bg-brand",
-  unfocused: "bg-white",
-};
-
 export default function SubscribeTitleCard() {
-  const [month, setMonth] = useAtom(subscribeMonthAtom);
   return (
     <Card sx={{ backgroundImage: `url(${bg.src})`, backgroundSize: "cover" }}>
       <Stack className="md:px-32 xl:px-64 items-center w-full">
@@ -54,39 +47,7 @@ export default function SubscribeTitleCard() {
               더욱 효율적으로 관리할 수 있습니다.
             </Typography>
           </Stack>
-          <Stack
-            direction="row"
-            className="gap-2 px-3 py-2 bg-white rounded-full"
-          >
-            <ButtonBase
-              onClick={() => setMonth(1)}
-              className={`rounded-full px-4 py-2 ${month === 1 ? buttonStyle.focused : buttonStyle.unfocused}`}
-            >
-              <Typography
-                variant={month === 1 ? "300B" : "300R"}
-                className={month === 1 ? "text-white" : "text-sub-4"}
-              >
-                1개월 구독
-              </Typography>
-            </ButtonBase>
-            <ButtonBase
-              onClick={() => setMonth(3)}
-              className={`flex flex-row gap-1 rounded-full px-4 py-2 ${month === 3 ? buttonStyle.focused : buttonStyle.unfocused}`}
-            >
-              <Typography
-                variant={month === 3 ? "300B" : "300R"}
-                className={month === 3 ? "text-white" : "text-sub-4"}
-              >
-                3개월 구독
-              </Typography>
-              <Typography
-                variant={month === 3 ? "200B" : "200R"}
-                className="text-sub-3"
-              >
-                12% 절약
-              </Typography>
-            </ButtonBase>
-          </Stack>
+          <SubscribeTitleMonthButton />
         </Stack>
       </Stack>
     </Card>

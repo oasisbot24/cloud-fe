@@ -10,7 +10,7 @@ import {
 import { useAtom } from "jotai";
 import { subscribeMonthAtom, subscribeTypeAtom } from "@/datas/subscribe";
 import { CustomChip, CustomTableCell } from "./SubscribeTableComponents";
-import tableData from "./SubscribeTableData";
+import { subcribeTitleData, tableData } from "./SubscribeTableData";
 import TableRowMeta, { tableRowData } from "./SubscribeTableRow";
 
 export default function SubscribeTable() {
@@ -24,11 +24,13 @@ export default function SubscribeTable() {
           <TableRow>
             <TableCell />
             <CustomTableCell type="free">
-              <Typography variant="h6">Free</Typography>
+              <Typography variant="h6">{subcribeTitleData.free}</Typography>
               <CustomChip type="free" />
             </CustomTableCell>
             <CustomTableCell type="promotion">
-              <Typography variant="h6">코인원 프로모션</Typography>
+              <Typography variant="h6">
+                {subcribeTitleData.promotion}
+              </Typography>
               {month === 3 && (
                 <Typography variant="200R" className="text-sub-4 line-through">
                   ￦57,000
@@ -37,7 +39,7 @@ export default function SubscribeTable() {
               <CustomChip type="promotion" />
             </CustomTableCell>
             <CustomTableCell type="allinone">
-              <Typography variant="h6">All in One</Typography>
+              <Typography variant="h6">{subcribeTitleData.allinone}</Typography>
               {month === 3 && (
                 <Typography variant="200R" className="text-sub-4 line-through">
                   ￦129,000
