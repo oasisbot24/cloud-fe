@@ -5,7 +5,7 @@ interface BotStartType {
   presetId: number;
   coinId: number;
   startBalance: number;
-  leverage: number;
+  leverage: number | null;
 }
 
 async function botStart(data: BotStartType): Promise<void> {

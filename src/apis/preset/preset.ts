@@ -1,6 +1,6 @@
 import api from "@/apis/network";
 
-interface PresetType {
+interface PresetType extends PresetBody {
   id: number;
   // TODO: Define PresetType interface
 }
@@ -12,9 +12,8 @@ async function getPreset(): Promise<PresetType[]> {
 interface PresetBody {
   presetName: string;
   indicatorName: string;
-  presetData: {
-    [key: string]: string | number | boolean;
-  };
+  presetData: string;
+  // { [key: string]: string | number | boolean; };
   position: string;
   profitCutRate: number;
   lossCutRate: number;

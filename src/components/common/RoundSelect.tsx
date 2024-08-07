@@ -1,6 +1,8 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { MenuItem, Select } from "@mui/material";
 
+type SetAtom<Args extends unknown[], Result> = (...args: Args) => Result;
+
 type Props = {
   label?: string;
   items: {
@@ -8,7 +10,9 @@ type Props = {
     value: string;
   }[];
   value: string;
-  onChange?: Dispatch<SetStateAction<string>>;
+  onChange?:
+    | Dispatch<SetStateAction<string>>
+    | SetAtom<[SetStateAction<string>], void>;
 };
 
 function RoundSelect({ label, items, value, onChange }: Props) {
