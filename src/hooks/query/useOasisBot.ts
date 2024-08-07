@@ -2,8 +2,8 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAtom } from "jotai";
 import { botStart, botStop, getBot } from "@/apis/oasisbot/bot";
 import { getCoin } from "@/apis/oasisbot/coin";
-import exchangeAtom from "@/datas/exchange";
 import { getTransaction } from "@/apis/oasisbot/getTransaction";
+import exchangeAtom from "@/datas/exchange";
 
 export function useBot() {
   const queryClient = useQueryClient();

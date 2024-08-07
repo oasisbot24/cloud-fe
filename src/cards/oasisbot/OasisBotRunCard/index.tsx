@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react";
 import { CardContent, Stack } from "@mui/material";
+import { useAtom } from "jotai";
+import { CoinType } from "@/apis/oasisbot/coin";
 import { PresetType } from "@/apis/preset/preset";
 import Card from "@/cards/Card";
 import CardButton from "@/cards/CardButton";
@@ -8,21 +10,60 @@ import CardHeader from "@/cards/CardHeader";
 import RoundSelect from "@/components/common/RoundSelect";
 import FormSelect from "@/components/form/FormSelect";
 import FormTextField from "@/components/form/FormTextField";
+import exchangeAtom from "@/datas/exchange";
+import { useBot, useBotInfo } from "@/hooks/query/useOasisBot";
 import { usePresetQuery } from "@/hooks/query/usePreset";
 
 function OasisBotRunCard() {
+  const [startBalance, setStartBalance] = useState<string>("5000");
   const [selectedMarket, setSelectedMarket] = useState<string>("");
-  const [selectedPreset, setSelectedPreset] = useState<string>("");
-  const [selectedTradeItem, setSelectedTradeItem] = useState<string>("");
+  const [selectedPreset, setSelectedPreset] = useState<number>(0);
+  const [selectedTradeItem, setSelectedTradeItem] = useState<number>(0);
+
+  const [exchange, setExchange] = useAtom<ExchangeType>(exchangeAtom);
 
   const { presetQuery } = usePresetQuery();
+  const { coinQuery } = useBotInfo();
+  const { startBotMutation } = useBot();
+  const { mutate } = startBotMutation;
+
+  const onReset = () => {
+    setStartBalance("5000");
+    setSelectedMarket("");
+    setSelectedPreset(0);
+    setSelectedTradeItem(0);
+  };
 
   const selectPresetList = (list: PresetType[]): SelectItem[] =>
     list.map(item => ({ label: item.presetName, value: item.id }));
+
+  const selectCoinList = (list: CoinType[]): SelectItem[] =>
+    list.map(item => ({
+      label: item.coinName,
+      value: item.id,
+    }));
+
   const presetList = useMemo(
     () => (presetQuery.data ? selectPresetList(presetQuery.data) : []),
     [presetQuery.data],
   );
+
+  const coinList = useMemo(
+    () => (coinQuery.data ? selectCoinList(coinQuery.data) : []),
+    [selectedMarket, coinQuery.data],
+  );
+
+  const runOasisBot = () => {
+    const body = {
+      botName: "bot1",
+      presetId: selectedPreset,
+      coinId: selectedTradeItem,
+      startBalance: Number(startBalance),
+      leverage: null,
+    };
+
+    mutate(body);
+  };
 
   return (
     <Card>
@@ -37,8 +78,8 @@ function OasisBotRunCard() {
               { label: "업비트", value: "upbit" },
               { label: "OKX", value: "okx" },
             ]}
-            value={selectedMarket}
-            onChange={setSelectedMarket}
+            value={exchange}
+            onChange={setExchange}
           />
         }
       />
@@ -48,6 +89,9 @@ function OasisBotRunCard() {
           <FormTextField
             id="transactionAmount"
             label="거래금액을 입력 (최소 ₩5,000)"
+            type="number"
+            value={startBalance}
+            setValue={setStartBalance}
           />
           <FormSelect
             id="presets"
@@ -55,32 +99,29 @@ function OasisBotRunCard() {
             variant="standard"
             items={presetList}
             value={selectedPreset}
-            onChange={e => setSelectedPreset(e.target.value)}
+            setValue={setSelectedPreset}
           />
           <FormSelect
             id="tradeItem"
             label="매매종목"
             variant="standard"
-            items={[
-              { label: "비트코인", value: "BTC" },
-              { label: "이더리움", value: "ETH" },
-            ]}
+            items={coinList}
             value={selectedTradeItem}
-            onChange={e => setSelectedTradeItem(e.target.value)}
+            setValue={setSelectedTradeItem}
           />
-          <FormTextField id="leverage" label="레버리지를 입력해 주세요" />
+          <FormTextField id="leverage" label="현재 설정 레버리지" />
         </Stack>
       </CardContent>
       <CardFooter>
         <CardButton
           text="초기화"
           className="text-white bg-neutral-700"
-          onClick={() => console.log("초기화")}
+          onClick={onReset}
         />
         <CardButton
           text="저장 및 실행"
           className="text-white bg-brand"
-          onClick={() => console.log("저장 및 실행")}
+          onClick={runOasisBot}
         />
       </CardFooter>
     </Card>

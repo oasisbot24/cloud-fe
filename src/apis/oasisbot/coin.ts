@@ -13,3 +13,4 @@ async function getCoin(exchange: string): Promise<CoinType[]> {
 }
 
 export { getCoin };
+export type { CoinType };
