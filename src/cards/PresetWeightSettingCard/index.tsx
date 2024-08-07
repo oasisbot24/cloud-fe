@@ -1,5 +1,6 @@
 import { CardContent, Stack, Typography } from "@mui/material";
 import Card from "@/cards/Card";
+import CardButton from "@/cards/CardButton";
 import Icon from "@/components/Icon/index";
 import CardButton from "../CardButton";
 import CardFooter from "../CardFooter";
@@ -15,7 +16,7 @@ function PresetWeightSettingCard() {
         subtitle="총합의 값이 100%을 채워졌습니다."
         action={
           <Stack alignItems="center" direction="row">
-            <Icon src={"/icons/control/info.png"} size={15} />
+            <Icon src="/icons/control/info.png" size={15} />
             <Typography
               variant="100R"
               className="text-neutral-600 underline cursor-pointer"

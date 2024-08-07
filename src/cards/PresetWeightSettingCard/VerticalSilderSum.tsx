@@ -1,7 +1,7 @@
-import { Slider, styled } from "@mui/material";
+import { Slider, Tooltip, styled } from "@mui/material";
 import Card from "@/cards/Card";
 
-const PortaionSlider = styled(Slider)({
+const PortaionSlider = styled(Slider)(({ value }) => ({
   color: "#223CE9",
   height: 250,
   backgroundColor: "#E1E6EA",
@@ -11,7 +11,7 @@ const PortaionSlider = styled(Slider)({
   "& .MuiSlider-track": {
     border: "none",
     width: 30,
-    borderRadius: "0 0 10px 10px",
+    borderRadius: value === 100 ? "10px 10px 10px 10px" : "0 0 10px 10px",
   },
   "& .MuiSlider-thumb": {
     width: 0,
@@ -25,13 +25,17 @@ const PortaionSlider = styled(Slider)({
     backgroundColor: "#E1E6EA",
     borderRadius: "10px",
   },
-});
+}));
 
 interface Props {
   sum: number;
 }
 function VerticalSliderSum({ sum }: Props) {
-  return <PortaionSlider orientation="vertical" value={sum} disabled />;
+  return (
+    <div className="cursor-pointer ">
+      <PortaionSlider orientation="vertical" value={sum} disabled />
+    </div>
+  );
 }
 
 export default VerticalSliderSum;

@@ -108,63 +108,63 @@ const ProfitRankColumns: GridColDef[] = [
   },
 ];
 
-const ProfitRankMockRows: ProfitRank[] = [
-  {
-    id: 1,
-    user: {
-      icon: "",
-      nickname: "나카모토 사토시",
-    },
-    accumulatedProfit: 1000000000,
-    market: "upbit",
-    item: "BTC",
-    period: "365일 12시간",
-  },
-  {
-    id: 2,
-    user: {
-      icon: "",
-      nickname: "Winkelvoss쌍둥이",
-    },
-    accumulatedProfit: 1000000000,
-    market: "okx",
-    item: "ETH",
-    period: "365일 12시간",
-  },
-  {
-    id: 3,
-    user: {
-      icon: "",
-      nickname: "나카모토 사토시",
-    },
-    accumulatedProfit: 1000000000,
-    market: "upbit",
-    item: "BTC",
-    period: "365일 12시간",
-  },
-  {
-    id: 4,
-    user: {
-      icon: "",
-      nickname: "Winkelvoss쌍둥이",
-    },
-    accumulatedProfit: 1000000000,
-    market: "okx",
-    item: "ETH",
-    period: "365일 12시간",
-  },
-  {
-    id: 5,
-    user: {
-      icon: "",
-      nickname: "Winkelvoss쌍둥이",
-    },
-    accumulatedProfit: 1000000000,
-    market: "okx",
-    item: "ETH",
-    period: "365일 12시간",
-  },
-];
+// const ProfitRankMockRows: ProfitRank[] = [
+//   {
+//     id: 1,
+//     user: {
+//       icon: "",
+//       nickname: "나카모토 사토시",
+//     },
+//     accumulatedProfit: 1000000000,
+//     market: "upbit",
+//     item: "BTC",
+//     period: "365일 12시간",
+//   },
+//   {
+//     id: 2,
+//     user: {
+//       icon: "",
+//       nickname: "Winkelvoss쌍둥이",
+//     },
+//     accumulatedProfit: 1000000000,
+//     market: "okx",
+//     item: "ETH",
+//     period: "365일 12시간",
+//   },
+//   {
+//     id: 3,
+//     user: {
+//       icon: "",
+//       nickname: "나카모토 사토시",
+//     },
+//     accumulatedProfit: 1000000000,
+//     market: "upbit",
+//     item: "BTC",
+//     period: "365일 12시간",
+//   },
+//   {
+//     id: 4,
+//     user: {
+//       icon: "",
+//       nickname: "Winkelvoss쌍둥이",
+//     },
+//     accumulatedProfit: 1000000000,
+//     market: "okx",
+//     item: "ETH",
+//     period: "365일 12시간",
+//   },
+//   {
+//     id: 5,
+//     user: {
+//       icon: "",
+//       nickname: "Winkelvoss쌍둥이",
+//     },
+//     accumulatedProfit: 1000000000,
+//     market: "okx",
+//     item: "ETH",
+//     period: "365일 12시간",
+//   },
+// ];
 
 export default ProfitRankColumns;
-export { ProfitRankMockRows };
+// export { ProfitRankMockRows };

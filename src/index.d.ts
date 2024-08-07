@@ -49,25 +49,27 @@ type OasisLabIdType = "set" | "current" | "max";
 interface BotTransaction {
   id: number;
   market: string;
-  item: string;
+  coinName: string;
   profit: BotTransactionProfit;
   tradeTime: string;
   status: string;
+  quantity: BotTransactionQuantity;
+  price: BotTransactionPrice;
 }
 
 interface BotTransactionProfit {
-  money: number;
-  rate: number;
+  profitLoss: number;
+  profitLossRate: number;
 }
 
 interface BotTransactionQuantity {
-  money: number;
-  rate: number;
+  totalPrice: number;
+  volume: number;
 }
 
 interface BotTransactionPrice {
-  money: number;
-  contents: string;
+  startBalance: number;
+  presetName: string;
 }
 
 // profit
@@ -103,3 +105,8 @@ interface RealtimeTransaction {
 // subscribe
 type SubscribeType = "free" | "promotion" | "allinone";
 type SubscribeMonth = 1 | 3;
+
+interface SelectItem {
+  label: string;
+  value: string | number;
+}
