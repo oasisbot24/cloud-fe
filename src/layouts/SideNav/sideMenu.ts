@@ -36,6 +36,7 @@ const sideMenu: SideMenuType[] = [
   {
     title: "이용",
     detail: [
+      { id: "mypage", name: "마이페이지", path: "/mypage" },
       { id: "subscribe", name: "서비스 구독하기", path: "/subscribe" },
       { id: "notice", name: "공지사항", path: "/notice" },
     ],

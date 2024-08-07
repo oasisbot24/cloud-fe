@@ -12,6 +12,7 @@ const iconSrcFocused = {
   api: "/icons/sidenav/api-on.png",
   exchange: "/icons/sidenav/exchange-on.png",
   preset: "/icons/sidenav/preset-on.png",
+  mypage: "/icons/sidenav/mypage-on.png",
   subscribe: "/icons/sidenav/subscribe-on.png",
   notice: "/icons/sidenav/notice-on.png",
 };
@@ -23,6 +24,7 @@ const iconSrcUnfocused = {
   api: "/icons/sidenav/api-off.png",
   exchange: "/icons/sidenav/exchange-off.png",
   preset: "/icons/sidenav/preset-off.png",
+  mypage: "/icons/sidenav/mypage-off.png",
   subscribe: "/icons/sidenav/subscribe-off.png",
   notice: "/icons/sidenav/notice-off.png",
 };

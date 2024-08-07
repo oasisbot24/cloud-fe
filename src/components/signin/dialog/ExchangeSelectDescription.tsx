@@ -3,7 +3,7 @@ import Icon from "@/components/Icon";
 
 export default function ExchangeSelectDescription() {
   return (
-    <Stack className="bg-neutral-200 gap-4 rounded-2xl items-center px-4 py-6">
+    <Stack className="w-full bg-neutral-200 gap-4 rounded-2xl items-center px-4 py-6">
       <Stack direction="row" className="gap-2">
         <Icon src="/icons/control/info.png" size={16} />
         <Typography variant="300M" className="text-font-1">

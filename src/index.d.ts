@@ -7,6 +7,7 @@ type MenuDetailIdType =
   | "api"
   | "exchange"
   | "preset"
+  | "mypage"
   | "subscribe"
   | "notice";
 
@@ -52,9 +53,8 @@ interface BotTransaction {
   profit: BotTransactionProfit;
   tradeTime: string;
   status: string;
-  quantity:BotTransactionQuantity;
-  price:BotTransactionPrice
-
+  quantity: BotTransactionQuantity;
+  price: BotTransactionPrice;
 }
 
 interface BotTransactionProfit {
@@ -71,7 +71,6 @@ interface BotTransactionPrice {
   startBalance: number;
   presetName: string;
 }
-
 
 // profit
 interface ProfitRank {
@@ -102,6 +101,10 @@ interface RealtimeTransaction {
     date: string;
   };
 }
+
+// subscribe
+type SubscribeType = "free" | "promotion" | "allinone";
+type SubscribeMonth = 1 | 3;
 
 interface SelectItem {
   label: string;

@@ -2,8 +2,8 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useAtom } from "jotai";
 import { jwtDecode } from "jwt-decode";
-import { postAgreement } from "@/apis/signin/agreement";
-import { signinAccessToken, signinCredential } from "@/apis/signin/signin";
+import { postAgreement } from "@/apis/user/agreement";
+import { signinAccessToken, signinCredential } from "@/apis/user/signin";
 import authAtom, { Auth } from "@/datas/auth";
 
 async function getUserInfo(accesstoken: string): Promise<Auth> {
