@@ -2,7 +2,6 @@ import { CardContent, Stack, Typography } from "@mui/material";
 import Card from "@/cards/Card";
 import CardButton from "@/cards/CardButton";
 import Icon from "@/components/Icon/index";
-import CardButton from "../CardButton";
 import CardFooter from "../CardFooter";
 import CardHeader from "../CardHeader";
 import SliderGraph from "./SliderGraph";
