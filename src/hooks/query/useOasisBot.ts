@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAtom } from "jotai";
 import { botStart, botStop, getBot } from "@/apis/oasisbot/bot";
 import { getCoin } from "@/apis/oasisbot/coin";
-import { getTransaction } from "@/apis/oasisbot/getTransaction";
+import { getTransaction } from "@/apis/oasisbot/transaction";
 import exchangeAtom from "@/datas/exchange";
 
 export function useBot() {
