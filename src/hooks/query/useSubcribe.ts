@@ -7,12 +7,12 @@ import {
 } from "@/apis/subscribe/subscribe";
 
 export function useSubscribeQuery() {
-  const subscribeQyery = useQuery({
+  const subscribeQuery = useQuery({
     queryKey: ["getSubscribe"],
     queryFn: () => getSubscribe(),
   });
   return {
-    subscribeQyery,
+    subscribeQuery,
   };
 }
 
