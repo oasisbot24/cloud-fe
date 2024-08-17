@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { ButtonBase, Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
 import { subscribeMonthAtom } from "@/datas/subscribe";
+import { useSubscribeMutation } from "@/hooks/query/useSubcribe";
 import useModalGlobal from "@/hooks/useModalGlobal";
 import SubscribeTitleMonthButton from "../../SubscribeTitleCard/SubscribeTitleMonthButton";
 import { paymentData, subcribeTitleData } from "../SubscribeTableData";
@@ -16,6 +17,27 @@ export default function SubscribeModal({ type }: SubscribeModalProps) {
   const { push } = useRouter();
   const [month] = useAtom(subscribeMonthAtom);
   const { closeModal } = useModalGlobal();
+  const { postSubscribeMutation, deleteSubscribeMutation } =
+    useSubscribeMutation();
+
+  const handleClick = () => {
+    deleteSubscribeMutation.mutateAsync(1).finally(() => {
+      postSubscribeMutation.mutate(
+        { productId: 1 },
+        {
+          onSuccess: () => {
+            push("/mypage");
+            closeModal();
+          },
+          onError: () => {
+            push(`/payment?type=${type}&month=${month}`);
+            closeModal();
+          },
+        },
+      );
+    });
+  };
+
   return (
     <Stack className="rounded-[28px] bg-white">
       <Image src={modalImage.src} alt="modalimage" width={410} height={208} />
@@ -43,9 +65,7 @@ export default function SubscribeModal({ type }: SubscribeModalProps) {
           </ButtonBase>
           <ButtonBase
             className="w-full rounded-full bg-brand py-3"
-            onClick={() =>
-              push(`/subscribe/payment?type=${type}&month=${month}`)
-            }
+            onClick={handleClick}
           >
             <Typography variant="300B" className="text-white">
               확인

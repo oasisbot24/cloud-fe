@@ -5,7 +5,7 @@ import {
   postPaymentMethod,
 } from "@/apis/payment/payment";
 
-export function usePaymentMethod() {
+export function usePaymentMethodQuery() {
   const paymentMethodQuery = useQuery({
     queryKey: ["getPaymentMethod"],
     queryFn: () => getPaymentMethod(),
