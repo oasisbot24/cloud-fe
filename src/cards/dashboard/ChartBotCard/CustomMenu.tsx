@@ -1,12 +1,17 @@
 import Image from "next/image";
 import { Stack, Typography } from "@mui/material";
 
-export default function CustomMenu() {
+interface Props {
+  id: number;
+  setMenuId: React.Dispatch<React.SetStateAction<number>>;
+}
+export default function CustomMenu({ id, setMenuId }: Props) {
   return (
     <Stack
       direction="row"
       justifyContent="center"
       alignItems="center"
+      onClick={() => setMenuId(id)}
       sx={{
         bgcolor: "white",
         width: "auto",
@@ -17,6 +22,9 @@ export default function CustomMenu() {
         borderStyle: "solid",
         borderWidth: 1,
         cursor: "pointer",
+        "&:hover": {
+          backgroundColor: "#898FC3", // Hover 시 배경색 변경
+        },
       }}
     >
       <Stack direction="row" alignItems="center" spacing={2} sx={{ width: 1 }}>

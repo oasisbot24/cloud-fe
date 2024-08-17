@@ -1,5 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 import Icon from "@/components/Icon";
+import DashboardIcon from "@/components/Icon/DashboardIcon";
 
 function PLchip({ pl }: { pl: number }) {
   const backgroundColor = pl > 0 ? "#FDE0E0" : "#D1D6F9";
@@ -29,13 +30,16 @@ function PLchip({ pl }: { pl: number }) {
 export default function PanelDescription() {
   return (
     <Stack direction="row" className="w-full justify-between items-center">
-      <Stack className="gap-2">
-        <Typography variant="300B" className="text-[#FFFFFF]">
-          종합
-        </Typography>
-        <Typography variant="200R" className="text-[#FFFFFF]">
-          ALL
-        </Typography>
+      <Stack direction="row" spacing={1}>
+        <DashboardIcon id="bar-graph" />
+        <Stack className="gap-2">
+          <Typography variant="300B" className="text-[#FFFFFF]">
+            종합
+          </Typography>
+          <Typography variant="200R" className="text-[#FFFFFF]">
+            ALL
+          </Typography>
+        </Stack>
       </Stack>
       <Stack className="gap-1 items-end">
         <Typography

@@ -17,6 +17,7 @@ function BotTransactionCard() {
         sx={{ paddingTop: "0", maxHeight: "290px", overflow: "auto" }}
       >
         <DataGrid
+          loading={isLoading}
           columns={OasisBotTransactionCompactColumns}
           rows={OasisBotTransactionCompactMockRows ?? []}
           hideFooter
