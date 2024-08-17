@@ -1,15 +1,17 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useAtom } from "jotai";
-import { botStart, botStop, getBot } from "@/apis/oasisbot/bot";
+import { useAtom, useAtomValue } from "jotai";
+import { BotStartType, botStart, botStop, getBot } from "@/apis/oasisbot/bot";
 import { getCoin } from "@/apis/oasisbot/coin";
 import { getTransaction } from "@/apis/oasisbot/getTransaction";
 import exchangeAtom from "@/datas/exchange";
 
 export function useBot() {
   const queryClient = useQueryClient();
+  const exchange = useAtomValue(exchangeAtom);
+
   const startBotMutation = useMutation({
-    mutationFn: botStart,
-    mutationKey: ["startBot"],
+    mutationFn: (data: BotStartType) => botStart(data, exchange),
+    mutationKey: ["startBot", exchange],
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["getBot"] });
     },
