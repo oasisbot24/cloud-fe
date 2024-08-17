@@ -34,8 +34,8 @@ export function useBot() {
 export function useBotQuery() {
   const [exchange] = useAtom(exchangeAtom);
   const botQuery = useQuery({
-    queryKey: ["getBot", exchange],
-    queryFn: () => getBot(exchange),
+    queryKey: ["getBot", exchange || "all"],
+    queryFn: () => getBot(exchange || "all"),
     refetchOnMount: false,
   });
 

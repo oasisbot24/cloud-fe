@@ -104,6 +104,7 @@ function OasisBotRunCard() {
             type="number"
             value={startBalance}
             setValue={setStartBalance}
+            readOnly
           />
           <FormSelect
             id="presets"
@@ -121,12 +122,6 @@ function OasisBotRunCard() {
             value={selectedTradeItem}
             setValue={setSelectedTradeItem}
           />
-          {/* <FormTextField
-            id="leverage"
-            label="현재 설정 레버리지"
-            placeholder="레버리지 고정값"
-            readOnly
-          /> */}
           <Stack className="w-full">
             <InputLabel htmlFor="leverage">
               <Image
