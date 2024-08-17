@@ -5,16 +5,26 @@ import DashboardIcon from "@/components/Icon/DashboardIcon";
 import CustomMenu from "./CustomMenu";
 import PanelDescription from "./PanelDescription";
 
-export default function Panel() {
+interface Props {
+  setMenuId: React.Dispatch<React.SetStateAction<number>>;
+  chartLen: number;
+}
+export default function Panel({ setMenuId, chartLen }: Props) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const open = Boolean(anchorEl);
+  const listItem = [];
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  for (let index = 0; index < chartLen; index++) {
+    listItem.push(<CustomMenu id={index} setMenuId={setMenuId} />);
+  }
+
   return (
     <Box width={1}>
       <Stack
@@ -22,7 +32,6 @@ export default function Panel() {
         className="justify-center items-center bg-[#898FC3] cursor-pointer w-[380px] rounded-xl p-4 gap-2"
         onClick={handleClick}
       >
-        <DashboardIcon id="bar-graph" />
         <PanelDescription />
         <Stack direction="row" spacing={2}>
           <Stack justifyContent="center" alignItems="center">
@@ -34,6 +43,7 @@ export default function Panel() {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
+        onClick={handleClose}
         transitionDuration={0}
         sx={{
           "& .MuiPaper-root": {
@@ -43,8 +53,9 @@ export default function Panel() {
           },
         }}
       >
-        <CustomMenu />
+        <Stack gap={1}>{listItem}</Stack>
       </Menu>
     </Box>
+    //
   );
 }
