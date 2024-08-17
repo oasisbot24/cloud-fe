@@ -5,18 +5,21 @@ interface SubscribeType {
   productName: string;
   expiryDate: string;
 }
-async function getSubscribe(): Promise<SubscribeType[]> {
-  const res = await api.get<ApiResponseType<SubscribeType[]>>("/subscribe");
+async function getSubscribe(): Promise<SubscribeType> {
+  const res = await api.get<ApiResponseType<SubscribeType>>("/subscribe");
   return res.data?.data;
 }
 
 interface SubscribeBody {
   productId: number;
-  promotionCode: string;
+  promotionCode?: string;
 }
 
 async function postSubscribe(body: SubscribeBody): Promise<void> {
-  await api.post<ApiResponseType<void>>("/subscribe", body);
+  await api.post<ApiResponseType<void>>("/subscribe", {
+    ...body,
+    promotionCode: body.promotionCode || "",
+  });
 }
 
 async function deleteSubscribe(id: number): Promise<void> {

@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { InputBase, Stack, Typography } from "@mui/material";
+import { ButtonBase, InputBase, Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
 import Card from "@/cards/Card";
 import ExchangeIcon from "@/components/Icon/ExchangeIcon";
@@ -77,11 +77,16 @@ export default function MypageCard() {
               className="w-full h-full items-center justify-between"
             >
               <Typography variant="200M" className="text-brand">
-                다음 결제일: 2024년 7월 1일
+                다음 결제일: {subscribeData.expiryDate.slice(0, 10)}
               </Typography>
-              <Typography variant="200M" className="text-neutral-600 underline">
-                구독 해지하기
-              </Typography>
+              <ButtonBase onClick={() => {}}>
+                <Typography
+                  variant="200M"
+                  className="text-neutral-600 underline"
+                >
+                  구독 해지하기
+                </Typography>
+              </ButtonBase>
             </Stack>
           )}
         </Stack>
@@ -93,6 +98,9 @@ export default function MypageCard() {
           }}
         >
           <Typography variant="300M" className="text-font-2">
+            {paymentMethodData?.cardNumber
+              ? "**** **** **** "
+              : "카드를 등록해 주세요"}
             {paymentMethodData?.cardNumber}
           </Typography>
         </MypageInfo>
