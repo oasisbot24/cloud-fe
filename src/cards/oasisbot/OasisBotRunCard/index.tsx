@@ -1,5 +1,12 @@
 import { useMemo, useState } from "react";
-import { CardContent, Stack } from "@mui/material";
+import Image from "next/image";
+import {
+  CardContent,
+  InputBase,
+  InputLabel,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { useAtom } from "jotai";
 import { CoinType } from "@/apis/oasisbot/coin";
 import { PresetType } from "@/apis/preset/preset";
@@ -7,12 +14,14 @@ import Card from "@/cards/Card";
 import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
+import LeverageNoticeDialog from "@/cards/TempCard/LeverageNoticeDialog";
 import RoundSelect from "@/components/common/RoundSelect";
 import FormSelect from "@/components/form/FormSelect";
 import FormTextField from "@/components/form/FormTextField";
 import exchangeAtom from "@/datas/exchange";
 import { useBot, useBotInfo } from "@/hooks/query/useOasisBot";
 import { usePresetQuery } from "@/hooks/query/usePreset";
+import useModalGlobal from "@/hooks/useModalGlobal";
 
 function OasisBotRunCard() {
   const [startBalance, setStartBalance] = useState<string>("5000");
@@ -22,6 +31,7 @@ function OasisBotRunCard() {
 
   const [exchange, setExchange] = useAtom<ExchangeType>(exchangeAtom);
 
+  const { openModal, closeModal } = useModalGlobal();
   const { presetQuery } = usePresetQuery();
   const { coinQuery } = useBotInfo();
   const { startBotMutation } = useBot();
@@ -54,6 +64,8 @@ function OasisBotRunCard() {
   );
 
   const runOasisBot = () => {
+    if (!(selectedPreset && selectedTradeItem && Number(startBalance))) return;
+
     const body = {
       botName: "bot1",
       presetId: selectedPreset,
@@ -109,7 +121,42 @@ function OasisBotRunCard() {
             value={selectedTradeItem}
             setValue={setSelectedTradeItem}
           />
-          <FormTextField id="leverage" label="현재 설정 레버리지" />
+          {/* <FormTextField
+            id="leverage"
+            label="현재 설정 레버리지"
+            placeholder="레버리지 고정값"
+            readOnly
+          /> */}
+          <Stack className="w-full">
+            <InputLabel htmlFor="leverage">
+              <Image
+                src="/icons/control/info.png"
+                alt="info"
+                width={12}
+                height={12}
+                className="mr-1"
+              />
+              <Typography
+                variant="100R"
+                className="text-neutral-600 underline hover:cursor-pointer"
+                onClick={() =>
+                  openModal(<LeverageNoticeDialog handleClose={closeModal} />)
+                }
+              >
+                현재 설정 레버리지
+              </Typography>
+            </InputLabel>
+            <InputBase
+              placeholder="레버리지 고정값"
+              fullWidth
+              classes={{
+                input:
+                  "h-[30px] p-0 flex-0 items-center justify-center leading-[16px] text-[14px] border-solid border-b-[1px] border-x-0 border-t-0 border-neutral-300 font-[500] text-font-2",
+                disabled: "cursor-not-allowed bg-neutral-200",
+              }}
+              disabled
+            />
+          </Stack>
         </Stack>
       </CardContent>
       <CardFooter>
