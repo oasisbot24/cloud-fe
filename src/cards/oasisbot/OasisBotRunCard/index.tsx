@@ -14,12 +14,14 @@ import Card from "@/cards/Card";
 import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
+import LeverageNoticeDialog from "@/cards/TempCard/LeverageNoticeDialog";
 import RoundSelect from "@/components/common/RoundSelect";
 import FormSelect from "@/components/form/FormSelect";
 import FormTextField from "@/components/form/FormTextField";
 import exchangeAtom from "@/datas/exchange";
 import { useBot, useBotInfo } from "@/hooks/query/useOasisBot";
 import { usePresetQuery } from "@/hooks/query/usePreset";
+import useModalGlobal from "@/hooks/useModalGlobal";
 
 function OasisBotRunCard() {
   const [startBalance, setStartBalance] = useState<string>("5000");
@@ -29,6 +31,7 @@ function OasisBotRunCard() {
 
   const [exchange, setExchange] = useAtom<ExchangeType>(exchangeAtom);
 
+  const { openModal, closeModal } = useModalGlobal();
   const { presetQuery } = usePresetQuery();
   const { coinQuery } = useBotInfo();
   const { startBotMutation } = useBot();
@@ -136,6 +139,9 @@ function OasisBotRunCard() {
               <Typography
                 variant="100R"
                 className="text-neutral-600 underline hover:cursor-pointer"
+                onClick={() =>
+                  openModal(<LeverageNoticeDialog handleClose={closeModal} />)
+                }
               >
                 현재 설정 레버리지
               </Typography>
