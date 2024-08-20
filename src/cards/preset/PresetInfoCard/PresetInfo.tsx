@@ -11,27 +11,27 @@ export default function PresetInfo() {
       <FormSelect
         id="name"
         label="설정 보조지표"
-        items={[{ label: "프리셋1", value: "preset1" }]}
-        value={preset.indicator}
+        items={[]}
+        value={preset?.indicatorName}
         disabled
       />
       <FormSelect
         id="indicator"
         label="진입 포지션"
         items={[]}
-        value={preset.position}
+        value={preset?.position}
         disabled
       />
       <FormTextField
         id="profitRate"
         label="익절률"
-        value={preset.profitRate}
+        value={preset?.profitCutRate}
         disabled
       />
       <FormTextField
         id="lossRate"
         label="손절률"
-        value={preset.lossRate}
+        value={preset?.lossCutRate}
         disabled
       />
     </Stack>
