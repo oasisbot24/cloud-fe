@@ -1,5 +1,5 @@
 import { Avatar, Stack, Typography } from "@mui/material";
-import GeneralInfo from "@/cards/PresetInfoCard/GeneralInfo";
+import GeneralInfo from "@/cards/preset/PresetInfoCard/GeneralInfo";
 
 export default function UserInfo() {
   return (

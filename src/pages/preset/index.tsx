@@ -1,9 +1,9 @@
 import { Box, Stack } from "@mui/material";
-import PresetIndicatorInfoCard from "@/cards/PresetIndicatorInfoCard/index";
-import PresetInfoCard from "@/cards/PresetInfoCard/index";
-import PresetSettingCard from "@/cards/PresetSettingCard/index";
-import PresetWeightInfoCard from "@/cards/PresetWeightInfoCard/index";
-import PresetWeightSettingCard from "@/cards/PresetWeightSettingCard/index";
+import PresetIndicatorInfoCard from "@/cards/preset/PresetIndicatorInfoCard/index";
+import PresetInfoCard from "@/cards/preset/PresetInfoCard/index";
+import PresetSettingCard from "@/cards/preset/PresetSettingCard/index";
+import PresetWeightInfoCard from "@/cards/preset/PresetWeightInfoCard/index";
+import PresetWeightSettingCard from "@/cards/preset/PresetWeightSettingCard/index";
 import Carousel from "@/layouts/Carousel/index";
 import Layout from "@/layouts/Layout";
 

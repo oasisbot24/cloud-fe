@@ -3,7 +3,7 @@ import Card from "@/cards/Card";
 import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
-import PresetSetting from "@/cards/PresetSettingCard/PresetSetting";
+import PresetSetting from "@/cards/preset/PresetSettingCard/PresetSetting";
 
 export default function PresetSettingCard() {
   return (

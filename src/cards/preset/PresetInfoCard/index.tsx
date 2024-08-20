@@ -3,8 +3,8 @@ import Card from "@/cards/Card";
 import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
-import PresetInfo from "@/cards/PresetInfoCard/PresetInfo";
-import UserInfo from "@/cards/PresetInfoCard/UserInfo";
+import PresetInfo from "@/cards/preset/PresetInfoCard/PresetInfo";
+import UserInfo from "@/cards/preset/PresetInfoCard/UserInfo";
 import RoundSelect from "@/components/common/RoundSelect";
 
 export default function PresetInfoCard() {
