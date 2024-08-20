@@ -3,6 +3,7 @@ import {
   InputBase,
   InputBaseProps,
   InputLabel,
+  InputLabelProps,
   Stack,
   Typography,
 } from "@mui/material";
@@ -12,20 +13,19 @@ interface FormTextFieldProps {
   label?: string;
   type?: string;
   setValue?: Dispatch<SetStateAction<string>>;
+  inputLabelProps?: InputLabelProps;
 }
 
 function FormTextField(
   props: FormTextFieldProps & Omit<InputBaseProps, "variant">,
 ) {
-  const { id, label, className, setValue } = props;
+  const { id, label, className, setValue, inputLabelProps } = props;
 
   return (
     <Stack className={`w-full ${className}`}>
       {label && (
-        <InputLabel htmlFor={id}>
-          <Typography variant="100R" className="text-neutral-600">
-            {label}
-          </Typography>
+        <InputLabel htmlFor={id} {...inputLabelProps}>
+          <Typography variant="100R">{label}</Typography>
         </InputLabel>
       )}
       <InputBase
