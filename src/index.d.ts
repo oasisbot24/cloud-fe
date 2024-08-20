@@ -30,7 +30,7 @@ type DashboardIdType =
 type SocialType = "linkedin" | "facebook" | "naver" | "kakao";
 
 // exchange
-type ExchangeType = "all" | "okx" | "upbit";
+type ExchangeType = "okx" | "upbit";
 
 // apis
 interface ApiResponseType<T> {
