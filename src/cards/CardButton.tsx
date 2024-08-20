@@ -14,7 +14,7 @@ function CardButton({
 }: CardButtonProps) {
   return (
     <Button
-      className={`w-full flex m-0 p-3 rounded-none ${className}`}
+      className={`w-full flex mx-4 my-3 p-3 rounded-none ${className}`}
       onClick={onClick}
     >
       <Typography

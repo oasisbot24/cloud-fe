@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import {
   CardContent,
+  InputAdornment,
   InputBase,
   InputLabel,
   Stack,
@@ -28,8 +29,10 @@ function OasisBotRunCard() {
   const [selectedMarket, setSelectedMarket] = useState<string>("");
   const [selectedPreset, setSelectedPreset] = useState<number>(0);
   const [selectedTradeItem, setSelectedTradeItem] = useState<number>(0);
+  const [selectedDistribution, setSelectedDistribution] = useState<number>(0);
+  const number = 1000000000; // temp
 
-  const [exchange, setExchange] = useAtom<ExchangeType>(exchangeAtom);
+  const [exchange, setExchange] = useAtom(exchangeAtom);
 
   const { openModal, closeModal } = useModalGlobal();
   const { presetQuery } = usePresetQuery();
@@ -63,6 +66,16 @@ function OasisBotRunCard() {
     [selectedMarket, coinQuery.data],
   );
 
+  const distributionList = [
+    // temp
+    { label: "1분봉", value: "1" },
+    { label: "3분봉", value: "3" },
+    { label: "5분봉", value: "5" },
+    { label: "15분봉", value: "15" },
+    { label: "30분봉", value: "30" },
+    { label: "1시간봉", value: "60" },
+  ];
+
   const runOasisBot = () => {
     if (!(selectedPreset && selectedTradeItem && Number(startBalance))) return;
 
@@ -82,7 +95,7 @@ function OasisBotRunCard() {
       <CardHeader
         id="bot-start"
         title="오아시스 BOT 실행"
-        subtitle="거래소를 선택해주세요."
+        subtitle={`주문가능 금액\n${exchange === "upbit" ? "￦" : "$"}${number.toLocaleString()}`}
         action={
           <RoundSelect
             label="거래소 선택"
@@ -97,14 +110,17 @@ function OasisBotRunCard() {
       />
       <CardContent>
         <Stack className="gap-2">
-          <FormTextField id="budget" label="주문가능 금액" />
           <FormTextField
             id="transactionAmount"
-            label="거래금액을 입력 (최소 ₩5,000)"
+            label={`거래금액을 입력해 주세요 (최소 ${exchange === "upbit" ? "₩5,000" : "$50"})`}
             type="number"
             value={startBalance}
             setValue={setStartBalance}
-            readOnly
+            startAdornment={
+              <InputAdornment position="start">
+                {exchange === "upbit" ? "￦" : "$"}
+              </InputAdornment>
+            }
           />
           <FormSelect
             id="presets"
@@ -121,6 +137,14 @@ function OasisBotRunCard() {
             items={coinList}
             value={selectedTradeItem}
             setValue={setSelectedTradeItem}
+          />
+          <FormSelect
+            id="tradeItem"
+            label="기준 분봉"
+            variant="standard"
+            items={distributionList}
+            value={selectedDistribution}
+            setValue={setSelectedDistribution}
           />
           <Stack className="w-full">
             <InputLabel htmlFor="leverage">
@@ -142,27 +166,27 @@ function OasisBotRunCard() {
               </Typography>
             </InputLabel>
             <InputBase
-              placeholder="레버리지 고정값"
+              placeholder={`${exchange === "upbit" ? "업비트 거래소는 레버리지 설정 불가" : "레버리지 고정값"}`}
               fullWidth
               classes={{
                 input:
                   "h-[30px] p-0 flex-0 items-center justify-center leading-[16px] text-[14px] border-solid border-b-[1px] border-x-0 border-t-0 border-neutral-300 font-[500] text-font-2",
-                disabled: "cursor-not-allowed bg-neutral-200",
+                disabled: "cursor-not-allowed bg-neutral-200 text-neutral-600",
               }}
               disabled
             />
           </Stack>
         </Stack>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="bottom-2">
         <CardButton
           text="초기화"
-          className="text-white bg-neutral-700"
+          className="mr-1 text-white bg-neutral-700"
           onClick={onReset}
         />
         <CardButton
           text="저장 및 실행"
-          className="text-white bg-brand"
+          className="ml-1 text-white bg-brand"
           onClick={runOasisBot}
         />
       </CardFooter>

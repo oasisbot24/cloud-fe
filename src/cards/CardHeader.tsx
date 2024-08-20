@@ -36,7 +36,7 @@ export default function CardHeader({
           </Typography>
           <Typography
             variant="100R"
-            className={!isDark ? "text-neutral-500" : "text-neutral-300"}
+            className={`whitespace-pre-wrap ${!isDark ? "text-neutral-500" : "text-neutral-300"}`}
           >
             {subtitle ?? `오늘 ${hm} 기준`}
           </Typography>
