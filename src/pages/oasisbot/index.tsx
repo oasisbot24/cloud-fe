@@ -1,5 +1,5 @@
 import { Box, Stack } from "@mui/material";
-import RealtimeTransactionCard from "@/cards/RealtimeTransactionCard";
+import RealtimeTransactionCard from "@/cards/.depreciated/RealtimeTransactionCard";
 import OasisBotListCard from "@/cards/oasisbot/OasisBotListCard";
 import OasisBotRunCard from "@/cards/oasisbot/OasisBotRunCard";
 import OasisBotTransactionCard from "@/cards/oasisbot/OasisBotTransactionCard";
