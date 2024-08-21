@@ -8,12 +8,13 @@ import PresetInfo from "@/cards/preset/PresetInfoCard/PresetInfo";
 import UserInfo from "@/cards/preset/PresetInfoCard/UserInfo";
 import RoundSelect from "@/components/common/RoundSelect";
 import presetAtom from "@/datas/preset";
-import { usePresetQuery } from "@/hooks/query/usePreset";
+import { usePresetMutation, usePresetQuery } from "@/hooks/query/usePreset";
 
 export default function PresetInfoCard() {
   const {
     presetQuery: { data: presetData },
   } = usePresetQuery();
+  const { deletePresetMutation } = usePresetMutation();
   const [preset, setPreset] = useAtom(presetAtom);
 
   return (
@@ -25,17 +26,17 @@ export default function PresetInfoCard() {
       <CardHeader
         id="setting"
         title="프리셋"
-        subtitle="거래소를 선택해주세요."
+        subtitle={preset ? preset.presetName : "거래소를 선택해주세요."}
         action={
           <RoundSelect
-            items={[
-              ...(presetData?.map(({ presetName }) => ({
+            label="프리셋선택"
+            items={
+              presetData?.map(({ presetName }) => ({
                 label: presetName,
                 value: presetName,
-              })) || []),
-              { label: "프리셋추가", value: "add" },
-            ]}
-            value={preset?.presetName || "add"}
+              })) ?? []
+            }
+            value={preset?.presetName ?? ""}
             onChange={value =>
               setPreset(presetData?.find(p => p.presetName === value) ?? null)
             }
@@ -49,10 +50,15 @@ export default function PresetInfoCard() {
         <CardButton
           text="삭제"
           className="text-white bg-sub-3"
-          onClick={() => console.log("삭제")}
+          onClick={() => {
+            if (preset) {
+              deletePresetMutation.mutate(preset?.id);
+              setPreset(null);
+            }
+          }}
         />
         <CardButton
-          text="수정"
+          text="프리셋 추가"
           className="text-white bg-neutral-700"
           onClick={() => console.log("수정")}
         />
