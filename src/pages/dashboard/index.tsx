@@ -1,7 +1,7 @@
 import { Box, Stack } from "@mui/material";
-import BotTransactionCard from "@/cards/BotTransactionCard";
 import AdvertisementCard from "@/cards/dashboard/AdvertisementCard";
 import AssetStatusCard from "@/cards/dashboard/AssetStatusCard";
+import BotTransactionCard from "@/cards/dashboard/BotTransactionCard";
 import CircleChartCard from "@/cards/dashboard/ChartAssetCard/index";
 import ChartCard from "@/cards/dashboard/ChartBotCard";
 import ProfitRankCard from "@/cards/dashboard/ProfitRankCard";

@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   PresetBody,
   deletePreset,
@@ -9,7 +9,7 @@ import {
 
 export function usePresetQuery() {
   const presetQuery = useQuery({
-    queryKey: ["preset"],
+    queryKey: ["getPreset"],
     queryFn: () => getPreset(),
   });
 
@@ -19,18 +19,28 @@ export function usePresetQuery() {
 }
 
 export function usePresetMutation() {
+  const queryClient = useQueryClient();
   const postPresetMutation = useMutation({
     mutationFn: postPreset,
     mutationKey: ["postPreset"],
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["getPreset"] });
+    },
   });
   const putPresetMutation = useMutation({
     mutationFn: ({ id, body }: { id: number; body: PresetBody }) =>
       putPreset(id, body),
     mutationKey: ["putPreset"],
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["getPreset"] });
+    },
   });
   const deletePresetMutation = useMutation({
     mutationFn: deletePreset,
     mutationKey: ["delete"],
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["getPreset"] });
+    },
   });
   return {
     postPresetMutation,

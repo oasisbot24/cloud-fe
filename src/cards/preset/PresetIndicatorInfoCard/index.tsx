@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { CardContent, Stack } from "@mui/material";
 import Card from "@/cards/Card";
-import CardHeader from "../CardHeader";
+import CardHeader from "../../CardHeader";
 import Chart from "./Chart.png";
 import Description from "./Description";
 

@@ -1,16 +1,27 @@
 import { Stack, Typography } from "@mui/material";
+import { useAtom } from "jotai";
+import exchangeAtom from "@/datas/exchange";
+import { useInfoTradeStyle } from "@/hooks/query/useInfo";
+import { useSubscribeQuery } from "@/hooks/query/useSubcribe";
 
 interface GeneralInfoProps {
-  type: "exchange" | "balance" | "time";
+  type: "exchange" | "balance" | "subscribe";
 }
 
 const label = {
   exchange: "접속거래소",
   balance: "잔고",
-  time: "사용시간",
+  subscribe: "구독권",
 };
 
 export default function GeneralInfo({ type }: GeneralInfoProps) {
+  const {
+    subscribeQuery: { data: subscribeData },
+  } = useSubscribeQuery();
+  const {
+    tradeStyleQuery: { data: tradeStyleData },
+  } = useInfoTradeStyle();
+  const [exchange] = useAtom(exchangeAtom);
   return (
     <Stack
       direction="row"
@@ -25,10 +36,10 @@ export default function GeneralInfo({ type }: GeneralInfoProps) {
       >
         <Typography variant="200M" className="text-font-2">
           {type === "exchange"
-            ? "Binance"
+            ? exchange.toUpperCase()
             : type === "balance"
-              ? "₩0"
-              : "00:00:00"}
+              ? tradeStyleData?.accountBalance || "0"
+              : subscribeData?.productName || "Free"}
         </Typography>
       </Stack>
     </Stack>
