@@ -9,14 +9,14 @@ import {
   Typography,
 } from "@mui/material";
 
-interface FormSelectProps {
+interface FormSelectProps<T> {
   id: string;
   label?: string;
   items: SelectItem[];
-  setValue: Dispatch<SetStateAction<string | number>>;
+  setValue?: Dispatch<SetStateAction<T>>;
 }
 
-function FormSelect(props: FormSelectProps & SelectProps<string | number>) {
+function FormSelect<T>(props: FormSelectProps<T> & SelectProps<T>) {
   const { id, label, items, className, setValue } = props;
   return (
     <Stack className={`w-full ${className}`}>
@@ -38,8 +38,9 @@ function FormSelect(props: FormSelectProps & SelectProps<string | number>) {
         }}
         IconComponent={KeyboardArrowDownIcon}
         onChange={e => {
-          const val = e.target.value;
-          setValue(typeof val === "number" ? Number(val) : val);
+          const v = e.target.value;
+          const val: T = typeof v === "number" ? (Number(v) as T) : (v as T);
+          setValue && setValue(val);
         }}
       >
         {items.map(item => (

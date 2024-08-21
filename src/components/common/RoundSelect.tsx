@@ -32,6 +32,9 @@ function RoundSelect({ label, items, value, onChange }: Props) {
         },
       }}
       sx={{ borderRadius: "30px" }}
+      classes={{
+        root: "p-0",
+      }}
     >
       {label && <MenuItem value="">{label}</MenuItem>}
       {items.map(item => (

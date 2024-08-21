@@ -15,7 +15,6 @@ import Card from "@/cards/Card";
 import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
-import LeverageNoticeDialog from "@/cards/TempCard/LeverageNoticeDialog";
 import RoundSelect from "@/components/common/RoundSelect";
 import FormSelect from "@/components/form/FormSelect";
 import FormTextField from "@/components/form/FormTextField";
@@ -23,6 +22,7 @@ import exchangeAtom from "@/datas/exchange";
 import { useBot, useBotInfo } from "@/hooks/query/useOasisBot";
 import { usePresetQuery } from "@/hooks/query/usePreset";
 import useModalGlobal from "@/hooks/useModalGlobal";
+import LeverageNoticeDialog from "./LeverageNoticeDialog";
 
 function OasisBotRunCard() {
   const [startBalance, setStartBalance] = useState<string>("5000");

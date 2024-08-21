@@ -1,6 +1,5 @@
 import { Stack } from "@mui/material";
 import { useAtom } from "jotai";
-import FormSelect from "@/components/form/FormSelect";
 import FormTextField from "@/components/form/FormTextField";
 import presetAtom from "@/datas/preset";
 
@@ -8,31 +7,29 @@ export default function PresetInfo() {
   const [preset] = useAtom(presetAtom);
   return (
     <Stack className="w-full items-center gap-4">
-      <FormSelect
+      <FormTextField
         id="name"
         label="설정 보조지표"
-        items={[{ label: "프리셋1", value: "preset1" }]}
-        value={preset.indicator}
-        disabled
+        value={preset?.indicatorName ?? ""}
+        readOnly
       />
-      <FormSelect
+      <FormTextField
         id="indicator"
         label="진입 포지션"
-        items={[]}
-        value={preset.position}
-        disabled
+        value={preset?.position ?? ""}
+        readOnly
       />
       <FormTextField
         id="profitRate"
         label="익절률"
-        value={preset.profitRate}
-        disabled
+        value={preset?.profitCutRate ?? ""}
+        readOnly
       />
       <FormTextField
         id="lossRate"
         label="손절률"
-        value={preset.lossRate}
-        disabled
+        value={preset?.lossCutRate ?? ""}
+        readOnly
       />
     </Stack>
   );

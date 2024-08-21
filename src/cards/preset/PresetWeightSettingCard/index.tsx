@@ -3,8 +3,8 @@ import Card from "@/cards/Card";
 import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
-import SliderGraph from "@/cards/PresetWeightSettingCard/SliderGraph";
 import Icon from "@/components/Icon/index";
+import SliderGraph from "./SliderGraph";
 
 function PresetWeightSettingCard() {
   return (
