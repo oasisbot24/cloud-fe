@@ -3,11 +3,13 @@ import { DataGrid } from "@mui/x-data-grid";
 import Card from "@/cards/Card";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
-import OasisBotTransactionCompactColumns, {
-  OasisBotTransactionCompactMockRows,
-} from "@/components/table/OasisBotTransactionCompactColumns";
+import OasisBotTransactionCompactColumns from "@/components/table/OasisBotTransactionCompactColumns";
+import { useBotInfo } from "@/hooks/query/useOasisBot";
 
 function BotTransactionCard() {
+  const { transactionQuery } = useBotInfo();
+  const { isLoading, data: OasisBotTransactionCompactMockRows } =
+    transactionQuery;
   return (
     <Card>
       <CardHeader id="history" title="오아시스 BOT 실시간 거래내역" />
@@ -15,8 +17,9 @@ function BotTransactionCard() {
         sx={{ paddingTop: "0", maxHeight: "290px", overflow: "auto" }}
       >
         <DataGrid
+          loading={isLoading}
           columns={OasisBotTransactionCompactColumns}
-          rows={OasisBotTransactionCompactMockRows}
+          rows={OasisBotTransactionCompactMockRows ?? []}
           hideFooter
           sx={{ border: "none" }}
         />

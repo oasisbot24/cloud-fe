@@ -1,24 +1,36 @@
 import dynamic from "next/dynamic";
 
-export default function CustomChart() {
+interface ChartData {
+  date: string[];
+  price: number[];
+  rate: number[];
+}
+export default function CustomChart({ date, price, rate }: ChartData) {
   const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
   const state = {
     options: {
       xaxis: {
-        // labels: {
-        //   style: {
-        //     colors: "#B0B3B7",
-        //   },
-        // },
-        categories: [
-          "00:00:00",
-          "01:30:00",
-          "02:30:00",
-          "03:30:00",
-          "04:30:00",
-          "05:30:00",
-          "06:30:00",
-        ],
+        categories: date,
+      },
+      tooltip: {
+        custom: function ({ series, seriesIndex, dataPointIndex, w }: any) {
+          const value = series[seriesIndex][dataPointIndex];
+          const percentageChange = rate[dataPointIndex];
+          const percentagebgColor =
+            percentageChange > 0 ? "#FDE0E0" : "#DCE1FF"; // 색상 조건부 변경
+          const percentageColor = percentageChange > 0 ? "#F46565" : "#223CE9";
+          const arrow = percentageChange > 0 ? "up" : "down";
+
+          return `<div style="background-color: #fff; padding: 10px; border-radius: 5px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
+                    <div style="font-size: 14px; color: #404040; font-weight: 700; line-height:16px;">$${value.toLocaleString()}</div>
+                    <div style="margin-top: 5px; font-size: 14px; font-weight: 700; line-height:16px;">
+                      <span style="background-color: ${percentagebgColor}; color: ${percentageColor}; padding: 3px 7px; border-radius: 10px; display:flex; justify-content: space-between;  align-items: center;">
+                      <img src="/icons/arrow/profitloss/${arrow}-small.png" style="width: 20px; height: 18px;" alt="icon" />
+                        ${Math.abs(percentageChange)}%
+                      </span>
+                    </div>
+                  </div>`;
+        },
       },
       colors: ["#4379EE"],
       stroke: {
@@ -42,17 +54,9 @@ export default function CustomChart() {
     },
     series: [
       {
-        data: [31, 40, 28, 51, 42, 50, 100],
+        data: price,
       },
     ],
-
-    // yaxis: {
-    //   labels: {
-    //     style: {
-    //       colors: "#111",
-    //     },
-    //   },
-    // },
   };
   return (
     <Chart

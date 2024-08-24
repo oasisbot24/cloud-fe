@@ -25,9 +25,9 @@ const OasisBotTransactionCompactColumns: GridColDef[] = [
     ),
   },
   {
-    field: "item",
+    field: "coinName",
     headerName: "종목",
-    flex: 1,
+    flex: 0.7,
     headerClassName: "text-slate-500",
     renderCell: (params: GridRenderCellParams<GridValidRowModel, string>) => (
       <div className="whitespace-normal">{params.value}</div>
@@ -94,60 +94,4 @@ const OasisBotTransactionCompactColumns: GridColDef[] = [
   },
 ];
 
-const OasisBotTransactionCompactMockRows = [
-  {
-    id: 1,
-    market: "upbit",
-    item: "STARXEA USDT",
-    profit: {
-      profitLoss: 1000000000,
-      profitLossRate: 11,
-    },
-    tradeTime: "2024.03.29 15:03",
-    status: "sell",
-  },
-  {
-    id: 2,
-    market: "upbit",
-    item: "STARXEA USDT",
-    profit: null,
-    tradeTime: "2024.03.29 15:03",
-    status: "buy",
-  },
-  {
-    id: 3,
-    market: "upbit",
-    item: "STARXEA USDT",
-    profit: {
-      profitLoss: 1000000000,
-      profitLossprofitLossRate: 11,
-    },
-    tradeTime: "2024.03.29 15:03",
-    status: "sell",
-  },
-  {
-    id: 4,
-    market: "upbit",
-    item: "STARXEA USDT",
-    profit: {
-      profitLoss: 1000000000,
-      profitLossRate: 11,
-    },
-    tradeTime: "2024.03.29 15:03",
-    status: "sell",
-  },
-  {
-    id: 5,
-    market: "upbit",
-    item: "STARXEA USDT",
-    profit: {
-      profitLoss: 1000000000,
-      profitLossRate: 11,
-    },
-    tradeTime: "2024.03.29 15:03",
-    status: "sell",
-  },
-];
-
 export default OasisBotTransactionCompactColumns;
-export { OasisBotTransactionCompactMockRows };
