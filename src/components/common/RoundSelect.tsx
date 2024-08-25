@@ -1,27 +1,20 @@
-import React, { Dispatch, SetStateAction } from "react";
-import { MenuItem, Select } from "@mui/material";
+import React from "react";
+import { MenuItem, Select, SelectProps } from "@mui/material";
 
 type SetAtom<Args extends unknown[], Result> = (...args: Args) => Result;
 
-type Props = {
-  label?: string;
-  items: {
-    label: string;
-    value: string;
-  }[];
-  value: string;
-  onChange?:
-    | Dispatch<SetStateAction<string>>
-    | SetAtom<[SetStateAction<string>], void>;
+type RoundSelectProps<T> = {
+  items: SelectItem[];
 };
 
-function RoundSelect({ label, items, value, onChange }: Props) {
+function RoundSelect<T>(props: RoundSelectProps<T> & SelectProps<T>) {
+  const { label, items, value, onChange } = props;
   return (
     <Select
       displayEmpty
       size="small"
       value={value}
-      onChange={e => onChange && onChange(e.target.value)}
+      onChange={onChange}
       inputProps={{
         "aria-label": "Without label",
       }}

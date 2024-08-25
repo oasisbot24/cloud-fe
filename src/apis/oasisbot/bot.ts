@@ -8,8 +8,13 @@ interface BotStartType {
   leverage: number | null;
 }
 
-async function botStart(data: BotStartType): Promise<void> {
-  await api.post<ApiResponseType<void>>("/start_bot", data);
+async function botStart(
+  data: BotStartType,
+  exchange: ExchangeType,
+): Promise<void> {
+  await api.post<ApiResponseType<void>>("/start_bot", data, {
+    params: { exchange },
+  });
 }
 
 async function botStop(id: number): Promise<void> {
