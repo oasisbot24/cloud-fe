@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import {
   CardContent,
@@ -9,8 +9,6 @@ import {
   Typography,
 } from "@mui/material";
 import { useAtom } from "jotai";
-import { CoinType } from "@/apis/oasisbot/coin";
-import { PresetType } from "@/apis/preset/preset";
 import Card from "@/cards/Card";
 import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
@@ -25,11 +23,10 @@ import useModalGlobal from "@/hooks/useModalGlobal";
 import LeverageNoticeDialog from "./LeverageNoticeDialog";
 
 function OasisBotRunCard() {
-  const [startBalance, setStartBalance] = useState<string>("5000");
-  const [selectedMarket, setSelectedMarket] = useState<string>("");
-  const [selectedPreset, setSelectedPreset] = useState<number>(0);
-  const [selectedTradeItem, setSelectedTradeItem] = useState<number>(0);
-  const [selectedDistribution, setSelectedDistribution] = useState<number>(0);
+  const [startBalance, setStartBalance] = useState<number>(5000);
+  const [selectedPreset, setSelectedPreset] = useState<number>(1);
+  const [selectedTradeItem, setSelectedTradeItem] = useState<number>(1);
+  const [selectedDistribution, setSelectedDistribution] = useState<string>(1);
   const number = 1000000000; // temp
 
   const [exchange, setExchange] = useAtom(exchangeAtom);
@@ -41,33 +38,16 @@ function OasisBotRunCard() {
   const { mutate } = startBotMutation;
 
   const onReset = () => {
-    setStartBalance("5000");
-    setSelectedMarket("");
+    setStartBalance(5000);
     setSelectedPreset(0);
     setSelectedTradeItem(0);
   };
 
-  const selectPresetList = (list: PresetType[]): SelectItem[] =>
-    list.map(item => ({ label: item.presetName, value: item.id }));
+  const presetList = (presetQuery.data as SelectItem<number>[]) ?? [];
+  const coinList = (coinQuery.data as SelectItem<number>[]) ?? [];
 
-  const selectCoinList = (list: CoinType[]): SelectItem[] =>
-    list.map(item => ({
-      label: item.coinName,
-      value: item.id,
-    }));
-
-  const presetList = useMemo(
-    () => (presetQuery.data ? selectPresetList(presetQuery.data) : []),
-    [presetQuery.data],
-  );
-
-  const coinList = useMemo(
-    () => (coinQuery.data ? selectCoinList(coinQuery.data) : []),
-    [selectedMarket, coinQuery.data],
-  );
-
+  // temp
   const distributionList = [
-    // temp
     { label: "1분봉", value: "1" },
     { label: "3분봉", value: "3" },
     { label: "5분봉", value: "5" },
@@ -104,7 +84,10 @@ function OasisBotRunCard() {
               { label: "OKX", value: "okx" },
             ]}
             value={exchange}
-            onChange={setExchange}
+            onChange={e => {
+              const selected = e.target.value as ExchangeType;
+              setExchange(selected);
+            }}
           />
         }
       />

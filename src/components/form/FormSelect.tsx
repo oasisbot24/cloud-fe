@@ -10,8 +10,6 @@ import {
 } from "@mui/material";
 
 interface FormSelectProps<T> {
-  id: string;
-  label?: string;
   items: SelectItem[];
   setValue?: Dispatch<SetStateAction<T>>;
 }

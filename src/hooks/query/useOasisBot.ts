@@ -49,6 +49,11 @@ export function useBotInfo() {
   const coinQuery = useQuery({
     queryKey: ["getCoin", exchange],
     queryFn: () => getCoin(exchange),
+    select: data =>
+      data.map(item => ({
+        label: item.coinName,
+        value: item.id,
+      })),
   });
 
   const transactionQuery = useQuery({
