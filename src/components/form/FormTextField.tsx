@@ -44,4 +44,4 @@ function FormTextField<T>(
   );
 }
 
-export default React.memo(FormTextField);
+export default FormTextField;

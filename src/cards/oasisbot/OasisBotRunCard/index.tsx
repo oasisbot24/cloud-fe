@@ -26,7 +26,7 @@ function OasisBotRunCard() {
   const [startBalance, setStartBalance] = useState<number>(5000);
   const [selectedPreset, setSelectedPreset] = useState<number>(1);
   const [selectedTradeItem, setSelectedTradeItem] = useState<number>(1);
-  const [selectedDistribution, setSelectedDistribution] = useState<string>(1);
+  const [selectedDistribution, setSelectedDistribution] = useState<string>("1");
   const number = 1000000000; // temp
 
   const [exchange, setExchange] = useAtom(exchangeAtom);
@@ -43,8 +43,8 @@ function OasisBotRunCard() {
     setSelectedTradeItem(0);
   };
 
-  const presetList = (presetQuery.data as SelectItem<number>[]) ?? [];
-  const coinList = (coinQuery.data as SelectItem<number>[]) ?? [];
+  const presetList = (presetQuery.data as SelectItem[]) ?? [];
+  const coinList = (coinQuery.data as SelectItem[]) ?? [];
 
   // temp
   const distributionList = [
