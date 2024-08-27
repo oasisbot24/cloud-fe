@@ -27,7 +27,7 @@ function OasisBotRunCard() {
   const [startBalance, setStartBalance] = useState<number>(5000);
   const [selectedPreset, setSelectedPreset] = useState<number>(1);
   const [selectedTradeItem, setSelectedTradeItem] = useState<number>(1);
-  const [selectedDistribution, setSelectedDistribution] = useState<string>("1");
+  const [standardMinute, setStandardMinute] = useState<number>(1);
   const number = 1000000000; // temp
 
   const [exchange, setExchange] = useAtom(exchangeAtom);
@@ -48,13 +48,13 @@ function OasisBotRunCard() {
   const coinList = (coinQuery.data as SelectItem[]) ?? [];
 
   // temp
-  const distributionList = [
-    { label: "1분봉", value: "1" },
-    { label: "3분봉", value: "3" },
-    { label: "5분봉", value: "5" },
-    { label: "15분봉", value: "15" },
-    { label: "30분봉", value: "30" },
-    { label: "1시간봉", value: "60" },
+  const standardMinuteList = [
+    { label: "1분봉", value: 1 },
+    { label: "3분봉", value: 3 },
+    { label: "5분봉", value: 5 },
+    { label: "15분봉", value: 15 },
+    { label: "30분봉", value: 30 },
+    { label: "1시간봉", value: 60 },
   ];
 
   const runOasisBot = () => {
@@ -64,6 +64,7 @@ function OasisBotRunCard() {
       botName: "bot1",
       presetId: selectedPreset,
       coinId: selectedTradeItem,
+      standardMinute: Number(standardMinute),
       startBalance: Number(startBalance),
       leverage: null,
     };
@@ -125,9 +126,9 @@ function OasisBotRunCard() {
             label="기준 분봉"
             placeholder="분봉 선택"
             variant="standard"
-            items={distributionList}
-            value={selectedDistribution}
-            setValue={setSelectedDistribution}
+            items={standardMinuteList}
+            value={standardMinute}
+            setValue={setStandardMinute}
           />
           <Stack className="w-full">
             <InputLabel htmlFor="leverage">
