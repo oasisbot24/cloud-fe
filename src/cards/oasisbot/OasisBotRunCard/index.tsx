@@ -2,6 +2,7 @@ import { useState } from "react";
 import Image from "next/image";
 import {
   CardContent,
+  Chip,
   InputAdornment,
   InputBase,
   InputLabel,
@@ -13,13 +14,13 @@ import Card from "@/cards/Card";
 import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
-import RoundSelect from "@/components/common/RoundSelect";
 import FormSelect from "@/components/form/FormSelect";
 import FormTextField from "@/components/form/FormTextField";
 import exchangeAtom from "@/datas/exchange";
 import { useBot, useBotInfo } from "@/hooks/query/useOasisBot";
 import { usePresetQuery } from "@/hooks/query/usePreset";
 import useModalGlobal from "@/hooks/useModalGlobal";
+import { exchangeToKorean } from "@/libs/string";
 import LeverageNoticeDialog from "./LeverageNoticeDialog";
 
 function OasisBotRunCard() {
@@ -77,17 +78,10 @@ function OasisBotRunCard() {
         title="오아시스 BOT 실행"
         subtitle={`주문가능 금액\n${exchange === "upbit" ? "￦" : "$"}${number.toLocaleString()}`}
         action={
-          <RoundSelect
-            label="거래소 선택"
-            items={[
-              { label: "업비트", value: "upbit" },
-              { label: "OKX", value: "okx" },
-            ]}
-            value={exchange}
-            onChange={e => {
-              const selected = e.target.value as ExchangeType;
-              setExchange(selected);
-            }}
+          <Chip
+            label={exchangeToKorean(exchange)}
+            variant="outlined"
+            className="text-brand"
           />
         }
       />
@@ -95,7 +89,7 @@ function OasisBotRunCard() {
         <Stack className="gap-2">
           <FormTextField
             id="transactionAmount"
-            label={`거래금액을 입력해 주세요 (최소 ${exchange === "upbit" ? "₩5,000" : "$50"})`}
+            label={`거래금액을 입력해 주세요 (최소 ${exchange === "upbit" ? "₩5,000" : "$100"})`}
             type="number"
             value={startBalance}
             setValue={setStartBalance}
