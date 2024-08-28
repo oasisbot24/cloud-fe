@@ -6,10 +6,11 @@ import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
 import PresetSetting from "@/cards/preset/PresetSettingCard/PresetSetting";
 import AlertIcon from "@/components/Icon/AlertIcon";
-import { presetAtom, presetInit } from "@/datas/preset";
+import { presetAtom, presetInit, presetMenuAtom } from "@/datas/preset";
 
 export default function PresetSettingCard() {
   const [preset, setPreset] = useAtom(presetAtom);
+  const [, setPresetMenu] = useAtom(presetMenuAtom);
   return (
     <Card>
       <CardHeader
@@ -35,7 +36,7 @@ export default function PresetSettingCard() {
             <CardButton
               text="다음"
               className="text-white bg-brand"
-              onClick={() => console.log("다음")}
+              onClick={() => setPresetMenu("indicator")}
             />
           </CardFooter>
         </>
