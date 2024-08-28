@@ -26,7 +26,7 @@ export default function PresetInfoCard() {
       <CardHeader
         id="setting"
         title="프리셋"
-        subtitle={preset ? preset.presetName : "거래소를 선택해주세요."}
+        subtitle={preset ? preset.presetName : "프리셋을 선택해주세요."}
         action={
           <RoundSelect
             label="프리셋선택"
@@ -37,9 +37,11 @@ export default function PresetInfoCard() {
               })) ?? []
             }
             value={preset?.presetName ?? ""}
-            onChange={value =>
-              setPreset(presetData?.find(p => p.presetName === value) ?? null)
-            }
+            onChange={e => {
+              setPreset(
+                presetData?.find(p => p.presetName === e.target.value) ?? null,
+              );
+            }}
           />
         }
       />

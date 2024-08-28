@@ -11,11 +11,6 @@ export function usePresetQuery() {
   const presetQuery = useQuery({
     queryKey: ["getPreset"],
     queryFn: getPreset,
-    select: data =>
-      data.map(item => ({
-        label: item.presetName,
-        value: item.id,
-      })),
   });
 
   return {

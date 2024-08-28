@@ -43,7 +43,11 @@ function OasisBotRunCard() {
     setSelectedTradeItem(0);
   };
 
-  const presetList = (presetQuery.data as SelectItem[]) ?? [];
+  const presetList: SelectItem[] =
+    (presetQuery.data?.map(item => ({
+      label: item.presetName,
+      value: item.id,
+    })) as SelectItem[]) ?? [];
   const coinList = (coinQuery.data as SelectItem[]) ?? [];
 
   // temp
