@@ -19,7 +19,12 @@ function OasisBotTotalCard({
 }: OasisBotTotalCardProps) {
   return (
     <Card>
-      <div className={`absolute bg-[${color}] h-full w-1.5`} />
+      <div
+        className="absolute h-full w-1.5"
+        style={{
+          backgroundColor: color,
+        }}
+      />
       <CardHeader id={id} title={title} subtitle={subtitle} />
       <CardContent>
         <Stack spacing={2}>
