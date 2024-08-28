@@ -1,4 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useAtom } from "jotai";
+import { getIndicator } from "@/apis/preset/indicator";
 import {
   PresetBody,
   deletePreset,
@@ -6,6 +8,7 @@ import {
   postPreset,
   putPreset,
 } from "@/apis/preset/preset";
+import exchangeAtom from "@/datas/exchange";
 
 export function usePresetQuery() {
   const presetQuery = useQuery({
@@ -15,6 +18,18 @@ export function usePresetQuery() {
 
   return {
     presetQuery,
+  };
+}
+
+export function useIndicatorQuery() {
+  const [exchange] = useAtom(exchangeAtom);
+  const indicatorQuery = useQuery({
+    queryKey: ["getIndicator"],
+    queryFn: () => getIndicator(exchange),
+  });
+
+  return {
+    indicatorQuery,
   };
 }
 

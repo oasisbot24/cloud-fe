@@ -11,6 +11,7 @@ import {
 interface FormTextFieldProps<T> {
   id: string;
   label?: string;
+  value?: T;
   setValue?: Dispatch<SetStateAction<T>>;
   inputLabelProps?: InputLabelProps;
 }
