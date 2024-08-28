@@ -14,5 +14,8 @@ const presetInit = {
   lossCutRate: 0,
 };
 
-export default presetAtom;
+const presetMenuAtom = atom<"preset" | "indicator">("preset");
+presetMenuAtom.debugLabel = "presetMenuAtom";
+
+export { presetAtom, presetMenuAtom };
 export { presetInit };

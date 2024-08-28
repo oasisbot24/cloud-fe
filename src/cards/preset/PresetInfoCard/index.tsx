@@ -7,7 +7,7 @@ import CardHeader from "@/cards/CardHeader";
 import PresetInfo from "@/cards/preset/PresetInfoCard/PresetInfo";
 import UserInfo from "@/cards/preset/PresetInfoCard/UserInfo";
 import RoundSelect from "@/components/common/RoundSelect";
-import presetAtom from "@/datas/preset";
+import { presetAtom } from "@/datas/preset";
 import { usePresetMutation, usePresetQuery } from "@/hooks/query/usePreset";
 
 export default function PresetInfoCard() {

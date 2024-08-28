@@ -2,7 +2,7 @@ import { Stack } from "@mui/material";
 import { useAtom } from "jotai";
 import FormSelect from "@/components/form/FormSelect";
 import FormTextField from "@/components/form/FormTextField";
-import presetAtom from "@/datas/preset";
+import { presetAtom } from "@/datas/preset";
 import { useIndicatorQuery } from "@/hooks/query/usePreset";
 
 export default function PresetSetting() {

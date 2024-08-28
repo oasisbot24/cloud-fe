@@ -1,7 +1,7 @@
 import { Stack } from "@mui/material";
 import { useAtom } from "jotai";
 import FormTextField from "@/components/form/FormTextField";
-import presetAtom from "@/datas/preset";
+import { presetAtom } from "@/datas/preset";
 
 export default function PresetInfo() {
   const [preset] = useAtom(presetAtom);

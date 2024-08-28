@@ -6,7 +6,7 @@ import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
 import PresetSetting from "@/cards/preset/PresetSettingCard/PresetSetting";
 import AlertIcon from "@/components/Icon/AlertIcon";
-import presetAtom, { presetInit } from "@/datas/preset";
+import { presetAtom, presetInit } from "@/datas/preset";
 
 export default function PresetSettingCard() {
   const [preset, setPreset] = useAtom(presetAtom);
