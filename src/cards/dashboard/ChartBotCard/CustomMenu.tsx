@@ -1,6 +1,9 @@
 import Image from "next/image";
-import { Stack, Typography } from "@mui/material";
-import Icon from "@/components/Icon";
+import { Chip, Stack, Typography } from "@mui/material";
+import { useAtom } from "jotai";
+import ArrowDownIcon from "@/components/Icon/ArrowDownIcon";
+import ArrowUpIcon from "@/components/Icon/ArrowUpIcon";
+import ExchangeIcon from "@/components/Icon/ExchangeIcon";
 
 interface Props {
   id: number;
@@ -9,58 +12,30 @@ interface Props {
   presetName: string;
   totalProfit: number;
   totalProfitRate: number;
+  exchange: ExchangeType;
 }
 
-function PLchip({ pl }: { pl: number }) {
-  const backgroundColor = pl > 0 ? "#FDE0E0" : "#D1D6F9";
-  const color = pl > 0 ? "#F46565" : "#223CE9";
-  const arrow = pl > 0 ? "up" : "down";
-
-  return (
-    <Stack
-      direction="row"
-      className="justify-between items-center w-14 h-6 px-2 rounded-full"
-      sx={{ backgroundColor }}
-    >
-      <Image
-        src={`/icons/arrow/profitloss/${arrow}-small.png`}
-        width={16}
-        height={16}
-        alt="small"
-      />
-      <Typography
-        fontFamily="SF Pro Display"
-        fontWeight={700}
-        fontSize={14}
-        lineHeight="16px"
-        color={color}
-      >
-        {pl}%
-      </Typography>
-    </Stack>
-  );
-}
-
-export default function CustomMenu({
+function CustomMenu({
   id,
   setMenuId,
   coinName,
   presetName,
   totalProfit,
   totalProfitRate,
+  exchange,
 }: Props) {
   return (
     <Stack
       direction="row"
-      justifyContent="center"
-      alignItems="center"
+      // justifyContent="center"
+      // alignItems="center"
       onClick={() => setMenuId(id)}
       sx={{
         bgcolor: "white",
         // width: "auto",
         height: "auto",
         padding: 2,
-        // borderRadius: "16px",
+        borderRadius: "16px",
         borderColor: "#898FC3",
         // borderStyle: "solid",
         // borderWidth: 1,
@@ -70,37 +45,41 @@ export default function CustomMenu({
         },
       }}
     >
-      <Stack direction="row" alignItems="center" spacing={2} sx={{ width: 1 }}>
+      <Stack direction="row" alignItems="center" spacing={2}>
+        <ExchangeIcon exchange={exchange} />
+        <Typography variant="300B">{presetName}</Typography>
+      </Stack>
+
+      <Stack
+        direction="row"
+        alignItems="center"
+        justifyContent="flex-end"
+        spacing={1}
+        sx={{ width: "100%" }}
+      >
         <Image
           src="/icons/crypto/btc-30.png"
           alt="btc"
           width={15}
           height={20}
         />
-        <Typography variant="300B">{presetName}</Typography>
-      </Stack>
 
-      <Stack direction="row" spacing={2}>
-        <Stack direction="row" spacing={1}>
-          <Image
-            src="/icons/crypto/btc-30.png"
-            alt="btc"
-            width={15}
-            height={20}
-          />
-          <Stack
-            direction="row"
-            justifyContent="flex-end"
-            alignItems="center"
-            // sx={{ width: 1 }}
-          >
-            <Typography variant="200R">{coinName}</Typography>
-          </Stack>
-        </Stack>
-        <Stack direction="row" justifyContent="flex-end" sx={{ width: 1 }}>
-          <PLchip pl={totalProfitRate} />
-        </Stack>
+        <Typography variant="200R">{coinName}</Typography>
+
+        <Chip
+          icon={totalProfitRate > 0 ? <ArrowUpIcon /> : <ArrowDownIcon />}
+          label={`${Number(totalProfitRate).toFixed(1)}%`}
+          size="small"
+          style={{
+            background: totalProfitRate > 0 ? "#FDE0E0" : "#DCE1FF",
+            color: totalProfitRate > 0 ? "#F46565" : "#223CE9",
+            fontWeight: "bold",
+          }}
+        />
+        {/* </Stack> */}
       </Stack>
     </Stack>
   );
 }
+
+export default CustomMenu;

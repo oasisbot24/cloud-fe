@@ -8,9 +8,11 @@ import {
   MenuList,
   Stack,
 } from "@mui/material";
+import { useAtom } from "jotai";
 import { ChartType } from "@/apis/chart/dashboardChart";
 import Icon from "@/components/Icon";
 import DashboardIcon from "@/components/Icon/DashboardIcon";
+import exchangeAtom from "@/datas/exchange";
 import CustomMenu from "./CustomMenu";
 import PanelDescription from "./PanelDescription";
 
@@ -21,7 +23,7 @@ interface Props {
 }
 export default function Panel({ setMenuId, menuId, chart }: Props) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
+  const [exchange] = useAtom(exchangeAtom);
   const open = Boolean(anchorEl);
   const listItem = [];
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -41,6 +43,7 @@ export default function Panel({ setMenuId, menuId, chart }: Props) {
         presetName={chart[index]["presetName"]}
         totalProfit={chart[index]["totalProfit"]}
         totalProfitRate={chart[index]["totalProfitRate"]}
+        exchange={exchange}
       />,
     );
   }
@@ -69,10 +72,11 @@ export default function Panel({ setMenuId, menuId, chart }: Props) {
       <Menu
         anchorEl={anchorEl}
         open={open}
+        keepMounted
         onClose={handleClose}
         onClick={handleClose}
         transitionDuration={0}
-        disableScrollLock={true}
+        // disableRestoreFocus={true}
         sx={{
           "& .MuiPaper-root": {
             bgcolor: "transparent",

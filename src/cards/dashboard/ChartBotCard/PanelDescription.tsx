@@ -1,6 +1,8 @@
 import Image from "next/image";
-import { Stack, Typography } from "@mui/material";
+import { Chip, Stack, Typography } from "@mui/material";
 import Icon from "@/components/Icon";
+import ArrowDownIcon from "@/components/Icon/ArrowDownIcon";
+import ArrowUpIcon from "@/components/Icon/ArrowUpIcon";
 import DashboardIcon from "@/components/Icon/DashboardIcon";
 
 interface Props {
@@ -8,35 +10,6 @@ interface Props {
   presetName: string;
   totalProfit: number;
   totalProfitRate: number;
-}
-function PLchip({ pl }: { pl: number }) {
-  const backgroundColor = pl > 0 ? "#FDE0E0" : "#D1D6F9";
-  const color = pl > 0 ? "#F46565" : "#223CE9";
-  const arrow = pl > 0 ? "up" : "down";
-
-  return (
-    <Stack
-      direction="row"
-      className="justify-between items-center w-14 h-6 px-2 rounded-full"
-      sx={{ backgroundColor }}
-    >
-      <Image
-        src={`/icons/arrow/profitloss/${arrow}-small.png`}
-        width={16}
-        height={16}
-        alt="small"
-      />
-      <Typography
-        fontFamily="SF Pro Display"
-        fontWeight={700}
-        fontSize={14}
-        lineHeight="16px"
-        color={color}
-      >
-        {pl}%
-      </Typography>
-    </Stack>
-  );
 }
 
 export default function PanelDescription({
@@ -49,6 +22,13 @@ export default function PanelDescription({
     <Stack direction="row" className="w-full justify-between items-center">
       <Stack direction="row" spacing={1}>
         <DashboardIcon id="bar-graph" />
+        {/* <Image
+          src="/icons/crypto/btc-30.png"
+          alt="btc"
+          width={25}
+          height={30}
+        /> */}
+
         <Stack className="gap-2">
           <Typography variant="300B" className="text-[#FFFFFF]">
             {coinName}
@@ -67,9 +47,17 @@ export default function PanelDescription({
           lineHeight="22px"
           className="text-white"
         >
-          {totalProfit}
+          ₩ {totalProfit}
         </Typography>
-        <PLchip pl={totalProfitRate} />
+        <Chip
+          className={`font-bold ${totalProfitRate > 0 ? "text-[#F46565]" : "text-[#223CE9]"}`}
+          icon={totalProfitRate > 0 ? <ArrowUpIcon /> : <ArrowDownIcon />}
+          label={`${Number(totalProfitRate).toFixed(1)}%`}
+          size="small"
+          style={{
+            background: totalProfitRate > 0 ? "#FDE0E0" : "#DCE1FF",
+          }}
+        />
       </Stack>
     </Stack>
   );

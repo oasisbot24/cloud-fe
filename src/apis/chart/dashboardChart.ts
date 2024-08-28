@@ -18,15 +18,15 @@ export interface ChartType {
 
 
 async function getDashboardChart() :Promise<ChartType[]>{
-  // const respose = await api.get<ApiResponseType<[]>>(
-  //   `/chart`,
-  // );
+  const respose = await api.get<ApiResponseType<[]>>(
+    `/chart`,
+  );
 
 
   const charts:ChartType[] = [];
 
-  // respose.data?.data.map((item,n)=>{
-    dummy.map((item,n)=>{
+  respose.data?.data.map((item,n)=>{
+    // dummy.map((item,n)=>{
     const dateArr: string[] = [];
     const priceArr: number[] = [];
     const rateArr : number[] = [];

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Box } from "@mui/material";
+import { useAtom } from "jotai";
 import Card from "@/cards/Card";
+import exchangeAtom from "@/datas/exchange";
 import { useDashboardChart } from "@/hooks/query/useChart";
 import CustomChart from "./CustomChart";
 import Panel from "./Panel";
