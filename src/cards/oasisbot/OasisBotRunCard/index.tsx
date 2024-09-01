@@ -28,13 +28,12 @@ function OasisBotRunCard() {
   const [selectedPreset, setSelectedPreset] = useState<number>(1);
   const [selectedTradeItem, setSelectedTradeItem] = useState<number>(1);
   const [standardMinute, setStandardMinute] = useState<number>(1);
-  const number = 1000000000; // temp
 
   const [exchange, setExchange] = useAtom(exchangeAtom);
 
   const { openModal, closeModal } = useModalGlobal();
   const { presetQuery } = usePresetQuery();
-  const { coinQuery } = useBotInfo();
+  const { coinQuery, balanceQuery } = useBotInfo();
   const { startBotMutation } = useBot();
   const { mutate } = startBotMutation;
 
@@ -44,6 +43,7 @@ function OasisBotRunCard() {
     setSelectedTradeItem(0);
   };
 
+  const availableBalance = balanceQuery.data;
   const presetList = (presetQuery.data as SelectItem[]) ?? [];
   const coinList = (coinQuery.data as SelectItem[]) ?? [];
 
@@ -77,7 +77,7 @@ function OasisBotRunCard() {
       <CardHeader
         id="bot-start"
         title="오아시스 BOT 실행"
-        subtitle={`주문가능 금액\n${exchange === "upbit" ? "￦" : "$"}${number.toLocaleString()}`}
+        subtitle={`주문가능 금액\n${exchange === "upbit" ? "￦" : "$"}${availableBalance?.toLocaleString() ?? 0}`}
         action={
           <Chip
             label={exchangeToKorean(exchange)}
