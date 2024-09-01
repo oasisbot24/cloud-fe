@@ -1,46 +1,17 @@
-import { useState } from "react";
 import { Stack } from "@mui/material";
+import { useAtom } from "jotai";
+import { PresetWeightType, presetWeightAtom } from "@/datas/preset";
 import Column from "./Column";
 import GraphText from "./GraphText";
 import VerticalSliderSum from "./VerticalSilderSum";
 import VerticalSlider from "./VerticalSlider";
 
-interface ContingType {
-  c1: number;
-  c2: number;
-  c3: number;
-  c4: number;
-  c5: number;
-  c6: number;
-  c7: number;
-  c8: number;
-  c9: number;
-  c10: number;
-  c11: number;
-  c12: number;
-}
-
-const initCounting: ContingType = {
-  c1: 0,
-  c2: 0,
-  c3: 0,
-  c4: 0,
-  c5: 0,
-  c6: 0,
-  c7: 0,
-  c8: 0,
-  c9: 0,
-  c10: 0,
-  c11: 0,
-  c12: 0,
-};
-
-const sumConting = (counting: ContingType) => {
+const sumPresetWeight = (counting: PresetWeightType) => {
   return Object.values(counting).reduce((acc, cur) => acc + cur, 0);
 };
 
 function SliderGraph() {
-  const [counting, setCounting] = useState<ContingType>(initCounting);
+  const [presetWeight, setPresetWeight] = useAtom(presetWeightAtom);
   return (
     <Stack direction="row" className="h-full gap-8">
       <Column />
@@ -48,17 +19,17 @@ function SliderGraph() {
         direction="row"
         className="h-full w-full items-center justify-between"
       >
-        {Object.keys(counting).map(key => {
+        {Object.keys(presetWeight).map(key => {
           return (
             <Stack gap={2} key={key} className="h-full items-center">
               <VerticalSlider
-                value={counting[key as keyof ContingType]}
+                value={presetWeight[key as keyof PresetWeightType]}
                 onChange={(_, value) => {
-                  setCounting(prev => {
-                    const sum = sumConting(prev);
+                  setPresetWeight(prev => {
+                    const sum = sumPresetWeight(prev);
                     if (
                       sum -
-                        prev[key as keyof ContingType] +
+                        prev[key as keyof PresetWeightType] +
                         (value as number) <=
                       100
                     ) {
@@ -76,7 +47,7 @@ function SliderGraph() {
           );
         })}
         <Stack gap={2} className="h-full items-center">
-          <VerticalSliderSum sum={sumConting(counting)} />
+          <VerticalSliderSum sum={sumPresetWeight(presetWeight)} />
           <GraphText text="종합" />
         </Stack>
       </Stack>
