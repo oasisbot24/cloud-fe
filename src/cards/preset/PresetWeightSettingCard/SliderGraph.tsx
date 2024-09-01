@@ -5,293 +5,78 @@ import GraphText from "./GraphText";
 import VerticalSliderSum from "./VerticalSilderSum";
 import VerticalSlider from "./VerticalSlider";
 
+interface ContingType {
+  c1: number;
+  c2: number;
+  c3: number;
+  c4: number;
+  c5: number;
+  c6: number;
+  c7: number;
+  c8: number;
+  c9: number;
+  c10: number;
+  c11: number;
+  c12: number;
+}
+
+const initCounting: ContingType = {
+  c1: 0,
+  c2: 0,
+  c3: 0,
+  c4: 0,
+  c5: 0,
+  c6: 0,
+  c7: 0,
+  c8: 0,
+  c9: 0,
+  c10: 0,
+  c11: 0,
+  c12: 0,
+};
+
+const sumConting = (counting: ContingType) => {
+  return Object.values(counting).reduce((acc, cur) => acc + cur, 0);
+};
+
 function SliderGraph() {
-  const [c1, setC1] = useState<number | number[]>(0);
-  const [c2, setC2] = useState<number | number[]>(0);
-  const [c3, setC3] = useState<number | number[]>(0);
-  const [c4, setC4] = useState<number | number[]>(0);
-  const [c5, setC5] = useState<number | number[]>(0);
-  const [c6, setC6] = useState<number | number[]>(0);
-  const [c7, setC7] = useState<number | number[]>(0);
-  const [c8, setC8] = useState<number | number[]>(0);
-  const [c9, setC9] = useState<number | number[]>(0);
-  const [c10, setC10] = useState<number | number[]>(0);
-  const [c11, setC11] = useState<number | number[]>(0);
-  const [c12, setC12] = useState<number | number[]>(0);
-  const [cSum, setCSum] = useState<number | number[]>(0);
+  const [counting, setCounting] = useState<ContingType>(initCounting);
   return (
-    <Stack>
-      <Stack direction={"row"} gap={3.8}>
-        <Column />
-        <Stack gap={2}>
-          <VerticalSlider
-            value={c1}
-            setValue={setC1}
-            max={
-              100 -
-              ((c2 as number) +
-                (c3 as number) +
-                (c4 as number) +
-                (c5 as number) +
-                (c6 as number) +
-                (c7 as number) +
-                (c8 as number) +
-                (c9 as number) +
-                (c10 as number) +
-                (c11 as number) +
-                (c12 as number))
-            }
-          />
-          <GraphText text="c1" />
-        </Stack>
-        <Stack gap={2}>
-          <VerticalSlider
-            value={c2}
-            setValue={setC2}
-            max={
-              100 -
-              ((c1 as number) +
-                (c3 as number) +
-                (c4 as number) +
-                (c5 as number) +
-                (c6 as number) +
-                (c7 as number) +
-                (c8 as number) +
-                (c9 as number) +
-                (c10 as number) +
-                (c11 as number) +
-                (c12 as number))
-            }
-          />
-          <GraphText text="c2" />
-        </Stack>
-        <Stack gap={2}>
-          <VerticalSlider
-            value={c3}
-            setValue={setC3}
-            max={
-              100 -
-              ((c1 as number) +
-                (c2 as number) +
-                (c4 as number) +
-                (c5 as number) +
-                (c6 as number) +
-                (c7 as number) +
-                (c8 as number) +
-                (c9 as number) +
-                (c10 as number) +
-                (c11 as number) +
-                (c12 as number))
-            }
-          />
-          <GraphText text="c3" />
-        </Stack>
-        <Stack gap={2}>
-          <VerticalSlider
-            value={c4}
-            setValue={setC4}
-            max={
-              100 -
-              ((c1 as number) +
-                (c2 as number) +
-                (c3 as number) +
-                (c5 as number) +
-                (c6 as number) +
-                (c7 as number) +
-                (c8 as number) +
-                (c9 as number) +
-                (c10 as number) +
-                (c11 as number) +
-                (c12 as number))
-            }
-          />
-          <GraphText text="c4" />
-        </Stack>
-        <Stack gap={2}>
-          <VerticalSlider
-            value={c5}
-            setValue={setC5}
-            max={
-              100 -
-              ((c1 as number) +
-                (c2 as number) +
-                (c3 as number) +
-                (c4 as number) +
-                (c6 as number) +
-                (c7 as number) +
-                (c8 as number) +
-                (c9 as number) +
-                (c10 as number) +
-                (c11 as number) +
-                (c12 as number))
-            }
-          />
-          <GraphText text="c5" />
-        </Stack>
-        <Stack gap={2}>
-          <VerticalSlider
-            value={c6}
-            setValue={setC6}
-            max={
-              100 -
-              ((c1 as number) +
-                (c2 as number) +
-                (c3 as number) +
-                (c4 as number) +
-                (c5 as number) +
-                (c7 as number) +
-                (c8 as number) +
-                (c9 as number) +
-                (c10 as number) +
-                (c11 as number) +
-                (c12 as number))
-            }
-          />
-          <GraphText text="c6" />
-        </Stack>
-        <Stack gap={2}>
-          <VerticalSlider
-            value={c7}
-            setValue={setC7}
-            max={
-              100 -
-              ((c1 as number) +
-                (c2 as number) +
-                (c3 as number) +
-                (c4 as number) +
-                (c5 as number) +
-                (c6 as number) +
-                (c8 as number) +
-                (c9 as number) +
-                (c10 as number) +
-                (c11 as number) +
-                (c12 as number))
-            }
-          />
-          <GraphText text="c7" />
-        </Stack>
-        <Stack gap={2}>
-          <VerticalSlider
-            value={c8}
-            setValue={setC8}
-            max={
-              100 -
-              ((c1 as number) +
-                (c2 as number) +
-                (c3 as number) +
-                (c4 as number) +
-                (c5 as number) +
-                (c6 as number) +
-                (c7 as number) +
-                (c9 as number) +
-                (c10 as number) +
-                (c11 as number) +
-                (c12 as number))
-            }
-          />
-          <GraphText text="c8" />
-        </Stack>
-        <Stack gap={2}>
-          <VerticalSlider
-            value={c9}
-            setValue={setC9}
-            max={
-              100 -
-              ((c1 as number) +
-                (c2 as number) +
-                (c3 as number) +
-                (c4 as number) +
-                (c5 as number) +
-                (c6 as number) +
-                (c7 as number) +
-                (c8 as number) +
-                (c10 as number) +
-                (c11 as number) +
-                (c12 as number))
-            }
-          />
-          <GraphText text="c9" />
-        </Stack>
-        <Stack gap={2}>
-          <VerticalSlider
-            value={c10}
-            setValue={setC10}
-            max={
-              100 -
-              ((c1 as number) +
-                (c2 as number) +
-                (c3 as number) +
-                (c4 as number) +
-                (c5 as number) +
-                (c6 as number) +
-                (c7 as number) +
-                (c8 as number) +
-                (c9 as number) +
-                (c11 as number) +
-                (c12 as number))
-            }
-          />
-          <GraphText text="c10" />
-        </Stack>
-        <Stack gap={2}>
-          <VerticalSlider
-            value={c11}
-            setValue={setC11}
-            max={
-              100 -
-              ((c1 as number) +
-                (c2 as number) +
-                (c3 as number) +
-                (c4 as number) +
-                (c5 as number) +
-                (c6 as number) +
-                (c7 as number) +
-                (c8 as number) +
-                (c9 as number) +
-                (c10 as number) +
-                (c12 as number))
-            }
-          />
-          <GraphText text="c11" />
-        </Stack>
-        <Stack gap={2}>
-          <VerticalSlider
-            value={c12}
-            setValue={setC12}
-            max={
-              100 -
-              ((c1 as number) +
-                (c2 as number) +
-                (c3 as number) +
-                (c4 as number) +
-                (c5 as number) +
-                (c6 as number) +
-                (c7 as number) +
-                (c8 as number) +
-                (c9 as number) +
-                (c10 as number) +
-                (c11 as number))
-            }
-          />
-          <GraphText text="c12" />
-        </Stack>
-        <Stack gap={2}>
-          <VerticalSliderSum
-            sum={
-              (c1 as number) +
-              (c2 as number) +
-              (c3 as number) +
-              (c4 as number) +
-              (c5 as number) +
-              (c6 as number) +
-              (c7 as number) +
-              (c8 as number) +
-              (c9 as number) +
-              (c10 as number) +
-              (c11 as number) +
-              (c12 as number)
-            }
-          />
+    <Stack direction="row" className="h-full gap-8">
+      <Column />
+      <Stack
+        direction="row"
+        className="h-full w-full items-center justify-between"
+      >
+        {Object.keys(counting).map(key => {
+          return (
+            <Stack gap={2} key={key} className="h-full items-center">
+              <VerticalSlider
+                value={counting[key as keyof ContingType]}
+                onChange={(_, value) => {
+                  setCounting(prev => {
+                    const sum = sumConting(prev);
+                    if (
+                      sum -
+                        prev[key as keyof ContingType] +
+                        (value as number) <=
+                      100
+                    ) {
+                      return {
+                        ...prev,
+                        [key]: value as number,
+                      };
+                    }
+                    return prev;
+                  });
+                }}
+              />
+              <GraphText text={key} />
+            </Stack>
+          );
+        })}
+        <Stack gap={2} className="h-full items-center">
+          <VerticalSliderSum sum={sumConting(counting)} />
           <GraphText text="종합" />
         </Stack>
       </Stack>
