@@ -86,7 +86,7 @@ export default function Panel({ setMenuId, menuId, chart }: Props) {
           },
         }}
       >
-        <Stack>{listItem}</Stack>
+        <Stack gap={1}>{listItem}</Stack>
       </Menu>
     </Box>
   );

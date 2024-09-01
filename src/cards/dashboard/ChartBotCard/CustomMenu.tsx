@@ -45,7 +45,18 @@ function CustomMenu({
         },
       }}
     >
-      <Stack direction="row" alignItems="center" spacing={2}>
+      <Stack
+        direction="row"
+        alignItems="center"
+        spacing={2}
+        style={{
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap",
+          display: "inline-block",
+          width: "100%",
+        }}
+      >
         <ExchangeIcon exchange={exchange} />
         <Typography variant="300B">{presetName}</Typography>
       </Stack>
@@ -76,7 +87,6 @@ function CustomMenu({
             fontWeight: "bold",
           }}
         />
-        {/* </Stack> */}
       </Stack>
     </Stack>
   );
