@@ -6,11 +6,38 @@ import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
 import AlertIcon from "@/components/Icon/AlertIcon";
 import Icon from "@/components/Icon/index";
-import { presetMenuAtom } from "@/datas/preset";
+import {
+  presetAtom,
+  presetMenuAtom,
+  presetWeightAtom,
+  presetWeightInit,
+} from "@/datas/preset";
+import { usePresetMutation } from "@/hooks/query/usePreset";
+import { presetWeightToPresetData } from "@/libs/preset";
 import SliderGraph from "./SliderGraph";
 
 function PresetWeightSettingCard() {
+  const {
+    postPresetMutation: { mutate: postPreset },
+    putPresetMutation: { mutate: putPreset },
+  } = usePresetMutation();
+  const [preset] = useAtom(presetAtom);
   const [presetMenu] = useAtom(presetMenuAtom);
+  const [presetWeight, setPresetWeight] = useAtom(presetWeightAtom);
+  const handleSave = () => {
+    if (!preset) return;
+    if (preset?.id === 0) {
+      postPreset({
+        ...preset,
+        presetData: presetWeightToPresetData(presetWeight),
+      });
+    } else {
+      putPreset({
+        id: preset.id,
+        body: { ...preset, presetData: presetWeightToPresetData(presetWeight) },
+      });
+    }
+  };
   return (
     <Card>
       <CardHeader
@@ -37,12 +64,12 @@ function PresetWeightSettingCard() {
             <CardButton
               text="초기화"
               className="text-white bg-neutral-700"
-              onClick={() => console.log("초기화")}
+              onClick={() => setPresetWeight(presetWeightInit)}
             />
             <CardButton
               text="저장"
               className="text-white bg-brand"
-              onClick={() => console.log("저장")}
+              onClick={handleSave}
             />
           </CardFooter>
         </>

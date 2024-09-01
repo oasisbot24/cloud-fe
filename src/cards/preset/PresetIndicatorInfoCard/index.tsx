@@ -23,11 +23,7 @@ function RoundChip({ text, color }: { text: string; color: "blue" | "red" }) {
 export default function PresetIndicatorInfoCard() {
   return (
     <Card sx={{ maxWidth: 768 }}>
-      <CardHeader
-        id="setting"
-        title="프리셋 설정 설명"
-        subtitle="하락장 세팅이 선택되었습니다."
-      />
+      <CardHeader id="setting" title="프리셋 설정 설명" />
       <CardContent className="absolute top-0 w-full h-full">
         <Image
           src={Chart}
