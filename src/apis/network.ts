@@ -11,6 +11,7 @@ const getAuthorizationFromLocalStorage = () => {
 
 const getAuthorizationRefreshFromLocalStorage = () => {
   const refreshToken = localStorage.getItem("authorizationrefresh");
+  
   if (!refreshToken) {
     return null;
   }
@@ -19,6 +20,7 @@ const getAuthorizationRefreshFromLocalStorage = () => {
 
 const getExchangeFromLocalStorage = () => {
   const exchange = localStorage.getItem("exchange");
+  
   if (!exchange) {
     return null;
   }
