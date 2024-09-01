@@ -18,7 +18,12 @@ const iconSrc = {
   setting: "/icons/dashboard/setting.png",
   transaction: "/icons/dashboard/transaction.png",
   wallet: "/icons/dashboard/wallet.png",
-  counting:"/icons/dashboard/counting.png"
+  counting: "/icons/dashboard/counting.png",
+  total: "/icons/dashboard/total.png",
+  "bot-transaction": "/icons/dashboard/bot-transaction.png",
+  "profit-rate": "/icons/dashboard/profit-rate.png",
+  "winning-rate": "/icons/dashboard/winning-rate.png",
+  "copied-presets": "/icons/dashboard/copied-presets.png",
 };
 
 export default function DashboardIcon({ id }: DashboardIconProps) {

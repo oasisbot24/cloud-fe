@@ -2,6 +2,7 @@ import { Box, Stack } from "@mui/material";
 import RealtimeTransactionCard from "@/cards/.depreciated/RealtimeTransactionCard";
 import OasisBotListCard from "@/cards/oasisbot/OasisBotListCard";
 import OasisBotRunCard from "@/cards/oasisbot/OasisBotRunCard";
+import OasisBotTotalCardList from "@/cards/oasisbot/OasisBotTotalCard/list";
 import OasisBotTransactionCard from "@/cards/oasisbot/OasisBotTransactionCard";
 import Carousel from "@/layouts/Carousel";
 import Layout from "@/layouts/Layout";
@@ -25,7 +26,7 @@ function OasisBot() {
             </Stack>
           </Stack>
           <Stack className="w-2/6 gap-4">
-            <RealtimeTransactionCard />
+            <OasisBotTotalCardList />
           </Stack>
         </Stack>
       </Carousel>

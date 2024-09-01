@@ -37,5 +37,20 @@ async function getBot(exchangeName: string): Promise<BotType[]> {
   return res.data?.data;
 }
 
-export { botStart, botStop, getBot };
-export type { BotStartType, BotType };
+interface AvailableBalanceType {
+  exchangeName: string;
+  availableBalance: number;
+}
+
+async function getAvailableBalance(
+  exchangeName: string,
+): Promise<AvailableBalanceType> {
+  const res = await api.get<ApiResponseType<AvailableBalanceType>>(
+    `/available-balance?exchange=${exchangeName}`,
+  );
+
+  return res.data?.data;
+}
+
+export { botStart, botStop, getBot, getAvailableBalance };
+export type { BotStartType, BotType, AvailableBalanceType };

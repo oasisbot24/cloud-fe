@@ -2,6 +2,7 @@ import { useState } from "react";
 import Image from "next/image";
 import {
   CardContent,
+  Chip,
   InputAdornment,
   InputBase,
   InputLabel,
@@ -13,27 +14,26 @@ import Card from "@/cards/Card";
 import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
-import RoundSelect from "@/components/common/RoundSelect";
 import FormSelect from "@/components/form/FormSelect";
 import FormTextField from "@/components/form/FormTextField";
 import exchangeAtom from "@/datas/exchange";
 import { useBot, useBotInfo } from "@/hooks/query/useOasisBot";
 import { usePresetQuery } from "@/hooks/query/usePreset";
 import useModalGlobal from "@/hooks/useModalGlobal";
+import { exchangeToKorean } from "@/libs/string";
 import LeverageNoticeDialog from "./LeverageNoticeDialog";
 
 function OasisBotRunCard() {
   const [startBalance, setStartBalance] = useState<number>(5000);
   const [selectedPreset, setSelectedPreset] = useState<number>(1);
   const [selectedTradeItem, setSelectedTradeItem] = useState<number>(1);
-  const [selectedDistribution, setSelectedDistribution] = useState<string>("1");
-  const number = 1000000000; // temp
+  const [standardMinute, setStandardMinute] = useState<number>(1);
 
   const [exchange, setExchange] = useAtom(exchangeAtom);
 
   const { openModal, closeModal } = useModalGlobal();
   const { presetQuery } = usePresetQuery();
-  const { coinQuery } = useBotInfo();
+  const { coinQuery, balanceQuery } = useBotInfo();
   const { startBotMutation } = useBot();
   const { mutate } = startBotMutation;
 
@@ -43,17 +43,18 @@ function OasisBotRunCard() {
     setSelectedTradeItem(0);
   };
 
+  const availableBalance = balanceQuery.data;
   const presetList = (presetQuery.data as SelectItem[]) ?? [];
   const coinList = (coinQuery.data as SelectItem[]) ?? [];
 
   // temp
-  const distributionList = [
-    { label: "1분봉", value: "1" },
-    { label: "3분봉", value: "3" },
-    { label: "5분봉", value: "5" },
-    { label: "15분봉", value: "15" },
-    { label: "30분봉", value: "30" },
-    { label: "1시간봉", value: "60" },
+  const standardMinuteList = [
+    { label: "1분봉", value: 1 },
+    { label: "3분봉", value: 3 },
+    { label: "5분봉", value: 5 },
+    { label: "15분봉", value: 15 },
+    { label: "30분봉", value: 30 },
+    { label: "1시간봉", value: 60 },
   ];
 
   const runOasisBot = () => {
@@ -63,6 +64,7 @@ function OasisBotRunCard() {
       botName: "bot1",
       presetId: selectedPreset,
       coinId: selectedTradeItem,
+      standardMinute: Number(standardMinute),
       startBalance: Number(startBalance),
       leverage: null,
     };
@@ -75,19 +77,12 @@ function OasisBotRunCard() {
       <CardHeader
         id="bot-start"
         title="오아시스 BOT 실행"
-        subtitle={`주문가능 금액\n${exchange === "upbit" ? "￦" : "$"}${number.toLocaleString()}`}
+        subtitle={`주문가능 금액\n${exchange === "upbit" ? "￦" : "$"}${availableBalance?.toLocaleString() ?? 0}`}
         action={
-          <RoundSelect
-            label="거래소 선택"
-            items={[
-              { label: "업비트", value: "upbit" },
-              { label: "OKX", value: "okx" },
-            ]}
-            value={exchange}
-            onChange={e => {
-              const selected = e.target.value as ExchangeType;
-              setExchange(selected);
-            }}
+          <Chip
+            label={exchangeToKorean(exchange)}
+            variant="outlined"
+            className="text-brand"
           />
         }
       />
@@ -95,7 +90,7 @@ function OasisBotRunCard() {
         <Stack className="gap-2">
           <FormTextField
             id="transactionAmount"
-            label={`거래금액을 입력해 주세요 (최소 ${exchange === "upbit" ? "₩5,000" : "$50"})`}
+            label={`거래금액을 입력해 주세요 (최소 ${exchange === "upbit" ? "₩5,000" : "$100"})`}
             type="number"
             value={startBalance}
             setValue={setStartBalance}
@@ -131,9 +126,9 @@ function OasisBotRunCard() {
             label="기준 분봉"
             placeholder="분봉 선택"
             variant="standard"
-            items={distributionList}
-            value={selectedDistribution}
-            setValue={setSelectedDistribution}
+            items={standardMinuteList}
+            value={standardMinute}
+            setValue={setStandardMinute}
           />
           <Stack className="w-full">
             <InputLabel htmlFor="leverage">
