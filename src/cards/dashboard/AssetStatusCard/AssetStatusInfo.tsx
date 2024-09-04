@@ -39,7 +39,11 @@ export default function AssetStatusInfo({
           <Typography variant="300R" className="text-neutral-200">
             총현황
           </Typography>
-          <DisplayPL pl={tradeStyleData?.totalProfitLossRate ?? 0} />
+          <DisplayPL
+            pl={
+              Math.round((tradeStyleData?.totalProfitLossRate ?? 0) * 100) / 100
+            }
+          />
         </Stack>
         <Stack direction="column" className="w-1/2 gap-1">
           <Typography variant="300R" className="text-neutral-200">

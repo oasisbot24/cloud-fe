@@ -2,7 +2,7 @@ import { Slider, styled } from "@mui/material";
 
 const PortaionSlider = styled(Slider)(({ value }) => ({
   color: "#223CE9",
-  height: 250,
+  height: "100%",
   backgroundColor: "#E1E6EA",
   "& .MuiSlider-track": {
     border: "none",
@@ -23,18 +23,12 @@ const PortaionSlider = styled(Slider)(({ value }) => ({
   },
 }));
 
-interface valueProps {
-  value: number | number[];
-  setValue: React.Dispatch<React.SetStateAction<number | number[]>>;
-  max: number;
+interface VerticalSliderProps {
+  value: number;
+  onChange: (event: Event, value: number | number[]) => void;
 }
 
-function VerticalSlider({ value, setValue, max }: valueProps) {
-  const handleChange = (e: any, newValue: number | number[]) => {
-    if ((newValue as number) <= max) {
-      setValue(newValue);
-    }
-  };
+function VerticalSlider({ value, onChange }: VerticalSliderProps) {
   return (
     <PortaionSlider
       orientation="vertical"
@@ -43,7 +37,7 @@ function VerticalSlider({ value, setValue, max }: valueProps) {
       step={1}
       value={value}
       valueLabelDisplay="auto"
-      onChange={handleChange}
+      onChange={onChange}
     />
   );
 }

@@ -1,13 +1,11 @@
 import React from "react";
 import { MenuItem, Select, SelectProps } from "@mui/material";
 
-type SetAtom<Args extends unknown[], Result> = (...args: Args) => Result;
-
-type RoundSelectProps<T> = {
+type RoundSelectProps = {
   items: SelectItem[];
 };
 
-function RoundSelect<T>(props: RoundSelectProps<T> & SelectProps<T>) {
+function RoundSelect<T>(props: RoundSelectProps & SelectProps<T>) {
   const { label, items, value, onChange } = props;
   return (
     <Select

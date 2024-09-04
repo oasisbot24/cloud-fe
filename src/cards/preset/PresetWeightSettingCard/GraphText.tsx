@@ -1,11 +1,11 @@
 import { Typography } from "@mui/material";
 
-interface textProps {
+interface GraphTextProps {
   text: string;
 }
-function GraphText({ text }: textProps) {
+function GraphText({ text }: GraphTextProps) {
   return (
-    <Typography variant="400R" className="text-neutral-500">
+    <Typography variant="300R" className="text-neutral-500">
       {text}
     </Typography>
   );
