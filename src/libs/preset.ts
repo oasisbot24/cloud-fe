@@ -1,7 +1,12 @@
 import { PresetWeightType } from "@/datas/preset";
 
 function presetDataToPresetWeight(presetData: string): PresetWeightType {
-  const presetDataJson = JSON.parse(presetData);
+  let presetDataJson;
+  try {
+    presetDataJson = JSON.parse(presetData);
+  } catch (error) {
+    presetDataJson = {};
+  }
   const presetWeight: PresetWeightType = {
     카운팅1: presetDataJson.counting1 ?? 0,
     카운팅2: presetDataJson.counting2 ?? 0,
