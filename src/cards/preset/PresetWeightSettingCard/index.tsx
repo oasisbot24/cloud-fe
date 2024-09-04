@@ -7,37 +7,17 @@ import CardHeader from "@/cards/CardHeader";
 import AlertIcon from "@/components/Icon/AlertIcon";
 import Icon from "@/components/Icon/index";
 import {
-  presetAtom,
   presetMenuAtom,
   presetWeightAtom,
   presetWeightInit,
 } from "@/datas/preset";
-import { usePresetMutation } from "@/hooks/query/usePreset";
-import { presetWeightToPresetData } from "@/libs/preset";
 import SliderGraph from "./SliderGraph";
+import useSave from "./useSave";
 
 function PresetWeightSettingCard() {
-  const {
-    postPresetMutation: { mutate: postPreset },
-    putPresetMutation: { mutate: putPreset },
-  } = usePresetMutation();
-  const [preset] = useAtom(presetAtom);
+  const [, setPresetWeight] = useAtom(presetWeightAtom);
   const [presetMenu] = useAtom(presetMenuAtom);
-  const [presetWeight, setPresetWeight] = useAtom(presetWeightAtom);
-  const handleSave = () => {
-    if (!preset) return;
-    if (preset?.id === 0) {
-      postPreset({
-        ...preset,
-        presetData: presetWeightToPresetData(presetWeight),
-      });
-    } else {
-      putPreset({
-        id: preset.id,
-        body: { ...preset, presetData: presetWeightToPresetData(presetWeight) },
-      });
-    }
-  };
+  const { handleSave } = useSave();
   return (
     <Card>
       <CardHeader

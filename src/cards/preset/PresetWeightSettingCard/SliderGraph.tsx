@@ -1,14 +1,11 @@
 import { Stack } from "@mui/material";
 import { useAtom } from "jotai";
 import { PresetWeightType, presetWeightAtom } from "@/datas/preset";
+import { sumPresetWeight } from "@/libs/preset";
 import Column from "./Column";
 import GraphText from "./GraphText";
 import VerticalSliderSum from "./VerticalSilderSum";
 import VerticalSlider from "./VerticalSlider";
-
-const sumPresetWeight = (counting: PresetWeightType) => {
-  return Object.values(counting).reduce((acc, cur) => acc + cur, 0);
-};
 
 function SliderGraph() {
   const [presetWeight, setPresetWeight] = useAtom(presetWeightAtom);

@@ -3,16 +3,9 @@ import { useAtom } from "jotai";
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
 import AlertIcon from "@/components/Icon/AlertIcon";
-import {
-  PresetWeightType,
-  presetMenuAtom,
-  presetWeightAtom,
-} from "@/datas/preset";
+import { presetMenuAtom, presetWeightAtom } from "@/datas/preset";
+import { sumPresetWeight } from "@/libs/preset";
 import PresetWeightInfo from "./PresetWeightInfo";
-
-const sumPresetWeight = (counting: PresetWeightType) => {
-  return Object.values(counting).reduce((acc, cur) => acc + cur, 0);
-};
 
 export default function PresetWeightInfoCard() {
   const [presetMenu] = useAtom(presetMenuAtom);

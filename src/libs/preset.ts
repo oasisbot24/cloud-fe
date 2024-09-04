@@ -37,4 +37,8 @@ function presetWeightToPresetData(presetWeight: PresetWeightType): string {
   return JSON.stringify(presetData);
 }
 
-export { presetDataToPresetWeight, presetWeightToPresetData };
+const sumPresetWeight = (counting: PresetWeightType) => {
+  return Object.values(counting).reduce((acc, cur) => acc + cur, 0);
+};
+
+export { presetDataToPresetWeight, presetWeightToPresetData, sumPresetWeight };
