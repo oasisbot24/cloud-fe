@@ -26,7 +26,14 @@ type DashboardIdType =
   | "setting"
   | "transaction"
   | "wallet"
-  | "counting";
+  | "counting"
+  // 여기부터 신규추가
+  | "total"
+  | "bot-transaction"
+  | "profit-rate"
+  | "winning-rate"
+  | "copied-presets";
+
 type SocialType = "linkedin" | "facebook" | "naver" | "kakao";
 
 // exchange

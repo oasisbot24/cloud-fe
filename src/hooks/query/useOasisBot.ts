@@ -1,8 +1,14 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAtom, useAtomValue } from "jotai";
-import { BotStartType, botStart, botStop, getBot } from "@/apis/oasisbot/bot";
+import {
+  BotStartType,
+  botStart,
+  botStop,
+  getAvailableBalance,
+  getBot,
+} from "@/apis/oasisbot/bot";
 import { getCoin } from "@/apis/oasisbot/coin";
-import { getTransaction } from "@/apis/oasisbot/getTransaction";
+import { getTransaction } from "@/apis/oasisbot/transaction";
 import exchangeAtom from "@/datas/exchange";
 
 export function useBot() {
@@ -61,8 +67,14 @@ export function useBotInfo() {
     queryFn: () => getTransaction(exchange),
   });
 
+  const balanceQuery = useQuery({
+    queryKey: ["getAvailableBalance", exchange],
+    queryFn: () => getAvailableBalance(exchange),
+  });
+
   return {
     coinQuery,
     transactionQuery,
+    balanceQuery,
   };
 }
