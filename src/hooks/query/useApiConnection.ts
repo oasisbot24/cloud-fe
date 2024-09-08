@@ -3,7 +3,7 @@ import {
   SmartAccessResultBody,
   postSmartAccessResult,
   postSmartAccessSession,
-} from "@/apis/smartAccess/smartAccess";
+} from "@/apis/apiConnection/smartAccess";
 import { getUserExchanges } from "@/apis/user/user";
 
 export function useSmartAccessMutation() {
