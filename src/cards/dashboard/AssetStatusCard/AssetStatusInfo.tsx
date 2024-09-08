@@ -2,6 +2,7 @@ import { Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
 import { TradeStyleType } from "@/apis/info/tradeStyle";
 import authAtom from "@/datas/auth";
+import { numberSlice } from "@/libs/string";
 import DisplayPL from "./DisplayPL";
 
 interface AssetStatusInfoProps {
@@ -31,7 +32,7 @@ export default function AssetStatusInfo({
           총 자산금액
         </Typography>
         <Typography variant="h4" className="text-white">
-          ₩ {tradeStyleData?.accountBalance ?? 0}
+          ₩ {numberSlice(tradeStyleData?.accountBalance, 2)}
         </Typography>
       </Stack>
       <Stack direction="row" className="w-full">
@@ -39,11 +40,7 @@ export default function AssetStatusInfo({
           <Typography variant="300R" className="text-neutral-200">
             총현황
           </Typography>
-          <DisplayPL
-            pl={
-              Math.round((tradeStyleData?.totalProfitLossRate ?? 0) * 100) / 100
-            }
-          />
+          <DisplayPL pl={tradeStyleData?.totalProfitLossRate ?? 0} />
         </Stack>
         <Stack direction="column" className="w-1/2 gap-1">
           <Typography variant="300R" className="text-neutral-200">

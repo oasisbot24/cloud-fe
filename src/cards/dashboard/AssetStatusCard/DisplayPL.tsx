@@ -1,5 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 import Icon from "@/components/Icon/index";
+import { numberSlice } from "@/libs/string";
 
 export default function DisplayPL({ pl }: { pl: number }) {
   return (
@@ -16,7 +17,7 @@ export default function DisplayPL({ pl }: { pl: number }) {
         lineHeight="36px"
         className={pl > 0 ? "text-sub-3" : "text-brand"}
       >
-        {pl >= 0 ? pl : -pl}%
+        {pl >= 0 ? numberSlice(pl, 2) : -numberSlice(pl, 2)}%
       </Typography>
     </Stack>
   );

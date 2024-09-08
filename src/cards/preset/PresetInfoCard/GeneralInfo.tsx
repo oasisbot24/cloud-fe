@@ -3,6 +3,7 @@ import { useAtom } from "jotai";
 import exchangeAtom from "@/datas/exchange";
 import { useInfoTradeStyle } from "@/hooks/query/useInfo";
 import { useSubscribeQuery } from "@/hooks/query/useSubcribe";
+import { numberSlice, numberToCurrency } from "@/libs/string";
 
 interface GeneralInfoProps {
   type: "exchange" | "balance" | "subscribe";
@@ -38,7 +39,10 @@ export default function GeneralInfo({ type }: GeneralInfoProps) {
           {type === "exchange"
             ? exchange.toUpperCase()
             : type === "balance"
-              ? tradeStyleData?.accountBalance || "0"
+              ? numberToCurrency(
+                  numberSlice(tradeStyleData?.accountBalance, 2),
+                  "₩",
+                ) || "0"
               : subscribeData?.productName || "Free"}
         </Typography>
       </Stack>

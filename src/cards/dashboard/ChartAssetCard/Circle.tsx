@@ -1,5 +1,6 @@
 import { Box, Stack, Typography } from "@mui/material";
 import CircleSvg from "@/cards/dashboard/ChartAssetCard/CircleSvg";
+import { numberSlice } from "@/libs/string";
 
 function ElementCircle({
   fillColorStart = "",
@@ -56,7 +57,7 @@ function CenterCircle({ percent = 50, amount = "₩ 12,112,112" }) {
               fontSize={28}
               lineHeight="36px"
             >
-              {percent}%
+              {numberSlice(percent, 2)}%
             </Typography>
           </Box>
           <Box className="text-center">
