@@ -1,7 +1,7 @@
 import { Box, Stack } from "@mui/material";
 import Card from "@/cards/Card";
 import ExchangeSelectDescription from "@/components/signin/dialog/ExchangeSelectDescription";
-import { useUserExchangesQuery } from "@/hooks/query/useSmartAccess";
+import { useUserExchangesQuery } from "@/hooks/query/useApiConnection";
 import ExchangeButton from "./ExchangeButton";
 
 export default function ApiConnectionCard() {
