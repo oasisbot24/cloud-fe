@@ -19,4 +19,15 @@ const exchangeToKorean = (market: ExchangeType | undefined) => {
   }
 };
 
-export { numberToCurrency, dateToKorean, exchangeToKorean };
+const createRandomString = (length: number) => {
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const charactersLength = characters.length;
+  let result = "";
+  Array.from({ length }).forEach(() => {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  });
+  return result;
+};
+
+export { numberToCurrency, dateToKorean, exchangeToKorean, createRandomString };

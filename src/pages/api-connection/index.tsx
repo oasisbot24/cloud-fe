@@ -3,7 +3,7 @@ import ApiConnectionCard from "@/cards/api-connection/ApiConnectionCard";
 import ApiConnectionTitleCard from "@/cards/api-connection/ApiConnectionTitleCard";
 import Layout from "@/layouts/Layout";
 
-function OasisBot() {
+function ApiConnection() {
   return (
     <Layout>
       <Box className="w-full h-[530px]">
@@ -18,4 +18,4 @@ function OasisBot() {
   );
 }
 
-export default OasisBot;
+export default ApiConnection;
