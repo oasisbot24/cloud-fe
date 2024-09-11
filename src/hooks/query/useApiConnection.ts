@@ -1,12 +1,24 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { postOkxOauthToken } from "@/apis/apiConnection/oauth";
 import {
   SmartAccessResultBody,
   postSmartAccessResult,
   postSmartAccessSession,
-} from "@/apis/smartAccess/smartAccess";
+} from "@/apis/apiConnection/smartAccess";
 import { getUserExchanges } from "@/apis/user/user";
 
+export function useOkxOauthTokenMutation() {
+  const postOkxOauthTokenMutation = useMutation({
+    mutationFn: postOkxOauthToken,
+    mutationKey: ["postOkxOauthToken"],
+  });
+  return {
+    postOkxOauthTokenMutation,
+  };
+}
+
 export function useSmartAccessMutation() {
+  const queryClient = useQueryClient();
   const postSmartAccessResultMutation = useMutation({
     mutationFn: ({
       exchange,
@@ -16,6 +28,9 @@ export function useSmartAccessMutation() {
       body: SmartAccessResultBody;
     }) => postSmartAccessResult(exchange, body),
     mutationKey: ["postSmartAccessResult"],
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["getUserExchanges"] });
+    },
   });
   const postSmartAccessSessionMutation = useMutation({
     mutationFn: postSmartAccessSession,

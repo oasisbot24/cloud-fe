@@ -1,6 +1,6 @@
 import { ButtonBase, Stack, Typography } from "@mui/material";
 import ExchangeIcon from "@/components/Icon/ExchangeIcon";
-import { useSmartAccessMutation } from "@/hooks/query/useSmartAccess";
+import { useSmartAccessMutation } from "@/hooks/query/useApiConnection";
 import openScrap from "./openScrap";
 
 interface ExchangeButtonProps {
@@ -16,16 +16,37 @@ export default function ExchangeButton({
   const { postSmartAccessSessionMutation, postSmartAccessResultMutation } =
     useSmartAccessMutation();
   const clickHandler = () => {
-    postSmartAccessSessionMutation.mutate(exchange, {
-      onSuccess: u => {
-        openScrap(u, () => {
-          postSmartAccessResultMutation.mutate({
-            exchange,
-            body: { uid: u },
-          });
+    if (exchange === "binance" || exchange === "lbank") return;
+    if (exchange === "okx") {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { OKEXOAuthSDK } = window as unknown as any;
+      if (OKEXOAuthSDK) {
+        const state = OKEXOAuthSDK.generateState();
+        OKEXOAuthSDK.authorize({
+          response_type: "code",
+          access_type: "offline",
+          client_id: process.env.NEXT_PUBLIC_OKX_OAUTH_CLIENT_ID,
+          redirect_uri: encodeURIComponent(
+            `${window.location.origin}/api-connection/okx`,
+          ),
+          scope: "fast_api",
+          state,
         });
-      },
-    });
+      } else {
+        console.error("sdk has not been loaded");
+      }
+    } else if (exchange === "upbit") {
+      postSmartAccessSessionMutation.mutate(exchange, {
+        onSuccess: u => {
+          openScrap(u, () => {
+            postSmartAccessResultMutation.mutate({
+              exchange,
+              body: { uid: u },
+            });
+          });
+        },
+      });
+    }
   };
   return (
     <ButtonBase
