@@ -24,7 +24,7 @@ export default function Panel({ setMenuId, menuId, chart }: Props) {
     setAnchorEl(null);
   };
 
-  for (let index = 0; index < chart.length; index + 1) {
+  for (let index = 0; index < chart.length; index += 1) {
     listItem.push(
       <CustomMenu
         key={index}
