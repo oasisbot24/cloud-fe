@@ -4,11 +4,8 @@ import {
   GridRenderCellParams,
   GridValidRowModel,
 } from "@mui/x-data-grid";
-import { useQuery } from "@tanstack/react-query";
-import { getTransaction } from "@/apis/oasisbot/transaction";
 import ArrowDownIcon from "@/components/Icon/ArrowDownIcon";
 import ArrowUpIcon from "@/components/Icon/ArrowUpIcon";
-import useMarketSelect from "@/hooks/card/useMarketSelect";
 import { exchangeToKorean } from "@/libs/string";
 import ExchangeIcon from "../Icon/ExchangeIcon";
 

@@ -9,6 +9,8 @@ interface ExchangeSelectButtonProps {
 const title = {
   okx: "OKX",
   upbit: "UPBIT",
+  binance: "BINANCE",
+  lbank: "LBANK",
 };
 
 function ExchangeSelectButton({ type, onClick }: ExchangeSelectButtonProps) {
