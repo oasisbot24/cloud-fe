@@ -1,17 +1,8 @@
 import { useState } from "react";
-import {
-  Box,
-  ListItemIcon,
-  ListItemText,
-  Menu,
-  MenuItem,
-  MenuList,
-  Stack,
-} from "@mui/material";
+import { Box, Menu, Stack } from "@mui/material";
 import { useAtom } from "jotai";
 import { ChartType } from "@/apis/chart/dashboardChart";
 import Icon from "@/components/Icon";
-import DashboardIcon from "@/components/Icon/DashboardIcon";
 import exchangeAtom from "@/datas/exchange";
 import CustomMenu from "./CustomMenu";
 import PanelDescription from "./PanelDescription";
@@ -33,16 +24,15 @@ export default function Panel({ setMenuId, menuId, chart }: Props) {
     setAnchorEl(null);
   };
 
-  for (let index = 0; index < chart.length; index++) {
+  for (let index = 0; index < chart.length; index + 1) {
     listItem.push(
       <CustomMenu
         key={index}
         id={index}
         setMenuId={setMenuId}
-        coinName={chart[index]["coinName"]}
-        presetName={chart[index]["presetName"]}
-        totalProfit={chart[index]["totalProfit"]}
-        totalProfitRate={chart[index]["totalProfitRate"]}
+        coinName={chart[index].coinName}
+        presetName={chart[index].presetName}
+        totalProfitRate={chart[index].totalProfitRate}
         exchange={exchange}
       />,
     );
@@ -56,12 +46,10 @@ export default function Panel({ setMenuId, menuId, chart }: Props) {
         onClick={handleClick}
       >
         <PanelDescription
-          coinName={chart.length > 0 ? chart[menuId]["coinName"] : ""}
-          presetName={chart.length > 0 ? chart[menuId]["presetName"] : ""}
-          totalProfit={chart.length > 0 ? chart[menuId]["totalProfit"] : 0}
-          totalProfitRate={
-            chart.length > 0 ? chart[menuId]["totalProfitRate"] : 0
-          }
+          coinName={chart.length > 0 ? chart[menuId].coinName : ""}
+          presetName={chart.length > 0 ? chart[menuId].presetName : ""}
+          totalProfit={chart.length > 0 ? chart[menuId].totalProfit : 0}
+          totalProfitRate={chart.length > 0 ? chart[menuId].totalProfitRate : 0}
         />
         <Stack direction="row" spacing={2}>
           <Stack justifyContent="center" alignItems="center">

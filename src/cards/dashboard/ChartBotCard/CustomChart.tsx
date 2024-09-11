@@ -13,7 +13,15 @@ export default function CustomChart({ date, price, rate }: ChartData) {
         categories: date,
       },
       tooltip: {
-        custom: function ({ series, seriesIndex, dataPointIndex, w }: any) {
+        custom: ({
+          series,
+          seriesIndex,
+          dataPointIndex,
+        }: {
+          series: number[][];
+          seriesIndex: number;
+          dataPointIndex: number;
+        }) => {
           const value = series[seriesIndex][dataPointIndex];
           const percentageChange = rate[dataPointIndex];
           const percentagebgColor =

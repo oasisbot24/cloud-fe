@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Chip, Stack, Typography } from "@mui/material";
-import { useAtom } from "jotai";
 import ArrowDownIcon from "@/components/Icon/ArrowDownIcon";
 import ArrowUpIcon from "@/components/Icon/ArrowUpIcon";
 import ExchangeIcon from "@/components/Icon/ExchangeIcon";
@@ -10,7 +9,6 @@ interface Props {
   setMenuId: React.Dispatch<React.SetStateAction<number>>;
   coinName: string;
   presetName: string;
-  totalProfit: number;
   totalProfitRate: number;
   exchange: ExchangeType;
 }
@@ -20,7 +18,6 @@ function CustomMenu({
   setMenuId,
   coinName,
   presetName,
-  totalProfit,
   totalProfitRate,
   exchange,
 }: Props) {

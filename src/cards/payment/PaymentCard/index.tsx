@@ -25,9 +25,8 @@ function PaymentInfo({ title, children }: PaymentInfoProps) {
 }
 
 export default function PaymentCard() {
-  const { query, push } = useRouter();
-  console.log(query.month);
-  console.log(query.type);
+  const { push } = useRouter();
+
   const { postPaymentMethodMutation } = usePaymentMethodMutation();
 
   const [cardNumber, setCardNumber] = useState("");

@@ -1,6 +1,4 @@
-import Image from "next/image";
 import { Chip, Stack, Typography } from "@mui/material";
-import Icon from "@/components/Icon";
 import ArrowDownIcon from "@/components/Icon/ArrowDownIcon";
 import ArrowUpIcon from "@/components/Icon/ArrowUpIcon";
 import DashboardIcon from "@/components/Icon/DashboardIcon";
