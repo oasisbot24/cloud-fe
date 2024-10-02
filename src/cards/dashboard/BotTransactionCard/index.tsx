@@ -21,7 +21,12 @@ function BotTransactionCard() {
           columns={OasisBotTransactionCompactColumns}
           rows={OasisBotTransactionCompactMockRows ?? []}
           hideFooter
-          sx={{ border: "none" }}
+          sx={{
+            border: "none",
+            "& .MuiDataGrid-cell:focus": {
+              outline: "none",
+            },
+          }}
         />
       </CardContent>
       <CardFooter>

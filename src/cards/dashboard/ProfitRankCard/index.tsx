@@ -1,4 +1,5 @@
-import { CardContent } from "@mui/material";
+import { useState } from "react";
+import { CardContent, styled } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
@@ -8,6 +9,7 @@ import { useInfoRanking } from "@/hooks/query/useInfo";
 function ProfitRankCard() {
   const { rankingQuery } = useInfoRanking(365);
   const { isLoading, data: ProfitRankMockRows } = rankingQuery;
+
   return (
     <Card>
       <CardHeader id="ranking" title="실시간 수익 Top5" />
@@ -17,7 +19,12 @@ function ProfitRankCard() {
           columns={ProfitRankColumns}
           rows={ProfitRankMockRows ?? []}
           hideFooter
-          sx={{ border: "none" }}
+          sx={{
+            border: "none",
+            "& .MuiDataGrid-cell:focus": {
+              outline: "none",
+            },
+          }}
         />
       </CardContent>
     </Card>

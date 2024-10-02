@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Menu, Stack } from "@mui/material";
 import { useAtom } from "jotai";
 import { ChartType } from "@/apis/chart/dashboardChart";
@@ -50,6 +50,7 @@ export default function Panel({ setMenuId, menuId, chart }: Props) {
           presetName={chart.length > 0 ? chart[menuId].presetName : ""}
           totalProfit={chart.length > 0 ? chart[menuId].totalProfit : 0}
           totalProfitRate={chart.length > 0 ? chart[menuId].totalProfitRate : 0}
+          exchange={exchange}
         />
         <Stack direction="row" spacing={2}>
           <Stack justifyContent="center" alignItems="center">

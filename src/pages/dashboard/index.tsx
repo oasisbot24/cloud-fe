@@ -24,12 +24,12 @@ export default function Home() {
               <ChartCard />
             </Box>
             <Box className="w-5/12">
-              <OasisBotListCard />
+              <OasisBotListCard nav={"dashboard"} />
             </Box>
           </Stack>
           <Stack direction="row" className="gap-4 h-[436px]">
             <Box className="w-5/12">
-              <BotTransactionCard />
+              <BotTransactionCard />{" "}
             </Box>
             <Box className="w-7/12">
               <ProfitRankCard />

@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import { Chip, Stack, Typography } from "@mui/material";
+import useSave from "@/cards/preset/PresetWeightSettingCard/useSave";
 import ArrowDownIcon from "@/components/Icon/ArrowDownIcon";
 import ArrowUpIcon from "@/components/Icon/ArrowUpIcon";
 import DashboardIcon from "@/components/Icon/DashboardIcon";
@@ -8,6 +11,7 @@ interface Props {
   presetName: string;
   totalProfit: number;
   totalProfitRate: number;
+  exchange: ExchangeType;
 }
 
 export default function PanelDescription({
@@ -15,17 +19,23 @@ export default function PanelDescription({
   presetName,
   totalProfit,
   totalProfitRate,
+  exchange,
 }: Props) {
+  const changeIcon = (name: string) => {
+    switch (name) {
+      case "upbit":
+        return "/icons/exchange/iconUPBIT.png";
+      case "okx":
+        return "/icons/exchange/iconOKX.png";
+      default:
+        return "";
+    }
+  };
   return (
     <Stack direction="row" className="w-full justify-between items-center">
       <Stack direction="row" spacing={1}>
-        <DashboardIcon id="bar-graph" />
-        {/* <Image
-          src="/icons/crypto/btc-30.png"
-          alt="btc"
-          width={25}
-          height={30}
-        /> */}
+        {/* <DashboardIcon id="bar-graph" /> */}
+        <Image src={changeIcon(exchange)} alt="btc" width={45} height={45} />
 
         <Stack className="gap-2">
           <Typography variant="300B" className="text-[#FFFFFF]">
