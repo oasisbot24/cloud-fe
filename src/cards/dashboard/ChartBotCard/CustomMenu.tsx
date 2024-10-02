@@ -21,6 +21,38 @@ function CustomMenu({
   totalProfitRate,
   exchange,
 }: Props) {
+  const crypto = (name: string) => {
+    switch (name) {
+      case "비트코인":
+        return "/icons/crypto/btc-30.png";
+      case "비트코인캐시":
+        return "/icons/crypto/BTC.png";
+      case "도지코인":
+        return "/icons/crypto/DOGE.png";
+      case "이더리움클래식":
+        return "/icons/crypto/ETC.png";
+      case "이더리움":
+        return "/icons/crypto/ETH.png";
+      case "니어프로토콜":
+        return "/icons/crypto/NEAR.png";
+      case "시바누이":
+        return "/icons/crypto/SIHIB.png";
+      case "솔라나":
+        return "/icons/crypto/SOL.png";
+      case "스텍스":
+        return "/icons/crypto/STX.png";
+      case "테더":
+        return "/icons/crypto/USDT.png";
+      case "스텔라루멘":
+        return "/icons/crypto/XLM.png";
+      case "리플":
+        return "/icons/crypto/XRP.png";
+      case "에이다":
+        return "/icons/crypto/ADA.png";
+      default:
+        return "";
+    }
+  };
   return (
     <Stack
       direction="row"
@@ -65,12 +97,11 @@ function CustomMenu({
         spacing={1}
         sx={{ width: "100%" }}
       >
-        <Image
-          src="/icons/crypto/btc-30.png"
-          alt="btc"
-          width={15}
-          height={20}
-        />
+        {coinName == "ALL" ? (
+          ""
+        ) : (
+          <Image src={crypto(coinName)} alt={coinName} width={15} height={20} />
+        )}
 
         <Typography variant="200R">{coinName}</Typography>
 

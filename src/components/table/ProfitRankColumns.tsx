@@ -8,6 +8,7 @@ import {
 import { exchangeToKorean } from "@/libs/string";
 import CoinIcon from "../Icon/CoinIcon";
 import ExchangeIcon from "../Icon/ExchangeIcon";
+import TimeConvert from "./timeConvert";
 
 const ProfitRankColumns: GridColDef[] = [
   {
@@ -91,7 +92,11 @@ const ProfitRankColumns: GridColDef[] = [
     headerClassName: "text-slate-500",
     renderCell: (
       params: GridRenderCellParams<GridValidRowModel, ProfitRank["period"]>,
-    ) => <div className="whitespace-normal">{params.value}</div>,
+    ) => (
+      <div className="whitespace-normal">
+        {TimeConvert(Number(params.value))}
+      </div>
+    ),
   },
   {
     field: "",

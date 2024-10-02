@@ -7,6 +7,7 @@ import {
 import { BotType } from "@/apis/oasisbot/bot";
 import Icon from "../Icon";
 import CustomSwitch from "../common/CustomSwitch";
+import TimeConvert from "./timeConvert";
 
 const OasisBotListColumns: GridColDef[] = [
   {
@@ -38,7 +39,11 @@ const OasisBotListColumns: GridColDef[] = [
     headerClassName: "text-slate-500",
     renderCell: (
       params: GridRenderCellParams<GridValidRowModel, BotType["runningTime"]>,
-    ) => <div className="whitespace-normal">{params.value}</div>,
+    ) => (
+      <div className="whitespace-normal">
+        {TimeConvert(Number(params.value))}
+      </div>
+    ),
   },
   {
     field: "coinType",
