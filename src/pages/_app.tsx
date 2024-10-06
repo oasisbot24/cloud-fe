@@ -36,6 +36,7 @@ export default function App({ Component, pageProps }: AppProps) {
     if (pathname.includes("/api-connection")) return;
     if (pathname.includes("/subscribe")) return;
     if (pathname.includes("/mypage")) return;
+    if (pathname.includes("/payment")) return;
     const { data } = userExchangeQuery;
     if (!data || data.length === 0) push("/api-connection");
   }, [pathname]);
