@@ -9,6 +9,8 @@ interface OasisBotTotalCardProps {
   title: string;
   subtitle?: string;
   color: string;
+  value: string;
+  unit: string;
 }
 
 function OasisBotTotalCard({
@@ -16,6 +18,8 @@ function OasisBotTotalCard({
   title,
   subtitle,
   color,
+  value,
+  unit,
 }: OasisBotTotalCardProps) {
   return (
     <Card>
@@ -53,10 +57,10 @@ function OasisBotTotalCard({
             }}
           >
             <Typography fontSize={28} fontWeight={700}>
-              53,000,000,000
+              {value}
             </Typography>
             <Typography fontSize={16} fontWeight={500}>
-              원
+              {unit}
             </Typography>
           </Stack>
         </Stack>
