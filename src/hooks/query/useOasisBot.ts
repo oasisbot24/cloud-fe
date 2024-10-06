@@ -6,6 +6,7 @@ import {
   botStop,
   getAvailableBalance,
   getBot,
+  getBotData,
 } from "@/apis/oasisbot/bot";
 import { getCoin } from "@/apis/oasisbot/coin";
 import { getTransaction } from "@/apis/oasisbot/transaction";
@@ -77,4 +78,14 @@ export function useBotInfo() {
     transactionQuery,
     balanceQuery,
   };
+}
+
+export function useBotData() {
+  const [exchange] = useAtom(exchangeAtom);
+  const botDataQuery = useQuery({
+    queryKey: ["getBotData", exchange],
+    queryFn: () => getBotData(exchange),
+  });
+
+  return { botDataQuery };
 }

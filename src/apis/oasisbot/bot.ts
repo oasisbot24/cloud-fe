@@ -52,5 +52,35 @@ async function getAvailableBalance(
   return res.data?.data;
 }
 
-export { botStart, botStop, getBot, getAvailableBalance };
-export type { BotStartType, BotType, AvailableBalanceType };
+interface BotDataType {
+  totalTradePrice: {
+    value: number;
+    difference: number;
+  };
+  totalTradeCount: {
+    value: number;
+    difference: number;
+  };
+  maxProfitRate: {
+    rate: number;
+    presetName: string;
+    coinName: string;
+  };
+  maxWinRate: {
+    rate: number;
+    presetName: string;
+    coinName: string;
+  };
+  totalTradeBalance: number;
+}
+
+async function getBotData(exchangeName: string): Promise<BotDataType> {
+  const res = await api.get<ApiResponseType<BotDataType>>(
+    `/bot-data?exchange=${exchangeName}`,
+  );
+
+  return res.data?.data;
+}
+
+export { botStart, botStop, getBot, getAvailableBalance, getBotData };
+export type { BotStartType, BotType, AvailableBalanceType, BotDataType };

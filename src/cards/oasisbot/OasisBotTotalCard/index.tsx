@@ -9,8 +9,9 @@ interface OasisBotTotalCardProps {
   title: string;
   subtitle?: string;
   color: string;
-  value: string;
+  value: string | number;
   unit: string;
+  difference?: number;
 }
 
 function OasisBotTotalCard({
@@ -20,6 +21,7 @@ function OasisBotTotalCard({
   color,
   value,
   unit,
+  difference,
 }: OasisBotTotalCardProps) {
   return (
     <Card>
@@ -43,7 +45,7 @@ function OasisBotTotalCard({
                     height={16}
                   />
                   <Typography fontSize={12} fontWeight={700}>
-                    전 날 보다 120,000원 상승 했어요
+                    전 날 보다 {difference}원 상승 했어요
                   </Typography>
                 </Stack>
               }
