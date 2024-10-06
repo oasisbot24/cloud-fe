@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useOkxOauthTokenMutation } from "@/hooks/query/useApiConnection";
+import { createRandomString } from "@/libs/string";
 
 function ApiConnectionOkx() {
   const { query } = useRouter();
@@ -8,17 +9,10 @@ function ApiConnectionOkx() {
   const { postOkxOauthTokenMutation } = useOkxOauthTokenMutation();
   useEffect(() => {
     if (!code || !state) return;
-    if (
-      process.env.NEXT_PUBLIC_OKX_OAUTH_CLIENT_ID === undefined ||
-      process.env.NEXT_PUBLIC_OKX_OAUTH_CLIENT_SECRET === undefined
-    )
-      return;
     postOkxOauthTokenMutation.mutate(
       {
-        grant_type: "authorization_code",
         code: code as string,
-        client_id: process.env.NEXT_PUBLIC_OKX_OAUTH_CLIENT_ID,
-        client_secret: process.env.NEXT_PUBLIC_OKX_OAUTH_CLIENT_SECRET,
+        passphrase: createRandomString(16),
       },
       {
         onSuccess: res => {
