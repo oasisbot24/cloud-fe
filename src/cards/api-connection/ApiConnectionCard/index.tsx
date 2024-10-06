@@ -1,14 +1,20 @@
-import { Box, Stack } from "@mui/material";
+import { Alert, Box, Stack } from "@mui/material";
 import Card from "@/cards/Card";
 import ExchangeSelectDescription from "@/components/signin/dialog/ExchangeSelectDescription";
 import { useUserExchangesQuery } from "@/hooks/query/useApiConnection";
 import ExchangeButton from "./ExchangeButton";
 
+interface Props {
+  processing?: ExchangeType;
+  error?: string;
+  success?: string;
+}
+
 export default function ApiConnectionCard({
   processing,
-}: {
-  processing?: ExchangeType;
-}) {
+  error,
+  success,
+}: Props) {
   const {
     userExchangeQuery: { data: userExchanges },
   } = useUserExchangesQuery();
@@ -39,6 +45,16 @@ export default function ApiConnectionCard({
             isProcessing={processing === "lbank"}
           />
         </Box>
+        {error && (
+          <Alert severity="error" className="w-full">
+            {error}
+          </Alert>
+        )}
+        {success && (
+          <Alert severity="success" className="w-full">
+            {success}
+          </Alert>
+        )}
         <ExchangeSelectDescription />
       </Stack>
     </Card>
