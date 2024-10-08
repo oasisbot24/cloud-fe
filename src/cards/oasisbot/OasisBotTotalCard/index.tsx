@@ -12,6 +12,8 @@ interface OasisBotTotalCardProps {
   value: string | number;
   unit: string;
   difference?: number;
+  arrow?: boolean;
+  mention?: string;
 }
 
 function OasisBotTotalCard({
@@ -22,6 +24,8 @@ function OasisBotTotalCard({
   value,
   unit,
   difference,
+  arrow,
+  mention,
 }: OasisBotTotalCardProps) {
   return (
     <Card>
@@ -38,14 +42,27 @@ function OasisBotTotalCard({
             <Chip
               label={
                 <Stack direction="row">
-                  <Image
-                    src="/icons/arrow/profitloss/up-small.png"
-                    alt="arrow"
-                    width={16}
-                    height={16}
-                  />
+                  {((difference === undefined && arrow) ||
+                    (difference !== undefined && difference >= 0)) && (
+                    <Image
+                      src="/icons/arrow/profitloss/up-small.png"
+                      alt="arrow"
+                      width={16}
+                      height={16}
+                    />
+                  )}
+                  {difference !== undefined && difference < 0 && (
+                    <Image
+                      src="/icons/arrow/profitloss/down-small.png"
+                      alt="arrow"
+                      width={16}
+                      height={16}
+                    />
+                  )}
                   <Typography fontSize={12} fontWeight={700}>
-                    전 날 보다 {difference}원 상승 했어요
+                    {mention}
+                    {difference !== undefined &&
+                      `전 날 보다 ${difference}원 ${difference >= 0 ? "상승" : "하락"} 했어요`}
                   </Typography>
                 </Stack>
               }
