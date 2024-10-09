@@ -1,5 +1,13 @@
-import { ButtonBase, Stack, Typography } from "@mui/material";
+import Link from "next/link";
+import { ButtonBase, Stack, Typography, styled } from "@mui/material";
 import Icon from "@/components/Icon";
+
+const LinkTo = styled("a")({
+  padding: "0 0 0 25px",
+  color: "#a6a6a6",
+  fontSize: "small",
+  cursor: "pointer",
+});
 
 export default function ExchangeSelectDescription() {
   return (
@@ -19,9 +27,11 @@ export default function ExchangeSelectDescription() {
         </Typography>
       </Stack>
       <ButtonBase className="rounded-full w-full bg-brand py-3">
-        <Typography variant="300B" className="text-white">
-          이벤트 이용하기
-        </Typography>
+        <Link href={" https://www.okx.com/join/79271938"} target="_blank">
+          <Typography variant="300B" className="text-white">
+            이벤트 이용하기
+          </Typography>
+        </Link>
       </ButtonBase>
     </Stack>
   );

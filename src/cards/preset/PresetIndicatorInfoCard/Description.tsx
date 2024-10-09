@@ -30,7 +30,7 @@ export default function Description({
             lineHeight: "18px",
             fontSize: "14px",
             fontFamily: "Inter",
-            fontWeight: 500,
+            fontWeight: 700,
             letterSpacing: "-2%",
             textAlign: "justify",
             whiteSpace: "pre-line",
