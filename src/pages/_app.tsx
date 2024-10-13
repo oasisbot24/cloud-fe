@@ -8,6 +8,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useAtom } from "jotai";
 import { SnackbarProvider } from "notistack";
 import authAtom from "@/datas/auth";
+import exchangeAtom from "@/datas/exchange";
 import { useUserExchangesQuery } from "@/hooks/query/useApiConnection";
 import useModalGlobal from "@/hooks/useModalGlobal";
 import "@/styles/custom.css";
@@ -21,6 +22,7 @@ const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }: AppProps) {
   const { push, pathname } = useRouter();
+  const [, setExchange] = useAtom(exchangeAtom);
   const [, setAuth] = useAtom(authAtom);
   const { modal, closeModal } = useModalGlobal();
   const { userExchangeQuery } = useUserExchangesQuery(queryClient);
@@ -29,6 +31,14 @@ export default function App({ Component, pageProps }: AppProps) {
     const auth = localStorage.getItem("auth");
     if (auth) setAuth(JSON.parse(auth));
     else push("/");
+
+    const exchange = localStorage.getItem("exchange");
+    if (exchange) {
+      if (exchange === "okx") setExchange("okx");
+      else if (exchange === "upbit") setExchange("upbit");
+      else localStorage.removeItem("exchange");
+    }
+    if (exchange && pathname === "/") push("/dashboard");
   }, []);
 
   useEffect(() => {

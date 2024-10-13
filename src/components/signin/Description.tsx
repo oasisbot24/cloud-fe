@@ -20,6 +20,7 @@ function Description() {
       <SigninDialog onClose={closeModal}>
         <ExchangeSelect
           onClick={(type: ExchangeType) => {
+            localStorage.setItem("exchange", type);
             setExchange(type);
             closeModal();
             push("/dashboard");
