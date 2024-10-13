@@ -44,7 +44,12 @@ export default function ApiConnectionTitleCard() {
         <Typography variant="300R" className="text-white">
           추가로 원하시는 거래소가 있으시면 요청해 주세요.
         </Typography>
-        <ButtonBase className="mt-6 flex gap-2 rounded-full border border-white border-solid px-3 py-1.5">
+        <ButtonBase
+          className="mt-6 flex gap-2 rounded-full border border-white border-solid px-3 py-1.5"
+          onClick={() => {
+            window.open("https://open.kakao.com/me/Oasisbot");
+          }}
+        >
           <Typography variant="200B" className="text-white">
             거래소 지원 요청
           </Typography>

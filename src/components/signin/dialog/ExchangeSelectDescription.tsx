@@ -18,7 +18,10 @@ export default function ExchangeSelectDescription() {
           <span className="text-brand">수수료 50% 할인혜택</span>을 드립니다.
         </Typography>
       </Stack>
-      <ButtonBase className="rounded-full w-full bg-brand py-3">
+      <ButtonBase
+        className="rounded-full w-full bg-brand py-3"
+        onClick={() => window.open("https://www.okx.com/join/79271938")}
+      >
         <Typography variant="300B" className="text-white">
           이벤트 이용하기
         </Typography>
