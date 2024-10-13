@@ -3,13 +3,13 @@ import { TableRowType } from "./SubscribeTableRow";
 
 interface TableType {
   free: Record<TableRowType, JSX.Element | string>;
-  promotion: Record<TableRowType, JSX.Element | string>;
-  allinone: Record<TableRowType, JSX.Element | string>;
+  basic: Record<TableRowType, JSX.Element | string>;
+  premium: Record<TableRowType, JSX.Element | string>;
 }
 
 const tableData: TableType = {
   free: {
-    oasislab: "10번 제한",
+    oasislab: "개발예정",
     getasset: <Close />,
     oasisbot: <Close />,
     exchange: <Close />,
@@ -17,17 +17,17 @@ const tableData: TableType = {
     "new-coin": <Close />,
     partner: <Check />,
   },
-  promotion: {
-    oasislab: "횟수제한없음",
+  basic: {
+    oasislab: "개발예정",
     getasset: <Check />,
     oasisbot: <Check />,
-    exchange: "코인원만가능",
-    "api-connection": "코인원만가능",
+    exchange: "업비트만가능",
+    "api-connection": "업비트만가능",
     "new-coin": <Check />,
     partner: <Check />,
   },
-  allinone: {
-    oasislab: "횟수제한없음",
+  premium: {
+    oasislab: "개발예정",
     getasset: <Check />,
     oasisbot: <Check />,
     exchange: "지원거래소 모두가능",
@@ -37,23 +37,40 @@ const tableData: TableType = {
   },
 };
 
-const subcribeTitleData = {
-  free: "Free",
-  promotion: "코인원 프로모션",
-  allinone: "All in One",
+const subscribeData = {
+  free: {
+    title: "Free",
+    month: {
+      1: {
+        productId: 0,
+      },
+      3: {
+        productId: 0,
+      },
+    },
+  },
+  basic: {
+    title: "Basic",
+    month: {
+      1: {
+        productId: 1,
+      },
+      3: {
+        productId: 2,
+      },
+    },
+  },
+  premium: {
+    title: "Premium",
+    month: {
+      1: {
+        productId: 3,
+      },
+      3: {
+        productId: 4,
+      },
+    },
+  },
 };
 
-const paymentData = {
-  1: {
-    free: "₩0",
-    promotion: "₩19,000",
-    allinone: "₩49,000",
-  },
-  3: {
-    free: "₩0",
-    promotion: "₩49,000",
-    allinone: "₩147,000",
-  },
-};
-
-export { tableData, subcribeTitleData, paymentData };
+export { tableData, subscribeData };

@@ -1,12 +1,17 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { ButtonBase, Stack, Typography } from "@mui/material";
+import { AxiosError } from "axios";
 import { useAtom } from "jotai";
 import { subscribeMonthAtom } from "@/datas/subscribe";
-import { useSubscribeMutation } from "@/hooks/query/useSubcribe";
+import {
+  useProductQuery,
+  useSubscribeMutation,
+} from "@/hooks/query/useSubcribe";
 import useModalGlobal from "@/hooks/useModalGlobal";
+import { numberToCurrency } from "@/libs/string";
 import SubscribeTitleMonthButton from "../../SubscribeTitleCard/SubscribeTitleMonthButton";
-import { paymentData, subcribeTitleData } from "../SubscribeTableData";
+import { subscribeData } from "../SubscribeTableData";
 import modalImage from "./modal.png";
 
 interface SubscribeModalProps {
@@ -17,25 +22,25 @@ export default function SubscribeModal({ type }: SubscribeModalProps) {
   const { push } = useRouter();
   const [month] = useAtom(subscribeMonthAtom);
   const { closeModal } = useModalGlobal();
-  const { postSubscribeMutation, deleteSubscribeMutation } =
-    useSubscribeMutation();
+  const {
+    productQuery: { data: productData },
+  } = useProductQuery();
+  const { postSubscribeMutation } = useSubscribeMutation();
 
   const handleClick = () => {
-    deleteSubscribeMutation.mutateAsync(1).finally(() => {
-      postSubscribeMutation.mutate(
-        { productId: 1 },
-        {
-          onSuccess: () => {
-            push("/mypage");
-            closeModal();
-          },
-          onError: () => {
-            push(`/payment?type=${type}&month=${month}`);
-            closeModal();
-          },
+    postSubscribeMutation.mutate(
+      { productId: subscribeData[type].month[month].productId },
+      {
+        onSuccess: () => {
+          push("/mypage");
+          closeModal();
         },
-      );
-    });
+        onError: e => {
+          const axiosError = e as AxiosError<ApiResponseType<void>>;
+          closeModal();
+        },
+      },
+    );
   };
 
   return (
@@ -50,7 +55,14 @@ export default function SubscribeModal({ type }: SubscribeModalProps) {
               구독 멤버십:
             </Typography>
             <Typography variant="300B" className="text-font-1">
-              {`${subcribeTitleData[type]}: ${paymentData[month][type]}`}
+              {`${subscribeData[type].title}: ${numberToCurrency(
+                productData?.find(
+                  product =>
+                    product.productId ===
+                    subscribeData[type].month[month].productId,
+                )?.productPrice ?? 0,
+                "₩",
+              )}`}
             </Typography>
           </Stack>
         </Stack>

@@ -110,7 +110,7 @@ interface RealtimeTransaction {
 }
 
 // subscribe
-type SubscribeType = "free" | "promotion" | "allinone";
+type SubscribeType = "free" | "basic" | "premium";
 type SubscribeMonth = 1 | 3;
 
 interface SelectItem {

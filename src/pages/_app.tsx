@@ -32,6 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }, []);
 
   useEffect(() => {
+    if (process.env.NEXT_PUBLIC_MODE === "development") return;
     if (pathname === "/") return;
     if (pathname.includes("/api-connection")) return;
     if (pathname.includes("/subscribe")) return;
