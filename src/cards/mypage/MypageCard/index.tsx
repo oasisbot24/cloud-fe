@@ -4,12 +4,15 @@ import { useAtom } from "jotai";
 import Card from "@/cards/Card";
 import authAtom from "@/datas/auth";
 import { usePaymentMethodQuery } from "@/hooks/query/usePayment";
+import useModalGlobal from "@/hooks/useModalGlobal";
 import MypageExchange from "./MypageExchange";
 import MypageInfo from "./MypageInfo";
 import MypageSubscribe from "./MypageSubscribe";
+import PromotionModal from "./PromotionModal";
 
 export default function MypageCard() {
   const [auth] = useAtom(authAtom);
+  const { openModal } = useModalGlobal();
   const {
     paymentMethodQuery: { data: paymentMethodData },
   } = usePaymentMethodQuery();
@@ -44,8 +47,18 @@ export default function MypageCard() {
             {paymentMethodData?.cardNumber}
           </Typography>
         </MypageInfo>
-        <MypageInfo title="프로모션 코드" buttonText="적용하기">
-          <InputBase className="w-full h-full" />
+        <MypageInfo
+          title="프로모션 코드"
+          buttonText="적용하기"
+          onClick={() => openModal(<PromotionModal />)}
+        >
+          <InputBase
+            className="w-full h-full"
+            disabled={!paymentMethodData?.cardNumber}
+            value={
+              paymentMethodData?.cardNumber ? "" : "카드를 등록이 필요합니다."
+            }
+          />
         </MypageInfo>
       </Stack>
     </Card>
