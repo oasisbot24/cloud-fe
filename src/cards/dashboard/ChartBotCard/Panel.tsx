@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Box, Menu, Stack } from "@mui/material";
 import { useAtom } from "jotai";
 import { ChartType } from "@/apis/chart/dashboardChart";

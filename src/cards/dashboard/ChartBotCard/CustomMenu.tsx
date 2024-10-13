@@ -97,7 +97,7 @@ function CustomMenu({
         spacing={1}
         sx={{ width: "100%" }}
       >
-        {coinName == "ALL" ? (
+        {coinName === "ALL" ? (
           ""
         ) : (
           <Image src={crypto(coinName)} alt={coinName} width={15} height={20} />

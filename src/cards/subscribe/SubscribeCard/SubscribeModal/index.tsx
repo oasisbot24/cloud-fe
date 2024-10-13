@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { ButtonBase, Stack, Typography } from "@mui/material";
-import { AxiosError } from "axios";
 import { useAtom } from "jotai";
 import { subscribeMonthAtom } from "@/datas/subscribe";
 import {
@@ -35,8 +34,7 @@ export default function SubscribeModal({ type }: SubscribeModalProps) {
           push("/mypage");
           closeModal();
         },
-        onError: e => {
-          const axiosError = e as AxiosError<ApiResponseType<void>>;
+        onError: () => {
           closeModal();
         },
       },

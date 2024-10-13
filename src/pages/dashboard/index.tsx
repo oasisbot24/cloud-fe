@@ -24,7 +24,7 @@ export default function Home() {
               <ChartCard />
             </Box>
             <Box className="w-5/12">
-              <OasisBotListCard nav={"dashboard"} />
+              <OasisBotListCard nav="dashboard" />
             </Box>
           </Stack>
           <Stack direction="row" className="gap-4 h-[436px]">
