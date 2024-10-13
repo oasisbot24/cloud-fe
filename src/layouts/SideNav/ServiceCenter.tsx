@@ -30,7 +30,13 @@ export default function ServiceCenter({ iconOnly }: { iconOnly?: boolean }) {
                 이용에 어려운 점이 있으시다면,
               </Typography>
             </Stack>
-            <Button variant="contained" className="rounded-lg py-2">
+            <Button
+              variant="contained"
+              className="rounded-lg py-2"
+              onClick={() => {
+                window.open("https://open.kakao.com/me/Oasisbot");
+              }}
+            >
               <Typography variant="200R" className="text-white">
                 고객센터
               </Typography>

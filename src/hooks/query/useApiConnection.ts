@@ -1,4 +1,9 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  QueryClient,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { postOkxOauthToken } from "@/apis/apiConnection/oauth";
 import {
   SmartAccessResultBody,
@@ -42,11 +47,14 @@ export function useSmartAccessMutation() {
   };
 }
 
-export function useUserExchangesQuery() {
-  const userExchangeQuery = useQuery({
-    queryFn: getUserExchanges,
-    queryKey: ["getUserExchanges"],
-  });
+export function useUserExchangesQuery(queryClient?: QueryClient) {
+  const userExchangeQuery = useQuery(
+    {
+      queryFn: getUserExchanges,
+      queryKey: ["getUserExchanges"],
+    },
+    queryClient,
+  );
   return {
     userExchangeQuery,
   };

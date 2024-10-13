@@ -1,13 +1,5 @@
-import Link from "next/link";
-import { ButtonBase, Stack, Typography, styled } from "@mui/material";
+import { ButtonBase, Stack, Typography } from "@mui/material";
 import Icon from "@/components/Icon";
-
-const LinkTo = styled("a")({
-  padding: "0 0 0 25px",
-  color: "#a6a6a6",
-  fontSize: "small",
-  cursor: "pointer",
-});
 
 export default function ExchangeSelectDescription() {
   return (
@@ -26,12 +18,13 @@ export default function ExchangeSelectDescription() {
           <span className="text-brand">수수료 50% 할인혜택</span>을 드립니다.
         </Typography>
       </Stack>
-      <ButtonBase className="rounded-full w-full bg-brand py-3">
-        <Link href={" https://www.okx.com/join/79271938"} target="_blank">
-          <Typography variant="300B" className="text-white">
-            이벤트 이용하기
-          </Typography>
-        </Link>
+      <ButtonBase
+        className="rounded-full w-full bg-brand py-3"
+        onClick={() => window.open("https://www.okx.com/join/79271938")}
+      >
+        <Typography variant="300B" className="text-white">
+          이벤트 이용하기
+        </Typography>
       </ButtonBase>
     </Stack>
   );

@@ -1,21 +1,10 @@
-import axios from "axios";
+import api from "../network";
 
-interface OkxOauthToken {
-  access_token: string;
-  token_type: string;
-  expires_in: number;
-}
-interface OkxOauthTokenBody {
-  grant_type: string;
-  client_id: string;
-  client_secret: string;
+interface OkxOauthApiConnectionBody {
   code: string;
 }
-async function postOkxOauthToken(body: OkxOauthTokenBody) {
-  const res = await axios.post<OkxOauthToken>(
-    `https://www.okx.com/v5/users/oauth/token`,
-    body,
-  );
+async function postOkxOauthToken(body: OkxOauthApiConnectionBody) {
+  const res = await api.post<ApiResponseType<void>>("/oauth/okx/apikey", body);
   return res.data;
 }
 

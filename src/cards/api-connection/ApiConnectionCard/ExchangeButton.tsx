@@ -1,21 +1,30 @@
-import { ButtonBase, Stack, Typography } from "@mui/material";
+import { useRouter } from "next/router";
+import { ButtonBase, CircularProgress, Stack, Typography } from "@mui/material";
 import ExchangeIcon from "@/components/Icon/ExchangeIcon";
 import { useSmartAccessMutation } from "@/hooks/query/useApiConnection";
+import { useSubscribeQuery } from "@/hooks/query/useSubcribe";
 import openScrap from "./openScrap";
 
 interface ExchangeButtonProps {
   exchange: ExchangeType;
+  isProcessing?: boolean;
   isConnected?: boolean;
   disabled?: boolean;
 }
 export default function ExchangeButton({
   exchange,
+  isProcessing = false,
   isConnected = false,
   disabled = false,
 }: ExchangeButtonProps) {
+  const { push } = useRouter();
+  const {
+    subscribeQuery: { data: subscribeData },
+  } = useSubscribeQuery();
   const { postSmartAccessSessionMutation, postSmartAccessResultMutation } =
     useSmartAccessMutation();
   const clickHandler = () => {
+    if (subscribeData?.productName === "Free") push("/subscribe");
     if (exchange === "binance" || exchange === "lbank") return;
     if (exchange === "okx") {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -58,11 +67,15 @@ export default function ExchangeButton({
             ? "#EEF0FE"
             : "white",
       }}
-      disabled={isConnected || disabled}
+      disabled={isConnected || disabled || isProcessing}
       onClick={clickHandler}
     >
-      <Stack>
-        <ExchangeIcon exchange={exchange} size={60} />
+      <Stack className="justify-between items-center">
+        {isProcessing ? (
+          <CircularProgress size={42} className="mb-2" />
+        ) : (
+          <ExchangeIcon exchange={exchange} size={60} />
+        )}
         {disabled ? (
           <Typography variant="300R" className="text-sub-1">
             지원예정
@@ -70,6 +83,10 @@ export default function ExchangeButton({
         ) : isConnected ? (
           <Typography variant="300R" className="text-sub-1">
             연결완료
+          </Typography>
+        ) : isProcessing ? (
+          <Typography variant="300R" className="text-sub-1">
+            연결중
           </Typography>
         ) : (
           <Typography variant="300R" className="text-font-2">

@@ -1,25 +1,18 @@
 import { useRouter } from "next/router";
-import { ButtonBase, InputBase, Stack, Typography } from "@mui/material";
+import { InputBase, Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
 import Card from "@/cards/Card";
-import ExchangeIcon from "@/components/Icon/ExchangeIcon";
-import ExchangeSelect from "@/components/signin/dialog/ExchangeSelect";
-import SigninDialog from "@/components/signin/dialog/SigninDialog";
 import authAtom from "@/datas/auth";
-import exchangeAtom from "@/datas/exchange";
 import { usePaymentMethodQuery } from "@/hooks/query/usePayment";
-import { useSubscribeQuery } from "@/hooks/query/useSubcribe";
 import useModalGlobal from "@/hooks/useModalGlobal";
-import { exchangeToKorean } from "@/libs/string";
+import MypageExchange from "./MypageExchange";
 import MypageInfo from "./MypageInfo";
+import MypageSubscribe from "./MypageSubscribe";
+import PromotionModal from "./PromotionModal";
 
 export default function MypageCard() {
   const [auth] = useAtom(authAtom);
-  const [exchange, setExchange] = useAtom(exchangeAtom);
-  const { openModal, closeModal } = useModalGlobal();
-  const {
-    subscribeQuery: { data: subscribeData },
-  } = useSubscribeQuery();
+  const { openModal } = useModalGlobal();
   const {
     paymentMethodQuery: { data: paymentMethodData },
   } = usePaymentMethodQuery();
@@ -38,58 +31,8 @@ export default function MypageCard() {
             {auth.email}
           </Typography>
         </MypageInfo>
-        <MypageInfo
-          title="거래소"
-          buttonText="거래소 변경"
-          onClick={() => {
-            openModal(
-              <SigninDialog onClose={closeModal}>
-                <ExchangeSelect
-                  onClick={(type: ExchangeType) => {
-                    setExchange(type);
-                    closeModal();
-                  }}
-                />
-              </SigninDialog>,
-            );
-          }}
-        >
-          <ExchangeIcon exchange={exchange} />
-          <Typography variant="300M" className="text-font-2">
-            {exchangeToKorean(exchange)}
-          </Typography>
-        </MypageInfo>
-        <Stack className="w-full gap-4">
-          <MypageInfo
-            title="구독권"
-            buttonText="변경하기"
-            onClick={() => {
-              push("/subscribe");
-            }}
-          >
-            <Typography variant="300M" className="text-font-2">
-              {subscribeData?.productName}
-            </Typography>
-          </MypageInfo>
-          {subscribeData?.expiryDate && (
-            <Stack
-              direction="row"
-              className="w-full h-full items-center justify-between"
-            >
-              <Typography variant="200M" className="text-brand">
-                다음 결제일: {subscribeData.expiryDate.slice(0, 10)}
-              </Typography>
-              <ButtonBase onClick={() => {}}>
-                <Typography
-                  variant="200M"
-                  className="text-neutral-600 underline"
-                >
-                  구독 해지하기
-                </Typography>
-              </ButtonBase>
-            </Stack>
-          )}
-        </Stack>
+        <MypageExchange />
+        <MypageSubscribe />
         <MypageInfo
           title="결제 수단"
           buttonText="변경하기"
@@ -104,8 +47,18 @@ export default function MypageCard() {
             {paymentMethodData?.cardNumber}
           </Typography>
         </MypageInfo>
-        <MypageInfo title="프로모션 코드" buttonText="적용하기">
-          <InputBase className="w-full h-full" />
+        <MypageInfo
+          title="프로모션 코드"
+          buttonText="적용하기"
+          onClick={() => openModal(<PromotionModal />)}
+        >
+          <InputBase
+            className="w-full h-full"
+            disabled={!paymentMethodData?.cardNumber}
+            value={
+              paymentMethodData?.cardNumber ? "" : "카드를 등록이 필요합니다."
+            }
+          />
         </MypageInfo>
       </Stack>
     </Card>

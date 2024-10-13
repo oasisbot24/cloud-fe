@@ -24,7 +24,6 @@ export default function CharacterIcon({ happiness }: CharacterIconProps) {
   }
   return (
     <Image
-      className="z-[999]"
       src={iconSrc[happinessNumber]}
       height={280}
       width={290}

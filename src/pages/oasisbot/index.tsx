@@ -17,7 +17,7 @@ function OasisBot() {
                 <OasisBotRunCard />
               </Box>
               <Box className="w-3/5 gap-4 h-[495px]">
-                <OasisBotListCard nav={"oasisbot"} />
+                <OasisBotListCard nav="oasisbot" />
               </Box>
             </Stack>
             <Stack direction="row" className="gap-4 h-[400px]">
