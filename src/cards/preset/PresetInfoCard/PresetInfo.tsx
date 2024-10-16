@@ -1,10 +1,17 @@
+import { useEffect } from "react";
 import { Stack } from "@mui/material";
 import { useAtom } from "jotai";
+import { RESET } from "jotai/utils";
 import FormTextField from "@/components/form/FormTextField";
 import { presetAtom } from "@/datas/preset";
 
 export default function PresetInfo() {
-  const [preset] = useAtom(presetAtom);
+  const [preset, setPreset] = useAtom(presetAtom);
+
+  useEffect(() => {
+    return () => setPreset(RESET);
+  }, []);
+
   return (
     <Stack className="w-full items-center gap-4">
       <FormTextField
