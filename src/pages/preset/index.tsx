@@ -4,6 +4,7 @@ import PresetInfoCard from "@/cards/preset/PresetInfoCard/index";
 import PresetSettingCard from "@/cards/preset/PresetSettingCard/index";
 import PresetWeightInfoCard from "@/cards/preset/PresetWeightInfoCard/index";
 import PresetWeightSettingCard from "@/cards/preset/PresetWeightSettingCard/index";
+import { useUserExchangesQuery } from "@/hooks/query/useApiConnection";
 import Carousel from "@/layouts/Carousel/index";
 import Layout from "@/layouts/Layout";
 
