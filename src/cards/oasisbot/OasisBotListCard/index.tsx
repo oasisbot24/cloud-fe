@@ -21,7 +21,7 @@ export default function OasisBotListCard({ nav }: Props) {
     <Card>
       <CardHeader id="setting" title="실행중인 Bot 목록" />
       <CardContent
-        sx={{ paddingTop: "0", maxHeight: "290px", overflow: "auto" }}
+        sx={{ paddingTop: "0", maxHeight: "400px", overflow: "auto" }}
       >
         <DataGrid
           columns={columns}
