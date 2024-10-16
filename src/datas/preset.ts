@@ -1,7 +1,8 @@
 import { atom } from "jotai";
+import { atomWithReset } from "jotai/utils";
 import { PresetType } from "@/apis/preset/preset";
 
-const presetAtom = atom<PresetType | null>(null);
+const presetAtom = atomWithReset<PresetType | null>(null);
 presetAtom.debugLabel = "presetAtom";
 
 const presetInit = {
@@ -44,7 +45,7 @@ const presetWeightInit: PresetWeightType = {
   카운팅12: 0,
 };
 
-const presetWeightAtom = atom<PresetWeightType>(presetWeightInit);
+const presetWeightAtom = atomWithReset<PresetWeightType>(presetWeightInit);
 presetWeightAtom.debugLabel = "presetWeightAtom";
 
 const presetMenuAtom = atom<"preset" | "indicator">("preset");

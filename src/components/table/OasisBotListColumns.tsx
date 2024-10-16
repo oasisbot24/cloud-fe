@@ -1,3 +1,4 @@
+import router from "next/router";
 import { IconButton } from "@mui/material";
 import {
   GridColDef,
@@ -5,9 +6,9 @@ import {
   GridValidRowModel,
 } from "@mui/x-data-grid";
 import { BotType } from "@/apis/oasisbot/bot";
-import Icon from "../Icon";
-import CustomSwitch from "../common/CustomSwitch";
-import TimeConvert from "./timeConvert";
+import Icon from "@/components/Icon";
+import CustomSwitch from "@/components/common/CustomSwitch";
+import TimeConvert from "@/components/table/timeConvert";
 
 const OasisBotListColumns: GridColDef[] = [
   {
@@ -20,9 +21,16 @@ const OasisBotListColumns: GridColDef[] = [
     ) => (
       <div className="flex items-center">
         <div className="w-4/5 whitespace-normal">{params.value}</div>
-        <IconButton sx={{ width: "24px", height: "24px" }}>
-          <Icon src="/icons/basic/setting.png" size={24} />
-        </IconButton>
+        {window.location.pathname !== "/oasisbot" ? (
+          <IconButton
+            onClick={() => router.push("/oasisbot")}
+            sx={{ width: "24px", height: "24px" }}
+          >
+            <Icon src="/icons/basic/setting.png" size={24} />
+          </IconButton>
+        ) : (
+          <></>
+        )}
       </div>
     ),
   },
