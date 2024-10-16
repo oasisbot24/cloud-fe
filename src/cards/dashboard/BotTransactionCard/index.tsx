@@ -14,7 +14,11 @@ function BotTransactionCard() {
     <Card>
       <CardHeader id="history" title="오아시스 BOT 실시간 거래내역" />
       <CardContent
-        sx={{ paddingTop: "0", maxHeight: "290px", overflow: "auto" }}
+        sx={{
+          paddingTop: "0",
+          maxHeight: "310px",
+          overflow: "auto",
+        }}
       >
         <DataGrid
           loading={isLoading}
