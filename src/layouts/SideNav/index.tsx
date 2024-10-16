@@ -1,6 +1,7 @@
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
 import Logo from "@/components/Logo";
+import { useUserExchangesQuery } from "@/hooks/query/useApiConnection";
 import ServiceCenter from "@/layouts/SideNav/ServiceCenter";
 import SideMenuButton from "@/layouts/SideNav/SideMenuButton";
 import { sideMenu } from "@/layouts/SideNav/sideMenu";
@@ -11,6 +12,10 @@ interface SideNavProps {
 }
 
 export default function SideNav({ isMenuOpen, setIsMenuOpen }: SideNavProps) {
+  const {
+    userExchangeQuery: { data: userExchanges },
+  } = useUserExchangesQuery();
+
   return (
     <Stack
       direction="column"
@@ -44,13 +49,17 @@ export default function SideNav({ isMenuOpen, setIsMenuOpen }: SideNavProps) {
               {menu.title}
             </Typography>
           </Box>
-          {menu.detail?.map(detail => (
-            <SideMenuButton
-              key={detail.name}
-              detail={detail}
-              iconOnly={!isMenuOpen}
-            />
-          ))}
+          {menu.detail?.map(detail =>
+            userExchanges?.includes("okx") && detail.id === "preset" ? (
+              ""
+            ) : (
+              <SideMenuButton
+                key={detail.name}
+                detail={detail}
+                iconOnly={!isMenuOpen}
+              />
+            ),
+          )}
         </Stack>
       ))}
       <ServiceCenter iconOnly={!isMenuOpen} />
