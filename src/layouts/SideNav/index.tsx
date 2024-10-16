@@ -50,7 +50,7 @@ export default function SideNav({ isMenuOpen, setIsMenuOpen }: SideNavProps) {
             </Typography>
           </Box>
           {menu.detail?.map(detail =>
-            userExchanges?.includes("okx") && detail.id === "preset" ? (
+            userExchanges?.includes("upbit") && detail.id === "preset" ? (
               ""
             ) : (
               <SideMenuButton
