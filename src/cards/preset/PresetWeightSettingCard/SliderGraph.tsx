@@ -21,21 +21,26 @@ function SliderGraph() {
             <Stack gap={2} key={key} className="h-full items-center">
               <VerticalSlider
                 value={presetWeight[key as keyof PresetWeightType]}
-                onChange={(_, value) => {
+                onChange={(_, newValue) => {
+                  const updatedValue = newValue as number;
+
                   setPresetWeight(prev => {
+                    const currentWeight = prev[key as keyof PresetWeightType];
                     const sum = sumPresetWeight(prev);
-                    if (
-                      sum -
-                        prev[key as keyof PresetWeightType] +
-                        (value as number) <=
-                      100
-                    ) {
+                    const newSum = sum - currentWeight + updatedValue;
+
+                    if (newSum <= 100) {
                       return {
                         ...prev,
-                        [key]: value as number,
+                        [key]: updatedValue,
                       };
                     }
+
                     return prev;
+                    // return {
+                    //   ...prev,
+                    //   [key]: updatedValue,
+                    // };
                   });
                 }}
               />
