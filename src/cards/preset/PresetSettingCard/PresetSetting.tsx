@@ -2,6 +2,7 @@ import { Stack } from "@mui/material";
 import { useAtom } from "jotai";
 import FormSelect from "@/components/form/FormSelect";
 import FormTextField from "@/components/form/FormTextField";
+import exchangeAtom from "@/datas/exchange";
 import { presetAtom } from "@/datas/preset";
 import { useIndicatorQuery } from "@/hooks/query/usePreset";
 
@@ -10,6 +11,8 @@ export default function PresetSetting() {
   const {
     indicatorQuery: { data: indicatorData },
   } = useIndicatorQuery();
+
+  const [exchange] = useAtom(exchangeAtom);
   return (
     <Stack className="w-full items-center gap-1">
       <FormTextField
@@ -34,18 +37,31 @@ export default function PresetSetting() {
           preset && setPreset({ ...preset, indicatorName: v as string });
         }}
       />
-      <FormSelect
-        id="position"
-        label="진입 포지션"
-        items={[
-          { label: "long", value: "long" },
-          { label: "short", value: "short" },
-        ]}
-        value={preset?.position}
-        setValue={v => {
-          preset && setPreset({ ...preset, position: v as string });
-        }}
-      />
+      {exchange === "upbit" ? (
+        <FormSelect
+          id="position"
+          label="진입 포지션"
+          items={[]}
+          value={preset?.position}
+          setValue={v => {
+            preset && setPreset({ ...preset, position: v as string });
+          }}
+          disabled
+        />
+      ) : (
+        <FormSelect
+          id="position"
+          label="진입 포지션"
+          items={[
+            { label: "long", value: "long" },
+            { label: "short", value: "short" },
+          ]}
+          value={preset?.position}
+          setValue={v => {
+            preset && setPreset({ ...preset, position: v as string });
+          }}
+        />
+      )}
       <FormTextField
         id="profitRate"
         label="익절률 (%)"

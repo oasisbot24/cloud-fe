@@ -35,7 +35,12 @@ function SliderGraph() {
                         [key]: updatedValue,
                       };
                     }
+
                     return prev;
+                    // return {
+                    //   ...prev,
+                    //   [key]: updatedValue,
+                    // };
                   });
                 }}
               />

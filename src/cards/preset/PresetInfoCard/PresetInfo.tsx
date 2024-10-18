@@ -1,10 +1,12 @@
 import { Stack } from "@mui/material";
 import { useAtom } from "jotai";
 import FormTextField from "@/components/form/FormTextField";
+import exchangeAtom from "@/datas/exchange";
 import { presetAtom } from "@/datas/preset";
 
 export default function PresetInfo() {
   const [preset] = useAtom(presetAtom);
+  const [exchange] = useAtom(exchangeAtom);
   return (
     <Stack className="w-full items-center gap-4">
       <FormTextField
@@ -13,12 +15,16 @@ export default function PresetInfo() {
         value={preset?.indicatorName ?? ""}
         readOnly
       />
-      <FormTextField
-        id="indicator"
-        label="진입 포지션"
-        value={preset?.position ?? ""}
-        readOnly
-      />
+      {exchange === "upbit" ? (
+        <FormTextField id="indicator" label="진입 포지션" value={""} readOnly />
+      ) : (
+        <FormTextField
+          id="indicator"
+          label="진입 포지션"
+          value={preset?.position ?? ""}
+          readOnly
+        />
+      )}
       <FormTextField
         id="profitRate"
         label="익절률"

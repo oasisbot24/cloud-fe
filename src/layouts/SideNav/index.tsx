@@ -12,10 +12,6 @@ interface SideNavProps {
 }
 
 export default function SideNav({ isMenuOpen, setIsMenuOpen }: SideNavProps) {
-  const {
-    userExchangeQuery: { data: userExchanges },
-  } = useUserExchangesQuery();
-
   return (
     <Stack
       direction="column"
@@ -49,17 +45,13 @@ export default function SideNav({ isMenuOpen, setIsMenuOpen }: SideNavProps) {
               {menu.title}
             </Typography>
           </Box>
-          {menu.detail?.map(detail =>
-            userExchanges?.includes("upbit") && detail.id === "preset" ? (
-              ""
-            ) : (
-              <SideMenuButton
-                key={detail.name}
-                detail={detail}
-                iconOnly={!isMenuOpen}
-              />
-            ),
-          )}
+          {menu.detail?.map(detail => (
+            <SideMenuButton
+              key={detail.name}
+              detail={detail}
+              iconOnly={!isMenuOpen}
+            />
+          ))}
         </Stack>
       ))}
       <ServiceCenter iconOnly={!isMenuOpen} />
