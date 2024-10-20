@@ -10,9 +10,11 @@ export default function ServiceCenter({ iconOnly }: { iconOnly?: boolean }) {
       <Image
         src="/nav-cover.png"
         alt="cover"
-        layout="fill"
-        objectFit="cover"
         className="absolute z-0"
+        fill
+        style={{
+          objectFit: "cover",
+        }}
       />
       <Stack
         className={`absolute h-full w-full z-[10] ${iconOnly ? "justify-center items-center" : "justify-between p-4"}`}

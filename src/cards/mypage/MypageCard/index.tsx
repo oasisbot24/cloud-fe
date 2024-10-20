@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { InputBase, Stack, Typography } from "@mui/material";
+import { useQueryClient } from "@tanstack/react-query";
 import { useAtom } from "jotai";
 import Card from "@/cards/Card";
 import authAtom from "@/datas/auth";
@@ -13,12 +14,16 @@ import PromotionModal from "./PromotionModal";
 export default function MypageCard() {
   const [auth] = useAtom(authAtom);
   const { openModal } = useModalGlobal();
+
+  const queryClient = useQueryClient();
   const {
     paymentMethodQuery: { data: paymentMethodData },
   } = usePaymentMethodQuery();
+
   const { push } = useRouter();
 
   const logout = () => {
+    queryClient.clear();
     localStorage.removeItem("authorization");
     localStorage.removeItem("authorizationrefresh");
     push("/");

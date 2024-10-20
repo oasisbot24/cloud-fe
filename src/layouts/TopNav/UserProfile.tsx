@@ -13,7 +13,7 @@ export default function UserProfile() {
   return (
     <Stack direction="row" className="items-center gap-2">
       <Image
-        src={auth.picture}
+        src={auth.picture ?? "/logo/oasis.png"}
         alt="profile"
         width={40}
         height={40}
