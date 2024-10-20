@@ -1,4 +1,3 @@
-import { atom } from "jotai";
 import { atomWithReset } from "jotai/utils";
 import { PresetType } from "@/apis/preset/preset";
 
@@ -48,7 +47,7 @@ const presetWeightInit: PresetWeightType = {
 const presetWeightAtom = atomWithReset<PresetWeightType>(presetWeightInit);
 presetWeightAtom.debugLabel = "presetWeightAtom";
 
-const presetMenuAtom = atom<"preset" | "indicator">("preset");
+const presetMenuAtom = atomWithReset<"preset" | "indicator">("preset");
 presetMenuAtom.debugLabel = "presetMenuAtom";
 
 export { presetAtom, presetMenuAtom, presetWeightAtom };

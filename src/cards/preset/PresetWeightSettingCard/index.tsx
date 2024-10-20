@@ -1,11 +1,12 @@
-import { CardContent, Stack, Typography } from "@mui/material";
-import { useAtom } from "jotai";
+import { useEffect } from "react";
+import { CardContent, Typography } from "@mui/material";
+import { useAtom, useSetAtom } from "jotai";
+import { RESET } from "jotai/utils";
 import Card from "@/cards/Card";
 import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
 import AlertIcon from "@/components/Icon/AlertIcon";
-import Icon from "@/components/Icon/index";
 import {
   presetMenuAtom,
   presetWeightAtom,
@@ -15,9 +16,17 @@ import SliderGraph from "./SliderGraph";
 import useSave from "./useSave";
 
 function PresetWeightSettingCard() {
-  const [, setPresetWeight] = useAtom(presetWeightAtom);
-  const [presetMenu] = useAtom(presetMenuAtom);
+  const [presetMenu, setPresetMenu] = useAtom(presetMenuAtom);
+  const setPresetWeight = useSetAtom(presetWeightAtom);
   const { handleSave } = useSave();
+
+  useEffect(() => {
+    return () => {
+      setPresetMenu(RESET);
+      setPresetWeight(RESET);
+    };
+  }, []);
+
   return (
     <Card>
       <CardHeader id="counting" title="매매비중 카운팅 설정" />
