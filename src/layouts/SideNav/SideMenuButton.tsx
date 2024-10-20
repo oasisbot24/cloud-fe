@@ -6,18 +6,21 @@ import { MenuDetail } from "@/layouts/SideNav/sideMenu";
 interface SideMenuButtonProps {
   detail: MenuDetail;
   iconOnly?: boolean;
+  disabled?: boolean;
 }
 
 export default function SideMenuButton({
   detail,
   iconOnly,
+  disabled,
 }: SideMenuButtonProps) {
   const { push } = useRouter();
   const { pathname } = useRouter();
   return (
     <ButtonBase
-      className="w-full h-[50px] rounded-full"
+      className={`w-full h-[50px] rounded-xl ${disabled ? "cursor-not-allowed bg-[#E8E8E8]" : "cursor-pointer"}`}
       onClick={() => push(detail.path)}
+      disabled={disabled}
     >
       <Stack
         direction="row"
@@ -30,7 +33,10 @@ export default function SideMenuButton({
               {detail.name}
             </Typography>
           ) : (
-            <Typography variant="300R" className="text-sub-4">
+            <Typography
+              variant="300R"
+              className={`${disabled ? "text-neutral-600" : "text-sub-4"}`}
+            >
               {detail.name}
             </Typography>
           ))}
