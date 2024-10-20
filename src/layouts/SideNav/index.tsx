@@ -1,7 +1,6 @@
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
 import Logo from "@/components/Logo";
-import { useUserExchangesQuery } from "@/hooks/query/useApiConnection";
 import ServiceCenter from "@/layouts/SideNav/ServiceCenter";
 import SideMenuButton from "@/layouts/SideNav/SideMenuButton";
 import { sideMenu } from "@/layouts/SideNav/sideMenu";

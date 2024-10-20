@@ -1,5 +1,4 @@
 import { Box, Divider, Stack, Typography } from "@mui/material";
-import SocialIcon from "@/components/Icon/SocialIcon";
 import Logo from "@/components/Logo";
 import FooterBreadcrumbs from "@/layouts/Footer/FooterBreadcrumbs";
 

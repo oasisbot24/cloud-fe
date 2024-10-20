@@ -16,7 +16,12 @@ export default function PresetInfo() {
         readOnly
       />
       {exchange === "upbit" ? (
-        <FormTextField id="indicator" label="진입 포지션" value={""} readOnly />
+        <FormTextField
+          id="indicator"
+          label="진입 포지션"
+          disabled
+          value="upbit에서는 지원하지 않습니다."
+        />
       ) : (
         <FormTextField
           id="indicator"
