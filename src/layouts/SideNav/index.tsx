@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
 import Logo from "@/components/Logo";
@@ -12,6 +13,16 @@ interface SideNavProps {
 }
 
 export default function SideNav({ isMenuOpen, setIsMenuOpen }: SideNavProps) {
+  const passPath = ["/api-connection", "/subscribe", "/mypage", "/payment"];
+  const {
+    userExchangeQuery: { data },
+  } = useUserExchangesQuery();
+
+  const [isConnected, setIsConnected] = useState(true);
+  useEffect(() => {
+    if (!data || data.length === 0) setIsConnected(false);
+    else setIsConnected(true);
+  }, [data]);
   return (
     <Stack
       direction="column"
@@ -50,6 +61,7 @@ export default function SideNav({ isMenuOpen, setIsMenuOpen }: SideNavProps) {
               key={detail.name}
               detail={detail}
               iconOnly={!isMenuOpen}
+              disabled={!isConnected && !passPath.includes(detail.path)}
             />
           ))}
         </Stack>

@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { Stack, Typography } from "@mui/material";
 
 export default function SubscribeDescription() {
@@ -49,10 +48,6 @@ export default function SubscribeDescription() {
       <Typography variant="200R">
         2. 저작권자의 요청으로 기기에 따라 일부 사용자는 제한 될 수 있습니다.
       </Typography>
-      {/* <div
-        onClick={() => window.open("/pdf/오아시스서비스이용약관.pdf", "_blank")}
-        className="cursor-pointer"
-      > </div>*/}
       <Typography variant="300B">환불정책</Typography>
       <Typography variant="200R">
         1. 이용자의 귀책사유로 결제를 취소, 환불하는 경우에는 다음의 절차에

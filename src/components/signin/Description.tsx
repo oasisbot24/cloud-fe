@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
 import exchangeAtom from "@/datas/exchange";
+import { useUserExchangesQuery } from "@/hooks/query/useApiConnection";
 import useSignin from "@/hooks/query/useSignin";
 import useModal from "@/hooks/useModal";
 import GoogleSigninButton from "./GoogleSigninButton";
@@ -10,6 +11,9 @@ import ExchangeSelect from "./dialog/ExchangeSelect";
 import SigninDialog from "./dialog/SigninDialog";
 
 function Description() {
+  const {
+    userExchangeQuery: { data: userExchangeData },
+  } = useUserExchangesQuery();
   const { push } = useRouter();
   const [, setExchange] = useAtom(exchangeAtom);
   const { postAgreementMutation } = useSignin();
@@ -23,7 +27,11 @@ function Description() {
             localStorage.setItem("exchange", type);
             setExchange(type);
             closeModal();
-            push("/dashboard");
+            if (!userExchangeData || userExchangeData.length === 0) {
+              push("/api-connection");
+            } else {
+              push("/dashboard");
+            }
           }}
         />
       </SigninDialog>,

@@ -41,11 +41,10 @@ export default function PresetSetting() {
         <FormSelect
           id="position"
           label="진입 포지션"
-          items={[]}
-          value={preset?.position}
-          setValue={v => {
-            preset && setPreset({ ...preset, position: v as string });
-          }}
+          value="not-supported"
+          items={[
+            { label: "upbit에서는 지원하지 않습니다.", value: "not-supported" },
+          ]}
           disabled
         />
       ) : (

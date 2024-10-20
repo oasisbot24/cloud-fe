@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Slider, styled } from "@mui/material";
 
 const PortaionSlider = styled(Slider)(({ value }) => ({
@@ -30,10 +29,6 @@ interface VerticalSliderProps {
 }
 
 function VerticalSlider({ value, onChange }: VerticalSliderProps) {
-  const handleRailClick = (event: React.MouseEvent | React.TouchEvent) => {
-    event.stopPropagation(); // 이벤트 전파 방지
-  };
-
   return (
     <PortaionSlider
       orientation="vertical"
