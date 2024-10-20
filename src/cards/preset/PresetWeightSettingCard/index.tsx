@@ -20,21 +20,7 @@ function PresetWeightSettingCard() {
   const { handleSave } = useSave();
   return (
     <Card>
-      <CardHeader
-        id="counting"
-        title="매매비중 카운팅 설정"
-        action={
-          <Stack alignItems="center" direction="row">
-            <Icon src="/icons/control/info.png" size={15} />
-            <Typography
-              variant="100R"
-              className="text-neutral-600 underline cursor-pointer"
-            >
-              카운팅이란?
-            </Typography>
-          </Stack>
-        }
-      />
+      <CardHeader id="counting" title="매매비중 카운팅 설정" />
       {presetMenu === "indicator" ? (
         <>
           <CardContent className="h-[calc(100%-140px)] w-full">
