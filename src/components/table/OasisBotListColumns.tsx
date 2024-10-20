@@ -21,16 +21,12 @@ const OasisBotListColumns: GridColDef[] = [
     ) => (
       <div className="flex items-center">
         <div className="w-4/5 whitespace-normal">{params.value}</div>
-        {window.location.pathname !== "/oasisbot" ? (
-          <IconButton
-            onClick={() => router.push("/oasisbot")}
-            sx={{ width: "24px", height: "24px" }}
-          >
-            <Icon src="/icons/basic/setting.png" size={24} />
-          </IconButton>
-        ) : (
-          <></>
-        )}
+        <IconButton
+          onClick={() => router.push("/oasisbot")}
+          sx={{ width: "24px", height: "24px" }}
+        >
+          <Icon src="/icons/basic/setting.png" size={24} />
+        </IconButton>
       </div>
     ),
   },
@@ -69,7 +65,12 @@ const OasisBotListColumns: GridColDef[] = [
     headerClassName: "text-slate-500",
     renderCell: (
       params: GridRenderCellParams<GridValidRowModel, BotType["isRunning"]>,
-    ) => <CustomSwitch defaultChecked={params.value} />,
+    ) => (
+      <CustomSwitch
+        defaultChecked={params.value}
+        onClick={() => console.log(params.row.id)}
+      />
+    ),
   },
 ];
 
