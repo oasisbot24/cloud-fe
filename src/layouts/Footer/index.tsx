@@ -29,12 +29,30 @@ export default function Footer({ color }: FooterProps) {
             </Typography>
           </Stack>
         </Stack>
-        <Stack direction="row" className="gap-1">
-          {(["facebook", "linkedin", "naver", "kakao"] as SocialType[]).map(
+        <Stack direction="column" className="gap-1">
+          <Typography variant="200R">
+            상호명 : 오아시스 | 대표자 이주원 | 사업자번호 : 399-02-02858
+          </Typography>
+          <Typography variant="200R">
+            통신판매업신고번호 : 2024-충남천안-2644
+          </Typography>
+          <Typography variant="200R">
+            주소 : 충청남도 천안시 동남구 만남로 72 (우)31124, 1515
+          </Typography>
+
+          {/* {(["facebook", "linkedin", "naver", "kakao"] as SocialType[]).map(
             social => (
               <SocialIcon key={social} social={social} color={color} />
             ),
-          )}
+          )} */}
+        </Stack>
+        <Stack direction="column" className="gap-1">
+          <Typography variant="200B">고객센터</Typography>
+          <Typography variant="200R">영업시간 : 상시</Typography>
+          <Typography variant="200R">
+            이메일 : teamprivateclub@gmail.com
+          </Typography>
+          <Typography variant="200R">전화번호 :010-5802-4827</Typography>
         </Stack>
       </Stack>
     </Box>
