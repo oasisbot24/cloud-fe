@@ -67,13 +67,18 @@ const OasisBotListColumns: GridColDef[] = [
     renderCell: (
       params: GridRenderCellParams<GridValidRowModel, BotType["isRunning"]>,
     ) => {
-      const { stopBotMutation } = useBot();
-      const { mutate } = stopBotMutation;
+      const { stopBotMutation, restartBotMutation } = useBot();
 
       return (
         <CustomSwitch
           defaultChecked={params.value}
-          onClick={() => mutate(params.row.id)}
+          onClick={() => {
+            if (!!params.row.isRunning) {
+              stopBotMutation.mutate(params.row.id);
+            } else {
+              restartBotMutation.mutate(params.row.id);
+            }
+          }}
         />
       );
     },
