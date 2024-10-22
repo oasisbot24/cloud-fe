@@ -9,6 +9,7 @@ import { BotType } from "@/apis/oasisbot/bot";
 import Icon from "@/components/Icon";
 import CustomSwitch from "@/components/common/CustomSwitch";
 import TimeConvert from "@/components/table/timeConvert";
+import { useBot } from "@/hooks/query/useOasisBot";
 
 const OasisBotListColumns: GridColDef[] = [
   {
@@ -65,12 +66,17 @@ const OasisBotListColumns: GridColDef[] = [
     headerClassName: "text-slate-500",
     renderCell: (
       params: GridRenderCellParams<GridValidRowModel, BotType["isRunning"]>,
-    ) => (
-      <CustomSwitch
-        defaultChecked={params.value}
-        onClick={() => console.log(params.row.id)}
-      />
-    ),
+    ) => {
+      const { stopBotMutation } = useBot();
+      const { mutate } = stopBotMutation;
+
+      return (
+        <CustomSwitch
+          defaultChecked={params.value}
+          onClick={() => mutate(params.row.id)}
+        />
+      );
+    },
   },
 ];
 

@@ -25,7 +25,7 @@ export function useBot() {
   });
 
   const stopBotMutation = useMutation({
-    mutationFn: botStop,
+    mutationFn: (id: number) => botStop(id),
     mutationKey: ["stopBot"],
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["getBot"] });
