@@ -6,10 +6,10 @@ import {
   GridValidRowModel,
 } from "@mui/x-data-grid";
 import { BotType } from "@/apis/oasisbot/bot";
+import Icon from "@/components/Icon";
+import CustomSwitch from "@/components/common/CustomSwitch";
+import TimeConvert from "@/components/table/timeConvert";
 import { useBot } from "@/hooks/query/useOasisBot";
-import Icon from "../Icon";
-import CustomSwitch from "../common/CustomSwitch";
-import TimeConvert from "./timeConvert";
 
 function IconButtonFun() {
   const { push } = useRouter();
