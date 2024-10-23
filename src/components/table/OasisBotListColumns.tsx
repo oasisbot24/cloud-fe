@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { IconButton } from "@mui/material";
 import {
   GridColDef,
@@ -9,6 +10,17 @@ import Icon from "../Icon";
 import CustomSwitch from "../common/CustomSwitch";
 import TimeConvert from "./timeConvert";
 
+function IconButtonFun() {
+  const { push } = useRouter();
+  return (
+    <IconButton
+      sx={{ width: "24px", height: "24px" }}
+      onClick={() => push("/preset")}
+    >
+      <Icon src="/icons/basic/setting.png" size={24} />
+    </IconButton>
+  );
+}
 const OasisBotListColumns: GridColDef[] = [
   {
     field: "presetName",
@@ -20,9 +32,10 @@ const OasisBotListColumns: GridColDef[] = [
     ) => (
       <div className="flex items-center">
         <div className="w-4/5 whitespace-normal">{params.value}</div>
-        <IconButton sx={{ width: "24px", height: "24px" }}>
+        {/* <IconButton sx={{ width: "24px", height: "24px" }}>
           <Icon src="/icons/basic/setting.png" size={24} />
-        </IconButton>
+        </IconButton> */}
+        <IconButtonFun />
       </div>
     ),
   },

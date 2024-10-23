@@ -26,7 +26,7 @@ function CustomMenu({
       case "비트코인":
         return "/icons/crypto/btc-30.png";
       case "비트코인캐시":
-        return "/icons/crypto/BTC.png";
+        return "/icons/crypto/BCH.png";
       case "도지코인":
         return "/icons/crypto/DOGE.png";
       case "이더리움클래식":
