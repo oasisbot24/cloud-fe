@@ -21,9 +21,11 @@ export default function AdvertisementInfo({
         <Image
           src={bgSrc}
           alt="ad"
-          layout="fill"
-          objectFit="cover"
           className="w-full h-full"
+          fill
+          style={{
+            objectFit: "cover",
+          }}
         />
         <Box className="bg-black opacity-50 w-full h-full" />
       </Box>

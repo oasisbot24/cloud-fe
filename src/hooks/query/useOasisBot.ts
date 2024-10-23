@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAtom, useAtomValue } from "jotai";
 import {
   BotStartType,
+  botRestart,
   botStart,
   botStop,
   getAvailableBalance,
@@ -25,8 +26,16 @@ export function useBot() {
   });
 
   const stopBotMutation = useMutation({
-    mutationFn: botStop,
+    mutationFn: (id: number) => botStop(id),
     mutationKey: ["stopBot"],
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["getBot"] });
+    },
+  });
+
+  const restartBotMutation = useMutation({
+    mutationFn: (id: number) => botRestart(id),
+    mutationKey: ["restartBot"],
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["getBot"] });
     },
@@ -35,6 +44,7 @@ export function useBot() {
   return {
     startBotMutation,
     stopBotMutation,
+    restartBotMutation,
   };
 }
 

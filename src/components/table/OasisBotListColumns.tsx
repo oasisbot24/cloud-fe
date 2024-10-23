@@ -6,9 +6,10 @@ import {
   GridValidRowModel,
 } from "@mui/x-data-grid";
 import { BotType } from "@/apis/oasisbot/bot";
-import Icon from "../Icon";
-import CustomSwitch from "../common/CustomSwitch";
-import TimeConvert from "./timeConvert";
+import Icon from "@/components/Icon";
+import CustomSwitch from "@/components/common/CustomSwitch";
+import TimeConvert from "@/components/table/timeConvert";
+import { useBot } from "@/hooks/query/useOasisBot";
 
 function IconButtonFun() {
   const { push } = useRouter();
@@ -74,7 +75,22 @@ const OasisBotListColumns: GridColDef[] = [
     headerClassName: "text-slate-500",
     renderCell: (
       params: GridRenderCellParams<GridValidRowModel, BotType["isRunning"]>,
-    ) => <CustomSwitch defaultChecked={params.value} />,
+    ) => {
+      const { stopBotMutation, restartBotMutation } = useBot();
+
+      return (
+        <CustomSwitch
+          defaultChecked={params.value}
+          onClick={() => {
+            if (!!params.row.isRunning) {
+              stopBotMutation.mutate(params.row.id);
+            } else {
+              restartBotMutation.mutate(params.row.id);
+            }
+          }}
+        />
+      );
+    },
   },
 ];
 

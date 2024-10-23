@@ -21,6 +21,10 @@ async function botStop(id: number): Promise<void> {
   await api.post<ApiResponseType<void>>(`/stop_bot/${id}`);
 }
 
+async function botRestart(id: number): Promise<void> {
+  await api.post<ApiResponseType<void>>(`/restart_bot/${id}`);
+}
+
 interface BotType {
   id: number;
   isRunning: boolean;
@@ -82,5 +86,12 @@ async function getBotData(exchangeName: string): Promise<BotDataType> {
   return res.data?.data;
 }
 
-export { botStart, botStop, getBot, getAvailableBalance, getBotData };
+export {
+  botStart,
+  botStop,
+  botRestart,
+  getBot,
+  getAvailableBalance,
+  getBotData,
+};
 export type { BotStartType, BotType, AvailableBalanceType, BotDataType };

@@ -7,7 +7,7 @@ export default function BotTransaction() {
   const { transactionQuery } = useBotInfo();
   const { isLoading, data: OasisBotTransactionCompactRows } = transactionQuery;
   return (
-    <CardContent sx={{ paddingTop: "0", maxHeight: "410px", overflow: "auto" }}>
+    <CardContent sx={{ paddingTop: "0", maxHeight: "450px", overflow: "auto" }}>
       <DataGrid
         loading={isLoading}
         columns={OasisBotTransactionColumns}

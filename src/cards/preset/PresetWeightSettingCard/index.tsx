@@ -1,11 +1,12 @@
-import { CardContent, Stack, Typography } from "@mui/material";
-import { useAtom } from "jotai";
+import { useEffect } from "react";
+import { CardContent, Typography } from "@mui/material";
+import { useAtom, useSetAtom } from "jotai";
+import { RESET } from "jotai/utils";
 import Card from "@/cards/Card";
 import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
 import AlertIcon from "@/components/Icon/AlertIcon";
-import Icon from "@/components/Icon/index";
 import {
   presetMenuAtom,
   presetWeightAtom,
@@ -15,26 +16,20 @@ import SliderGraph from "./SliderGraph";
 import useSave from "./useSave";
 
 function PresetWeightSettingCard() {
-  const [, setPresetWeight] = useAtom(presetWeightAtom);
-  const [presetMenu] = useAtom(presetMenuAtom);
+  const [presetMenu, setPresetMenu] = useAtom(presetMenuAtom);
+  const setPresetWeight = useSetAtom(presetWeightAtom);
   const { handleSave } = useSave();
+
+  useEffect(() => {
+    return () => {
+      setPresetMenu(RESET);
+      setPresetWeight(RESET);
+    };
+  }, []);
+
   return (
     <Card>
-      <CardHeader
-        id="counting"
-        title="매매비중 카운팅 설정"
-        action={
-          <Stack alignItems="center" direction="row">
-            <Icon src="/icons/control/info.png" size={15} />
-            <Typography
-              variant="100R"
-              className="text-neutral-600 underline cursor-pointer"
-            >
-              카운팅이란?
-            </Typography>
-          </Stack>
-        }
-      />
+      <CardHeader id="counting" title="매매비중 카운팅 설정" />
       {presetMenu === "indicator" ? (
         <>
           <CardContent className="h-[calc(100%-140px)] w-full">
