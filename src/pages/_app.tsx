@@ -1,9 +1,13 @@
+import { useEffect } from "react";
 import type { AppProps } from "next/app";
 import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { useAtom } from "jotai";
 import { SnackbarProvider } from "notistack";
+import authAtom from "@/datas/auth";
+import exchangeAtom from "@/datas/exchange";
 import useModalGlobal from "@/hooks/useModalGlobal";
 import "@/styles/custom.css";
 import "@/styles/font/font-sans.css";
@@ -16,6 +20,20 @@ const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }: AppProps) {
   const { modal, closeModal } = useModalGlobal();
+  const [, setAuth] = useAtom(authAtom);
+  const [, setExchange] = useAtom(exchangeAtom);
+
+  useEffect(() => {
+    const auth = localStorage.getItem("auth");
+    if (auth) setAuth(JSON.parse(auth));
+
+    const exchange = localStorage.getItem("exchange");
+    if (exchange) {
+      if (exchange === "okx") setExchange("okx");
+      else if (exchange === "upbit") setExchange("upbit");
+      else localStorage.removeItem("exchange");
+    }
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

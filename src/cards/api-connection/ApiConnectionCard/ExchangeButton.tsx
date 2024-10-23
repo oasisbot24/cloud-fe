@@ -24,7 +24,10 @@ export default function ExchangeButton({
   const { postSmartAccessSessionMutation, postSmartAccessResultMutation } =
     useSmartAccessMutation();
   const clickHandler = () => {
-    if (subscribeData?.productName === "Free") push("/subscribe");
+    if (subscribeData?.productName === "Free") {
+      push("/subscribe");
+      return;
+    }
     if (exchange === "binance" || exchange === "lbank") return;
     if (exchange === "okx") {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
