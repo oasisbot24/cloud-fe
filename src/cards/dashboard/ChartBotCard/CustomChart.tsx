@@ -30,7 +30,7 @@ export default function CustomChart({ date, price, rate }: ChartData) {
           const arrow = percentageChange > 0 ? "up" : "down";
 
           return `<div style="background-color: #fff; padding: 10px; border-radius: 5px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
-                    <div style="font-size: 14px; color: #404040; font-weight: 700; line-height:16px;">$${value.toLocaleString()}</div>
+                    <div style="font-size: 14px; color: #404040; font-weight: 700; line-height:16px;">₩${value.toLocaleString()}</div>
                     <div style="margin-top: 5px; font-size: 14px; font-weight: 700; line-height:16px;">
                       <span style="background-color: ${percentagebgColor}; color: ${percentageColor}; padding: 3px 7px; border-radius: 10px; display:flex; justify-content: space-between;  align-items: center;">
                       <img src="/icons/arrow/profitloss/${arrow}-small.png" style="width: 20px; height: 18px;" alt="icon" />

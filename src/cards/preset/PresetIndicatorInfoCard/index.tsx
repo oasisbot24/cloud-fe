@@ -48,7 +48,7 @@ export default function PresetIndicatorInfoCard() {
             title="설정 보조지표"
             label={
               <>
-                <RoundChip text="td sequential Co." color="red" />
+                <RoundChip text="td sequential R" color="red" />
                 <RoundChip text="상승장" color="red" />
               </>
             }
