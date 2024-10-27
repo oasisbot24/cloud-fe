@@ -22,6 +22,27 @@ function IconButtonFun() {
     </IconButton>
   );
 }
+
+function IsRunningCell(
+  params: GridRenderCellParams<GridValidRowModel, boolean>,
+) {
+  const { value, row } = params;
+  const { stopBotMutation, restartBotMutation } = useBot();
+
+  return (
+    <CustomSwitch
+      defaultChecked={value}
+      onClick={() => {
+        if (row.isRunning) {
+          stopBotMutation.mutate(row.id);
+        } else {
+          restartBotMutation.mutate(row.id);
+        }
+      }}
+    />
+  );
+}
+
 const OasisBotListColumns: GridColDef[] = [
   {
     field: "presetName",
@@ -75,22 +96,7 @@ const OasisBotListColumns: GridColDef[] = [
     headerClassName: "text-slate-500",
     renderCell: (
       params: GridRenderCellParams<GridValidRowModel, BotType["isRunning"]>,
-    ) => {
-      const { stopBotMutation, restartBotMutation } = useBot();
-
-      return (
-        <CustomSwitch
-          defaultChecked={params.value}
-          onClick={() => {
-            if (!!params.row.isRunning) {
-              stopBotMutation.mutate(params.row.id);
-            } else {
-              restartBotMutation.mutate(params.row.id);
-            }
-          }}
-        />
-      );
-    },
+    ) => <IsRunningCell {...params} />,
   },
 ];
 
