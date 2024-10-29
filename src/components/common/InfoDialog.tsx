@@ -28,7 +28,7 @@ function InfoDialog({
       >
         <Stack className="bg-brand rounded-t-xl items-center justify-center">
           <Image
-            src={imgSrc ?? "/leverage.png"}
+            src={imgSrc ?? "/modal_check.png"}
             width={250}
             height={200}
             alt="lev"
