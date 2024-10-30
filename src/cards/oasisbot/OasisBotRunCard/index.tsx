@@ -15,6 +15,7 @@ import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
 import LeverageNoticeDialog from "@/cards/oasisbot/OasisBotRunCard/LeverageNoticeDialog";
+import InfoDialog from "@/components/common/InfoDialog";
 import FormSelect from "@/components/form/FormSelect";
 import FormTextField from "@/components/form/FormTextField";
 import exchangeAtom from "@/datas/exchange";
@@ -61,7 +62,53 @@ function OasisBotRunCard() {
   ];
 
   const runOasisBot = () => {
-    if (!(selectedPreset && selectedTradeItem && Number(startBalance))) return;
+    if (
+      (balanceQuery.data?.availableBalance &&
+        balanceQuery.data.availableBalance < Number(startBalance)) ||
+      Number(startBalance)
+    ) {
+      openModal(
+        <InfoDialog
+          title="거래금액"
+          description={["거래금액은 잔고 이내의 금액을 기입해주세요."]}
+          handleClose={closeModal}
+        />,
+      );
+      return;
+    }
+
+    if (!selectedPreset) {
+      openModal(
+        <InfoDialog
+          title="설정 프리셋"
+          description={["프리셋을 설정하고 실행해주세요."]}
+          handleClose={closeModal}
+        />,
+      );
+      return;
+    }
+
+    if (!selectedTradeItem) {
+      openModal(
+        <InfoDialog
+          title="매매종목 설정"
+          description={["매매종목을 설정하고 실행해주세요."]}
+          handleClose={closeModal}
+        />,
+      );
+      return;
+    }
+
+    if (!Number(standardMinute)) {
+      openModal(
+        <InfoDialog
+          title="기준 분봉 설정"
+          description={["기준분봉을 설정하고 실행해주세요."]}
+          handleClose={closeModal}
+        />,
+      );
+      return;
+    }
 
     const body = {
       botName: "bot1",

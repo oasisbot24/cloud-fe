@@ -123,7 +123,7 @@ const OasisBotTransactionColumns: GridColDef[] = [
                 <ArrowDownIcon />
               )
             }
-            label={`${params.value?.profitLossRate}%`}
+            label={`${params.value?.profitLossRate.toFixed(2)}%`}
             size="small"
             style={{
               background:
