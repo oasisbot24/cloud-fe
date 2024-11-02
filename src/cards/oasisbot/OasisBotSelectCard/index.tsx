@@ -164,7 +164,7 @@ function OasisBotSelectCard() {
       </CardContent>
       <CardFooter className="bottom-2">
         <CardButton
-          text="삭제"
+          text="초기화"
           className={`mr-1 text-white ${selectedBot.isRunning ? "bg-neutral-400" : "bg-neutral-700"}`}
           onClick={onRemove}
           disabled={!!selectedBot.isRunning}
