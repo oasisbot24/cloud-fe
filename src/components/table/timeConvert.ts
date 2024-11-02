@@ -13,5 +13,6 @@ export default function TimeConvert(time: number) {
     }
     return `${m}분 ${s}초`;
   }
-  return `${h}시간 ${m}분 ${s}초`;
+  return `${h}시간 ${m}분`;
+  // return `${h}시간 ${m}분 ${s}초`;
 }
