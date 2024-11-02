@@ -5,17 +5,20 @@ interface CardButtonProps {
   text: string;
   className?: string;
   onClick?: () => void;
+  disabled?: boolean;
 }
 
 function CardButton({
   text,
   className = "text-white bg-brand",
   onClick,
+  disabled,
 }: CardButtonProps) {
   return (
     <Button
       className={`w-full flex mx-4 my-3 p-3 rounded-none ${className}`}
       onClick={onClick}
+      disabled={disabled}
     >
       <Typography
         sx={{
