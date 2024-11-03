@@ -15,7 +15,6 @@ import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
 import LeverageNoticeDialog from "@/cards/oasisbot/OasisBotRunCard/LeverageNoticeDialog";
-import InfoDialog from "@/components/common/InfoDialog";
 import FormTextField from "@/components/form/FormTextField";
 import exchangeAtom from "@/datas/exchange";
 import { botAtom } from "@/datas/oasisbotTransaction";
@@ -27,7 +26,7 @@ function OasisBotSelectCard() {
   const [startBalance, setStartBalance] = useState<number>(5000);
   const [selectedPreset, setSelectedPreset] = useState<string>("");
   const [selectedTradeItem, setSelectedTradeItem] = useState<string>("");
-  const [standardMinute, setStandardMinute] = useState<string>("");
+  const [standardMinute] = useState<string>("");
 
   const [exchange] = useAtom(exchangeAtom);
   const selectedBot = useAtomValue(botAtom);
