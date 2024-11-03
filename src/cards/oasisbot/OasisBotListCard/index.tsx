@@ -1,10 +1,13 @@
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { CardContent, Chip } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridRowSelectionModel } from "@mui/x-data-grid";
+import { useSetAtom } from "jotai";
 import Card from "@/cards/Card";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
 import OasisBotListColumns from "@/components/table/OasisBotListColumns";
+import { botAtom } from "@/datas/oasisbotTransaction";
 import { useBotQuery } from "@/hooks/query/useOasisBot";
 
 interface Props {
@@ -15,6 +18,32 @@ export default function OasisBotListCard({ nav }: Props) {
   const {
     botQuery: { data, isLoading },
   } = useBotQuery();
+  const [selectedRow, setSelectedRow] = useState<GridRowSelectionModel>([]);
+  const setSelectedBot = useSetAtom(botAtom);
+
+  useEffect(() => {
+    if (selectedRow.length > 0) {
+      setSelectedBot(
+        data?.find(value => value.id === selectedRow[0]) || {
+          id: -1,
+          isRunning: false,
+          presetName: "",
+          startBalance: 0,
+          runningTime: 0,
+          coinType: "",
+        },
+      );
+    } else {
+      setSelectedBot({
+        id: -1,
+        isRunning: false,
+        presetName: "",
+        startBalance: 0,
+        runningTime: 0,
+        coinType: "",
+      });
+    }
+  }, [selectedRow]);
 
   const router = useRouter();
   return (
@@ -27,6 +56,10 @@ export default function OasisBotListCard({ nav }: Props) {
           columns={columns}
           rows={data ?? []}
           loading={isLoading}
+          onRowSelectionModelChange={newRow => {
+            setSelectedRow(selectedRow[0] === newRow[0] ? [] : newRow);
+          }}
+          rowSelectionModel={selectedRow}
           hideFooter
           sx={{
             ".MuiDataGrid-overlayWrapper": { height: "215px" },
