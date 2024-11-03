@@ -48,8 +48,8 @@ export default function CircleChart({
           coinRatio.ratio >= 0.01 && (
             <ElementCircle
               key={coinRatio.name}
-              fillColorStart={coinColors[index].fillColorStart}
-              fillColorEnd={coinColors[index].fillColorEnd}
+              fillColorStart={coinColors[index % 3].fillColorStart}
+              fillColorEnd={coinColors[index % 3].fillColorEnd}
               size={100 - 2 * index + (focusIndex === index ? 4 : -4)}
               startAngle={coinRatioPercentList[index]}
               endAngle={coinRatioPercentList[index + 1]}

@@ -19,6 +19,7 @@ export default function SideNav({ isMenuOpen, setIsMenuOpen }: SideNavProps) {
   } = useUserExchangesQuery();
 
   const [isConnected, setIsConnected] = useState(true);
+
   useEffect(() => {
     if (!data || data.length === 0) setIsConnected(false);
     else setIsConnected(true);
@@ -61,7 +62,11 @@ export default function SideNav({ isMenuOpen, setIsMenuOpen }: SideNavProps) {
               key={detail.name}
               detail={detail}
               iconOnly={!isMenuOpen}
-              disabled={!isConnected && !passPath.includes(detail.path)}
+              disabled={
+                detail.id === "oasislab"
+                  ? true
+                  : !isConnected && !passPath.includes(detail.path)
+              }
             />
           ))}
         </Stack>
