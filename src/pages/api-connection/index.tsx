@@ -1,20 +1,22 @@
-import { Card, Stack } from "@mui/material";
-import Discription from "@/components/api-connection/Discription";
-import SetKey from "@/components/api-connection/SetKey";
-import TopNavLayout from "@/components/topnav/TopNavLayout";
+import { Box, Stack } from "@mui/material";
 
-export default function ApiConnection() {
+import ApiConnectionCard from "@/cards/api-connection/ApiConnectionCard";
+import ApiConnectionTitleCard from "@/cards/api-connection/ApiConnectionTitleCard";
+import Layout from "@/layouts/Layout";
+
+function ApiConnection() {
   return (
-    <TopNavLayout hasBackground={false}>
-      <Card className="px-4 py-6 bg-white h-full w-2/3 mx-auto">
-        <Stack
-          direction="column"
-          className="h-full w-full items-center justify-between"
-        >
-          <Discription />
-          <SetKey />
-        </Stack>
-      </Card>
-    </TopNavLayout>
+    <Layout>
+      <Box className="h-[530px] w-full">
+        <ApiConnectionTitleCard />
+      </Box>
+      <Stack className="relative mt-[-250px] items-center justify-start pb-4">
+        <Box className="w-[480px]">
+          <ApiConnectionCard />
+        </Box>
+      </Stack>
+    </Layout>
   );
 }
+
+export default ApiConnection;
