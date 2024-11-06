@@ -24,8 +24,7 @@ export default function CustomChart({ date, price, rate }: ChartData) {
         }) => {
           const value = series[seriesIndex][dataPointIndex];
           const percentageChange = rate[dataPointIndex];
-          const percentagebgColor =
-            percentageChange > 0 ? "#FDE0E0" : "#DCE1FF"; // 색상 조건부 변경
+          const percentagebgColor = percentageChange > 0 ? "#FDE0E0" : "#DCE1FF"; // 색상 조건부 변경
           const percentageColor = percentageChange > 0 ? "#F46565" : "#223CE9";
           const arrow = percentageChange > 0 ? "up" : "down";
 
@@ -66,12 +65,5 @@ export default function CustomChart({ date, price, rate }: ChartData) {
       },
     ],
   };
-  return (
-    <Chart
-      height="300"
-      options={state.options}
-      series={state.series}
-      type="area"
-    />
-  );
+  return <Chart height="300" options={state.options} series={state.series} type="area" />;
 }

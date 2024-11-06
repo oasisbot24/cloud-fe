@@ -1,5 +1,6 @@
 import { CardHeader as MuiCardHeader, Stack, Typography } from "@mui/material";
 import dayjs from "dayjs";
+
 import DashboardIcon from "@/components/Icon/DashboardIcon";
 
 interface CardHeaderProps {
@@ -10,13 +11,7 @@ interface CardHeaderProps {
   isDark?: boolean;
 }
 
-export default function CardHeader({
-  id,
-  title,
-  subtitle,
-  action,
-  isDark,
-}: CardHeaderProps) {
+export default function CardHeader({ id, title, subtitle, action, isDark }: CardHeaderProps) {
   const hm = dayjs().format("HH:mm");
   return (
     <MuiCardHeader
@@ -28,10 +23,7 @@ export default function CardHeader({
       avatar={<DashboardIcon id={id} />}
       title={
         <Stack className="gap-1">
-          <Typography
-            variant="300B"
-            className={!isDark ? "text-font-1" : "text-neutral-100"}
-          >
+          <Typography variant="300B" className={!isDark ? "text-font-1" : "text-neutral-100"}>
             {title}
           </Typography>
           <Typography

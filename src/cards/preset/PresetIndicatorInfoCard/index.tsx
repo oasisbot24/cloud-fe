@@ -1,6 +1,9 @@
 import Image from "next/image";
+
 import { CardContent, Stack, Typography } from "@mui/material";
+
 import Card from "@/cards/Card";
+
 import CardHeader from "../../CardHeader";
 import Chart from "./Chart.png";
 import Description from "./Description";
@@ -8,12 +11,9 @@ import Description from "./Description";
 function RoundChip({ text, color }: { text: string; color: "blue" | "red" }) {
   return (
     <div
-      className={`w-fit shrink-0 h-fit rounded-full border border-solid px-2 ${
-        color === "blue"
-          ? "border-brand text-brand"
-          : "border-[#FF5A5F] text-[#FF5A5F]"
-      }
-        `}
+      className={`h-fit w-fit shrink-0 rounded-full border border-solid px-2 ${
+        color === "blue" ? "border-brand text-brand" : "border-[#FF5A5F] text-[#FF5A5F]"
+      } `}
     >
       <Typography variant="100M">{text}</Typography>
     </div>
@@ -24,15 +24,9 @@ export default function PresetIndicatorInfoCard() {
   return (
     <Card sx={{ maxWidth: 768 }}>
       <CardHeader id="setting" title="프리셋 설정 설명" />
-      <CardContent className="absolute top-0 w-full h-full">
-        <Image
-          src={Chart}
-          alt="프리셋 설정 이미지"
-          width={725}
-          height={240}
-          className="w-full"
-        />
-        <Stack className="gap-4 w-full h-[160px]" direction="row">
+      <CardContent className="absolute top-0 h-full w-full">
+        <Image src={Chart} alt="프리셋 설정 이미지" width={725} height={240} className="w-full" />
+        <Stack className="h-[160px] w-full gap-4" direction="row">
           <Description
             title="설정 보조지표"
             label={

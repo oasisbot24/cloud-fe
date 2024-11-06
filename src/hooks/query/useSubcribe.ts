@@ -1,10 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
+
 import { getProduct } from "@/apis/subscribe/product";
-import {
-  deleteSubscribe,
-  getSubscribe,
-  postSubscribe,
-} from "@/apis/subscribe/subscribe";
+import { deleteSubscribe, getSubscribe, postSubscribe } from "@/apis/subscribe/subscribe";
 
 export function useSubscribeQuery() {
   const subscribeQuery = useQuery({

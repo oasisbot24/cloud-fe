@@ -22,12 +22,5 @@ export default function CharacterIcon({ happiness }: CharacterIconProps) {
   if (happiness < 1) {
     happinessNumber = 1;
   }
-  return (
-    <Image
-      src={iconSrc[happinessNumber]}
-      height={280}
-      width={290}
-      alt="happyicon"
-    />
-  );
+  return <Image src={iconSrc[happinessNumber]} height={280} width={290} alt="happyicon" />;
 }

@@ -1,4 +1,5 @@
 import { Box, Stack } from "@mui/material";
+
 import Logo from "@/components/Logo";
 
 interface HeaderProps {
@@ -12,11 +13,8 @@ const style = {
 
 export default function Header({ color }: HeaderProps) {
   return (
-    <Box className={`w-full h-[72px] ${style[color]}`}>
-      <Stack
-        direction="row"
-        className="w-full h-full px-4 items-center justify-between"
-      >
+    <Box className={`h-[72px] w-full ${style[color]}`}>
+      <Stack direction="row" className="h-full w-full items-center justify-between px-4">
         <Logo size="L" color="white" />
       </Stack>
     </Box>

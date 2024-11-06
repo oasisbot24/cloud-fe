@@ -1,4 +1,5 @@
 import { atom } from "jotai";
+
 import { BotType } from "@/apis/oasisbot/bot";
 
 interface BotTransaction {
@@ -36,11 +37,6 @@ const botAtom = atom<BotType>({
   coinType: "",
 });
 
-export type {
-  BotTransaction,
-  BotTransactionProfit,
-  BotTransactionQuantity,
-  BotTransactionPrice,
-};
+export type { BotTransaction, BotTransactionProfit, BotTransactionQuantity, BotTransactionPrice };
 
 export { botAtom };

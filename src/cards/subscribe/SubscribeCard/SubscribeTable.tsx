@@ -8,12 +8,10 @@ import {
   Typography,
 } from "@mui/material";
 import { useAtom } from "jotai";
+
 import { subscribeMonthAtom } from "@/datas/subscribe";
-import {
-  CustomChip,
-  CustomOriginPrice,
-  CustomTableCell,
-} from "./SubscribeTableComponents";
+
+import { CustomChip, CustomOriginPrice, CustomTableCell } from "./SubscribeTableComponents";
 import { subscribeData } from "./SubscribeTableData";
 import TableRowMeta, { tableRowData } from "./SubscribeTableRow";
 

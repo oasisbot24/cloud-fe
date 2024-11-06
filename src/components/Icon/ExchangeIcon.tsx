@@ -20,9 +20,6 @@ interface ExchangeIconProps {
   size?: number;
 }
 
-export default function ExchangeIcon({
-  exchange,
-  size = 24,
-}: ExchangeIconProps) {
+export default function ExchangeIcon({ exchange, size = 24 }: ExchangeIconProps) {
   return <Icon src={exchangeToIcon(exchange)} size={size} />;
 }

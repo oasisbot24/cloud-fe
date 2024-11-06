@@ -7,7 +7,7 @@ interface CardProps {
 
 export default function Card({ children, sx }: CardProps) {
   return (
-    <MuiCard className="w-full h-full rounded-lg bg-white relative" sx={sx}>
+    <MuiCard className="relative h-full w-full rounded-lg bg-white" sx={sx}>
       {children}
     </MuiCard>
   );

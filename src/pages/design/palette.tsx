@@ -1,16 +1,8 @@
 import { Box, Stack, Typography } from "@mui/material";
 
-function ColorPalette({
-  className,
-  text,
-}: {
-  className: string;
-  text: string;
-}) {
+function ColorPalette({ className, text }: { className: string; text: string }) {
   return (
-    <Stack
-      className={`${className} w-[200px] h-[200px] text-center justify-center`}
-    >
+    <Stack className={`${className} h-[200px] w-[200px] justify-center text-center`}>
       <Typography variant="h6">{text}</Typography>
     </Stack>
   );
@@ -48,18 +40,9 @@ export default function Palette() {
           <ColorPalette className="bg-neutral-300" text="bg-neutral-300" />
           <ColorPalette className="bg-neutral-400" text="bg-neutral-400" />
           <ColorPalette className="bg-neutral-500" text="bg-neutral-500" />
-          <ColorPalette
-            className="bg-neutral-600 text-white"
-            text="bg-neutral-600"
-          />
-          <ColorPalette
-            className="bg-neutral-700 text-white"
-            text="bg-neutral-700"
-          />
-          <ColorPalette
-            className="bg-neutral-800 text-white"
-            text="bg-neutral-800"
-          />
+          <ColorPalette className="bg-neutral-600 text-white" text="bg-neutral-600" />
+          <ColorPalette className="bg-neutral-700 text-white" text="bg-neutral-700" />
+          <ColorPalette className="bg-neutral-800 text-white" text="bg-neutral-800" />
         </Stack>
       </Box>
     </Stack>

@@ -1,7 +1,10 @@
 import { useState } from "react";
+
 import { useRouter } from "next/router";
+
 import { Alert, CardContent, Stack, Typography } from "@mui/material";
 import { AxiosError } from "axios";
+
 import Card from "@/cards/Card";
 import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
@@ -15,7 +18,7 @@ interface PaymentInfoProps {
 
 function PaymentInfo({ title, children }: PaymentInfoProps) {
   return (
-    <Stack className="w-full h-full items-start justify-between gap-2">
+    <Stack className="h-full w-full items-start justify-between gap-2">
       <Typography variant="h6" className="text-font-1">
         {title}
       </Typography>
@@ -50,9 +53,7 @@ export default function PaymentCard() {
           push("/mypage");
         },
         onError: e => {
-          setError(
-            (e as AxiosError<ApiResponseType<void>>).response?.data.msg ?? "",
-          );
+          setError((e as AxiosError<ApiResponseType<void>>).response?.data.msg ?? "");
         },
       },
     );
@@ -60,7 +61,7 @@ export default function PaymentCard() {
 
   return (
     <Card>
-      <CardContent className="p-12 flex flex-col gap-16 mb-10">
+      <CardContent className="mb-10 flex flex-col gap-16 p-12">
         <PaymentInfo title="카드 번호">
           <FormTextField
             id="cardnumber"
@@ -97,11 +98,7 @@ export default function PaymentCard() {
         {error && <Alert severity="error">{error}</Alert>}
       </CardContent>
       <CardFooter>
-        <CardButton
-          text="적용"
-          className="text-white bg-brand w-full"
-          onClick={handleClick}
-        />
+        <CardButton text="적용" className="w-full bg-brand text-white" onClick={handleClick} />
       </CardFooter>
     </Card>
   );

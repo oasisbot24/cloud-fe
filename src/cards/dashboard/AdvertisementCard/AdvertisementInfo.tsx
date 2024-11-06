@@ -1,5 +1,7 @@
 import Image from "next/image";
+
 import { Box, Stack, Typography } from "@mui/material";
+
 import AdvertismentButton from "./AdvertismentButton";
 
 interface AdvertisementInfoProps {
@@ -16,20 +18,20 @@ export default function AdvertisementInfo({
   bgSrc,
 }: AdvertisementInfoProps) {
   return (
-    <Box className="relative w-full h-full">
-      <Box className="w-full h-full absolute">
+    <Box className="relative h-full w-full">
+      <Box className="absolute h-full w-full">
         <Image
           src={bgSrc}
           alt="ad"
-          className="w-full h-full"
+          className="h-full w-full"
           fill
           style={{
             objectFit: "cover",
           }}
         />
-        <Box className="bg-black opacity-50 w-full h-full" />
+        <Box className="h-full w-full bg-black opacity-50" />
       </Box>
-      <Stack className="absolute text-white p-4 gap-6">
+      <Stack className="absolute gap-6 p-4 text-white">
         <Stack className="max-w-[250px] gap-2">
           <Typography variant="100B">{semiTitle}</Typography>
           <Typography variant="h4">{title}</Typography>

@@ -1,5 +1,7 @@
 import { useState } from "react";
+
 import { Button, Divider, IconButton, Stack, Typography } from "@mui/material";
+
 import Icon from "@/components/Icon/index";
 import CustomCheckbox from "@/components/common/CustomCheckbox";
 
@@ -12,11 +14,8 @@ interface CheckItemProps {
 
 function CheckItem({ title, checked = false, onClick, href }: CheckItemProps) {
   return (
-    <Stack
-      direction="row"
-      className="w-full justify-between items-center min-h-[44px]"
-    >
-      <Stack direction="row" className="gap-2 items-center">
+    <Stack direction="row" className="min-h-[44px] w-full items-center justify-between">
+      <Stack direction="row" className="items-center gap-2">
         <CustomCheckbox checked={checked} onClick={onClick} />
         <Typography variant="bodyS" className="text-font-3">
           {title}
@@ -36,10 +35,7 @@ interface AgreementListProps {
   onAgree: (data: Record<AgreementType, boolean>) => void;
 }
 
-export default function AgreementList({
-  onClose,
-  onAgree,
-}: AgreementListProps) {
+export default function AgreementList({ onClose, onAgree }: AgreementListProps) {
   const titleObject: Record<AgreementType, string> = {
     over14: "[필수] 만 14세 이상입니다.",
     service: "[필수] 서비스 이용약관 동의",
@@ -61,16 +57,11 @@ export default function AgreementList({
 
   return (
     <>
-      <Stack className="px-2 gap-1">
+      <Stack className="gap-1 px-2">
         <Stack>
           <CheckItem
             title="모두 동의"
-            checked={
-              checked.over14 &&
-              checked.service &&
-              checked.privacy &&
-              checked.marketing
-            }
+            checked={checked.over14 && checked.service && checked.privacy && checked.marketing}
             onClick={() =>
               setChecked({
                 over14: true,
@@ -80,7 +71,7 @@ export default function AgreementList({
               })
             }
           />
-          <Typography variant="200R" className="text-font-3 ml-10 mb-4">
+          <Typography variant="200R" className="mb-4 ml-10 text-font-3">
             서비스 이용을 위해 아래 약관에 모두 동의합니다.
           </Typography>
         </Stack>
@@ -101,11 +92,7 @@ export default function AgreementList({
         ))}
       </Stack>
       <Stack direction="row" className="gap-2">
-        <Button
-          variant="outlined"
-          className="w-full rounded-full"
-          onClick={onClose}
-        >
+        <Button variant="outlined" className="w-full rounded-full" onClick={onClose}>
           취소
         </Button>
         <Button

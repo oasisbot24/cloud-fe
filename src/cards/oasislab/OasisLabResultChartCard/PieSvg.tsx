@@ -6,12 +6,7 @@ interface PieSvgProps {
 }
 
 // 부채꼴을 그리는 SVG 컴포넌트입니다.
-export default function PieSvg({
-  fillColor,
-  borderColor,
-  radius,
-  percent,
-}: PieSvgProps) {
+export default function PieSvg({ fillColor, borderColor, radius, percent }: PieSvgProps) {
   // 부채꼴의 중심을 계산합니다.
   const centerX = radius + 1;
   const centerY = radius + 3;
@@ -41,23 +36,11 @@ export default function PieSvg({
       viewBox={`0 0 ${radius * 2 + 2} ${radius * 2}`}
     >
       <defs>
-        <radialGradient
-          id={fillColor}
-          cx="50%"
-          cy="50%"
-          r="40%"
-          fx="50%"
-          fy="50%"
-        >
+        <radialGradient id={fillColor} cx="50%" cy="50%" r="40%" fx="50%" fy="50%">
           <stop stopColor={fillColor} />
         </radialGradient>
       </defs>
-      <path
-        d={pathData}
-        fill={`url(#${fillColor})`}
-        stroke={borderColor}
-        strokeWidth={1.5}
-      />
+      <path d={pathData} fill={`url(#${fillColor})`} stroke={borderColor} strokeWidth={1.5} />
     </svg>
   );
 }

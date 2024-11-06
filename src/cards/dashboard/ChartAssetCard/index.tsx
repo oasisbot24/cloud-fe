@@ -1,9 +1,12 @@
 import { useState } from "react";
+
 import { Box, Stack } from "@mui/material";
+
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
 import SelectButtonList from "@/cards/dashboard/ChartAssetCard/SelectButtonList";
 import { useChart } from "@/hooks/query/useChart";
+
 import CircleChart from "./CircleChart";
 
 export default function ChartAssetCard() {
@@ -15,15 +18,11 @@ export default function ChartAssetCard() {
   return (
     <Card>
       <CardHeader id="pie-chart" title="실시간 자산 비율" />
-      <Stack direction="row" className="justify-center mt-[-40px]">
+      <Stack direction="row" className="mt-[-40px] justify-center">
         <CircleChart coinRatioList={coinRatioData} focus={focus} />
       </Stack>
-      <Box className="p-4 absolute w-full bottom-0">
-        <SelectButtonList
-          coinRatioList={coinRatioData}
-          focus={focus}
-          setFocus={setFocus}
-        />
+      <Box className="absolute bottom-0 w-full p-4">
+        <SelectButtonList coinRatioList={coinRatioData} focus={focus} setFocus={setFocus} />
       </Box>
     </Card>
   );

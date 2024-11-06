@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+
 import { Typography } from "@mui/material";
 
 export default function LiquidProgress() {
@@ -17,7 +18,7 @@ export default function LiquidProgress() {
       </div>
       <span className="progress-label-value">
         <Typography
-          className="text-white font-outline-2"
+          className="font-outline-2 text-white"
           fontFamily="SF Pro Display"
           fontWeight={700}
           fontSize={40}

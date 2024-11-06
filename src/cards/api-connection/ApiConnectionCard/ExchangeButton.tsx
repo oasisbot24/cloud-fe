@@ -1,8 +1,11 @@
 import { useRouter } from "next/router";
+
 import { ButtonBase, CircularProgress, Stack, Typography } from "@mui/material";
+
 import ExchangeIcon from "@/components/Icon/ExchangeIcon";
 import { useSmartAccessMutation } from "@/hooks/query/useApiConnection";
 import { useSubscribeQuery } from "@/hooks/query/useSubcribe";
+
 import openScrap from "./openScrap";
 
 interface ExchangeButtonProps {
@@ -38,9 +41,7 @@ export default function ExchangeButton({
           response_type: "code",
           access_type: "offline",
           client_id: process.env.NEXT_PUBLIC_OKX_OAUTH_CLIENT_ID,
-          redirect_uri: encodeURIComponent(
-            `${window.location.origin}/api-connection/okx`,
-          ),
+          redirect_uri: encodeURIComponent(`${window.location.origin}/api-connection/okx`),
           scope: "fast_api",
           state,
         });
@@ -62,18 +63,14 @@ export default function ExchangeButton({
   };
   return (
     <ButtonBase
-      className="rounded-full border border-solid border-neutral-300 w-[146px] h-[146px]"
+      className="h-[146px] w-[146px] rounded-full border border-solid border-neutral-300"
       sx={{
-        backgroundColor: disabled
-          ? "#e3e3e3"
-          : isConnected
-            ? "#EEF0FE"
-            : "white",
+        backgroundColor: disabled ? "#e3e3e3" : isConnected ? "#EEF0FE" : "white",
       }}
       disabled={isConnected || disabled || isProcessing}
       onClick={clickHandler}
     >
-      <Stack className="justify-between items-center">
+      <Stack className="items-center justify-between">
         {isProcessing ? (
           <CircularProgress size={42} className="mb-2" />
         ) : (

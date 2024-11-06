@@ -1,4 +1,5 @@
 import Card from "@/cards/Card";
+
 import SubscribeDescription from "./SubscribeDescription";
 import SubscribeTable from "./SubscribeTable";
 

@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import { Box, Button, Paper, Stack, Typography } from "@mui/material";
 
 type InfoDialogType = {
@@ -8,25 +9,17 @@ type InfoDialogType = {
   handleClose: () => void;
 };
 
-function InfoDialog({
-  title,
-  description,
-  imgSrc,
-  handleClose,
-}: InfoDialogType) {
+function InfoDialog({ title, description, imgSrc, handleClose }: InfoDialogType) {
   return (
     <>
-      <Box
-        className="fixed w-full h-full bg-[#00000033] top-0 left-0 z-50"
-        onClick={handleClose}
-      />
+      <Box className="fixed left-0 top-0 z-50 h-full w-full bg-[#00000033]" onClick={handleClose} />
       <Paper
-        className="w-[410px] h-fit top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 fixed z-50 rounded-xl"
+        className="fixed left-1/2 top-1/2 z-50 h-fit w-[410px] -translate-x-1/2 -translate-y-1/2 transform rounded-xl"
         onClick={e => {
           e.stopPropagation();
         }}
       >
-        <Stack className="bg-brand rounded-t-xl items-center justify-center">
+        <Stack className="items-center justify-center rounded-t-xl bg-brand">
           <Image
             src={imgSrc ?? "/modal_check.png"}
             width={250}
@@ -35,11 +28,11 @@ function InfoDialog({
             className="mix-blend-screen"
           />
         </Stack>
-        <Stack className="py-6 px-16 gap-4">
+        <Stack className="gap-4 px-16 py-6">
           <Typography variant="400B" className="text-center">
             {title}
           </Typography>
-          <ul className="list-outside flex flex-col gap-4 m-0 p-0 pl-4">
+          <ul className="m-0 flex list-outside flex-col gap-4 p-0 pl-4">
             {description.length === 1 ? (
               <Typography variant="300R" className="text-font-3">
                 {description[0]}
@@ -54,11 +47,7 @@ function InfoDialog({
               ))
             )}
           </ul>
-          <Button
-            variant="contained"
-            className="w-full rounded-full"
-            onClick={handleClose}
-          >
+          <Button variant="contained" className="w-full rounded-full" onClick={handleClose}>
             확인
           </Button>
         </Stack>

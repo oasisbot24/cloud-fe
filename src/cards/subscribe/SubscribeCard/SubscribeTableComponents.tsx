@@ -1,9 +1,11 @@
 import { Box, Stack, TableCell, Typography } from "@mui/material";
 import { useAtom } from "jotai";
+
 import { subscribeMonthAtom, subscribeTypeAtom } from "@/datas/subscribe";
 import { useProductQuery } from "@/hooks/query/useSubcribe";
 import useModalGlobal from "@/hooks/useModalGlobal";
 import { numberToCurrency } from "@/libs/string";
+
 import SubscribeModal from "./SubscribeModal";
 import { subscribeData, tableData } from "./SubscribeTableData";
 import { TableRowType } from "./SubscribeTableRow";
@@ -14,11 +16,7 @@ interface CustomTableCellProps {
   children?: React.ReactNode;
 }
 
-function CustomTableCell({
-  subscribeType,
-  tableRowType,
-  children,
-}: CustomTableCellProps) {
+function CustomTableCell({ subscribeType, tableRowType, children }: CustomTableCellProps) {
   const [, setType] = useAtom(subscribeTypeAtom);
   const { openModal } = useModalGlobal();
   return (
@@ -53,13 +51,12 @@ function CustomChip({ type }: { type: SubscribeType }) {
   const [currentType] = useAtom(subscribeTypeAtom);
   return (
     <Box
-      className={`rounded-full py-2 px-5 w-fit mx-auto ${type === currentType ? "bg-brand text-white" : "bg-neutral-200 text-brand"}`}
+      className={`mx-auto w-fit rounded-full px-5 py-2 ${type === currentType ? "bg-brand text-white" : "bg-neutral-200 text-brand"}`}
     >
       <Typography variant="200B">
         {numberToCurrency(
           productData?.find(
-            product =>
-              product.productId === subscribeData[type].month[month]?.productId,
+            product => product.productId === subscribeData[type].month[month]?.productId,
           )?.productPrice ?? 0,
           "￦",
         )}
@@ -75,10 +72,8 @@ function CustomOriginPrice({ type }: { type: SubscribeType }) {
   return (
     <Typography variant="200R" className="text-sub-4 line-through">
       {numberToCurrency(
-        (productData?.find(
-          product =>
-            product.productId === subscribeData[type].month[1]?.productId,
-        )?.productPrice ?? 0) * 3,
+        (productData?.find(product => product.productId === subscribeData[type].month[1]?.productId)
+          ?.productPrice ?? 0) * 3,
         "￦",
       )}
     </Typography>

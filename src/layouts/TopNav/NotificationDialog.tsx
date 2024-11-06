@@ -1,7 +1,6 @@
 import { Box, ButtonBase, Paper, Stack, Typography } from "@mui/material";
-import NotificationItem, {
-  NotificationDataType,
-} from "@/layouts/TopNav/NotificationItem";
+
+import NotificationItem, { NotificationDataType } from "@/layouts/TopNav/NotificationItem";
 
 interface NotificationDialogProps {
   handleClose: () => void;
@@ -14,12 +13,9 @@ export default function NotificationDialog({
 }: NotificationDialogProps) {
   return (
     <>
-      <Box
-        className="fixed w-full h-full bg-transparent top-0 left-0 z-50"
-        onClick={handleClose}
-      />
+      <Box className="fixed left-0 top-0 z-50 h-full w-full bg-transparent" onClick={handleClose} />
       <Paper
-        className="top-[70px] right-4 rounded-xl w-[382px] h-[400px] absolute z-[999] flex flex-col justify-between"
+        className="absolute right-4 top-[70px] z-[999] flex h-[400px] w-[382px] flex-col justify-between rounded-xl"
         sx={{
           boxShadow: "-8px 42px 120px 0px #7E7BA033",
           border: "1px solid",
@@ -32,22 +28,22 @@ export default function NotificationDialog({
           e.stopPropagation();
         }}
       >
-        <Box className="bg-[#FFFFFFAA] p-4 rounded-t-xl">
+        <Box className="rounded-t-xl bg-[#FFFFFFAA] p-4">
           <Typography variant="200B">알림</Typography>
         </Box>
-        <Stack className="overflow-y-auto h-full">
+        <Stack className="h-full overflow-y-auto">
           {notificationList ? (
             notificationList.map((notification, index) => (
               <NotificationItem key={index} notification={notification} />
             ))
           ) : (
-            <Stack className="w-full h-full justify-center items-center">
+            <Stack className="h-full w-full items-center justify-center">
               <Typography variant="300R">알림이 없습니다.</Typography>
             </Stack>
           )}
         </Stack>
-        <Stack direction="row" className="p-4 justify-center">
-          <ButtonBase className="text-neutral-600 text-[14px] rounded-full bg-[#FFFFFF80] px-4 py-2 border border-neutral-100">
+        <Stack direction="row" className="justify-center p-4">
+          <ButtonBase className="rounded-full border border-neutral-100 bg-[#FFFFFF80] px-4 py-2 text-[14px] text-neutral-600">
             전체보기
           </ButtonBase>
         </Stack>

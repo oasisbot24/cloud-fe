@@ -35,9 +35,7 @@ interface BotItem {
 }
 
 async function getTransaction(exchangeName: string): Promise<BotType[]> {
-  const respose = await api.get<ApiResponseType<[]>>(
-    `/transaction?exchange=${exchangeName}`,
-  );
+  const respose = await api.get<ApiResponseType<[]>>(`/transaction?exchange=${exchangeName}`);
 
   const bots: BotType[] = [];
   respose.data?.data.map((item: BotItem, n) => {

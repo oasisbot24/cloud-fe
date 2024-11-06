@@ -1,7 +1,9 @@
 import { Stack } from "@mui/material";
 import { useAtom } from "jotai";
+
 import { PresetWeightType, presetWeightAtom } from "@/datas/preset";
 import { sumPresetWeight } from "@/libs/preset";
+
 import Column from "./Column";
 import GraphText from "./GraphText";
 import VerticalSliderSum from "./VerticalSilderSum";
@@ -12,10 +14,7 @@ function SliderGraph() {
   return (
     <Stack direction="row" className="h-full gap-8">
       <Column />
-      <Stack
-        direction="row"
-        className="h-full w-full items-center justify-between"
-      >
+      <Stack direction="row" className="h-full w-full items-center justify-between">
         {Object.keys(presetWeight).map(key => {
           return (
             <Stack gap={2} key={key} className="h-full items-center">

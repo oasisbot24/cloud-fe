@@ -7,29 +7,18 @@ interface SelectButtonProps {
   isFocused?: boolean;
 }
 
-function SelectButton({
-  children,
-  onClick,
-  color,
-  isFocused = false,
-}: SelectButtonProps) {
+function SelectButton({ children, onClick, color, isFocused = false }: SelectButtonProps) {
   return (
     <ButtonBase
       onClick={onClick}
-      className="rounded-full bg-netural-200"
+      className="bg-netural-200 rounded-full"
       sx={{
         border: "1px solid",
         borderColor: isFocused ? color : "transparent",
       }}
     >
-      <Stack
-        direction="row"
-        className="justify-center gap-1 items-center p-2.5"
-      >
-        <Box
-          className="rounded-full w-[12px] h-[12px]"
-          sx={{ backgroundColor: color }}
-        />
+      <Stack direction="row" className="items-center justify-center gap-1 p-2.5">
+        <Box className="h-[12px] w-[12px] rounded-full" sx={{ backgroundColor: color }} />
         <Typography variant="100B">{children}</Typography>
       </Stack>
     </ButtonBase>

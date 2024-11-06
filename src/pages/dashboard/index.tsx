@@ -1,4 +1,5 @@
 import { Box, Stack } from "@mui/material";
+
 import AdvertisementCard from "@/cards/dashboard/AdvertisementCard";
 import AssetStatusCard from "@/cards/dashboard/AssetStatusCard";
 import BotTransactionCard from "@/cards/dashboard/BotTransactionCard";
@@ -14,12 +15,12 @@ export default function Home() {
     <Layout>
       <Carousel minWidth={1400}>
         <Stack className="gap-4">
-          <Stack direction="row" className="gap-4 h-[340px]">
+          <Stack direction="row" className="h-[340px] gap-4">
             <AssetStatusCard />
             <CircleChartCard />
             <AdvertisementCard />
           </Stack>
-          <Stack direction="row" className="gap-4 h-[436px]">
+          <Stack direction="row" className="h-[436px] gap-4">
             <Box className="w-7/12">
               <ChartCard />
             </Box>
@@ -27,7 +28,7 @@ export default function Home() {
               <OasisBotListCard nav="dashboard" />
             </Box>
           </Stack>
-          <Stack direction="row" className="gap-4 h-[436px]">
+          <Stack direction="row" className="h-[436px] gap-4">
             <Box className="w-5/12">
               <BotTransactionCard />{" "}
             </Box>

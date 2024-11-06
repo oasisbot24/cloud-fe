@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+
 import { useRouter } from "next/router";
+
 import { CardContent, Chip } from "@mui/material";
 import { DataGrid, GridRowSelectionModel } from "@mui/x-data-grid";
 import { useSetAtom } from "jotai";
+
 import Card from "@/cards/Card";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
@@ -49,9 +52,7 @@ export default function OasisBotListCard({ nav }: Props) {
   return (
     <Card>
       <CardHeader id="setting" title="실행중인 Bot 목록" />
-      <CardContent
-        sx={{ paddingTop: "0", maxHeight: "400px", overflow: "auto" }}
-      >
+      <CardContent sx={{ paddingTop: "0", maxHeight: "400px", overflow: "auto" }}>
         <DataGrid
           columns={columns}
           rows={data ?? []}

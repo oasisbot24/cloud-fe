@@ -1,4 +1,5 @@
 import { Box, Stack, Typography } from "@mui/material";
+
 import Icon from "@/components/Icon";
 
 export default function Description({
@@ -11,15 +12,15 @@ export default function Description({
   content: string;
 }) {
   return (
-    <Stack className="bg-neutral-200 p-6 w-1/2 h-full rounded-2xl justify-between gap-2">
-      <Stack className="justify-between items-center" direction="row">
-        <Stack className="gap-2 shrink-0" direction="row">
+    <Stack className="h-full w-1/2 justify-between gap-2 rounded-2xl bg-neutral-200 p-6">
+      <Stack className="items-center justify-between" direction="row">
+        <Stack className="shrink-0 gap-2" direction="row">
           <Icon src="/icons/control/info.png" alt="info" size={16} />
           <Typography variant="300M" className="text-font-1">
             {title}
           </Typography>
         </Stack>
-        <Stack className="gap-2 shrink-0" direction="row">
+        <Stack className="shrink-0 gap-2" direction="row">
           {label}
         </Stack>
       </Stack>

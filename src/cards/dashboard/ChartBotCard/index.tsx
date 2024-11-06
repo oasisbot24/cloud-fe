@@ -1,7 +1,10 @@
 import { useState } from "react";
+
 import { Box } from "@mui/material";
+
 import Card from "@/cards/Card";
 import { useDashboardChart } from "@/hooks/query/useChart";
+
 import CustomChart from "./CustomChart";
 import Panel from "./Panel";
 

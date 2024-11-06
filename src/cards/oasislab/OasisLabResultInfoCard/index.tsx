@@ -1,9 +1,12 @@
 import Image from "next/image";
+
 import { Box, CardContent, Stack } from "@mui/material";
+
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
 import CharacterIcon from "@/components/Icon/CharacterIcon";
 import { useInfoTradeStyle } from "@/hooks/query/useInfo";
+
 import TestResultInfo from "./TestResultInfo";
 
 function calculateHappiness(totalProfitLossRate: number) {
@@ -22,19 +25,14 @@ export default function OasisLabResultInfoCard() {
   return (
     <Card sx={{ background: "url('/assetstatus/bg.png')" }}>
       <CardHeader id="rise-arrow" title="테스트 연구 결과 (수치)" isDark />
-      <CardContent className="flex flex-row w-full h-full max-h-[260px]">
+      <CardContent className="flex h-full max-h-[260px] w-full flex-row">
         <Box className="w-1/2 shrink-0">
           <TestResultInfo />
         </Box>
-        <Box className="w-1/2 relative">
-          <Stack
-            direction="column"
-            className="h-full justify-center items-center"
-          >
+        <Box className="relative w-1/2">
+          <Stack direction="column" className="h-full items-center justify-center">
             <CharacterIcon
-              happiness={calculateHappiness(
-                tradeStyleData?.totalProfitLossRate ?? 0,
-              )}
+              happiness={calculateHappiness(tradeStyleData?.totalProfitLossRate ?? 0)}
             />
             <Image
               className="absolute bottom-0"

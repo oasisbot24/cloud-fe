@@ -1,5 +1,6 @@
 import { ButtonBase, Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
+
 import { subscribeMonthAtom } from "@/datas/subscribe";
 
 const buttonStyle = {
@@ -11,7 +12,7 @@ export default function SubscribeTitleMonthButton() {
   return (
     <Stack
       direction="row"
-      className="w-fit gap-2 px-3 py-2 bg-white rounded-full border border-solid border-neutral-400"
+      className="w-fit gap-2 rounded-full border border-solid border-neutral-400 bg-white px-3 py-2"
     >
       <ButtonBase
         onClick={() => setMonth(1)}
@@ -34,10 +35,7 @@ export default function SubscribeTitleMonthButton() {
         >
           3개월 구독
         </Typography>
-        <Typography
-          variant={month === 3 ? "200B" : "200R"}
-          className="text-sub-3"
-        >
+        <Typography variant={month === 3 ? "200B" : "200R"} className="text-sub-3">
           12% 절약
         </Typography>
       </ButtonBase>

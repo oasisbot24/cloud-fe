@@ -16,11 +16,10 @@ function useComponentSize(): ComponentSizeHook {
 
   useEffect(() => {
     const handleResize = () => {
-      const { width, height } =
-        componentRef.current?.getBoundingClientRect() ?? {
-          width: 0,
-          height: 0,
-        };
+      const { width, height } = componentRef.current?.getBoundingClientRect() ?? {
+        width: 0,
+        height: 0,
+      };
       setSize({ width, height });
     };
 

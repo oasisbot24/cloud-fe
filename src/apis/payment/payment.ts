@@ -6,8 +6,7 @@ interface PaymentMethodType {
 }
 
 async function getPaymentMethod(): Promise<PaymentMethodType> {
-  const res =
-    await api.get<ApiResponseType<PaymentMethodType>>("/payment/method");
+  const res = await api.get<ApiResponseType<PaymentMethodType>>("/payment/method");
   return res.data?.data;
 }
 

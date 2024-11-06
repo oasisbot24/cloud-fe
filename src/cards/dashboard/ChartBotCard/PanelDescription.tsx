@@ -1,5 +1,7 @@
 import Image from "next/image";
+
 import { Chip, Stack, Typography } from "@mui/material";
+
 import ArrowDownIcon from "@/components/Icon/ArrowDownIcon";
 import ArrowUpIcon from "@/components/Icon/ArrowUpIcon";
 
@@ -29,7 +31,7 @@ export default function PanelDescription({
     }
   };
   return (
-    <Stack direction="row" className="w-full justify-between items-center">
+    <Stack direction="row" className="w-full items-center justify-between">
       <Stack direction="row" spacing={1}>
         {/* <DashboardIcon id="bar-graph" /> */}
         <Image src={changeIcon(exchange)} alt="btc" width={45} height={45} />
@@ -43,7 +45,7 @@ export default function PanelDescription({
           </Typography>
         </Stack>
       </Stack>
-      <Stack className="gap-1 items-end">
+      <Stack className="items-end gap-1">
         <Typography
           variant="200R"
           fontFamily="SF Pro Display"

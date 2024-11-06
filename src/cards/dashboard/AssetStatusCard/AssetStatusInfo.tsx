@@ -1,20 +1,20 @@
 import { Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
+
 import { TradeStyleType } from "@/apis/info/tradeStyle";
 import authAtom from "@/datas/auth";
 import { numberSlice } from "@/libs/string";
+
 import DisplayPL from "./DisplayPL";
 
 interface AssetStatusInfoProps {
   tradeStyleData?: TradeStyleType;
 }
-export default function AssetStatusInfo({
-  tradeStyleData,
-}: AssetStatusInfoProps) {
+export default function AssetStatusInfo({ tradeStyleData }: AssetStatusInfoProps) {
   const [user] = useAtom(authAtom);
   const userName = user.name;
   return (
-    <Stack className="w-full h-full justify-between">
+    <Stack className="h-full w-full justify-between">
       <Stack direction="column" className="gap-1">
         <Typography variant="400M" className="text-neutral-100">
           Hi! {userName}님

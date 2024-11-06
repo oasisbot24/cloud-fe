@@ -1,6 +1,9 @@
 import Image from "next/image";
+
 import { ButtonBase, Stack, Typography } from "@mui/material";
+
 import useModalGlobal from "@/hooks/useModalGlobal";
+
 import modalImage from "./modal.png";
 
 interface ErrorDialogProps {
@@ -13,19 +16,16 @@ export default function ErrorDialog({ title, content }: ErrorDialogProps) {
   return (
     <Stack className="rounded-[28px] bg-white">
       <Image src={modalImage.src} alt="modalimage" width={410} height={208} />
-      <Stack className="p-8 gap-4 items-center">
+      <Stack className="items-center gap-4 p-8">
         <Typography variant="400B">{title}</Typography>
         <Stack className="w-full">
-          <Typography variant="200R" className="text-font-2 text-center">
+          <Typography variant="200R" className="text-center text-font-2">
             {content}
           </Typography>
         </Stack>
-        <Stack direction="row" className="w-full justify-center mt-4">
-          <ButtonBase
-            className="w-[165px] rounded-full bg-brand py-3"
-            onClick={closeModal}
-          >
-            <Typography variant="300B" className="text-white text-center">
+        <Stack direction="row" className="mt-4 w-full justify-center">
+          <ButtonBase className="w-[165px] rounded-full bg-brand py-3" onClick={closeModal}>
+            <Typography variant="300B" className="text-center text-white">
               확인
             </Typography>
           </ButtonBase>

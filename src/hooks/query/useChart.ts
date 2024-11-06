@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useAtom } from "jotai";
+
 import { getCoinRatio } from "@/apis/chart/coinRatio";
 import { getDashboardChart } from "@/apis/chart/dashboardChart";
 import exchangeAtom from "@/datas/exchange";

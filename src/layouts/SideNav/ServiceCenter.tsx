@@ -1,11 +1,13 @@
 import Image from "next/image";
+
 import { Box, Button, Stack, Typography } from "@mui/material";
+
 import Icon from "@/components/Icon";
 
 export default function ServiceCenter({ iconOnly }: { iconOnly?: boolean }) {
   return (
     <Box
-      className={`relative shrink-0 overflow-hidden ${iconOnly ? "rounded-full w-[60px] h-[60px]" : "rounded-xl w-full h-[170px]"}`}
+      className={`relative shrink-0 overflow-hidden ${iconOnly ? "h-[60px] w-[60px] rounded-full" : "h-[170px] w-full rounded-xl"}`}
     >
       <Image
         src="/nav-cover.png"
@@ -17,9 +19,9 @@ export default function ServiceCenter({ iconOnly }: { iconOnly?: boolean }) {
         }}
       />
       <Stack
-        className={`absolute h-full w-full z-[10] ${iconOnly ? "justify-center items-center" : "justify-between p-4"}`}
+        className={`absolute z-[10] h-full w-full ${iconOnly ? "items-center justify-center" : "justify-between p-4"}`}
       >
-        <Stack className="rounded-xl w-[35px] h-[35px] bg-white justify-center items-center">
+        <Stack className="h-[35px] w-[35px] items-center justify-center rounded-xl bg-white">
           <Icon src="/icons/control/info.png" size={18} />
         </Stack>
         {!iconOnly && (

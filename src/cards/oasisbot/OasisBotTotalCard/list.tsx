@@ -1,6 +1,8 @@
 import React from "react";
+
 import { Stack } from "@mui/material";
 import { useAtom } from "jotai";
+
 import OasisBotTotalCard from "@/cards/oasisbot/OasisBotTotalCard/index";
 import exchangeAtom from "@/datas/exchange";
 import { useBotData } from "@/hooks/query/useOasisBot";
@@ -51,8 +53,7 @@ function OasisBotTotalCardList() {
         id="winning-rate"
         title="나의 봇 승률 Top 1"
         subtitle={
-          !!botDataQuery.data?.maxWinRate.presetName &&
-          botDataQuery.data?.maxWinRate.coinName
+          !!botDataQuery.data?.maxWinRate.presetName && botDataQuery.data?.maxWinRate.coinName
             ? `${exchangeToKorean(exchange)} 거래소의 ${botDataQuery.data?.maxWinRate.presetName} - ${botDataQuery.data?.maxWinRate.coinName}`
             : "ㅤ"
         }

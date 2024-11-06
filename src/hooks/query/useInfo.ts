@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+
 import { getRanking } from "@/apis/info/ranking";
 import { getTradeStyle } from "@/apis/info/tradeStyle";
 

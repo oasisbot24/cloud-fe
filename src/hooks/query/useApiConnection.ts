@@ -1,9 +1,5 @@
-import {
-  QueryClient,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
 import { postOkxOauthToken } from "@/apis/apiConnection/oauth";
 import {
   SmartAccessResultBody,
@@ -25,13 +21,8 @@ export function useOkxOauthTokenMutation() {
 export function useSmartAccessMutation() {
   const queryClient = useQueryClient();
   const postSmartAccessResultMutation = useMutation({
-    mutationFn: ({
-      exchange,
-      body,
-    }: {
-      exchange: ExchangeType;
-      body: SmartAccessResultBody;
-    }) => postSmartAccessResult(exchange, body),
+    mutationFn: ({ exchange, body }: { exchange: ExchangeType; body: SmartAccessResultBody }) =>
+      postSmartAccessResult(exchange, body),
     mutationKey: ["postSmartAccessResult"],
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["getUserExchanges"] });

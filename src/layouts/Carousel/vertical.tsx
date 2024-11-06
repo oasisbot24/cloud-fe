@@ -1,6 +1,8 @@
 import { useState } from "react";
+
 import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 import { Box, IconButton } from "@mui/material";
+
 import useComponentSize from "@/hooks/useComponentSize";
 
 interface CarouselProps {
@@ -25,7 +27,7 @@ export default function VerticalCarousel({ children, height }: CarouselProps) {
         </IconButton>
       )}
       <Box
-        className="absolute w-full overflow-hidden top-1/2 -translate-y-1/2"
+        className="absolute top-1/2 w-full -translate-y-1/2 overflow-hidden"
         height={height - 66}
       >
         <Box

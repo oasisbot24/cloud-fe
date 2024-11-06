@@ -1,9 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import {
-  deletePaymentMethod,
-  getPaymentMethod,
-  postPaymentMethod,
-} from "@/apis/payment/payment";
+
+import { deletePaymentMethod, getPaymentMethod, postPaymentMethod } from "@/apis/payment/payment";
 
 export function usePaymentMethodQuery() {
   const paymentMethodQuery = useQuery({

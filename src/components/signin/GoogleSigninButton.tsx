@@ -1,13 +1,10 @@
 import { ButtonBase, Typography } from "@mui/material";
 import { useGoogleLogin } from "@react-oauth/google";
+
 import Icon from "@/components/Icon/index";
 import useSignin from "@/hooks/query/useSignin";
 
-function GoogleSigninButton({
-  onSuccess,
-}: {
-  onSuccess: (data: { isAgree: boolean }) => void;
-}) {
+function GoogleSigninButton({ onSuccess }: { onSuccess: (data: { isAgree: boolean }) => void }) {
   const { signinAccessTokenMutation } = useSignin();
 
   /*
@@ -29,7 +26,7 @@ function GoogleSigninButton({
 
   return (
     <ButtonBase
-      className="rounded-full text-white border-white px-7 py-4 w-fit flex gap-4 items-center"
+      className="flex w-fit items-center gap-4 rounded-full border-white px-7 py-4 text-white"
       sx={{
         border: "1px solid",
       }}

@@ -1,4 +1,5 @@
 import { ThemeOptions, createTheme } from "@mui/material";
+
 import paletteOptions from "@/styles/theme/palette";
 import typographyOptions from "@/styles/theme/typography";
 

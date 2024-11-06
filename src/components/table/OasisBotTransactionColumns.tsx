@@ -1,12 +1,10 @@
 import { Chip } from "@mui/material";
-import {
-  GridColDef,
-  GridRenderCellParams,
-  GridValidRowModel,
-} from "@mui/x-data-grid";
+import { GridColDef, GridRenderCellParams, GridValidRowModel } from "@mui/x-data-grid";
+
 import ArrowDownIcon from "@/components/Icon/ArrowDownIcon";
 import ArrowUpIcon from "@/components/Icon/ArrowUpIcon";
 import { exchangeToKorean } from "@/libs/string";
+
 import ExchangeIcon from "../Icon/ExchangeIcon";
 
 const OasisBotTransactionColumns: GridColDef[] = [
@@ -15,10 +13,8 @@ const OasisBotTransactionColumns: GridColDef[] = [
     headerName: "거래소",
     flex: 1,
     headerClassName: "text-slate-500",
-    renderCell: (
-      params: GridRenderCellParams<GridValidRowModel, ExchangeType>,
-    ) => (
-      <div className="flex justify-between w-full whitespace-normal">
+    renderCell: (params: GridRenderCellParams<GridValidRowModel, ExchangeType>) => (
+      <div className="flex w-full justify-between whitespace-normal">
         {exchangeToKorean(params.value)}
         <ExchangeIcon exchange={params.value} size={20} />
       </div>
@@ -42,11 +38,7 @@ const OasisBotTransactionColumns: GridColDef[] = [
       <Chip
         label={params.value === "sell" ? "판매" : "구매"}
         // color={params.value === "sell" ? "secondary" : "primary"}
-        sx={
-          params.value === "sell"
-            ? { bgcolor: "#898FC3" }
-            : { bgcolor: "#2BB7F5" }
-        }
+        sx={params.value === "sell" ? { bgcolor: "#898FC3" } : { bgcolor: "#2BB7F5" }}
         className="text-[14px] font-bold leading-[16px] text-white"
       />
     ),
@@ -56,17 +48,13 @@ const OasisBotTransactionColumns: GridColDef[] = [
     headerName: "매수·매도가 및 수량",
     flex: 1,
     headerClassName: "text-slate-500",
-    renderCell: (
-      params: GridRenderCellParams<GridValidRowModel, BotTransactionQuantity>,
-    ) => (
+    renderCell: (params: GridRenderCellParams<GridValidRowModel, BotTransactionQuantity>) => (
       <div>
-        <div className="text-[16px] font-bold leading-[18px] ">
+        <div className="text-[16px] font-bold leading-[18px]">
           ￦{params.value?.totalPrice.toLocaleString("ko-kr")}
         </div>
 
-        <div className="text-[14px] font-bold leading-[16px] mt-2">
-          {params.value?.volume}
-        </div>
+        <div className="mt-2 text-[14px] font-bold leading-[16px]">{params.value?.volume}</div>
       </div>
     ),
   },
@@ -75,14 +63,12 @@ const OasisBotTransactionColumns: GridColDef[] = [
     headerName: "설정매수·매도가",
     flex: 1,
     headerClassName: "text-slate-500",
-    renderCell: (
-      params: GridRenderCellParams<GridValidRowModel, BotTransactionPrice>,
-    ) => (
+    renderCell: (params: GridRenderCellParams<GridValidRowModel, BotTransactionPrice>) => (
       <div>
         <div className="text-[16px] font-bold leading-[18px]">
           ￦{params.value?.startBalance.toLocaleString("ko-kr")}
         </div>
-        <div className="whitespace-normal mt-2">{params.value?.presetName}</div>
+        <div className="mt-2 whitespace-normal">{params.value?.presetName}</div>
       </div>
     ),
   },
@@ -101,33 +87,24 @@ const OasisBotTransactionColumns: GridColDef[] = [
     headerName: "손익률·실현손익",
     flex: 1,
     headerClassName: "text-slate-500",
-    renderCell: (
-      params: GridRenderCellParams<GridValidRowModel, BotTransactionProfit>,
-    ) => (
+    renderCell: (params: GridRenderCellParams<GridValidRowModel, BotTransactionProfit>) => (
       <div>
         <div
           className={`whitespace-normal ${params.value?.profitLoss && params.value.profitLoss > 0 ? "text-sub-3" : ""}`}
         >
           {params.value?.profitLoss ? "￦" : ""}
-          <span className="font-bold text-ellipsis">
+          <span className="text-ellipsis font-bold">
             {params.value?.profitLoss.toLocaleString("ko-kr") ?? "-"}
           </span>
         </div>
         {params.value?.profitLossRate && (
           <Chip
             className={`font-bold ${params.value?.profitLossRate ? "text-sub-3" : "bg-brand"}`}
-            icon={
-              params.value?.profitLossRate > 0 ? (
-                <ArrowUpIcon />
-              ) : (
-                <ArrowDownIcon />
-              )
-            }
+            icon={params.value?.profitLossRate > 0 ? <ArrowUpIcon /> : <ArrowDownIcon />}
             label={`${params.value?.profitLossRate.toFixed(2)}%`}
             size="small"
             style={{
-              background:
-                params.value?.profitLossRate > 0 ? "#FDE0E0" : "#DCE1FF",
+              background: params.value?.profitLossRate > 0 ? "#FDE0E0" : "#DCE1FF",
             }}
           />
         )}

@@ -1,5 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
+
 import exchangeAtom from "@/datas/exchange";
 import { useInfoTradeStyle } from "@/hooks/query/useInfo";
 import { useSubscribeQuery } from "@/hooks/query/useSubcribe";
@@ -24,25 +25,19 @@ export default function GeneralInfo({ type }: GeneralInfoProps) {
   } = useInfoTradeStyle();
   const [exchange] = useAtom(exchangeAtom);
   return (
-    <Stack
-      direction="row"
-      className="w-full gap-8 h-[30px] items-center justify-between"
-    >
+    <Stack direction="row" className="h-[30px] w-full items-center justify-between gap-8">
       <Typography variant="100R" className="w-[60px] shrink-0 text-neutral-600">
         {label[type]}
       </Typography>
       <Stack
         direction="row"
-        className="w-full h-full border-solid border-b-[1px] border-x-0 border-t-0 border-neutral-300 items-center justify-end"
+        className="h-full w-full items-center justify-end border-x-0 border-b-[1px] border-t-0 border-solid border-neutral-300"
       >
         <Typography variant="200M" className="text-font-2">
           {type === "exchange"
             ? exchange.toUpperCase()
             : type === "balance"
-              ? numberToCurrency(
-                  numberSlice(tradeStyleData?.accountBalance, 2),
-                  "₩",
-                ) || "0"
+              ? numberToCurrency(numberSlice(tradeStyleData?.accountBalance, 2), "₩") || "0"
               : subscribeData?.productName || "Free"}
         </Typography>
       </Stack>
