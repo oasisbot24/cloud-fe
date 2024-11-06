@@ -1,4 +1,5 @@
 import { Box, Stack } from "@mui/material";
+
 import GraphText from "./GraphText";
 
 function Column() {

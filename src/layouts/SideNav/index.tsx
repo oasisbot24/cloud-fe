@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
+
 import Logo from "@/components/Logo";
 import { useUserExchangesQuery } from "@/hooks/query/useApiConnection";
 import ServiceCenter from "@/layouts/SideNav/ServiceCenter";
@@ -29,18 +31,18 @@ export default function SideNav({ isMenuOpen, setIsMenuOpen }: SideNavProps) {
       direction="column"
       className={
         isMenuOpen
-          ? "sidenav px-4 py-8 ml-0 transition-all duration-300 justify-between"
-          : "sidenav px-4 py-8 w-[80px] transition-all duration-300 justify-between"
+          ? "sidenav ml-0 justify-between px-4 py-8 transition-all duration-300"
+          : "sidenav w-[80px] justify-between px-4 py-8 transition-all duration-300"
       }
     >
-      <Stack direction="row" className="w-full justify-center items-center">
+      <Stack direction="row" className="w-full items-center justify-center">
         <Logo color="black" size="L" logoOnly={!isMenuOpen} />
         <IconButton
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           sx={{
             boxShadow: "2px 2px 5px 0px #D1D9E6E5",
           }}
-          className="absolute right-[-16px] rounded-full border-2 border-white w-[32px] h-[32px] bg-[#F9F7F7]"
+          className="absolute right-[-16px] h-[32px] w-[32px] rounded-full border-2 border-white bg-[#F9F7F7]"
         >
           <KeyboardArrowLeftIcon
             fontSize="medium"
@@ -50,9 +52,7 @@ export default function SideNav({ isMenuOpen, setIsMenuOpen }: SideNavProps) {
       </Stack>
       {sideMenu.map(menu => (
         <Stack key={menu.title} direction="column" className="w-full gap-1">
-          <Box
-            className={`transition-all duration-300 ${isMenuOpen ? "ml-4" : "mx-auto"}`}
-          >
+          <Box className={`transition-all duration-300 ${isMenuOpen ? "ml-4" : "mx-auto"}`}>
             <Typography variant="200M" className="text-sub-4">
               {menu.title}
             </Typography>
@@ -63,9 +63,7 @@ export default function SideNav({ isMenuOpen, setIsMenuOpen }: SideNavProps) {
               detail={detail}
               iconOnly={!isMenuOpen}
               disabled={
-                detail.id === "oasislab"
-                  ? true
-                  : !isConnected && !passPath.includes(detail.path)
+                detail.id === "oasislab" ? true : !isConnected && !passPath.includes(detail.path)
               }
             />
           ))}

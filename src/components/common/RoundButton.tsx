@@ -1,4 +1,5 @@
 import React from "react";
+
 import { ButtonBase } from "@mui/material";
 
 type Props = {
@@ -15,7 +16,7 @@ const colorStyle = {
 function RoundButton({ children, onClick, focus = false }: Props) {
   return (
     <ButtonBase
-      className={`w-fit shrink-0 h-[30px] rounded-full border border-solid px-4 ${
+      className={`h-[30px] w-fit shrink-0 rounded-full border border-solid px-4 ${
         focus ? colorStyle.focused : colorStyle.unfocused
       }`}
       onClick={onClick}

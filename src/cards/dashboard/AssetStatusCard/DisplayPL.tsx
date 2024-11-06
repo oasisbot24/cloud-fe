@@ -1,10 +1,11 @@
 import { Stack, Typography } from "@mui/material";
+
 import Icon from "@/components/Icon/index";
 import { numberSlice } from "@/libs/string";
 
 export default function DisplayPL({ pl }: { pl: number }) {
   return (
-    <Stack direction="row" className="gap-1 items-center">
+    <Stack direction="row" className="items-center gap-1">
       {pl > 0 ? (
         <Icon src="/icons/arrow/profitloss/up-medium.png" alt="up" />
       ) : (

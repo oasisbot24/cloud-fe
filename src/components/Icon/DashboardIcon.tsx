@@ -1,4 +1,5 @@
 import { Stack } from "@mui/material";
+
 import Icon from "@/components/Icon/index";
 
 interface DashboardIconProps {
@@ -28,7 +29,7 @@ const iconSrc = {
 
 export default function DashboardIcon({ id }: DashboardIconProps) {
   return (
-    <Stack className="justify-center items-center rounded-xl bg-neutral-200 w-[44px] h-[44px] shrink-0">
+    <Stack className="h-[44px] w-[44px] shrink-0 items-center justify-center rounded-xl bg-neutral-200">
       <Icon src={iconSrc[id]} size={30} />
     </Stack>
   );

@@ -1,9 +1,12 @@
 import { useState } from "react";
+
 import { Box, Menu, Stack } from "@mui/material";
 import { useAtom } from "jotai";
+
 import { ChartType } from "@/apis/chart/dashboardChart";
 import Icon from "@/components/Icon";
 import exchangeAtom from "@/datas/exchange";
+
 import CustomMenu from "./CustomMenu";
 import PanelDescription from "./PanelDescription";
 
@@ -42,7 +45,7 @@ export default function Panel({ setMenuId, menuId, chart }: Props) {
     <Box width={1}>
       <Stack
         direction="row"
-        className="justify-center items-center bg-[#898FC3] cursor-pointer w-[380px] rounded-xl p-4 gap-2"
+        className="w-[380px] cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#898FC3] p-4"
         onClick={handleClick}
       >
         <PanelDescription

@@ -1,7 +1,9 @@
 import { Alert, Box, Stack } from "@mui/material";
+
 import Card from "@/cards/Card";
 import ExchangeSelectDescription from "@/components/signin/dialog/ExchangeSelectDescription";
 import { useUserExchangesQuery } from "@/hooks/query/useApiConnection";
+
 import ExchangeButton from "./ExchangeButton";
 
 interface Props {
@@ -10,18 +12,14 @@ interface Props {
   success?: string;
 }
 
-export default function ApiConnectionCard({
-  processing,
-  error,
-  success,
-}: Props) {
+export default function ApiConnectionCard({ processing, error, success }: Props) {
   const {
     userExchangeQuery: { data: userExchanges },
   } = useUserExchangesQuery();
   return (
     <Card>
-      <Stack className="px-4 md:px-8 xl:px-16 py-4 md:py-8 items-center justify-between w-full h-full gap-8">
-        <Box className="grid grid-cols-2 w-fit gap-4">
+      <Stack className="h-full w-full items-center justify-between gap-8 px-4 py-4 md:px-8 md:py-8 xl:px-16">
+        <Box className="grid w-fit grid-cols-2 gap-4">
           <ExchangeButton
             exchange="upbit"
             isConnected={userExchanges?.includes("upbit")}

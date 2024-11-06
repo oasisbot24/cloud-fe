@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import { Icon as MuiIcon } from "@mui/material";
 
 interface IconProps {
@@ -8,12 +9,7 @@ interface IconProps {
   className?: string;
 }
 
-export default function Icon({
-  src,
-  alt = "icon",
-  size = 30,
-  className = "",
-}: IconProps) {
+export default function Icon({ src, alt = "icon", size = 30, className = "" }: IconProps) {
   return (
     <MuiIcon
       className={`flex items-center justify-center ${className}`}

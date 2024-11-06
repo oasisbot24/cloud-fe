@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Button, Typography } from "@mui/material";
 
 interface CardButtonProps {
@@ -16,7 +17,7 @@ function CardButton({
 }: CardButtonProps) {
   return (
     <Button
-      className={`w-full flex mx-4 my-3 p-3 rounded-none ${className}`}
+      className={`mx-4 my-3 flex w-full rounded-none p-3 ${className}`}
       onClick={onClick}
       disabled={disabled}
     >

@@ -28,19 +28,17 @@ interface NotificationItemProps {
   notification: NotificationDataType;
 }
 
-export default function NotificationItem({
-  notification,
-}: NotificationItemProps) {
+export default function NotificationItem({ notification }: NotificationItemProps) {
   return (
-    <Stack direction="row" className="p-4 px-8 gap-2 hover:bg-[#6F6C9920]">
+    <Stack direction="row" className="gap-2 p-4 px-8 hover:bg-[#6F6C9920]">
       <Stack
-        className="w-[32px] h-[32px] shrink-0 rounded-full items-center justify-center"
+        className="h-[32px] w-[32px] shrink-0 items-center justify-center rounded-full"
         sx={{
           background: iconBackground[notification.type],
         }}
       >
         <Typography
-          className="text-white text-center"
+          className="text-center text-white"
           sx={{
             fontFamily: "SF Pro Display",
             fontSize: 14,

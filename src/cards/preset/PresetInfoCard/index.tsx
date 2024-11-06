@@ -1,6 +1,8 @@
 import { useState } from "react";
+
 import { CardContent, Divider } from "@mui/material";
 import { useAtom } from "jotai";
+
 import Card from "@/cards/Card";
 import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
@@ -33,7 +35,7 @@ export default function PresetInfoCard() {
       <CardContent>
         <UserInfo />
       </CardContent>
-      <Divider className="border-0 my-8" />
+      <Divider className="my-8 border-0" />
       <CardHeader
         id="setting"
         title="프리셋"
@@ -50,14 +52,10 @@ export default function PresetInfoCard() {
               }
               value={preset?.presetName ?? ""}
               onChange={e => {
-                const newPreset =
-                  presetData?.find(p => p.presetName === e.target.value) ??
-                  null;
+                const newPreset = presetData?.find(p => p.presetName === e.target.value) ?? null;
                 if (newPreset) {
                   setPreset(newPreset);
-                  setPresetWeight(
-                    presetDataToPresetWeight(newPreset?.presetData),
-                  );
+                  setPresetWeight(presetDataToPresetWeight(newPreset?.presetData));
                 } else {
                   setPreset(null);
                   setPresetWeight(presetWeightInit);
@@ -73,7 +71,7 @@ export default function PresetInfoCard() {
       <CardFooter>
         <CardButton
           text="삭제"
-          className="text-white bg-sub-3"
+          className="bg-sub-3 text-white"
           onClick={() => {
             if (preset) {
               deletePresetMutation.mutate(preset?.id);
@@ -85,7 +83,7 @@ export default function PresetInfoCard() {
         />
         <CardButton
           text="프리셋 추가"
-          className="text-white bg-neutral-700"
+          className="bg-neutral-700 text-white"
           onClick={() => {
             setIsCreate(true);
             setPreset(presetInit);

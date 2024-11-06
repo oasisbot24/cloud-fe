@@ -1,12 +1,6 @@
-import {
-  CardContent,
-  Step,
-  StepContent,
-  StepLabel,
-  Stepper,
-  Typography,
-} from "@mui/material";
+import { CardContent, Step, StepContent, StepLabel, Stepper, Typography } from "@mui/material";
 import { useAtom } from "jotai";
+
 import { PresetWeightType, presetWeightAtom } from "@/datas/preset";
 import VerticalCarousel from "@/layouts/Carousel/vertical";
 
@@ -16,9 +10,7 @@ export default function PresetWeightInfo() {
   const steps = Object.keys(presetWeight)
     .filter(key => presetWeight[key as keyof PresetWeightType] > 0)
     .map((key, index) => ({
-      label: `${key} 에서 ${
-        presetWeight[key as keyof PresetWeightType]
-      }% 매수합니다.`,
+      label: `${key} 에서 ${presetWeight[key as keyof PresetWeightType]}% 매수합니다.`,
       description: `${index + 1}번째로 진입합니다.`,
     }));
 

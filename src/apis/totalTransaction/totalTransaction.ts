@@ -23,13 +23,8 @@ interface TotalTransactionType {
   };
 }
 
-async function getTotalTransaction(): Promise<
-  ApiResponseType<TotalTransactionType[]>
-> {
-  const res =
-    await api.get<ApiResponseType<TotalTransactionType[]>>(
-      "/total_transaction",
-    );
+async function getTotalTransaction(): Promise<ApiResponseType<TotalTransactionType[]>> {
+  const res = await api.get<ApiResponseType<TotalTransactionType[]>>("/total_transaction");
   return res.data;
 }
 

@@ -1,6 +1,8 @@
 import { useState } from "react";
+
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 import { Box, IconButton } from "@mui/material";
+
 import useComponentSize from "@/hooks/useComponentSize";
 
 interface CarouselProps {
@@ -15,11 +17,7 @@ export default function Carousel({ children, minWidth }: CarouselProps) {
   const { size: childSize, componentRef: childRef } = useComponentSize();
   const [align, setAlign] = useState<"left" | "right">("left");
   return (
-    <Box
-      ref={componentRef}
-      className="relative w-full"
-      sx={{ height: `${childSize.height}px` }}
-    >
+    <Box ref={componentRef} className="relative w-full" sx={{ height: `${childSize.height}px` }}>
       <Box className="absolute w-full" sx={{ minWidth: `${minWidth}px` }}>
         {size.width <= minWidth && align === "right" && (
           <IconButton
@@ -31,7 +29,7 @@ export default function Carousel({ children, minWidth }: CarouselProps) {
         )}
         <Box
           ref={childRef}
-          className="absolute w-full transition-all duration-500 pb-4"
+          className="absolute w-full pb-4 transition-all duration-500"
           sx={{
             left: align === "left" ? "0" : `calc(-100% + ${size.width}px)`,
           }}
@@ -39,10 +37,7 @@ export default function Carousel({ children, minWidth }: CarouselProps) {
           {children}
         </Box>
         {size.width <= minWidth && align === "left" && (
-          <IconButton
-            className={`right-0 ${buttonStyle}`}
-            onClick={() => setAlign("right")}
-          >
+          <IconButton className={`right-0 ${buttonStyle}`} onClick={() => setAlign("right")}>
             <KeyboardArrowRight fontSize="medium" />
           </IconButton>
         )}

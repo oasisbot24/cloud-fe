@@ -1,5 +1,6 @@
 import { Box, Stack } from "@mui/material";
 import { useAtomValue } from "jotai";
+
 import OasisBotListCard from "@/cards/oasisbot/OasisBotListCard";
 import OasisBotRunCard from "@/cards/oasisbot/OasisBotRunCard";
 import OasisBotSelectCard from "@/cards/oasisbot/OasisBotSelectCard";
@@ -17,15 +18,15 @@ function OasisBot() {
       <Carousel minWidth={1600}>
         <Stack direction="row" className="w-full gap-4">
           <Stack className="w-4/6 gap-4">
-            <Stack direction="row" className="gap-4 h-[495px]">
+            <Stack direction="row" className="h-[495px] gap-4">
               <Box className="w-2/5">
                 {bot.id === -1 ? <OasisBotRunCard /> : <OasisBotSelectCard />}
               </Box>
-              <Box className="w-3/5 gap-4 h-[495px]">
+              <Box className="h-[495px] w-3/5 gap-4">
                 <OasisBotListCard nav="oasisbot" />
               </Box>
             </Stack>
-            <Stack direction="row" className="gap-4 h-[540px]">
+            <Stack direction="row" className="h-[540px] gap-4">
               <OasisBotTransactionCard />
             </Stack>
           </Stack>

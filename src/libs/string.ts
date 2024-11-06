@@ -24,8 +24,7 @@ const exchangeToKorean = (market: ExchangeType | undefined) => {
 };
 
 const createRandomString = (length: number) => {
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   const charactersLength = characters.length;
   let result = "";
   Array.from({ length }).forEach(() => {
@@ -42,10 +41,4 @@ const numberSlice = (number: number | undefined, slice: number) => {
   return `${integer}.${decimal.slice(0, slice)}`;
 };
 
-export {
-  numberToCurrency,
-  dateToKorean,
-  exchangeToKorean,
-  createRandomString,
-  numberSlice,
-};
+export { numberToCurrency, dateToKorean, exchangeToKorean, createRandomString, numberSlice };

@@ -1,4 +1,5 @@
 import { atomWithReset } from "jotai/utils";
+
 import { PresetType } from "@/apis/preset/preset";
 
 const presetAtom = atomWithReset<PresetType | null>(null);

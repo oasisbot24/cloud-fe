@@ -1,4 +1,5 @@
 import { Stack } from "@mui/material";
+
 import { CoinRatio } from "@/apis/chart/coinRatio";
 import SelectButton from "@/cards/dashboard/ChartAssetCard/SelectButton";
 
@@ -10,11 +11,7 @@ interface SelectButtonListProps {
   setFocus: (focus: string) => void;
 }
 
-function SelectButtonList({
-  coinRatioList,
-  focus,
-  setFocus,
-}: SelectButtonListProps) {
+function SelectButtonList({ coinRatioList, focus, setFocus }: SelectButtonListProps) {
   return (
     <Stack direction="row" className="justify-center gap-3">
       {coinRatioList?.map((coinRatio, index) => (

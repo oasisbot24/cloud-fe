@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+
 import Image from "next/image";
+
 import {
   CardContent,
   Chip,
@@ -10,6 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useAtom, useAtomValue } from "jotai";
+
 import Card from "@/cards/Card";
 import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
@@ -71,11 +74,7 @@ function OasisBotSelectCard() {
         title="오아시스 BOT 실행"
         subtitle={`주문가능 금액\n${exchange === "upbit" ? "￦" : "$"}${balanceQuery.data?.availableBalance?.toLocaleString() ?? 0}`}
         action={
-          <Chip
-            label={exchangeToKorean(exchange)}
-            variant="outlined"
-            className="text-brand"
-          />
+          <Chip label={exchangeToKorean(exchange)} variant="outlined" className="text-brand" />
         }
       />
       <CardContent>
@@ -87,9 +86,7 @@ function OasisBotSelectCard() {
             value={startBalance}
             setValue={setStartBalance}
             startAdornment={
-              <InputAdornment position="start">
-                {exchange === "upbit" ? "￦" : "$"}
-              </InputAdornment>
+              <InputAdornment position="start">{exchange === "upbit" ? "￦" : "$"}</InputAdornment>
             }
             inputLabelProps={{
               className: "text-brand opacity-100",
@@ -141,9 +138,7 @@ function OasisBotSelectCard() {
               <Typography
                 variant="100R"
                 className="text-neutral-600 underline hover:cursor-pointer"
-                onClick={() =>
-                  openModal(<LeverageNoticeDialog handleClose={closeModal} />)
-                }
+                onClick={() => openModal(<LeverageNoticeDialog handleClose={closeModal} />)}
               >
                 현재 설정 레버리지
               </Typography>
@@ -169,17 +164,9 @@ function OasisBotSelectCard() {
           disabled={!!selectedBot.isRunning}
         />
         {selectedBot.isRunning ? (
-          <CardButton
-            text="중지"
-            className="ml-1 text-white bg-[#F46565]"
-            onClick={stopBot}
-          />
+          <CardButton text="중지" className="ml-1 bg-[#F46565] text-white" onClick={stopBot} />
         ) : (
-          <CardButton
-            text="재실행"
-            className="ml-1 text-white bg-brand"
-            onClick={restartBot}
-          />
+          <CardButton text="재실행" className="ml-1 bg-brand text-white" onClick={restartBot} />
         )}
       </CardFooter>
     </Card>

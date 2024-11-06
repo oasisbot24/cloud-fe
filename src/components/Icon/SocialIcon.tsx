@@ -21,7 +21,5 @@ const iconSrc = {
 };
 
 export default function SocialIcon({ social, color }: SocialIconProps) {
-  return (
-    <Icon src={iconSrc[color][social]} size={40} className="rounded-full" />
-  );
+  return <Icon src={iconSrc[color][social]} size={40} className="rounded-full" />;
 }

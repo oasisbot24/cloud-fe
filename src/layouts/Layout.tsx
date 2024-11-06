@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+
 import { Box, Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
+
 import sideNavAtom from "@/datas/sideNav";
 import useComponentSize from "@/hooks/useComponentSize";
 import SideNav from "@/layouts/SideNav";
@@ -33,11 +35,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, [size]);
 
   return (
-    <main className="w-full h-fit bg-[#F5F6FA]" ref={componentRef}>
+    <main className="h-fit w-full bg-[#F5F6FA]" ref={componentRef}>
       {isMobile ? (
-        <Stack className="w-full h-screen">
+        <Stack className="h-screen w-full">
           <TopNav />
-          <Stack className="w-full h-full p-4 justify-center">
+          <Stack className="h-full w-full justify-center p-4">
             <Typography variant="300M" className="text-center">
               서비스 이용을 위해 PC 환경에서 접속해주세요.
             </Typography>
@@ -46,11 +48,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       ) : (
         <Stack direction="row" className="w-full">
           <SideNav isMenuOpen={sideNav ?? false} setIsMenuOpen={setSideNav} />
-          <Stack
-            direction="column"
-            justifyContent="space-between"
-            className="w-full h-full"
-          >
+          <Stack direction="column" justifyContent="space-between" className="h-full w-full">
             <TopNav />
             <Box
               className={
@@ -59,9 +57,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   : "ml-[80px] transition-all duration-300"
               }
             >
-              <Box className="w-full h-[calc(100vh-70px)] p-4 pl-8">
-                {children}
-              </Box>
+              <Box className="h-[calc(100vh-70px)] w-full p-4 pl-8">{children}</Box>
             </Box>
           </Stack>
         </Stack>

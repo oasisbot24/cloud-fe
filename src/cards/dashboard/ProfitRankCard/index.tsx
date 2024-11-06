@@ -1,5 +1,6 @@
 import { CardContent } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
 import ProfitRankColumns from "@/components/table/ProfitRankColumns";

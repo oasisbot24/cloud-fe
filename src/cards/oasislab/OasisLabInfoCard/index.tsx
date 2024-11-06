@@ -1,4 +1,5 @@
 import { Stack, Typography } from "@mui/material";
+
 import Card from "@/cards/Card";
 import OasisLabIcon from "@/components/Icon/OasisLabIcon";
 
@@ -15,10 +16,7 @@ const title = {
 export default function OasisLabInfoCard({ type }: TestInfoCardProps) {
   return (
     <Card>
-      <Stack
-        direction="row"
-        className="p-4 justify-between items-center h-full"
-      >
+      <Stack direction="row" className="h-full items-center justify-between p-4">
         <Stack className="gap-2">
           <Typography variant="100B" className="text-sub-4">
             {title[type]}

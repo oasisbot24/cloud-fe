@@ -1,5 +1,7 @@
 import Image from "next/image";
+
 import { Chip, Stack, Typography } from "@mui/material";
+
 import ArrowDownIcon from "@/components/Icon/ArrowDownIcon";
 import ArrowUpIcon from "@/components/Icon/ArrowUpIcon";
 import ExchangeIcon from "@/components/Icon/ExchangeIcon";
@@ -13,14 +15,7 @@ interface Props {
   exchange: ExchangeType;
 }
 
-function CustomMenu({
-  id,
-  setMenuId,
-  coinName,
-  presetName,
-  totalProfitRate,
-  exchange,
-}: Props) {
+function CustomMenu({ id, setMenuId, coinName, presetName, totalProfitRate, exchange }: Props) {
   const crypto = (name: string) => {
     switch (name) {
       case "비트코인":

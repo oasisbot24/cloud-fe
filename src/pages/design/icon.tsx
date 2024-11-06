@@ -1,4 +1,5 @@
 import { Box, Stack, Typography } from "@mui/material";
+
 import AlertIcon from "@/components/Icon/AlertIcon";
 import CharacterIcon from "@/components/Icon/CharacterIcon";
 import DashboardIcon from "@/components/Icon/DashboardIcon";
@@ -11,16 +12,12 @@ export default function Icon() {
       <Box>
         <Typography variant="h1">SocialIcon</Typography>
         <Stack direction="row" className="gap-2">
-          {(["facebook", "linkedin", "naver", "kakao"] as SocialType[]).map(
-            social => (
-              <SocialIcon key={social} social={social} color="black" />
-            ),
-          )}
-          {(["facebook", "linkedin", "naver", "kakao"] as SocialType[]).map(
-            social => (
-              <SocialIcon key={social} social={social} color="white" />
-            ),
-          )}
+          {(["facebook", "linkedin", "naver", "kakao"] as SocialType[]).map(social => (
+            <SocialIcon key={social} social={social} color="black" />
+          ))}
+          {(["facebook", "linkedin", "naver", "kakao"] as SocialType[]).map(social => (
+            <SocialIcon key={social} social={social} color="white" />
+          ))}
         </Stack>
       </Box>
       <Box>

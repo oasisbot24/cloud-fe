@@ -19,10 +19,7 @@ interface ScrapParams {
   theme?: string;
 }
 
-export default function openScrap(
-  uid: string,
-  callback?: (e: ScrapResponse) => void,
-) {
+export default function openScrap(uid: string, callback?: (e: ScrapResponse) => void) {
   const sampleScrapParams: ScrapParams = {
     uid,
     lang: "ko",

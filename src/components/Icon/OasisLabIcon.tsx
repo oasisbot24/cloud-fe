@@ -1,4 +1,5 @@
 import { Stack } from "@mui/material";
+
 import Icon from "@/components/Icon/index";
 
 interface OasisLabIconProps {
@@ -13,7 +14,7 @@ const iconSrc = {
 
 export default function OasisLabIcon({ id }: OasisLabIconProps) {
   return (
-    <Stack className="justify-center items-center rounded-xl bg-brand w-[40px] h-[40px]">
+    <Stack className="h-[40px] w-[40px] items-center justify-center rounded-xl bg-brand">
       <Icon src={iconSrc[id]} size={32} />
     </Stack>
   );

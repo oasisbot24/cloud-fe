@@ -1,13 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
+
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import {
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectProps,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { InputLabel, MenuItem, Select, SelectProps, Stack, Typography } from "@mui/material";
 
 interface FormSelectProps<T> {
   items: SelectItem[];

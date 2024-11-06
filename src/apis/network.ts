@@ -41,10 +41,7 @@ api.interceptors.request.use(
       const authorizationRefresh = getAuthorizationRefreshFromLocalStorage();
       const exchange = getExchangeFromLocalStorage();
       config.headers.set("Authorization", `Bearer ${authorization}`);
-      config.headers.set(
-        "AuthorizationRefresh",
-        `Bearer ${authorizationRefresh}`,
-      );
+      config.headers.set("AuthorizationRefresh", `Bearer ${authorizationRefresh}`);
       config.headers.set("Exchange", exchange);
     }
     return config;
@@ -60,10 +57,7 @@ api.interceptors.response.use(
         localStorage.setItem("authorization", response.headers.authorization);
       }
       if (response.headers.authorizationrefresh) {
-        localStorage.setItem(
-          "authorizationrefresh",
-          response.headers.authorizationrefresh,
-        );
+        localStorage.setItem("authorizationrefresh", response.headers.authorizationrefresh);
       }
     }
     return response;
@@ -75,10 +69,7 @@ api.interceptors.response.use(
         localStorage.setItem("authorization", response.headers.authorization);
       }
       if (response.headers.authorizationrefresh) {
-        localStorage.setItem(
-          "authorizationrefresh",
-          response.headers.authorizationrefresh,
-        );
+        localStorage.setItem("authorizationrefresh", response.headers.authorizationrefresh);
       }
 
       return response;

@@ -1,10 +1,13 @@
 import { useRouter } from "next/router";
+
 import { Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
+
 import exchangeAtom from "@/datas/exchange";
 import { useUserExchangesQuery } from "@/hooks/query/useApiConnection";
 import useSignin from "@/hooks/query/useSignin";
 import useModal from "@/hooks/useModal";
+
 import GoogleSigninButton from "./GoogleSigninButton";
 import Agreement from "./dialog/Agreement";
 import ExchangeSelect from "./dialog/ExchangeSelect";
@@ -67,14 +70,12 @@ function Description() {
   };
 
   return (
-    <Stack className="h-full z-[1] justify-center ml-4 md:ml-32 gap-4 pb-8">
-      <Stack className="text-white gap-2">
+    <Stack className="z-[1] ml-4 h-full justify-center gap-4 pb-8 md:ml-32">
+      <Stack className="gap-2 text-white">
         <Typography variant="bodyL">Search for the vein of money</Typography>
         <Stack>
           <Typography variant="display3">가상화폐 혁신적 수익전략과</Typography>
-          <Typography variant="display3">
-            운영을 도와드리는 자동매매는
-          </Typography>
+          <Typography variant="display3">운영을 도와드리는 자동매매는</Typography>
           <Typography variant="display3">오직 오아시스에서</Typography>
         </Stack>
       </Stack>

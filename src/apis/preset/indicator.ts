@@ -5,9 +5,7 @@ interface IndicatorType {
   indicatorName: string;
 }
 async function getIndicator(exchange: string): Promise<IndicatorType[]> {
-  const res = await api.get<ApiResponseType<IndicatorType[]>>(
-    `/indicator?exchange=${exchange}`,
-  );
+  const res = await api.get<ApiResponseType<IndicatorType[]>>(`/indicator?exchange=${exchange}`);
   return res.data?.data;
 }
 

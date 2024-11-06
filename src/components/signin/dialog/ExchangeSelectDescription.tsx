@@ -1,9 +1,10 @@
 import { ButtonBase, Stack, Typography } from "@mui/material";
+
 import Icon from "@/components/Icon";
 
 export default function ExchangeSelectDescription() {
   return (
-    <Stack className="w-full bg-neutral-200 gap-4 rounded-2xl items-center px-4 py-6">
+    <Stack className="w-full items-center gap-4 rounded-2xl bg-neutral-200 px-4 py-6">
       <Stack direction="row" className="gap-2">
         <Icon src="/icons/control/info.png" size={16} />
         <Typography variant="300M" className="text-font-1">
@@ -19,7 +20,7 @@ export default function ExchangeSelectDescription() {
         </Typography>
       </Stack>
       <ButtonBase
-        className="rounded-full w-full bg-brand py-3"
+        className="w-full rounded-full bg-brand py-3"
         onClick={() => window.open("https://www.okx.com/join/79271938")}
       >
         <Typography variant="300B" className="text-white">

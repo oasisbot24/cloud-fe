@@ -1,4 +1,5 @@
 import { Stack, Typography } from "@mui/material";
+
 import AgreementList from "./AgreementList";
 
 interface AgreementProps {

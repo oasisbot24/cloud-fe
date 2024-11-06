@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
+
 import {
   InputBase,
   InputBaseProps,
@@ -16,9 +17,7 @@ interface FormTextFieldProps<T> {
   inputLabelProps?: InputLabelProps;
 }
 
-function FormTextField<T>(
-  props: FormTextFieldProps<T> & Omit<InputBaseProps, "variant">,
-) {
+function FormTextField<T>(props: FormTextFieldProps<T> & Omit<InputBaseProps, "variant">) {
   const { id, label, className, setValue, inputLabelProps } = props;
 
   return (

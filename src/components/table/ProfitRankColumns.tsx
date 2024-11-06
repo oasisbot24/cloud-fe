@@ -1,11 +1,10 @@
 import Image from "next/image";
+
 import { Chip } from "@mui/material";
-import {
-  GridColDef,
-  GridRenderCellParams,
-  GridValidRowModel,
-} from "@mui/x-data-grid";
+import { GridColDef, GridRenderCellParams, GridValidRowModel } from "@mui/x-data-grid";
+
 import { exchangeToKorean } from "@/libs/string";
+
 import CoinIcon from "../Icon/CoinIcon";
 import ExchangeIcon from "../Icon/ExchangeIcon";
 import TimeConvert from "./timeConvert";
@@ -23,11 +22,9 @@ const ProfitRankColumns: GridColDef[] = [
     headerName: "닉네임",
     flex: 1,
     headerClassName: "text-slate-500",
-    renderCell: (
-      params: GridRenderCellParams<GridValidRowModel, ProfitRank["user"]>,
-    ) => (
-      <div className="flex justify-center items-center whitespace-normal">
-        <div className="flex justify-center items-center rounded-full size-5 bg-neutral-300 mr-1">
+    renderCell: (params: GridRenderCellParams<GridValidRowModel, ProfitRank["user"]>) => (
+      <div className="flex items-center justify-center whitespace-normal">
+        <div className="mr-1 flex size-5 items-center justify-center rounded-full bg-neutral-300">
           <Image
             src={params.value?.icon || "/user.png"}
             alt={params.value?.nickname ?? ""}
@@ -45,16 +42,11 @@ const ProfitRankColumns: GridColDef[] = [
     flex: 1,
     headerClassName: "text-slate-500",
     renderCell: (
-      params: GridRenderCellParams<
-        GridValidRowModel,
-        ProfitRank["accumulatedProfit"]
-      >,
+      params: GridRenderCellParams<GridValidRowModel, ProfitRank["accumulatedProfit"]>,
     ) => (
       <div className="whitespace-normal">
         {params.value ? "￦" : ""}
-        <span className="font-bold text-ellipsis">
-          {params.value?.toLocaleString("ko-kr")}
-        </span>
+        <span className="text-ellipsis font-bold">{params.value?.toLocaleString("ko-kr")}</span>
       </div>
     ),
   },
@@ -63,9 +55,7 @@ const ProfitRankColumns: GridColDef[] = [
     headerName: "거래소",
     flex: 1,
     headerClassName: "text-slate-500",
-    renderCell: (
-      params: GridRenderCellParams<GridValidRowModel, ProfitRank["market"]>,
-    ) => (
+    renderCell: (params: GridRenderCellParams<GridValidRowModel, ProfitRank["market"]>) => (
       <div className="flex w-full whitespace-normal">
         <ExchangeIcon exchange={params.value} size={20} />
         {exchangeToKorean(params.value)}
@@ -77,9 +67,7 @@ const ProfitRankColumns: GridColDef[] = [
     headerName: "종목",
     flex: 0.5,
     headerClassName: "text-slate-500",
-    renderCell: (
-      params: GridRenderCellParams<GridValidRowModel, ProfitRank["item"]>,
-    ) => (
+    renderCell: (params: GridRenderCellParams<GridValidRowModel, ProfitRank["item"]>) => (
       <div className="whitespace-normal">
         <CoinIcon coin={params.value} size={20} />
       </div>
@@ -90,12 +78,8 @@ const ProfitRankColumns: GridColDef[] = [
     headerName: "운영기간",
     flex: 1,
     headerClassName: "text-slate-500",
-    renderCell: (
-      params: GridRenderCellParams<GridValidRowModel, ProfitRank["period"]>,
-    ) => (
-      <div className="whitespace-normal">
-        {TimeConvert(Number(params.value))}
-      </div>
+    renderCell: (params: GridRenderCellParams<GridValidRowModel, ProfitRank["period"]>) => (
+      <div className="whitespace-normal">{TimeConvert(Number(params.value))}</div>
     ),
   },
   {
@@ -105,7 +89,7 @@ const ProfitRankColumns: GridColDef[] = [
     headerClassName: "text-slate-500",
     renderCell: () => (
       <Chip
-        className="w-full mx-2 bg-neutral-600 hover:bg-brand text-white font-bold"
+        className="mx-2 w-full bg-neutral-600 font-bold text-white hover:bg-brand"
         label="복사"
         onClick={() => console.log("유저 프리셋 복사 버튼 클릭")}
       />

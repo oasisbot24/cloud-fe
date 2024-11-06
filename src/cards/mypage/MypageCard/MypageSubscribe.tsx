@@ -1,7 +1,10 @@
 import { useRouter } from "next/router";
+
 import { ButtonBase, Stack, Typography } from "@mui/material";
+
 import { useSubscribeQuery } from "@/hooks/query/useSubcribe";
 import useModalGlobal from "@/hooks/useModalGlobal";
+
 import MypageInfo from "./MypageInfo";
 import SubscribeModel from "./SubscribeModel";
 
@@ -25,10 +28,7 @@ export default function MypageSubscribe() {
         </Typography>
       </MypageInfo>
       {subscribeData?.expiryDate && (
-        <Stack
-          direction="row"
-          className="w-full h-full items-center justify-between"
-        >
+        <Stack direction="row" className="h-full w-full items-center justify-between">
           <Typography variant="200M" className="text-brand">
             다음 결제일: {subscribeData.expiryDate.slice(0, 10)}
           </Typography>

@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
+
 import { MenuItem, Select } from "@mui/material";
 
 type SelectProps = {
@@ -27,13 +28,7 @@ const MenuProps = {
   },
 };
 
-function CardHeaderSelect({
-  label,
-  options,
-  state,
-  setState,
-  indicator,
-}: SelectProps) {
+function CardHeaderSelect({ label, options, state, setState, indicator }: SelectProps) {
   return (
     <Select
       displayEmpty
@@ -53,10 +48,9 @@ function CardHeaderSelect({
         "&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
           border: 0,
         },
-        "&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
-          {
-            border: 0,
-          },
+        "&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+          border: 0,
+        },
         ".MuiSelect-select": {
           padding: 0,
           paddingRight: "32px",

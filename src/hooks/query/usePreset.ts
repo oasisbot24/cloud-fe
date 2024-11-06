@@ -1,13 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAtom } from "jotai";
+
 import { getIndicator } from "@/apis/preset/indicator";
-import {
-  PresetBody,
-  deletePreset,
-  getPreset,
-  postPreset,
-  putPreset,
-} from "@/apis/preset/preset";
+import { PresetBody, deletePreset, getPreset, postPreset, putPreset } from "@/apis/preset/preset";
 import exchangeAtom from "@/datas/exchange";
 
 export function usePresetQuery() {
@@ -43,8 +38,7 @@ export function usePresetMutation() {
     },
   });
   const putPresetMutation = useMutation({
-    mutationFn: ({ id, body }: { id: number; body: PresetBody }) =>
-      putPreset(id, body),
+    mutationFn: ({ id, body }: { id: number; body: PresetBody }) => putPreset(id, body),
     mutationKey: ["putPreset"],
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["getPreset"] });

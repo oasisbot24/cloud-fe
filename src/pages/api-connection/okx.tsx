@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+
 import { useRouter } from "next/router";
+
 import { Box, Stack } from "@mui/material";
+
 import ApiConnectionCard from "@/cards/api-connection/ApiConnectionCard";
 import ApiConnectionTitleCard from "@/cards/api-connection/ApiConnectionTitleCard";
 import { useOkxOauthTokenMutation } from "@/hooks/query/useApiConnection";
@@ -30,15 +33,12 @@ function ApiConnectionOkx() {
   }, [code, state]);
   return (
     <Layout>
-      <Box className="w-full h-[530px]">
+      <Box className="h-[530px] w-full">
         <ApiConnectionTitleCard />
       </Box>
-      <Stack className="relative items-center justify-start mt-[-250px] pb-4">
+      <Stack className="relative mt-[-250px] items-center justify-start pb-4">
         <Box className="w-[480px]">
-          <ApiConnectionCard
-            processing={success === undefined ? "okx" : undefined}
-            error={error}
-          />
+          <ApiConnectionCard processing={success === undefined ? "okx" : undefined} error={error} />
         </Box>
       </Stack>
     </Layout>

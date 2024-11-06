@@ -1,6 +1,8 @@
 import { Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
+
 import authAtom from "@/datas/auth";
+
 import DisplayPL from "./DisplayPL";
 
 interface TestResultInfoProps {
@@ -15,7 +17,7 @@ export default function TestResultInfo({ testResult }: TestResultInfoProps) {
   const [user] = useAtom(authAtom);
   const userName = user.name;
   return (
-    <Stack className="w-full h-full justify-between">
+    <Stack className="h-full w-full justify-between">
       <Stack direction="column" className="gap-1">
         <Typography variant="400M" className="text-neutral-100">
           Hi! {userName}님

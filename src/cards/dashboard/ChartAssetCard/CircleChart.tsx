@@ -1,10 +1,7 @@
 import { Box } from "@mui/material";
+
 import { CoinRatio } from "@/apis/chart/coinRatio";
-import {
-  BaseCircle,
-  CenterCircle,
-  ElementCircle,
-} from "@/cards/dashboard/ChartAssetCard/Circle";
+import { BaseCircle, CenterCircle, ElementCircle } from "@/cards/dashboard/ChartAssetCard/Circle";
 import { numberSlice, numberToCurrency } from "@/libs/string";
 
 interface CircleChartProps {
@@ -27,21 +24,17 @@ const coinColors = [
   },
 ];
 
-export default function CircleChart({
-  coinRatioList,
-  focus,
-}: CircleChartProps) {
+export default function CircleChart({ coinRatioList, focus }: CircleChartProps) {
   const coinRatioPercentList = [0];
   let sum = 0;
   coinRatioList?.forEach(coinRatio => {
     sum += coinRatio.ratio;
     coinRatioPercentList.push(Math.round(sum) * 3.6);
   });
-  let focusIndex =
-    coinRatioList?.findIndex(coinRatio => coinRatio.name === focus) ?? -1;
+  let focusIndex = coinRatioList?.findIndex(coinRatio => coinRatio.name === focus) ?? -1;
   if (focusIndex === -1) focusIndex = 0;
   return (
-    <Box className="relative w-[260px] h-[260px]">
+    <Box className="relative h-[260px] w-[260px]">
       <BaseCircle />
       {coinRatioList?.map(
         (coinRatio, index) =>
@@ -58,10 +51,7 @@ export default function CircleChart({
       )}
       <CenterCircle
         percent={coinRatioList?.[focusIndex]?.ratio}
-        amount={numberToCurrency(
-          numberSlice(coinRatioList?.[focusIndex]?.price, 2),
-          "₩",
-        )}
+        amount={numberToCurrency(numberSlice(coinRatioList?.[focusIndex]?.price, 2), "₩")}
       />
     </Box>
   );

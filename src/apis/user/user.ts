@@ -1,9 +1,7 @@
 import api from "../network";
 
 async function getUserExchanges() {
-  const res = await api.get<ApiResponseType<ExchangeType[]>>(
-    "/user/apikey/exchanges",
-  );
+  const res = await api.get<ApiResponseType<ExchangeType[]>>("/user/apikey/exchanges");
   return res.data?.data;
 }
 

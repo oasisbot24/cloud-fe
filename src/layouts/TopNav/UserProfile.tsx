@@ -1,6 +1,8 @@
 import Image from "next/image";
+
 import { Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
+
 import authAtom from "@/datas/auth";
 import { useSubscribeQuery } from "@/hooks/query/useSubcribe";
 

@@ -1,4 +1,5 @@
 import { Stack, ThemeProvider, Typography } from "@mui/material";
+
 import theme from "@/styles/theme";
 
 export default function Sample() {

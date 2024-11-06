@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
+
 import { ButtonBase, Stack, Typography } from "@mui/material";
+
 import SidenavIcon from "@/components/Icon/SidenavIcon";
 import { MenuDetail } from "@/layouts/SideNav/sideMenu";
 
@@ -9,22 +11,18 @@ interface SideMenuButtonProps {
   disabled?: boolean;
 }
 
-export default function SideMenuButton({
-  detail,
-  iconOnly,
-  disabled,
-}: SideMenuButtonProps) {
+export default function SideMenuButton({ detail, iconOnly, disabled }: SideMenuButtonProps) {
   const { push } = useRouter();
   const { pathname } = useRouter();
   return (
     <ButtonBase
-      className={`w-full h-[50px] rounded-xl ${disabled ? "cursor-not-allowed bg-[#E8E8E8]" : "cursor-pointer"}`}
+      className={`h-[50px] w-full rounded-xl ${disabled ? "cursor-not-allowed bg-[#E8E8E8]" : "cursor-pointer"}`}
       onClick={() => push(detail.path)}
       disabled={disabled}
     >
       <Stack
         direction="row"
-        className={`w-full h-full items-center gap-4 overflow-x-hidden ${iconOnly ? "justify-center" : "px-4"}`}
+        className={`h-full w-full items-center gap-4 overflow-x-hidden ${iconOnly ? "justify-center" : "px-4"}`}
       >
         <SidenavIcon id={detail.id} isFocus={pathname === detail.path} />
         {!iconOnly &&

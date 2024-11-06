@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
+
 import { Stack } from "@mui/material";
+
 import Card from "@/cards/Card";
+
 import AdvertisementIndex from "./AdvertisementIndex";
 import AdvertisementInfo from "./AdvertisementInfo";
 

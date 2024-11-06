@@ -1,15 +1,15 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
+
 import { ButtonBase, Stack, Typography } from "@mui/material";
 import { AxiosError } from "axios";
 import { useAtom } from "jotai";
+
 import { subscribeMonthAtom } from "@/datas/subscribe";
-import {
-  useProductQuery,
-  useSubscribeMutation,
-} from "@/hooks/query/useSubcribe";
+import { useProductQuery, useSubscribeMutation } from "@/hooks/query/useSubcribe";
 import useModalGlobal from "@/hooks/useModalGlobal";
 import { numberToCurrency } from "@/libs/string";
+
 import SubscribeTitleMonthButton from "../../SubscribeTitleCard/SubscribeTitleMonthButton";
 import { subscribeData } from "../SubscribeTableData";
 import modalImage from "./modal.png";
@@ -49,7 +49,7 @@ export default function SubscribeModal({ type }: SubscribeModalProps) {
   return (
     <Stack className="rounded-[28px] bg-white">
       <Image src={modalImage.src} alt="modalimage" width={410} height={208} />
-      <Stack className="p-8 gap-4 items-center">
+      <Stack className="items-center gap-4 p-8">
         <Typography variant="400B">서비스 멤버십 확정</Typography>
         <SubscribeTitleMonthButton />
         <Stack className="w-full">
@@ -60,9 +60,7 @@ export default function SubscribeModal({ type }: SubscribeModalProps) {
             <Typography variant="300B" className="text-font-1">
               {`${subscribeData[type].title}: ${numberToCurrency(
                 productData?.find(
-                  product =>
-                    product.productId ===
-                    subscribeData[type].month[month].productId,
+                  product => product.productId === subscribeData[type].month[month].productId,
                 )?.productPrice ?? 0,
                 "₩",
               )}`}
@@ -71,17 +69,14 @@ export default function SubscribeModal({ type }: SubscribeModalProps) {
         </Stack>
         <Stack direction="row" className="w-full gap-4">
           <ButtonBase
-            className="w-full rounded-full bg-white border border-solid border-neutral-500 py-3"
+            className="w-full rounded-full border border-solid border-neutral-500 bg-white py-3"
             onClick={closeModal}
           >
             <Typography variant="300B" className="text-neutral-500">
               취소
             </Typography>
           </ButtonBase>
-          <ButtonBase
-            className="w-full rounded-full bg-brand py-3"
-            onClick={handleClick}
-          >
+          <ButtonBase className="w-full rounded-full bg-brand py-3" onClick={handleClick}>
             <Typography variant="300B" className="text-white">
               확인
             </Typography>

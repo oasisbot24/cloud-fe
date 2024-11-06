@@ -1,4 +1,5 @@
 import { Stack } from "@mui/material";
+
 import UserProfile from "@/layouts/TopNav/UserProfile";
 
 /**
@@ -30,7 +31,7 @@ export default function TopNav() {
   return (
     <Stack
       direction="row"
-      className="w-full h-[70px] px-4 shrink-0 bg-white shadow-sm justify-end items-center"
+      className="h-[70px] w-full shrink-0 items-center justify-end bg-white px-4 shadow-sm"
     >
       <Stack direction="row" className="gap-4">
         {

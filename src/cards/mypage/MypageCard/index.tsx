@@ -1,11 +1,14 @@
 import { useRouter } from "next/router";
+
 import { InputBase, Stack, Typography } from "@mui/material";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAtom } from "jotai";
+
 import Card from "@/cards/Card";
 import authAtom from "@/datas/auth";
 import { usePaymentMethodQuery } from "@/hooks/query/usePayment";
 import useModalGlobal from "@/hooks/useModalGlobal";
+
 import MypageExchange from "./MypageExchange";
 import MypageInfo from "./MypageInfo";
 import MypageSubscribe from "./MypageSubscribe";
@@ -30,7 +33,7 @@ export default function MypageCard() {
   };
   return (
     <Card>
-      <Stack className="px-4 md:px-8 xl:px-16 py-16 items-center justify-between w-full h-full gap-12">
+      <Stack className="h-full w-full items-center justify-between gap-12 px-4 py-16 md:px-8 xl:px-16">
         <MypageInfo title="계정" buttonText="로그아웃" onClick={logout}>
           <Typography variant="300M" className="text-font-2">
             {auth.email}
@@ -46,9 +49,7 @@ export default function MypageCard() {
           }}
         >
           <Typography variant="300M" className="text-font-2">
-            {paymentMethodData?.cardNumber
-              ? "**** **** **** "
-              : "카드를 등록해 주세요"}
+            {paymentMethodData?.cardNumber ? "**** **** **** " : "카드를 등록해 주세요"}
             {paymentMethodData?.cardNumber}
           </Typography>
         </MypageInfo>
@@ -58,11 +59,9 @@ export default function MypageCard() {
           onClick={() => openModal(<PromotionModal />)}
         >
           <InputBase
-            className="w-full h-full"
+            className="h-full w-full"
             disabled={!paymentMethodData?.cardNumber}
-            value={
-              paymentMethodData?.cardNumber ? "" : "카드를 등록이 필요합니다."
-            }
+            value={paymentMethodData?.cardNumber ? "" : "카드를 등록이 필요합니다."}
           />
         </MypageInfo>
       </Stack>

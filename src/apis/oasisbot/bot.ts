@@ -8,10 +8,7 @@ interface BotStartType {
   leverage: number | null;
 }
 
-async function botStart(
-  data: BotStartType,
-  exchange: ExchangeType,
-): Promise<void> {
+async function botStart(data: BotStartType, exchange: ExchangeType): Promise<void> {
   await api.post<ApiResponseType<void>>("/start_bot", data, {
     params: { exchange },
   });
@@ -35,9 +32,7 @@ interface BotType {
 }
 
 async function getBot(exchangeName: string): Promise<BotType[]> {
-  const res = await api.get<ApiResponseType<BotType[]>>(
-    `/bot?exchange=${exchangeName}`,
-  );
+  const res = await api.get<ApiResponseType<BotType[]>>(`/bot?exchange=${exchangeName}`);
   return res.data?.data;
 }
 
@@ -46,9 +41,7 @@ interface AvailableBalanceType {
   availableBalance: number;
 }
 
-async function getAvailableBalance(
-  exchangeName: string,
-): Promise<AvailableBalanceType> {
+async function getAvailableBalance(exchangeName: string): Promise<AvailableBalanceType> {
   const res = await api.get<ApiResponseType<AvailableBalanceType>>(
     `/available-balance?exchange=${exchangeName}`,
   );
@@ -79,19 +72,10 @@ interface BotDataType {
 }
 
 async function getBotData(exchangeName: string): Promise<BotDataType> {
-  const res = await api.get<ApiResponseType<BotDataType>>(
-    `/bot-data?exchange=${exchangeName}`,
-  );
+  const res = await api.get<ApiResponseType<BotDataType>>(`/bot-data?exchange=${exchangeName}`);
 
   return res.data?.data;
 }
 
-export {
-  botStart,
-  botStop,
-  botRestart,
-  getBot,
-  getAvailableBalance,
-  getBotData,
-};
+export { botStart, botStop, botRestart, getBot, getAvailableBalance, getBotData };
 export type { BotStartType, BotType, AvailableBalanceType, BotDataType };
