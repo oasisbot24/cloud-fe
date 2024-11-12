@@ -74,7 +74,7 @@ function OasisBotRunCard() {
         <InfoDialog
           title="거래금액"
           description={["거래금액은 잔고 이내의 금액을 기입해주세요."]}
-          confirmFunc={closeModal}
+          handleClose={closeModal}
         />,
       );
       return;
@@ -85,7 +85,7 @@ function OasisBotRunCard() {
         <InfoDialog
           title="설정 프리셋"
           description={["프리셋을 설정하고 실행해주세요."]}
-          confirmFunc={closeModal}
+          handleClose={closeModal}
         />,
       );
       return;
@@ -96,7 +96,7 @@ function OasisBotRunCard() {
         <InfoDialog
           title="매매종목 설정"
           description={["매매종목을 설정하고 실행해주세요."]}
-          confirmFunc={closeModal}
+          handleClose={closeModal}
         />,
       );
       return;
@@ -107,7 +107,7 @@ function OasisBotRunCard() {
         <InfoDialog
           title="기준 분봉 설정"
           description={["기준분봉을 설정하고 실행해주세요."]}
-          confirmFunc={closeModal}
+          handleClose={closeModal}
         />,
       );
       return;
@@ -122,15 +122,7 @@ function OasisBotRunCard() {
       leverage: null,
     };
 
-    openModal(
-      <InfoDialog
-        title="봇 실행"
-        description={["해당 봇을 실행할까요?"]}
-        confirmFunc={() => mutate(body)}
-        cancelFunc={closeModal}
-        cancellable
-      />,
-    );
+    mutate(body);
   };
 
   return (

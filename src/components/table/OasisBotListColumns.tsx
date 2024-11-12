@@ -7,7 +7,7 @@ import { BotType } from "@/apis/oasisbot/bot";
 import Icon from "@/components/Icon";
 import CustomSwitch from "@/components/common/CustomSwitch";
 import TimeConvert from "@/components/table/timeConvert";
-import useBotCommand from "@/hooks/card/useBotCommand";
+import { useBot } from "@/hooks/query/useOasisBot";
 
 function IconButtonFun() {
   const { push } = useRouter();
@@ -20,12 +20,18 @@ function IconButtonFun() {
 
 function IsRunningCell(params: GridRenderCellParams<GridValidRowModel, boolean>) {
   const { value, row } = params;
-  const { stopBot, restartBot } = useBotCommand();
+  const { stopBotMutation, restartBotMutation } = useBot();
 
   return (
     <CustomSwitch
       defaultChecked={value}
-      onClick={() => (row.isRunning ? stopBot() : restartBot())}
+      onClick={() => {
+        if (row.isRunning) {
+          stopBotMutation.mutate(row.id);
+        } else {
+          restartBotMutation.mutate(row.id);
+        }
+      }}
     />
   );
 }
