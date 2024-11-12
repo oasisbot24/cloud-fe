@@ -6,13 +6,27 @@ type InfoDialogType = {
   title: string;
   description: string[];
   imgSrc?: string;
-  handleClose: () => void;
+  confirmFunc: () => void;
+  cancellable?: boolean;
+  cancelFunc?: () => void;
+  handleClose?: () => void;
 };
 
-function InfoDialog({ title, description, imgSrc, handleClose }: InfoDialogType) {
+function InfoDialog({
+  title,
+  description,
+  imgSrc,
+  confirmFunc,
+  cancellable,
+  cancelFunc,
+  handleClose,
+}: InfoDialogType) {
   return (
     <>
-      <Box className="fixed left-0 top-0 z-50 h-full w-full bg-[#00000033]" onClick={handleClose} />
+      <Box
+        className="fixed left-0 top-0 z-50 h-full w-full bg-[#00000033]"
+        onClick={cancelFunc ?? handleClose}
+      />
       <Paper
         className="fixed left-1/2 top-1/2 z-50 h-fit w-[410px] -translate-x-1/2 -translate-y-1/2 transform rounded-xl"
         onClick={e => {
@@ -47,9 +61,24 @@ function InfoDialog({ title, description, imgSrc, handleClose }: InfoDialogType)
               ))
             )}
           </ul>
-          <Button variant="contained" className="w-full rounded-full" onClick={handleClose}>
-            확인
-          </Button>
+          <Stack direction="row" spacing={2}>
+            {cancellable && (
+              <Button
+                variant="outlined"
+                className="w-full rounded-full"
+                onClick={cancelFunc ?? handleClose}
+              >
+                취소
+              </Button>
+            )}
+            <Button
+              variant="contained"
+              className="w-full rounded-full"
+              onClick={confirmFunc ?? handleClose}
+            >
+              확인
+            </Button>
+          </Stack>
         </Stack>
       </Paper>
     </>
