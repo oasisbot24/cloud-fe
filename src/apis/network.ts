@@ -27,7 +27,8 @@ const getExchangeFromLocalStorage = () => {
   return exchange;
 };
 
-const oasisUrl = "https://api.oasisbot24.com/api/v1";
+const oasisUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+
 const api = axios.create({
   baseURL: oasisUrl,
   validateStatus: status => {
