@@ -3,7 +3,7 @@ name: Next.js Build Test
 on:
   pull_request:
     branches:
-      - renew
+      - dev
 
 jobs:
   test:
