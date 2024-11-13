@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import Icon from ".";
 
 // const coinToIcon = (coin: string | undefined) => {
@@ -48,9 +50,10 @@ const coinToIcon = (coin: string | undefined) => {
 
 interface CoinIconProps {
   coin: string | undefined;
-  size?: number;
+  wsize?: number;
+  hsize?: number;
 }
 
-export default function CoinIcon({ coin, size = 24 }: CoinIconProps) {
-  return <Icon src={coinToIcon(coin)} size={size} />;
+export default function CoinIcon({ coin, wsize = 24, hsize = 24 }: CoinIconProps) {
+  return <Image src={coinToIcon(coin)} alt={coin ?? ""} width={wsize} height={hsize} />;
 }

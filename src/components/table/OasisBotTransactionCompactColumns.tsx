@@ -1,8 +1,8 @@
-import { Chip } from "@mui/material";
 import { GridColDef, GridRenderCellParams, GridValidRowModel } from "@mui/x-data-grid";
 
 import ArrowDownIcon from "@/components/Icon/ArrowDownIcon";
 import ArrowUpIcon from "@/components/Icon/ArrowUpIcon";
+import Chip from "@/components/chip";
 import { exchangeToKorean } from "@/libs/string";
 
 import ExchangeIcon from "../Icon/ExchangeIcon";

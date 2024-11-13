@@ -1,9 +1,10 @@
 import Image from "next/image";
 
-import { Chip, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 
 import ArrowDownIcon from "@/components/Icon/ArrowDownIcon";
 import ArrowUpIcon from "@/components/Icon/ArrowUpIcon";
+import Chip from "@/components/chip";
 
 interface Props {
   coinName: string;

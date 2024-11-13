@@ -1,8 +1,8 @@
-import { Chip } from "@mui/material";
 import { GridColDef, GridRenderCellParams, GridValidRowModel } from "@mui/x-data-grid";
 
 import ArrowDownIcon from "@/components/Icon/ArrowDownIcon";
 import ArrowUpIcon from "@/components/Icon/ArrowUpIcon";
+import Chip from "@/components/chip";
 import { exchangeToKorean } from "@/libs/string";
 
 import ExchangeIcon from "../Icon/ExchangeIcon";
@@ -38,7 +38,9 @@ const OasisBotTransactionColumns: GridColDef[] = [
       <Chip
         label={params.value === "sell" ? "판매" : "구매"}
         // color={params.value === "sell" ? "secondary" : "primary"}
-        sx={params.value === "sell" ? { bgcolor: "#898FC3" } : { bgcolor: "#2BB7F5" }}
+        style={
+          params.value === "sell" ? { backgroundColor: "#898FC3" } : { backgroundColor: "#2BB7F5" }
+        }
         className="text-[14px] font-bold leading-[16px] text-white"
       />
     ),

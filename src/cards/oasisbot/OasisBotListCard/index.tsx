@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 
 import { useRouter } from "next/router";
 
-import { CardContent, Chip } from "@mui/material";
+import { CardContent } from "@mui/material";
 import { DataGrid, GridRowSelectionModel } from "@mui/x-data-grid";
 import { useSetAtom } from "jotai";
 
 import Card from "@/cards/Card";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
+import Chip from "@/components/chip";
 import OasisBotListColumns from "@/components/table/OasisBotListColumns";
 import { botAtom } from "@/datas/oasisbotTransaction";
 import { useBotQuery } from "@/hooks/query/useOasisBot";

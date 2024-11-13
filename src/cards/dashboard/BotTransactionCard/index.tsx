@@ -1,9 +1,10 @@
-import { CardContent, Chip } from "@mui/material";
+import { CardContent } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
 import Card from "@/cards/Card";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
+import Chip from "@/components/chip";
 import OasisBotTransactionCompactColumns from "@/components/table/OasisBotTransactionCompactColumns";
 import { useBotInfo } from "@/hooks/query/useOasisBot";
 
