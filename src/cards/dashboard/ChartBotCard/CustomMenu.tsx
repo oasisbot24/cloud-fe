@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import { Stack, Typography } from "@mui/material";
 
 import CoinIcon from "@/components/Icon/CoinIcon";
