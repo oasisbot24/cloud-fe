@@ -1,16 +1,23 @@
 import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { postOkxOauthToken } from "@/apis/apiConnection/oauth";
 import {
   SmartAccessResultBody,
   postSmartAccessResult,
   postSmartAccessSession,
 } from "@/apis/apiConnection/smartAccess";
+import api from "@/apis/network";
 import { getUserExchanges } from "@/apis/user/user";
+
+interface PostOkxOauthTokenBody {
+  code: string;
+}
 
 export function useOkxOauthTokenMutation() {
   const postOkxOauthTokenMutation = useMutation({
-    mutationFn: postOkxOauthToken,
+    mutationFn: async (body: PostOkxOauthTokenBody) => {
+      const res = await api.post<ApiResponseType<void>>("/oauth/okx/apikey", body);
+      return res.data;
+    },
     mutationKey: ["postOkxOauthToken"],
   });
   return {
