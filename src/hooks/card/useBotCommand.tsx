@@ -12,7 +12,7 @@ function useBotCommand() {
   const { openModal, closeModal } = useModalGlobal();
   const selectedBot = useAtomValue(botAtom);
 
-  const stopBot = () => {
+  const stopBot = ({ onSuccess }: { onSuccess?: () => void }) => {
     openModal(
       <InfoDialog
         title="봇 중지"
@@ -21,6 +21,7 @@ function useBotCommand() {
         ]}
         confirmFunc={() => {
           stopBotMutation.mutate(selectedBot.id);
+          !!onSuccess && onSuccess();
           closeModal();
         }}
         cancelFunc={closeModal}
@@ -29,8 +30,9 @@ function useBotCommand() {
     );
   };
 
-  const restartBot = () => {
+  const restartBot = ({ onSuccess }: { onSuccess?: () => void }) => {
     restartBotMutation.mutate(selectedBot.id);
+    !!onSuccess && onSuccess();
   };
 
   return { stopBot, restartBot };

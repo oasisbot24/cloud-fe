@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { useRouter } from "next/router";
 
 import { IconButton } from "@mui/material";
@@ -21,11 +23,18 @@ function IconButtonFun() {
 function IsRunningCell(params: GridRenderCellParams<GridValidRowModel, boolean>) {
   const { value, row } = params;
   const { stopBot, restartBot } = useBotCommand();
+  const [isStart, setIsStart] = useState(value);
 
   return (
     <CustomSwitch
       defaultChecked={value}
-      onClick={() => (row.isRunning ? stopBot() : restartBot())}
+      onClick={() =>
+        row.isRunning
+          ? stopBot({
+              onSuccess: () => setIsStart(false),
+            })
+          : restartBot({ onSuccess: () => setIsStart(true) })
+      }
     />
   );
 }
