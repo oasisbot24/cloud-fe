@@ -71,7 +71,7 @@ function OasisBotSelectCard() {
         id="bot-start"
         title="오아시스 BOT 실행"
         subtitle={`주문가능 금액\n${exchange === "upbit" ? "￦" : "$"}${balanceQuery.data?.availableBalance?.toLocaleString() ?? 0}`}
-        action={<Exchange />}
+        action={<ExchangeChip />}
       />
       <CardContent>
         <Stack className="gap-2">
