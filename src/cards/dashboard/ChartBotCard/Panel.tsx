@@ -3,9 +3,9 @@ import { useState } from "react";
 import { Box, Menu, Stack } from "@mui/material";
 import { useAtom } from "jotai";
 
-import { ChartType } from "@/apis/chart/dashboardChart";
 import Icon from "@/components/Icon";
 import exchangeAtom from "@/datas/exchange";
+import { ChartType } from "@/hooks/query/useChart";
 
 import CustomMenu from "./CustomMenu";
 import PanelDescription from "./PanelDescription";
