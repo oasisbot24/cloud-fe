@@ -62,7 +62,7 @@ const OasisBotTransactionCompactColumns: GridColDef[] = [
     flex: 0.7,
     headerClassName: "text-slate-500",
     renderCell: (params: GridRenderCellParams<GridValidRowModel, string>) => (
-      <SellBuyChip value={params.value} sellColor={"#898FC3"} buyColor={"#223CE9"} />
+      <SellBuyChip value={params.value} sellColor="#898FC3" buyColor="#223CE9" />
     ),
   },
 ];

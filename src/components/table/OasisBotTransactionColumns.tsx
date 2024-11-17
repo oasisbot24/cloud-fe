@@ -1,6 +1,5 @@
 import { GridColDef, GridRenderCellParams, GridValidRowModel } from "@mui/x-data-grid";
 
-import Chip from "@/components/chip";
 import { exchangeToKorean } from "@/libs/string";
 
 import ExchangeIcon from "../Icon/ExchangeIcon";
@@ -35,7 +34,7 @@ const OasisBotTransactionColumns: GridColDef[] = [
     flex: 0.7,
     headerClassName: "text-slate-500",
     renderCell: (params: GridRenderCellParams<GridValidRowModel, string>) => (
-      <SellBuyChip value={params.value} sellColor={"#898FC3"} buyColor={"#2BB7F5"} />
+      <SellBuyChip value={params.value} sellColor="#898FC3" buyColor="#2BB7F5" />
     ),
   },
   {

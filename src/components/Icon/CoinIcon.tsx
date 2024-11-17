@@ -1,7 +1,5 @@
 import Image from "next/image";
 
-import Icon from ".";
-
 // const coinToIcon = (coin: string | undefined) => {
 //   switch (coin) {
 //     case "BTC":
