@@ -66,9 +66,9 @@ function OasisBotRunCard() {
 
   const runOasisBot = () => {
     if (
-      (balanceQuery.data?.availableBalance &&
+      (!!balanceQuery.data?.availableBalance &&
         balanceQuery.data.availableBalance < Number(startBalance)) ||
-      Number(startBalance)
+      !Number(startBalance)
     ) {
       openModal(
         <InfoDialog
