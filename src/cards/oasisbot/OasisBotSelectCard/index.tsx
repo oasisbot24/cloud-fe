@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 
-import Image from "next/image";
-
 import {
   CardContent,
-  Chip,
   InputAdornment,
   InputBase,
   InputLabel,
@@ -18,13 +15,14 @@ import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
 import LeverageNoticeDialog from "@/cards/oasisbot/OasisBotRunCard/LeverageNoticeDialog";
+import Icon from "@/components/Icon";
+import ExchangeChip from "@/components/chip/ExchangeChip";
 import FormTextField from "@/components/form/FormTextField";
 import exchangeAtom from "@/datas/exchange";
 import { botAtom } from "@/datas/oasisbotTransaction";
 import useBotCommand from "@/hooks/card/useBotCommand";
 import { useBotInfo } from "@/hooks/query/useOasisBot";
 import useModalGlobal from "@/hooks/useModalGlobal";
-import { exchangeToKorean } from "@/libs/string";
 
 function OasisBotSelectCard() {
   const [startBalance, setStartBalance] = useState<number>(5000);
@@ -57,9 +55,7 @@ function OasisBotSelectCard() {
         id="bot-start"
         title="오아시스 BOT 실행"
         subtitle={`주문가능 금액\n${exchange === "upbit" ? "￦" : "$"}${balanceQuery.data?.availableBalance?.toLocaleString() ?? 0}`}
-        action={
-          <Chip label={exchangeToKorean(exchange)} variant="outlined" className="text-brand" />
-        }
+        action={<ExchangeChip />}
       />
       <CardContent>
         <Stack className="gap-2">
@@ -112,20 +108,16 @@ function OasisBotSelectCard() {
           />
           <Stack className="w-full">
             <InputLabel htmlFor="leverage">
-              <Image
-                src="/icons/control/info.png"
-                alt="info"
-                width={12}
-                height={12}
-                className="mr-1"
-              />
-              <Typography
-                variant="100R"
-                className="text-neutral-600 underline hover:cursor-pointer"
-                onClick={() => openModal(<LeverageNoticeDialog handleClose={closeModal} />)}
-              >
-                현재 설정 레버리지
-              </Typography>
+              <div className="flex flex-row">
+                <Icon src="/icons/control/info.png" alt="info" size={12} className="mr-1" />
+                <Typography
+                  variant="100R"
+                  className="text-neutral-600 underline hover:cursor-pointer"
+                  onClick={() => openModal(<LeverageNoticeDialog handleClose={closeModal} />)}
+                >
+                  현재 설정 레버리지
+                </Typography>
+              </div>
             </InputLabel>
             <InputBase
               placeholder={`${exchange === "upbit" ? "업비트 거래소는 레버리지 설정 불가" : "레버리지 고정값"}`}
