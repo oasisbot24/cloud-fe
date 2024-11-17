@@ -148,9 +148,17 @@ function OasisBotSelectCard() {
           disabled={!!selectedBot.isRunning}
         />
         {selectedBot.isRunning ? (
-          <CardButton text="중지" className="ml-1 bg-[#F46565] text-white" onClick={stopBot} />
+          <CardButton
+            text="중지"
+            className="ml-1 bg-[#F46565] text-white"
+            onClick={() => stopBot({ onSuccess: () => console.log("stop") })}
+          />
         ) : (
-          <CardButton text="재실행" className="ml-1 bg-brand text-white" onClick={restartBot} />
+          <CardButton
+            text="재실행"
+            className="ml-1 bg-brand text-white"
+            onClick={() => restartBot({ onSuccess: () => console.log("restart") })}
+          />
         )}
       </CardFooter>
     </Card>

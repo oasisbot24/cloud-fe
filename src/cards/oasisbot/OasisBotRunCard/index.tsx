@@ -29,7 +29,7 @@ import { exchangeToKorean } from "@/libs/string";
 
 function OasisBotRunCard() {
   const [startBalance, setStartBalance] = useState<number>(5000);
-  const [selectedPreset, setSelectedPreset] = useState<number>(1);
+  const [selectedPreset, setSelectedPreset] = useState<number>(0);
   const [selectedTradeItem, setSelectedTradeItem] = useState<number>(1);
   const [standardMinute, setStandardMinute] = useState<number>(1);
 
@@ -65,6 +65,16 @@ function OasisBotRunCard() {
   ];
 
   const runOasisBot = () => {
+    if (Number(startBalance) < 5000) {
+      openModal(
+        <InfoDialog
+          title="거래금액"
+          description={[`거래금액은 ${exchange === "upbit" ? "￦5,000" : "$5"} 부터 가능합니다.`]}
+          confirmFunc={closeModal}
+        />,
+      );
+      return;
+    }
     if (
       (!!balanceQuery.data?.availableBalance &&
         balanceQuery.data.availableBalance < Number(startBalance)) ||
