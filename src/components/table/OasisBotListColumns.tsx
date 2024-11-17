@@ -27,7 +27,7 @@ function IsRunningCell(params: GridRenderCellParams<GridValidRowModel, boolean>)
 
   return (
     <CustomSwitch
-      defaultChecked={value}
+      checked={isStart}
       onClick={() =>
         row.isRunning
           ? stopBot({
