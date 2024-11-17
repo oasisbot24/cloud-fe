@@ -1,8 +1,8 @@
 import { Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
 
-import { TradeStyleType } from "@/apis/info/tradeStyle";
 import authAtom from "@/datas/auth";
+import { TradeStyleType } from "@/hooks/query/useInfo";
 import { numberSlice } from "@/libs/string";
 
 import DisplayPL from "./DisplayPL";
