@@ -29,7 +29,7 @@ import { exchangeToKorean } from "@/libs/string";
 
 function OasisBotRunCard() {
   const [startBalance, setStartBalance] = useState<number>(5000);
-  const [selectedPreset, setSelectedPreset] = useState<number>(1);
+  const [selectedPreset, setSelectedPreset] = useState<number>(0);
   const [selectedTradeItem, setSelectedTradeItem] = useState<number>(1);
   const [standardMinute, setStandardMinute] = useState<number>(1);
 
@@ -65,16 +65,26 @@ function OasisBotRunCard() {
   ];
 
   const runOasisBot = () => {
+    if (Number(startBalance) < 5000) {
+      openModal(
+        <InfoDialog
+          title="거래금액"
+          description={[`거래금액은 ${exchange === "upbit" ? "￦5,000" : "$5"} 부터 가능합니다.`]}
+          confirmFunc={closeModal}
+        />,
+      );
+      return;
+    }
     if (
-      (balanceQuery.data?.availableBalance &&
+      (!!balanceQuery.data?.availableBalance &&
         balanceQuery.data.availableBalance < Number(startBalance)) ||
-      Number(startBalance)
+      !Number(startBalance)
     ) {
       openModal(
         <InfoDialog
           title="거래금액"
           description={["거래금액은 잔고 이내의 금액을 기입해주세요."]}
-          handleClose={closeModal}
+          confirmFunc={closeModal}
         />,
       );
       return;
@@ -85,7 +95,7 @@ function OasisBotRunCard() {
         <InfoDialog
           title="설정 프리셋"
           description={["프리셋을 설정하고 실행해주세요."]}
-          handleClose={closeModal}
+          confirmFunc={closeModal}
         />,
       );
       return;
@@ -96,7 +106,7 @@ function OasisBotRunCard() {
         <InfoDialog
           title="매매종목 설정"
           description={["매매종목을 설정하고 실행해주세요."]}
-          handleClose={closeModal}
+          confirmFunc={closeModal}
         />,
       );
       return;
@@ -107,7 +117,7 @@ function OasisBotRunCard() {
         <InfoDialog
           title="기준 분봉 설정"
           description={["기준분봉을 설정하고 실행해주세요."]}
-          handleClose={closeModal}
+          confirmFunc={closeModal}
         />,
       );
       return;
@@ -122,7 +132,15 @@ function OasisBotRunCard() {
       leverage: null,
     };
 
-    mutate(body);
+    openModal(
+      <InfoDialog
+        title="봇 실행"
+        description={["해당 봇을 실행할까요?"]}
+        confirmFunc={() => mutate(body)}
+        cancelFunc={closeModal}
+        cancellable
+      />,
+    );
   };
 
   return (

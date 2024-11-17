@@ -21,7 +21,8 @@ import LeverageNoticeDialog from "@/cards/oasisbot/OasisBotRunCard/LeverageNotic
 import FormTextField from "@/components/form/FormTextField";
 import exchangeAtom from "@/datas/exchange";
 import { botAtom } from "@/datas/oasisbotTransaction";
-import { useBot, useBotInfo } from "@/hooks/query/useOasisBot";
+import useBotCommand from "@/hooks/card/useBotCommand";
+import { useBotInfo } from "@/hooks/query/useOasisBot";
 import useModalGlobal from "@/hooks/useModalGlobal";
 import { exchangeToKorean } from "@/libs/string";
 
@@ -41,30 +42,13 @@ function OasisBotSelectCard() {
     // setStandardMinute(selectedBot.standardMinute);
   }, [selectedBot]);
 
-  const { stopBotMutation, restartBotMutation } = useBot();
+  // const { stopBotMutation, restartBotMutation } = useBot();
+  const { stopBot, restartBot } = useBotCommand();
   const { openModal, closeModal } = useModalGlobal();
   const { balanceQuery } = useBotInfo();
 
   const onRemove = () => {
     console.log("onRemove");
-  };
-
-  const stopBot = () => {
-    // openModal(
-    //   <InfoDialog
-    //     title="봇 중지"
-    //     description={[
-    //       "매수된 종목이 있을 시, 자동 매도가 안되어 잔고에 영향을 초래할 수 있습니다.",
-    //     ]}
-    //     handleClose={closeModal}
-    //   />,
-    // );
-
-    stopBotMutation.mutate(selectedBot.id);
-  };
-
-  const restartBot = () => {
-    restartBotMutation.mutate(selectedBot.id);
   };
 
   return (
@@ -164,9 +148,17 @@ function OasisBotSelectCard() {
           disabled={!!selectedBot.isRunning}
         />
         {selectedBot.isRunning ? (
-          <CardButton text="중지" className="ml-1 bg-[#F46565] text-white" onClick={stopBot} />
+          <CardButton
+            text="중지"
+            className="ml-1 bg-[#F46565] text-white"
+            onClick={() => stopBot({ onSuccess: () => console.log("stop") })}
+          />
         ) : (
-          <CardButton text="재실행" className="ml-1 bg-brand text-white" onClick={restartBot} />
+          <CardButton
+            text="재실행"
+            className="ml-1 bg-brand text-white"
+            onClick={() => restartBot({ onSuccess: () => console.log("restart") })}
+          />
         )}
       </CardFooter>
     </Card>
