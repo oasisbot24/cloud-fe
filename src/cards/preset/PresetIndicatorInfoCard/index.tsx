@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { CardContent, Stack, Typography } from "@mui/material";
+import { CardContent, Stack } from "@mui/material";
 
 import Card from "@/cards/Card";
 import IndicatorChip from "@/components/chip/IndicatorChip";
