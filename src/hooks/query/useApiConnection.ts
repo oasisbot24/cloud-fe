@@ -1,7 +1,6 @@
 import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import api from "@/apis/network";
-import { getUserExchanges } from "@/apis/user/user";
 
 interface PostOkxOauthTokenBody {
   code: string;
@@ -63,7 +62,10 @@ export function useSmartAccessMutation() {
 export function useUserExchangesQuery(queryClient?: QueryClient) {
   const userExchangeQuery = useQuery(
     {
-      queryFn: getUserExchanges,
+      queryFn: async () => {
+        const res = await api.get<ApiResponseType<ExchangeType[]>>("/user/apikey/exchanges");
+        return res.data?.data;
+      },
       queryKey: ["getUserExchanges"],
     },
     queryClient,
