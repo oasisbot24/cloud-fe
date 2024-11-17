@@ -2,9 +2,7 @@ import Image from "next/image";
 
 import { Stack, Typography } from "@mui/material";
 
-import ArrowDownIcon from "@/components/Icon/ArrowDownIcon";
-import ArrowUpIcon from "@/components/Icon/ArrowUpIcon";
-import Chip from "@/components/chip";
+import ProfitChip from "@/components/chip/ProfitChip";
 
 interface Props {
   coinName: string;
@@ -57,15 +55,7 @@ export default function PanelDescription({
         >
           ₩ {totalProfit}
         </Typography>
-        <Chip
-          className={`font-bold ${totalProfitRate > 0 ? "text-[#F46565]" : "text-[#223CE9]"}`}
-          icon={totalProfitRate > 0 ? <ArrowUpIcon /> : <ArrowDownIcon />}
-          label={`${Number(totalProfitRate).toFixed(1)}%`}
-          size="small"
-          style={{
-            background: totalProfitRate > 0 ? "#FDE0E0" : "#DCE1FF",
-          }}
-        />
+        <ProfitChip rate={totalProfitRate} />
       </Stack>
     </Stack>
   );

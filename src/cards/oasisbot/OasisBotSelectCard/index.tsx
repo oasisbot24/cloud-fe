@@ -16,13 +16,12 @@ import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
 import LeverageNoticeDialog from "@/cards/oasisbot/OasisBotRunCard/LeverageNoticeDialog";
 import Icon from "@/components/Icon";
-import Chip from "@/components/chip";
+import ExchangeChip from "@/components/chip/ExchangeChip";
 import FormTextField from "@/components/form/FormTextField";
 import exchangeAtom from "@/datas/exchange";
 import { botAtom } from "@/datas/oasisbotTransaction";
 import { useBot, useBotInfo } from "@/hooks/query/useOasisBot";
 import useModalGlobal from "@/hooks/useModalGlobal";
-import { exchangeToKorean } from "@/libs/string";
 
 function OasisBotSelectCard() {
   const [startBalance, setStartBalance] = useState<number>(5000);
@@ -72,9 +71,7 @@ function OasisBotSelectCard() {
         id="bot-start"
         title="오아시스 BOT 실행"
         subtitle={`주문가능 금액\n${exchange === "upbit" ? "￦" : "$"}${balanceQuery.data?.availableBalance?.toLocaleString() ?? 0}`}
-        action={
-          <Chip label={exchangeToKorean(exchange)} variant="outlined" className="text-brand" />
-        }
+        action={<Exchange />}
       />
       <CardContent>
         <Stack className="gap-2">

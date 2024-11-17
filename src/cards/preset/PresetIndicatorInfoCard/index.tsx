@@ -3,7 +3,7 @@ import Image from "next/image";
 import { CardContent, Stack, Typography } from "@mui/material";
 
 import Card from "@/cards/Card";
-import Chip from "@/components/chip";
+import IndicatorChip from "@/components/chip/IndicatorChip";
 
 import CardHeader from "../../CardHeader";
 import Chart from "./Chart.png";
@@ -20,16 +20,8 @@ export default function PresetIndicatorInfoCard() {
             title="설정 보조지표"
             label={
               <>
-                <Chip
-                  label={"td sequential"}
-                  variant="outlined"
-                  style={{ color: "blue", borderColor: "blue" }}
-                />
-                <Chip
-                  label={"하락장"}
-                  variant="outlined"
-                  style={{ color: "blue", borderColor: "blue" }}
-                />
+                <IndicatorChip label={"td sequential"} color={"blue"} />
+                <IndicatorChip label={"하락장"} color={"blue"} />
               </>
             }
             content={`과열된 시장은 카운트가 높아질수록 방향전환의 확률이 높아집니다.
@@ -39,16 +31,8 @@ export default function PresetIndicatorInfoCard() {
             title="설정 보조지표"
             label={
               <>
-                <Chip
-                  label={"td sequential R"}
-                  variant="outlined"
-                  style={{ color: "red", borderColor: "red" }}
-                />
-                <Chip
-                  label={"상승장"}
-                  variant="outlined"
-                  style={{ color: "red", borderColor: "red" }}
-                />
+                <IndicatorChip label={"td sequential R"} color={"red"} />
+                <IndicatorChip label={"상승장"} color={"red"} />
               </>
             }
             content={`시장이 과열되기전에 낮은 카운트에서 추격 매수 하는 것이 좋습니다.

@@ -9,7 +9,7 @@ import { useSetAtom } from "jotai";
 import Card from "@/cards/Card";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
-import Chip from "@/components/chip";
+import DetailChip from "@/components/chip/DetailChip";
 import OasisBotListColumns from "@/components/table/OasisBotListColumns";
 import { botAtom } from "@/datas/oasisbotTransaction";
 import { useBotQuery } from "@/hooks/query/useOasisBot";
@@ -73,16 +73,7 @@ export default function OasisBotListCard({ nav }: Props) {
         />
       </CardContent>
       <CardFooter>
-        {nav === "dashboard" ? (
-          <Chip
-            label="자세히 보기"
-            variant="outlined"
-            className="my-2"
-            onClick={() => router.push("/oasisbot")}
-          />
-        ) : (
-          ""
-        )}
+        {nav === "dashboard" ? <DetailChip onClick={() => router.push("/oasisbot")} /> : ""}
       </CardFooter>
     </Card>
   );

@@ -2,11 +2,9 @@ import Image from "next/image";
 
 import { Stack, Typography } from "@mui/material";
 
-import ArrowDownIcon from "@/components/Icon/ArrowDownIcon";
-import ArrowUpIcon from "@/components/Icon/ArrowUpIcon";
 import CoinIcon from "@/components/Icon/CoinIcon";
 import ExchangeIcon from "@/components/Icon/ExchangeIcon";
-import Chip from "@/components/chip";
+import ProfitChip from "@/components/chip/ProfitChip";
 
 interface Props {
   id: number;
@@ -66,16 +64,7 @@ function CustomMenu({ id, setMenuId, coinName, presetName, totalProfitRate, exch
 
         <Typography variant="200R">{coinName}</Typography>
 
-        <Chip
-          icon={totalProfitRate > 0 ? <ArrowUpIcon /> : <ArrowDownIcon />}
-          label={`${Number(totalProfitRate).toFixed(1)}%`}
-          size="small"
-          style={{
-            background: totalProfitRate > 0 ? "#FDE0E0" : "#DCE1FF",
-            color: totalProfitRate > 0 ? "#F46565" : "#223CE9",
-            fontWeight: "bold",
-          }}
-        />
+        <ProfitChip rate={totalProfitRate} />
       </Stack>
     </Stack>
   );
