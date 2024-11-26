@@ -40,7 +40,6 @@ function OasisBotSelectCard() {
     // setStandardMinute(selectedBot.standardMinute);
   }, [selectedBot]);
 
-  // const { stopBotMutation, restartBotMutation } = useBot();
   const { stopBot, restartBot } = useBotCommand();
   const { openModal, closeModal } = useModalGlobal();
   const { balanceQuery } = useBotInfo();
@@ -143,13 +142,23 @@ function OasisBotSelectCard() {
           <CardButton
             text="중지"
             className="ml-1 bg-[#F46565] text-white"
-            onClick={() => stopBot({ onSuccess: () => console.log("stop") })}
+            onClick={() =>
+              stopBot({
+                selected: selectedBot.id,
+                onSuccess: () => console.log("stop"),
+              })
+            }
           />
         ) : (
           <CardButton
             text="재실행"
             className="ml-1 bg-brand text-white"
-            onClick={() => restartBot({ onSuccess: () => console.log("restart") })}
+            onClick={() =>
+              restartBot({
+                selected: selectedBot.id,
+                onSuccess: () => console.log("restart"),
+              })
+            }
           />
         )}
       </CardFooter>

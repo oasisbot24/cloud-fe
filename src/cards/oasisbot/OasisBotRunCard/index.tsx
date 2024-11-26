@@ -134,7 +134,10 @@ function OasisBotRunCard() {
       <InfoDialog
         title="봇 실행"
         description={["해당 봇을 실행할까요?"]}
-        confirmFunc={() => mutate(body)}
+        confirmFunc={() => {
+          mutate(body);
+          closeModal();
+        }}
         cancelFunc={closeModal}
         cancellable
       />,

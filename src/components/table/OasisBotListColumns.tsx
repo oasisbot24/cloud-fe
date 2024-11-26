@@ -28,13 +28,17 @@ function IsRunningCell(params: GridRenderCellParams<GridValidRowModel, boolean>)
   return (
     <CustomSwitch
       checked={isStart}
-      onClick={() =>
+      onClick={() => {
         row.isRunning
           ? stopBot({
+              selected: row.id,
               onSuccess: () => setIsStart(false),
             })
-          : restartBot({ onSuccess: () => setIsStart(true) })
-      }
+          : restartBot({
+              selected: row.id,
+              onSuccess: () => setIsStart(true),
+            });
+      }}
     />
   );
 }
@@ -48,9 +52,6 @@ const OasisBotListColumns: GridColDef[] = [
     renderCell: (params: GridRenderCellParams<GridValidRowModel, BotType["presetName"]>) => (
       <div className="flex items-center">
         <div className="w-4/5 whitespace-normal">{params.value}</div>
-        {/* <IconButton sx={{ width: "24px", height: "24px" }}>
-          <Icon src="/icons/basic/setting.png" size={24} />
-        </IconButton> */}
         <IconButtonFun />
       </div>
     ),
