@@ -1,6 +1,6 @@
 import { atom } from "jotai";
 
-import { BotType } from "@/apis/oasisbot/bot";
+import { BotType } from "@/hooks/query/useOasisBot";
 
 interface BotTransaction {
   id: number;

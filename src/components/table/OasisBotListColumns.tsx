@@ -3,11 +3,10 @@ import { useRouter } from "next/router";
 import { IconButton } from "@mui/material";
 import { GridColDef, GridRenderCellParams, GridValidRowModel } from "@mui/x-data-grid";
 
-import { BotType } from "@/apis/oasisbot/bot";
 import Icon from "@/components/Icon";
 import CustomSwitch from "@/components/common/CustomSwitch";
 import TimeConvert from "@/components/table/timeConvert";
-import { useBot } from "@/hooks/query/useOasisBot";
+import { BotType, useBot } from "@/hooks/query/useOasisBot";
 
 function IconButtonFun() {
   const { push } = useRouter();
