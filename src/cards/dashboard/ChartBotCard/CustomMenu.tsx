@@ -1,10 +1,8 @@
-import Image from "next/image";
+import { Stack, Typography } from "@mui/material";
 
-import { Chip, Stack, Typography } from "@mui/material";
-
-import ArrowDownIcon from "@/components/Icon/ArrowDownIcon";
-import ArrowUpIcon from "@/components/Icon/ArrowUpIcon";
+import CoinIcon from "@/components/Icon/CoinIcon";
 import ExchangeIcon from "@/components/Icon/ExchangeIcon";
+import ProfitChip from "@/components/chip/ProfitChip";
 
 interface Props {
   id: number;
@@ -16,38 +14,6 @@ interface Props {
 }
 
 function CustomMenu({ id, setMenuId, coinName, presetName, totalProfitRate, exchange }: Props) {
-  const crypto = (name: string) => {
-    switch (name) {
-      case "비트코인":
-        return "/icons/crypto/btc-30.png";
-      case "비트코인캐시":
-        return "/icons/crypto/BCH.png";
-      case "도지코인":
-        return "/icons/crypto/DOGE.png";
-      case "이더리움클래식":
-        return "/icons/crypto/ETC.png";
-      case "이더리움":
-        return "/icons/crypto/ETH.png";
-      case "니어프로토콜":
-        return "/icons/crypto/NEAR.png";
-      case "시바누이":
-        return "/icons/crypto/SIHIB.png";
-      case "솔라나":
-        return "/icons/crypto/SOL.png";
-      case "스텍스":
-        return "/icons/crypto/STX.png";
-      case "테더":
-        return "/icons/crypto/USDT.png";
-      case "스텔라루멘":
-        return "/icons/crypto/XLM.png";
-      case "리플":
-        return "/icons/crypto/XRP.png";
-      case "에이다":
-        return "/icons/crypto/ADA.png";
-      default:
-        return "";
-    }
-  };
   return (
     <Stack
       direction="row"
@@ -92,24 +58,11 @@ function CustomMenu({ id, setMenuId, coinName, presetName, totalProfitRate, exch
         spacing={1}
         sx={{ width: "100%" }}
       >
-        {coinName === "ALL" ? (
-          ""
-        ) : (
-          <Image src={crypto(coinName)} alt={coinName} width={15} height={20} />
-        )}
+        {coinName === "ALL" ? "" : <CoinIcon coin={coinName} wsize={15} hsize={20} />}
 
         <Typography variant="200R">{coinName}</Typography>
 
-        <Chip
-          icon={totalProfitRate > 0 ? <ArrowUpIcon /> : <ArrowDownIcon />}
-          label={`${Number(totalProfitRate).toFixed(1)}%`}
-          size="small"
-          style={{
-            background: totalProfitRate > 0 ? "#FDE0E0" : "#DCE1FF",
-            color: totalProfitRate > 0 ? "#F46565" : "#223CE9",
-            fontWeight: "bold",
-          }}
-        />
+        <ProfitChip rate={totalProfitRate} />
       </Stack>
     </Stack>
   );

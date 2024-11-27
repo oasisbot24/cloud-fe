@@ -1,8 +1,8 @@
 import Image from "next/image";
 
-import { Chip } from "@mui/material";
 import { GridColDef, GridRenderCellParams, GridValidRowModel } from "@mui/x-data-grid";
 
+import Chip from "@/components/chip";
 import { exchangeToKorean } from "@/libs/string";
 
 import CoinIcon from "../Icon/CoinIcon";
@@ -69,7 +69,7 @@ const ProfitRankColumns: GridColDef[] = [
     headerClassName: "text-slate-500",
     renderCell: (params: GridRenderCellParams<GridValidRowModel, ProfitRank["item"]>) => (
       <div className="whitespace-normal">
-        <CoinIcon coin={params.value} size={20} />
+        <CoinIcon coin={params.value} wsize={20} hsize={20} />
       </div>
     ),
   },

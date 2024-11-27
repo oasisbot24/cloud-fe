@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { useRouter } from "next/router";
 
 import { IconButton } from "@mui/material";
@@ -19,17 +21,22 @@ function IconButtonFun() {
 
 function IsRunningCell(params: GridRenderCellParams<GridValidRowModel, boolean>) {
   const { value, row } = params;
-  const { stopBotMutation, restartBotMutation } = useBot();
+  const { stopBot, restartBot } = useBot();
+  const [isStart, setIsStart] = useState(value);
 
   return (
     <CustomSwitch
-      defaultChecked={value}
+      checked={isStart}
       onClick={() => {
-        if (row.isRunning) {
-          stopBotMutation.mutate(row.id);
-        } else {
-          restartBotMutation.mutate(row.id);
-        }
+        row.isRunning
+          ? stopBot({
+              selected: row.id,
+              onSuccess: () => setIsStart(false),
+            })
+          : restartBot({
+              selected: row.id,
+              onSuccess: () => setIsStart(true),
+            });
       }}
     />
   );
@@ -44,9 +51,6 @@ const OasisBotListColumns: GridColDef[] = [
     renderCell: (params: GridRenderCellParams<GridValidRowModel, BotType["presetName"]>) => (
       <div className="flex items-center">
         <div className="w-4/5 whitespace-normal">{params.value}</div>
-        {/* <IconButton sx={{ width: "24px", height: "24px" }}>
-          <Icon src="/icons/basic/setting.png" size={24} />
-        </IconButton> */}
         <IconButtonFun />
       </div>
     ),
