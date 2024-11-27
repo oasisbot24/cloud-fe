@@ -27,8 +27,19 @@ function useBotCommand() {
   };
 
   const restartBot = ({ selected, onSuccess }: { selected: number; onSuccess?: () => void }) => {
-    restartBotMutation.mutate(selected);
-    !!onSuccess && onSuccess();
+    openModal(
+      <InfoDialog
+        title="봇 재실행"
+        description={["봇을 재실행하시겠습니까?"]}
+        confirmFunc={() => {
+          restartBotMutation.mutate(Number(selected));
+          !!onSuccess && onSuccess();
+          closeModal();
+        }}
+        cancelFunc={closeModal}
+        cancellable
+      />,
+    );
   };
 
   return { stopBot, restartBot };
