@@ -1,7 +1,8 @@
 import { Stack } from "@mui/material";
 
-import { CoinRatio } from "@/apis/chart/coinRatio";
-import SelectButton from "@/cards/dashboard/ChartAssetCard/SelectButton";
+import { CoinRatio } from "@/hooks/query/useChart";
+
+import SelectButton from "./SelectButton";
 
 const colorList = ["#223CE9", "#FEBD38", "#2BB7F5", "#BEBEC3"];
 
