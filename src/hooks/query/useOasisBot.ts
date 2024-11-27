@@ -2,8 +2,6 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAtom, useAtomValue } from "jotai";
 
 import api from "@/apis/network";
-import { getCoin } from "@/apis/oasisbot/coin";
-import { getTransaction } from "@/apis/oasisbot/transaction";
 import exchangeAtom from "@/datas/exchange";
 
 export interface BotStartType {
@@ -80,11 +78,88 @@ export interface AvailableBalanceType {
   availableBalance: number;
 }
 
+interface CoinType {
+  id: number;
+  coinName: string;
+}
+
+interface BotTransactionType {
+  id: number;
+  market: string;
+  tradeTime: string;
+  coinName: string;
+  status: string;
+  quantity: {
+    totalPrice: number;
+    volume: number;
+  };
+  price: {
+    startBalance: number;
+    presetName: string;
+  };
+  profit: {
+    profitLoss: number;
+    profitLossRate: number;
+  };
+}
+
+interface BotItem {
+  id: number;
+  exchange: string;
+  date: string;
+  coinName: string;
+  position: string;
+  totalPrice: number;
+  volume: number;
+  profitLoss: number;
+  profitLossRate: number;
+  startBalance: number;
+  presetName: string;
+}
+
+async function getTransaction(exchangeName: string): Promise<BotTransactionType[]> {
+  const respose = await api.get<ApiResponseType<[]>>(`/transaction?exchange=${exchangeName}`);
+
+  const bots: BotTransactionType[] = [];
+  respose.data?.data.map((item: BotItem, n) => {
+    const type: BotTransactionType = {
+      id: n + 1,
+      market: item.exchange,
+      tradeTime: item.date,
+      coinName: item.coinName,
+      status: item.position === "open" ? "buy" : "sell",
+      quantity: {
+        totalPrice: item.totalPrice,
+        volume: item.volume,
+      },
+      price: {
+        startBalance: item.startBalance,
+        presetName: item.presetName,
+      },
+      profit: {
+        profitLoss: item.profitLoss,
+        profitLossRate: item.profitLossRate,
+      },
+    };
+
+    bots.push(type);
+
+    return bots;
+  });
+
+  return bots;
+}
+
 export function useBotInfo() {
   const [exchange] = useAtom(exchangeAtom);
   const coinQuery = useQuery({
     queryKey: ["getCoin", exchange],
-    queryFn: () => getCoin(exchange),
+    queryFn: async () => {
+      const res = await api.get<ApiResponseType<CoinType[]>>("/coin", {
+        params: { exchange },
+      });
+      return res.data.data;
+    },
     select: data =>
       data.map(item => ({
         label: item.coinName,
