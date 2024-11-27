@@ -8,7 +8,8 @@ import { GridColDef, GridRenderCellParams, GridValidRowModel } from "@mui/x-data
 import Icon from "@/components/Icon";
 import CustomSwitch from "@/components/common/CustomSwitch";
 import TimeConvert from "@/components/table/timeConvert";
-import { BotType, useBot } from "@/hooks/query/useOasisBot";
+import useBotCommand from "@/hooks/card/useBotCommand";
+import { BotType } from "@/hooks/query/useOasisBot";
 
 function IconButtonFun() {
   const { push } = useRouter();
@@ -21,7 +22,7 @@ function IconButtonFun() {
 
 function IsRunningCell(params: GridRenderCellParams<GridValidRowModel, boolean>) {
   const { value, row } = params;
-  const { stopBot, restartBot } = useBot();
+  const { stopBot, restartBot } = useBotCommand();
   const [isStart, setIsStart] = useState(value);
 
   return (
