@@ -1,8 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAtom, useAtomValue } from "jotai";
 
-import api from "@/apis/network";
 import exchangeAtom from "@/datas/exchange";
+import api from "@/libs/network";
 
 export interface BotStartType {
   botName: string;

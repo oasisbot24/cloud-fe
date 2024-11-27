@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 
-import api from "@/apis/network";
+import api from "@/libs/network";
 
 interface PaymentMethodType {
   cardNumber: string;

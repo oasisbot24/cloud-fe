@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { useAtom } from "jotai";
 
-import api from "@/apis/network";
 import exchangeAtom from "@/datas/exchange";
+import api from "@/libs/network";
 
 export interface CoinRatio {
   name: string;

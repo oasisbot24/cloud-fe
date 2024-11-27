@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import api from "@/apis/network";
+import api from "@/libs/network";
 
 export interface RankingType {
   id: number;

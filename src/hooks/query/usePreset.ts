@@ -1,8 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAtom } from "jotai";
 
-import api from "@/apis/network";
 import exchangeAtom from "@/datas/exchange";
+import api from "@/libs/network";
 
 interface PresetBody {
   presetName: string;

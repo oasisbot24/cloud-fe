@@ -1,6 +1,6 @@
 import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import api from "@/apis/network";
+import api from "@/libs/network";
 
 interface PostOkxOauthTokenBody {
   code: string;

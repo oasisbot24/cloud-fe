@@ -2,8 +2,8 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useAtom } from "jotai";
 
-import api from "@/apis/network";
 import authAtom, { Auth } from "@/datas/auth";
+import api from "@/libs/network";
 
 interface SigninResponseType {
   isAgree: boolean;
