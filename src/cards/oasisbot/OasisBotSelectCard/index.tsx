@@ -19,27 +19,23 @@ import Icon from "@/components/Icon";
 import ExchangeChip from "@/components/chip/ExchangeChip";
 import FormTextField from "@/components/form/FormTextField";
 import exchangeAtom from "@/datas/exchange";
-import { botAtom } from "@/datas/oasisbotTransaction";
+import { selectedBotRowAtom } from "@/datas/oasisbotTransaction";
 import useBotCommand from "@/hooks/card/useBotCommand";
-import { useBotInfo } from "@/hooks/query/useOasisBot";
+import { useBotDetailQuery, useBotInfo } from "@/hooks/query/useOasisBot";
 import useModalGlobal from "@/hooks/useModalGlobal";
 
 function OasisBotSelectCard() {
   const [startBalance, setStartBalance] = useState<number>(5000);
   const [selectedPreset, setSelectedPreset] = useState<string>("");
   const [selectedTradeItem, setSelectedTradeItem] = useState<string>("");
-  const [standardMinute] = useState<string>("");
+  const [standardMinute, setStandardMinute] = useState<number>(0);
 
   const [exchange] = useAtom(exchangeAtom);
-  const selectedBot = useAtomValue(botAtom);
+  const selectedRow = useAtomValue(selectedBotRowAtom);
 
-  useEffect(() => {
-    setStartBalance(selectedBot.startBalance);
-    setSelectedPreset(selectedBot.presetName);
-    setSelectedTradeItem(selectedBot.coinType);
-    // setStandardMinute(selectedBot.standardMinute);
-  }, [selectedBot]);
-
+  const {
+    botDetailQuery: { data, isFetching },
+  } = useBotDetailQuery(selectedRow[0]);
   const { stopBot, restartBot } = useBotCommand();
   const { openModal, closeModal } = useModalGlobal();
   const { balanceQuery } = useBotInfo();
@@ -47,6 +43,19 @@ function OasisBotSelectCard() {
   const onRemove = () => {
     console.log("onRemove");
   };
+
+  useEffect(() => {
+    if (data) {
+      setStartBalance(data.startBalance);
+      setSelectedPreset(data.presetName);
+      setSelectedTradeItem(data.coinType);
+      setStandardMinute(data.standardMinute);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    console.log("fetched: ", data);
+  }, [isFetching]);
 
   return (
     <Card>
@@ -99,7 +108,7 @@ function OasisBotSelectCard() {
             id="tradeItem"
             label="기준 분봉"
             placeholder="분봉 선택"
-            value={standardMinute}
+            value={standardMinute + "분봉"}
             readOnly
             inputProps={{
               className: "cursor-not-allowed",
@@ -134,17 +143,17 @@ function OasisBotSelectCard() {
       <CardFooter className="bottom-2">
         <CardButton
           text="초기화"
-          className={`mr-1 text-white ${selectedBot.isRunning ? "bg-neutral-400" : "bg-neutral-700"}`}
+          className={`mr-1 text-white ${data?.isRunning ? "bg-neutral-400" : "bg-neutral-700"}`}
           onClick={onRemove}
-          disabled={!!selectedBot.isRunning}
+          disabled={!!data?.isRunning}
         />
-        {selectedBot.isRunning ? (
+        {data?.isRunning ? (
           <CardButton
             text="중지"
             className="ml-1 bg-[#F46565] text-white"
             onClick={() =>
               stopBot({
-                selected: selectedBot.id,
+                selected: data.id,
                 onSuccess: () => console.log("stop"),
               })
             }
@@ -155,7 +164,7 @@ function OasisBotSelectCard() {
             className="ml-1 bg-brand text-white"
             onClick={() =>
               restartBot({
-                selected: selectedBot.id,
+                selected: data?.id || -1,
                 onSuccess: () => console.log("restart"),
               })
             }
