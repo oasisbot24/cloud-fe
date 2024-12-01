@@ -2,13 +2,9 @@ import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/re
 
 import api from "@/libs/network";
 
-interface PostOkxOauthTokenBody {
-  code: string;
-}
-
 export function useOkxOauthTokenMutation() {
   const postOkxOauthTokenMutation = useMutation({
-    mutationFn: async (body: PostOkxOauthTokenBody) => {
+    mutationFn: async ({ body }: ApiRequestType<MutationBody.PostOkxOauthTokenBody>) => {
       const res = await api.post<ApiResponseType<void>>("/oauth/okx/apikey", body);
       return res.data;
     },
@@ -18,21 +14,16 @@ export function useOkxOauthTokenMutation() {
     postOkxOauthTokenMutation,
   };
 }
-interface PostSmartAccessResultBody {
-  uid: string;
-}
+
 export function useSmartAccessMutation() {
   const queryClient = useQueryClient();
   const postSmartAccessResultMutation = useMutation({
     mutationFn: async ({
-      exchange,
       body,
-    }: {
-      exchange: ExchangeType;
-      body: PostSmartAccessResultBody;
-    }) => {
+      params,
+    }: ApiRequestType<MutationBody.PostOkxOauthTokenBody, ExchangeParams>) => {
       await api.post<ApiResponseType<void>>(`/smart-access/result`, body, {
-        params: { exchange },
+        params,
       });
     },
     mutationKey: ["postSmartAccessResult"],
@@ -41,12 +32,12 @@ export function useSmartAccessMutation() {
     },
   });
   const postSmartAccessSessionMutation = useMutation({
-    mutationFn: async (exchange: ExchangeType) => {
+    mutationFn: async ({ params }: ApiRequestType<null, ExchangeParams>) => {
       const res = await api.post<ApiResponseType<string>>(
         `/smart-access/session`,
         {},
         {
-          params: { exchange },
+          params,
         },
       );
       return res.data.data;
