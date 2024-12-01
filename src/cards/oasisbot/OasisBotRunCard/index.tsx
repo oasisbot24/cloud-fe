@@ -63,11 +63,11 @@ function OasisBotRunCard() {
   ];
 
   const runOasisBot = () => {
-    if (Number(startBalance) < 5000) {
+    if (exchange === "upbit" ? Number(startBalance) < 5000 : Number(startBalance) < 100) {
       openModal(
         <InfoDialog
           title="거래금액"
-          description={[`거래금액은 ${exchange === "upbit" ? "￦5,000" : "$5"} 부터 가능합니다.`]}
+          description={[`거래금액은 ${exchange === "upbit" ? "￦5,000" : "$100"} 부터 가능합니다.`]}
           confirmFunc={closeModal}
         />,
       );
