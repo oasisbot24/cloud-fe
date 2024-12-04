@@ -108,7 +108,7 @@ function OasisBotSelectCard() {
             id="tradeItem"
             label="기준 분봉"
             placeholder="분봉 선택"
-            value={standardMinute + "분봉"}
+            value={standardMinute}
             readOnly
             inputProps={{
               className: "cursor-not-allowed",

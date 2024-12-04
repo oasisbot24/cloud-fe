@@ -1,10 +1,7 @@
 import React from "react";
 
-import { useAtomValue } from "jotai";
-
 import InfoDialog from "@/components/common/InfoDialog";
-import { selectedBotRowAtom } from "@/datas/oasisbotTransaction";
-import { useBot, useBotDetailQuery } from "@/hooks/query/useOasisBot";
+import { useBot } from "@/hooks/query/useOasisBot";
 import useModalGlobal from "@/hooks/useModalGlobal";
 
 function useBotCommand() {

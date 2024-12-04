@@ -22,9 +22,7 @@ function OasisBot() {
         <Stack direction="row" className="w-full gap-4">
           <Stack className="w-4/6 gap-4">
             <Stack direction="row" className="h-[495px] gap-4">
-              <Box className="w-2/5">
-                {!!data?.id ? <OasisBotSelectCard /> : <OasisBotRunCard />}
-              </Box>
+              <Box className="w-2/5">{data?.id ? <OasisBotSelectCard /> : <OasisBotRunCard />}</Box>
               <Box className="h-[495px] w-3/5 gap-4">
                 <OasisBotListCard nav="oasisbot" />
               </Box>
