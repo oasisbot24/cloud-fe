@@ -12,7 +12,7 @@ import CardHeader from "@/cards/CardHeader";
 import DetailChip from "@/components/chip/DetailChip";
 import OasisBotListColumns from "@/components/table/OasisBotListColumns";
 import { selectedBotRowAtom } from "@/datas/oasisbotTransaction";
-import { useBotDetailQuery, useBotQuery } from "@/hooks/query/useOasisBot";
+import { useBotQuery } from "@/hooks/query/useOasisBot";
 
 interface Props {
   nav: string;
@@ -24,12 +24,6 @@ export default function OasisBotListCard({ nav }: Props) {
   const {
     botListQuery: { data, isLoading },
   } = useBotQuery();
-  const { botDetailQuery } = useBotDetailQuery(selectedRow[0]);
-
-  useEffect(() => {
-    botDetailQuery.refetch();
-    console.log(botDetailQuery.data);
-  }, [selectedRow]);
 
   const router = useRouter();
   return (

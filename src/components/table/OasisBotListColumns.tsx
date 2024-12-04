@@ -1,15 +1,11 @@
-import { useState } from "react";
-
 import { useRouter } from "next/router";
 
 import { IconButton } from "@mui/material";
 import { GridColDef, GridRenderCellParams, GridValidRowModel } from "@mui/x-data-grid";
-import { useAtomValue } from "jotai";
 
 import Icon from "@/components/Icon";
 import CustomSwitch from "@/components/common/CustomSwitch";
 import TimeConvert from "@/components/table/timeConvert";
-import { selectedBotRowAtom } from "@/datas/oasisbotTransaction";
 import useBotCommand from "@/hooks/card/useBotCommand";
 import { BotType, useBotDetailQuery } from "@/hooks/query/useOasisBot";
 
@@ -23,32 +19,18 @@ function IconButtonFun() {
 }
 
 function IsRunningCell(params: GridRenderCellParams<GridValidRowModel, boolean>) {
-  const { value, row } = params;
-  const [isStart, setIsStart] = useState(value);
-  // const selectedRow = useAtomValue(selectedBotRowAtom);
+  const { row } = params;
 
   const { stopBot, restartBot } = useBotCommand();
   const { botDetailQuery } = useBotDetailQuery(row.id);
 
   return (
     <CustomSwitch
-      checked={isStart}
+      checked={botDetailQuery.data?.isRunning}
       onClick={() => {
-        row.isRunning
-          ? stopBot({
-              selected: row.id,
-              onSuccess: () => {
-                botDetailQuery.refetch();
-                setIsStart(false);
-              },
-            })
-          : restartBot({
-              selected: row.id,
-              onSuccess: () => {
-                botDetailQuery.refetch();
-                setIsStart(true);
-              },
-            });
+        botDetailQuery.data?.isRunning
+          ? stopBot({ selected: row.id })
+          : restartBot({ selected: row.id });
       }}
     />
   );

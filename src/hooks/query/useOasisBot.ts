@@ -31,7 +31,7 @@ export function useBot() {
     mutationFn: async (id: number) => api.post<ApiResponseType<void>>(`/stop_bot/${id}`),
     mutationKey: ["stopBot"],
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["getBot"] });
+      queryClient.invalidateQueries({ queryKey: ["getBotDetail"] });
     },
   });
 
@@ -39,7 +39,7 @@ export function useBot() {
     mutationFn: async (id: number) => api.post<ApiResponseType<void>>(`/restart_bot/${id}`),
     mutationKey: ["restartBot"],
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["getBot"] });
+      queryClient.invalidateQueries({ queryKey: ["getBotDetail"] });
     },
   });
 
