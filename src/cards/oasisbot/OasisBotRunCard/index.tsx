@@ -14,16 +14,16 @@ import Card from "@/cards/Card";
 import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
-import LeverageNoticeDialog from "@/cards/oasisbot/OasisBotRunCard/LeverageNoticeDialog";
 import Icon from "@/components/Icon";
 import ExchangeChip from "@/components/chip/ExchangeChip";
-import InfoDialog from "@/components/common/InfoDialog";
+import InfoDialog from "@/components/dialog/InfoDialog";
+import LeverageNoticeDialog from "@/components/dialog/LeverageNoticeDialog";
+import useModalGlobal from "@/components/dialog/useModalGlobal";
 import FormSelect from "@/components/form/FormSelect";
 import FormTextField from "@/components/form/FormTextField";
 import exchangeAtom from "@/datas/exchange";
 import { useBot, useBotInfo } from "@/hooks/query/useOasisBot";
 import { usePresetQuery } from "@/hooks/query/usePreset";
-import useModalGlobal from "@/hooks/useModalGlobal";
 
 function OasisBotRunCard() {
   const [startBalance, setStartBalance] = useState<number>(5000);

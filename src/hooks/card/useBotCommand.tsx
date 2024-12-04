@@ -1,8 +1,8 @@
 import React from "react";
 
-import InfoDialog from "@/components/common/InfoDialog";
+import InfoDialog from "@/components/dialog/InfoDialog";
+import useModalGlobal from "@/components/dialog/useModalGlobal";
 import { useBot } from "@/hooks/query/useOasisBot";
-import useModalGlobal from "@/hooks/useModalGlobal";
 
 function useBotCommand() {
   const { stopBotMutation, restartBotMutation } = useBot();
