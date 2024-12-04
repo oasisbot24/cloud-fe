@@ -5,12 +5,10 @@ import Image from "next/image";
 import { Alert, ButtonBase, Stack, Typography } from "@mui/material";
 import { AxiosError } from "axios";
 
+import useModalGlobal from "@/components/dialog/useModalGlobal";
 import { useSubscribeMutation, useSubscribeQuery } from "@/hooks/query/useSubcribe";
-import useModalGlobal from "@/hooks/useModalGlobal";
 
-import modalImage from "./modal.png";
-
-export default function SubscribeModel() {
+export default function SubscribeDialog() {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
   const {
@@ -37,7 +35,7 @@ export default function SubscribeModel() {
 
   return (
     <Stack className="rounded-[28px] bg-white">
-      <Image src={modalImage.src} alt="modalimage" width={410} height={208} />
+      <Image src={"/dialog/modal.png"} alt="modalimage" width={410} height={208} />
       <Stack className="h-[200px] items-center justify-between gap-4 p-8">
         {status === "idle" && (
           <>

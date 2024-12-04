@@ -8,10 +8,10 @@ import { useUserExchangesQuery } from "@/hooks/query/useApiConnection";
 import useSignin from "@/hooks/query/useSignin";
 import useModal from "@/hooks/useModal";
 
+import SigninDialog from "../dialog/SigninDialog";
 import GoogleSigninButton from "./GoogleSigninButton";
 import Agreement from "./dialog/Agreement";
 import ExchangeSelect from "./dialog/ExchangeSelect";
-import SigninDialog from "./dialog/SigninDialog";
 
 function Description() {
   const {
