@@ -36,16 +36,6 @@ type DashboardIdType =
 
 type SocialType = "linkedin" | "facebook" | "naver" | "kakao";
 
-// exchange
-type ExchangeType = "okx" | "upbit" | "binance" | "lbank";
-
-// apis
-interface ApiResponseType<T> {
-  data: T;
-  status: number;
-  msg: string;
-}
-
 // agreement
 type AgreementType = "over14" | "service" | "privacy" | "marketing";
 
