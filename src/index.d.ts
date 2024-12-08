@@ -36,9 +36,6 @@ type DashboardIdType =
 
 type SocialType = "linkedin" | "facebook" | "naver" | "kakao";
 
-// exchange
-type ExchangeType = "okx" | "upbit" | "binance" | "lbank";
-
 // agreement
 type AgreementType = "over14" | "service" | "privacy" | "marketing";
 
