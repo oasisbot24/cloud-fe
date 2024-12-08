@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
 
-import { IconButton } from "@mui/material";
+import { CircularProgress, IconButton } from "@mui/material";
 import { GridColDef, GridRenderCellParams, GridValidRowModel } from "@mui/x-data-grid";
+import { useIsMutating } from "@tanstack/react-query";
 
 import Icon from "@/components/Icon";
 import CustomSwitch from "@/components/common/CustomSwitch";
@@ -23,8 +24,12 @@ function IsRunningCell(params: GridRenderCellParams<GridValidRowModel, boolean>)
 
   const { stopBot, restartBot } = useBotCommand();
   const { botDetailQuery } = useBotDetailQuery(row.id);
+  const isStopBotMutating = useIsMutating({ mutationKey: ["stopBot"] });
+  const isRestartBotMutating = useIsMutating({ mutationKey: ["restartBot"] });
 
-  return (
+  return isStopBotMutating || isRestartBotMutating ? (
+    <CircularProgress color="inherit" size={16} />
+  ) : (
     <CustomSwitch
       checked={botDetailQuery.data?.isRunning}
       onClick={() => {

@@ -8,6 +8,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { useIsMutating } from "@tanstack/react-query";
 import { useAtom, useAtomValue } from "jotai";
 
 import Card from "@/cards/Card";
@@ -21,7 +22,7 @@ import FormTextField from "@/components/form/FormTextField";
 import exchangeAtom from "@/datas/exchange";
 import { selectedBotRowAtom } from "@/datas/oasisbotTransaction";
 import useBotCommand from "@/hooks/card/useBotCommand";
-import { useBotDetailQuery, useBotInfo } from "@/hooks/query/useOasisBot";
+import { useBot, useBotDetailQuery, useBotInfo } from "@/hooks/query/useOasisBot";
 import useModalGlobal from "@/hooks/useModalGlobal";
 
 function OasisBotSelectCard() {
@@ -34,11 +35,14 @@ function OasisBotSelectCard() {
   const selectedRow = useAtomValue(selectedBotRowAtom);
 
   const {
-    botDetailQuery: { data, isFetching },
+    botDetailQuery: { data },
   } = useBotDetailQuery(selectedRow[0]);
   const { stopBot, restartBot } = useBotCommand();
   const { openModal, closeModal } = useModalGlobal();
   const { balanceQuery } = useBotInfo();
+
+  const isStopBotMutating = useIsMutating({ mutationKey: ["stopBot"] });
+  const isRestartBotMutating = useIsMutating({ mutationKey: ["restartBot"] });
 
   const onRemove = () => {
     console.log("onRemove");
@@ -52,10 +56,6 @@ function OasisBotSelectCard() {
       setStandardMinute(data.standardMinute);
     }
   }, [data]);
-
-  useEffect(() => {
-    console.log("fetched: ", data);
-  }, [isFetching]);
 
   return (
     <Card>
@@ -157,6 +157,7 @@ function OasisBotSelectCard() {
                 onSuccess: () => console.log("stop"),
               })
             }
+            loading={!!isStopBotMutating}
           />
         ) : (
           <CardButton
@@ -168,6 +169,7 @@ function OasisBotSelectCard() {
                 onSuccess: () => console.log("restart"),
               })
             }
+            loading={!!isRestartBotMutating}
           />
         )}
       </CardFooter>
