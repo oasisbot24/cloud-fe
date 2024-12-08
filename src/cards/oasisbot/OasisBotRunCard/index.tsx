@@ -170,7 +170,6 @@ function OasisBotRunCard() {
           <FormSelect
             id="presets"
             label="설정 프리셋"
-            // placeholder="설정 프리셋을 선택"
             variant="standard"
             items={presetList}
             value={selectedPreset}
@@ -179,7 +178,6 @@ function OasisBotRunCard() {
           <FormSelect
             id="tradeItem"
             label="매매종목"
-            // placeholder="매매종목을 선택"
             variant="standard"
             items={coinList}
             value={selectedTradeItem}
@@ -188,7 +186,6 @@ function OasisBotRunCard() {
           <FormSelect
             id="tradeItem"
             label="기준 분봉"
-            // placeholder="분봉 선택"
             variant="standard"
             items={standardMinuteList}
             value={standardMinute}

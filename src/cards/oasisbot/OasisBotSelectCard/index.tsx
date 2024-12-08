@@ -22,7 +22,7 @@ import FormTextField from "@/components/form/FormTextField";
 import exchangeAtom from "@/datas/exchange";
 import { selectedBotRowAtom } from "@/datas/oasisbotTransaction";
 import useBotCommand from "@/hooks/card/useBotCommand";
-import { useBot, useBotDetailQuery, useBotInfo } from "@/hooks/query/useOasisBot";
+import { useBotDetailQuery, useBotInfo } from "@/hooks/query/useOasisBot";
 import useModalGlobal from "@/hooks/useModalGlobal";
 
 function OasisBotSelectCard() {
