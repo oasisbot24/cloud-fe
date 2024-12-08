@@ -1,3 +1,4 @@
+import { GridRowSelectionModel } from "@mui/x-data-grid";
 import { atom } from "jotai";
 
 import { BotType } from "@/hooks/query/useOasisBot";
@@ -33,10 +34,13 @@ const botAtom = atom<BotType>({
   isRunning: false,
   presetName: "",
   startBalance: 0,
+  standardMinute: 0,
   runningTime: 0,
   coinType: "",
 });
 
+const selectedBotRowAtom = atom<GridRowSelectionModel>([]);
+
 export type { BotTransaction, BotTransactionProfit, BotTransactionQuantity, BotTransactionPrice };
 
-export { botAtom };
+export { botAtom, selectedBotRowAtom };

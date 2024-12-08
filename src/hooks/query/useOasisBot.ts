@@ -1,3 +1,4 @@
+import { GridRowId } from "@mui/x-data-grid";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAtom, useAtomValue } from "jotai";
 
@@ -30,7 +31,7 @@ export function useBot() {
     mutationFn: async (id: number) => api.post<ApiResponseType<void>>(`/stop_bot/${id}`),
     mutationKey: ["stopBot"],
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["getBot"] });
+      queryClient.invalidateQueries({ queryKey: ["getBotDetail"] });
     },
   });
 
@@ -38,7 +39,7 @@ export function useBot() {
     mutationFn: async (id: number) => api.post<ApiResponseType<void>>(`/restart_bot/${id}`),
     mutationKey: ["restartBot"],
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["getBot"] });
+      queryClient.invalidateQueries({ queryKey: ["getBotDetail"] });
     },
   });
 
@@ -54,12 +55,13 @@ export interface BotType {
   isRunning: boolean;
   presetName: string;
   startBalance: number;
+  standardMinute: number;
   runningTime: number;
   coinType: string;
 }
 export function useBotQuery() {
   const [exchange] = useAtom(exchangeAtom);
-  const botQuery = useQuery({
+  const botListQuery = useQuery({
     queryKey: ["getBot", exchange || "all"],
     queryFn: async () => {
       const res = await api.get<ApiResponseType<BotType[]>>(`/bot?exchange=${exchange || "all"}`);
@@ -69,8 +71,24 @@ export function useBotQuery() {
   });
 
   return {
-    botQuery,
+    botListQuery,
   };
+}
+
+export function useBotDetailQuery(botId?: GridRowId) {
+  const [exchange] = useAtom(exchangeAtom);
+  const botDetailQuery = useQuery({
+    queryKey: ["getBotDetail", exchange || "all"],
+    queryFn: async () => {
+      const res = await api.get<ApiResponseType<BotType[]>>(`/bot?exchange=${exchange || "all"}`);
+      return res.data?.data;
+    },
+    select: data => data.find(item => item.id === botId),
+    refetchOnMount: false,
+    initialData: undefined,
+  });
+
+  return { botDetailQuery };
 }
 
 export interface AvailableBalanceType {
