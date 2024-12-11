@@ -1,12 +1,12 @@
 import { Box, Stack, TableCell, Typography } from "@mui/material";
 import { useAtom } from "jotai";
 
+import MySubscribeDialog from "@/components/dialog/MySubscribeDialog";
+import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import { productKeyAtom, productMonthAtom } from "@/datas/subscribe";
 import { useProductQuery } from "@/hooks/query/useSubcribe";
-import useModalGlobal from "@/hooks/useModalGlobal";
 import { numberToCurrency } from "@/libs/string";
 
-import SubscribeModal from "./SubscribeModal";
 import { subscribeData, tableData } from "./SubscribeTableData";
 import { TableRowType } from "./SubscribeTableRow";
 
@@ -18,14 +18,14 @@ interface CustomTableCellProps {
 
 function CustomTableCell({ productKey, tableRowType, children }: CustomTableCellProps) {
   const [, setKey] = useAtom(productKeyAtom);
-  const { openModal } = useModalGlobal();
+  const { openDialog } = useDialogGlobal();
   return (
     <TableCell
       width={220}
       className="cursor-pointer items-center text-center"
       onMouseEnter={() => setKey(productKey)}
       onMouseLeave={() => setKey(null)}
-      onClick={() => openModal(<SubscribeModal productKey={productKey} />)}
+      onClick={() => openDialog(<MySubscribeDialog />)}
     >
       {tableRowType ? (
         <Stack className="gap-1">

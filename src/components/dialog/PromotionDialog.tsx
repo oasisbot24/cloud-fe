@@ -2,15 +2,13 @@ import Image from "next/image";
 
 import { ButtonBase, Stack, Typography } from "@mui/material";
 
-import useModalGlobal from "@/hooks/useModalGlobal";
+import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 
-import modalImage from "./modal.png";
-
-export default function PromotionModal() {
-  const { closeModal } = useModalGlobal();
+export default function PromotionDialog() {
+  const { closeDialog } = useDialogGlobal();
   return (
     <Stack className="rounded-[28px] bg-white">
-      <Image src={modalImage.src} alt="modalimage" width={410} height={208} />
+      <Image src="/dialog/Dialog.png" alt="Dialogimage" width={410} height={208} />
       <Stack className="h-[200px] items-center justify-between gap-4 p-8">
         <Typography variant="400B" className="text-font-2">
           프로모션 코드
@@ -21,7 +19,7 @@ export default function PromotionModal() {
           </Typography>
         </Stack>
         <Stack direction="row" className="mt-4 w-full gap-4">
-          <ButtonBase className="w-full rounded-full bg-brand py-3" onClick={closeModal}>
+          <ButtonBase className="w-full rounded-full bg-brand py-3" onClick={closeDialog}>
             <Typography variant="300B" className="text-white">
               확인
             </Typography>

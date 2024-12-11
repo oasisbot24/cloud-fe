@@ -1,6 +1,6 @@
 import React from "react";
 
-import InfoDialog from "@/components/common/InfoDialog";
+import InfoDialog from "@/components/dialog/InfoDialog";
 
 function DuplicateWarningDialog({ handleClose }: { handleClose: () => void }) {
   return (
