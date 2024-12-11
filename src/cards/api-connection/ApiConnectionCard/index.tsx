@@ -16,6 +16,7 @@ export default function ApiConnectionCard({ processing, error, success }: Props)
   const {
     userExchangeQuery: { data: userExchanges },
   } = useUserExchangesQuery();
+
   return (
     <Card>
       <Stack className="h-full w-full items-center justify-between gap-8 px-4 py-4 md:px-8 md:py-8 xl:px-16">

@@ -1,15 +1,15 @@
 import React from "react";
 
-import InfoDialog from "@/components/common/InfoDialog";
+import InfoDialog from "@/components/dialog/InfoDialog";
+import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import { useBot } from "@/hooks/query/useOasisBot";
-import useModalGlobal from "@/hooks/useModalGlobal";
 
 function useBotCommand() {
   const { stopBotMutation, restartBotMutation } = useBot();
-  const { openModal, closeModal } = useModalGlobal();
+  const { openDialog, closeDialog } = useDialogGlobal();
 
   const stopBot = ({ selected, onSuccess }: { selected: number; onSuccess?: () => void }) => {
-    openModal(
+    openDialog(
       <InfoDialog
         title="봇 중지"
         description={[
@@ -18,25 +18,25 @@ function useBotCommand() {
         confirmFunc={() => {
           stopBotMutation.mutate(Number(selected));
           !!onSuccess && onSuccess();
-          closeModal();
+          closeDialog();
         }}
-        cancelFunc={closeModal}
+        cancelFunc={closeDialog}
         cancellable
       />,
     );
   };
 
   const restartBot = ({ selected, onSuccess }: { selected: number; onSuccess?: () => void }) => {
-    openModal(
+    openDialog(
       <InfoDialog
         title="봇 재실행"
         description={["봇을 재실행하시겠습니까?"]}
         confirmFunc={() => {
           restartBotMutation.mutate(Number(selected));
           !!onSuccess && onSuccess();
-          closeModal();
+          closeDialog();
         }}
-        cancelFunc={closeModal}
+        cancelFunc={closeDialog}
         cancellable
       />,
     );

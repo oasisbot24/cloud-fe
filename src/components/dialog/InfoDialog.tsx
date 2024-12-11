@@ -35,7 +35,7 @@ function InfoDialog({
       >
         <Stack className="items-center justify-center rounded-t-xl bg-brand">
           <Image
-            src={imgSrc ?? "/modal_check.png"}
+            src={imgSrc ?? "/dialog/dialog_check.png"}
             width={250}
             height={200}
             alt="lev"

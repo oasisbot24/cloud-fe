@@ -15,15 +15,15 @@ import Card from "@/cards/Card";
 import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
-import LeverageNoticeDialog from "@/cards/oasisbot/OasisBotRunCard/LeverageNoticeDialog";
 import Icon from "@/components/Icon";
 import ExchangeChip from "@/components/chip/ExchangeChip";
+import LeverageNoticeDialog from "@/components/dialog/LeverageNoticeDialog";
+import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import FormTextField from "@/components/form/FormTextField";
 import exchangeAtom from "@/datas/exchange";
 import { selectedBotRowAtom } from "@/datas/oasisbotTransaction";
 import useBotCommand from "@/hooks/card/useBotCommand";
 import { useBotDetailQuery, useBotInfo } from "@/hooks/query/useOasisBot";
-import useModalGlobal from "@/hooks/useModalGlobal";
 
 function OasisBotSelectCard() {
   const [startBalance, setStartBalance] = useState<number>(5000);
@@ -38,7 +38,7 @@ function OasisBotSelectCard() {
     botDetailQuery: { data },
   } = useBotDetailQuery(selectedRow[0]);
   const { stopBot, restartBot } = useBotCommand();
-  const { openModal, closeModal } = useModalGlobal();
+  const { openDialog, closeDialog } = useDialogGlobal();
   const { balanceQuery } = useBotInfo();
 
   const isStopBotMutating = useIsMutating({ mutationKey: ["stopBot"] });
@@ -121,7 +121,7 @@ function OasisBotSelectCard() {
                 <Typography
                   variant="100R"
                   className="text-neutral-600 underline hover:cursor-pointer"
-                  onClick={() => openModal(<LeverageNoticeDialog handleClose={closeModal} />)}
+                  onClick={() => openDialog(<LeverageNoticeDialog handleClose={closeDialog} />)}
                 >
                   현재 설정 레버리지
                 </Typography>
