@@ -46,7 +46,7 @@ export default function SubscribeDialog({ type }: SubscribeDialogProps) {
 
   return (
     <Stack className="rounded-[28px] bg-white">
-      <Image src={"/dialog/Dialog.png"} alt="Dialogimage" width={410} height={208} />
+      <Image src="/dialog/Dialog.png" alt="Dialogimage" width={410} height={208} />
       <Stack className="items-center gap-4 p-8">
         <Typography variant="400B">서비스 멤버십 확정</Typography>
         <SubscribeTitleMonthButton />

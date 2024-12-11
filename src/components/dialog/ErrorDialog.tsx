@@ -13,7 +13,7 @@ export default function ErrorDialog({ title, content }: ErrorDialogProps) {
   const { closeDialog } = useDialogGlobal();
   return (
     <Stack className="rounded-[28px] bg-white">
-      <Image src={"/dialog/Dialog.png"} alt="Dialogimage" width={410} height={208} />
+      <Image src="/dialog/Dialog.png" alt="Dialogimage" width={410} height={208} />
       <Stack className="items-center gap-4 p-8">
         <Typography variant="400B">{title}</Typography>
         <Stack className="w-full">

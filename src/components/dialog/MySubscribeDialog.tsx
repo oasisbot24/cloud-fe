@@ -35,7 +35,7 @@ export default function MySubscribeDialog() {
 
   return (
     <Stack className="rounded-[28px] bg-white">
-      <Image src={"/dialog/Dialog.png"} alt="Dialogimage" width={410} height={208} />
+      <Image src="/dialog/Dialog.png" alt="Dialogimage" width={410} height={208} />
       <Stack className="h-[200px] items-center justify-between gap-4 p-8">
         {status === "idle" && (
           <>
