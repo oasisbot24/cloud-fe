@@ -9,7 +9,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useAtom } from "jotai";
 import { SnackbarProvider } from "notistack";
 
-import useModalGlobal from "@/components/dialog/useModalGlobal";
+import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import authAtom from "@/datas/auth";
 import exchangeAtom from "@/datas/exchange";
 import "@/styles/custom.css";
@@ -22,7 +22,7 @@ import theme from "@/styles/theme";
 const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }: AppProps) {
-  const { modal, closeModal } = useModalGlobal();
+  const { Dialog, closeDialog } = useDialogGlobal();
   const [, setAuth] = useAtom(authAtom);
   const [, setExchange] = useAtom(exchangeAtom);
 
@@ -45,11 +45,11 @@ export default function App({ Component, pageProps }: AppProps) {
       <CssBaseline />
       <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_OAUTH_CLIENT_ID ?? ""}>
         <ThemeProvider theme={theme}>
-          {modal && (
+          {Dialog && (
             <Box
               className="fixed left-0 top-0 z-[99] flex h-screen w-screen items-center justify-center bg-[#00000033]"
               onClick={() => {
-                closeModal();
+                closeDialog();
               }}
             >
               <Box
@@ -57,7 +57,7 @@ export default function App({ Component, pageProps }: AppProps) {
                   e.stopPropagation();
                 }}
               >
-                {modal}
+                {Dialog}
               </Box>
             </Box>
           )}

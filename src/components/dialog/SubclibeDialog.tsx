@@ -5,23 +5,21 @@ import { ButtonBase, Stack, Typography } from "@mui/material";
 import { AxiosError } from "axios";
 import { useAtom } from "jotai";
 
-import useModalGlobal from "@/components/dialog/useModalGlobal";
+import { subscribeData } from "@/cards/subscribe/SubscribeCard/SubscribeTableData";
+import SubscribeTitleMonthButton from "@/cards/subscribe/SubscribeTitleCard/SubscribeTitleMonthButton";
+import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import { subscribeMonthAtom } from "@/datas/subscribe";
 import { useProductQuery, useSubscribeMutation } from "@/hooks/query/useSubcribe";
 import { numberToCurrency } from "@/libs/string";
 
-import SubscribeTitleMonthButton from "../../SubscribeTitleCard/SubscribeTitleMonthButton";
-import { subscribeData } from "../SubscribeTableData";
-import modalImage from "./modal.png";
-
-interface SubscribeModalProps {
+interface SubscribeDialogProps {
   type: SubscribeType;
 }
 
-export default function SubscribeModal({ type }: SubscribeModalProps) {
+export default function SubscribeDialog({ type }: SubscribeDialogProps) {
   const { push } = useRouter();
   const [month] = useAtom(subscribeMonthAtom);
-  const { closeModal } = useModalGlobal();
+  const { closeDialog } = useDialogGlobal();
   const {
     productQuery: { data: productData },
   } = useProductQuery();
@@ -33,14 +31,14 @@ export default function SubscribeModal({ type }: SubscribeModalProps) {
       {
         onSuccess: () => {
           push("/mypage");
-          closeModal();
+          closeDialog();
         },
         onError: err => {
           const axiosError = err as AxiosError;
           if (axiosError.response?.status === 404) {
             push("/payment");
           }
-          closeModal();
+          closeDialog();
         },
       },
     );
@@ -48,7 +46,7 @@ export default function SubscribeModal({ type }: SubscribeModalProps) {
 
   return (
     <Stack className="rounded-[28px] bg-white">
-      <Image src={modalImage.src} alt="modalimage" width={410} height={208} />
+      <Image src={"/dialog/Dialog.png"} alt="Dialogimage" width={410} height={208} />
       <Stack className="items-center gap-4 p-8">
         <Typography variant="400B">서비스 멤버십 확정</Typography>
         <SubscribeTitleMonthButton />
@@ -70,7 +68,7 @@ export default function SubscribeModal({ type }: SubscribeModalProps) {
         <Stack direction="row" className="w-full gap-4">
           <ButtonBase
             className="w-full rounded-full border border-solid border-neutral-500 bg-white py-3"
-            onClick={closeModal}
+            onClick={closeDialog}
           >
             <Typography variant="300B" className="text-neutral-500">
               취소

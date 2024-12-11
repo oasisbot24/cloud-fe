@@ -2,10 +2,10 @@ import { useRouter } from "next/router";
 
 import { ButtonBase, Stack, Typography } from "@mui/material";
 
-import useModalGlobal from "@/components/dialog/useModalGlobal";
+import MySubscribeDialog from "@/components/dialog/MySubscribeDialog";
+import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import { useSubscribeQuery } from "@/hooks/query/useSubcribe";
 
-import SubscribeModel from "../../../components/dialog/SubscribeDialog";
 import MypageInfo from "./MypageInfo";
 
 export default function MypageSubscribe() {
@@ -13,7 +13,7 @@ export default function MypageSubscribe() {
   const {
     subscribeQuery: { data: subscribeData },
   } = useSubscribeQuery();
-  const { openModal } = useModalGlobal();
+  const { openDialog } = useDialogGlobal();
   return (
     <Stack className="w-full gap-4">
       <MypageInfo
@@ -34,7 +34,7 @@ export default function MypageSubscribe() {
           </Typography>
           <ButtonBase
             onClick={() => {
-              openModal(<SubscribeModel />);
+              openDialog(<MySubscribeDialog />);
             }}
           >
             <Typography variant="200M" className="text-neutral-600 underline">

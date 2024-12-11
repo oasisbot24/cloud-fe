@@ -5,7 +5,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useAtom } from "jotai";
 
 import Card from "@/cards/Card";
-import useModalGlobal from "@/components/dialog/useModalGlobal";
+import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import authAtom from "@/datas/auth";
 import { usePaymentMethodQuery } from "@/hooks/query/usePayment";
 
@@ -16,7 +16,7 @@ import MypageSubscribe from "./MypageSubscribe";
 
 export default function MypageCard() {
   const [auth] = useAtom(authAtom);
-  const { openModal } = useModalGlobal();
+  const { openDialog } = useDialogGlobal();
 
   const queryClient = useQueryClient();
   const {
@@ -56,7 +56,7 @@ export default function MypageCard() {
         <MypageInfo
           title="프로모션 코드"
           buttonText="적용하기"
-          onClick={() => openModal(<PromotionDialog />)}
+          onClick={() => openDialog(<PromotionDialog />)}
         >
           <InputBase
             className="h-full w-full"

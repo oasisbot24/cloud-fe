@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ButtonBase, Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
 
-import useModalGlobal from "@/components/dialog/useModalGlobal";
+import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import { presetAtom, presetWeightAtom } from "@/datas/preset";
 import { usePresetMutation } from "@/hooks/query/usePreset";
 import { presetWeightToPresetData } from "@/libs/preset";
@@ -16,7 +16,7 @@ export default function SaveDialog() {
 
   const [preset] = useAtom(presetAtom);
   const [presetWeight] = useAtom(presetWeightAtom);
-  const { closeModal } = useModalGlobal();
+  const { closeDialog } = useDialogGlobal();
 
   const handleClick = () => {
     if (!preset) return;
@@ -28,7 +28,7 @@ export default function SaveDialog() {
         },
         {
           onSuccess: () => {
-            closeModal();
+            closeDialog();
           },
         },
       );
@@ -43,7 +43,7 @@ export default function SaveDialog() {
         },
         {
           onSuccess: () => {
-            closeModal();
+            closeDialog();
           },
         },
       );
@@ -52,7 +52,7 @@ export default function SaveDialog() {
 
   return (
     <Stack className="rounded-[28px] bg-white">
-      <Image src={"/dialog/modal.png"} alt="modalimage" width={410} height={208} />
+      <Image src={"/dialog/Dialog.png"} alt="Dialogimage" width={410} height={208} />
       <Stack className="items-center gap-4 p-8">
         <Typography variant="400B">프리셋 저장</Typography>
         <Stack className="w-full">
@@ -63,7 +63,7 @@ export default function SaveDialog() {
         <Stack direction="row" className="mt-4 w-full gap-4">
           <ButtonBase
             className="w-full rounded-full border border-solid border-neutral-500 bg-white py-3"
-            onClick={closeModal}
+            onClick={closeDialog}
           >
             <Typography variant="300B" className="text-neutral-500">
               취소

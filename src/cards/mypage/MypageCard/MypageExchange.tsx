@@ -3,7 +3,7 @@ import { useAtom } from "jotai";
 
 import ExchangeIcon from "@/components/Icon/ExchangeIcon";
 import SigninDialog from "@/components/dialog/SigninDialog";
-import useModalGlobal from "@/components/dialog/useModalGlobal";
+import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import ExchangeSelect from "@/components/signin/dialog/ExchangeSelect";
 import exchangeAtom from "@/datas/exchange";
 import { exchangeToKorean } from "@/libs/string";
@@ -12,19 +12,19 @@ import MypageInfo from "./MypageInfo";
 
 export default function MypageExchange() {
   const [exchange, setExchange] = useAtom(exchangeAtom);
-  const { openModal, closeModal } = useModalGlobal();
+  const { openDialog, closeDialog } = useDialogGlobal();
   return (
     <MypageInfo
       title="거래소"
       buttonText="거래소 변경"
       onClick={() => {
-        openModal(
-          <SigninDialog onClose={closeModal}>
+        openDialog(
+          <SigninDialog onClose={closeDialog}>
             <ExchangeSelect
               onClick={(type: ExchangeType) => {
                 localStorage.setItem("exchange", type);
                 setExchange(type);
-                closeModal();
+                closeDialog();
               }}
             />
           </SigninDialog>,
