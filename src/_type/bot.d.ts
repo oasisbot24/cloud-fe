@@ -11,6 +11,7 @@ declare namespace Bot {
     isRunning: boolean;
     presetName: string;
     startBalance: number;
+    standardMinute: number;
     runningTime: number;
     coinType: string;
   }

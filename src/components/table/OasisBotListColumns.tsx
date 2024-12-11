@@ -1,15 +1,14 @@
-import { useState } from "react";
-
 import { useRouter } from "next/router";
 
-import { IconButton } from "@mui/material";
+import { CircularProgress, IconButton } from "@mui/material";
 import { GridColDef, GridRenderCellParams, GridValidRowModel } from "@mui/x-data-grid";
+import { useIsMutating } from "@tanstack/react-query";
 
 import Icon from "@/components/Icon";
 import CustomSwitch from "@/components/common/CustomSwitch";
 import TimeConvert from "@/components/table/timeConvert";
 import useBotCommand from "@/hooks/card/useBotCommand";
-import { BotType } from "@/hooks/query/useOasisBot";
+import { BotType, useBotDetailQuery } from "@/hooks/query/useOasisBot";
 
 function IconButtonFun() {
   const { push } = useRouter();
@@ -21,23 +20,22 @@ function IconButtonFun() {
 }
 
 function IsRunningCell(params: GridRenderCellParams<GridValidRowModel, boolean>) {
-  const { value, row } = params;
-  const { stopBot, restartBot } = useBotCommand();
-  const [isStart, setIsStart] = useState(value);
+  const { row } = params;
 
-  return (
+  const { stopBot, restartBot } = useBotCommand();
+  const { botDetailQuery } = useBotDetailQuery(row.id);
+  const isStopBotMutating = useIsMutating({ mutationKey: ["stopBot"] });
+  const isRestartBotMutating = useIsMutating({ mutationKey: ["restartBot"] });
+
+  return isStopBotMutating || isRestartBotMutating ? (
+    <CircularProgress color="inherit" size={16} />
+  ) : (
     <CustomSwitch
-      checked={isStart}
+      checked={botDetailQuery.data?.isRunning}
       onClick={() => {
-        row.isRunning
-          ? stopBot({
-              selected: row.id,
-              onSuccess: () => setIsStart(false),
-            })
-          : restartBot({
-              selected: row.id,
-              onSuccess: () => setIsStart(true),
-            });
+        botDetailQuery.data?.isRunning
+          ? stopBot({ selected: row.id })
+          : restartBot({ selected: row.id });
       }}
     />
   );

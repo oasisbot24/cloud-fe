@@ -63,11 +63,11 @@ function OasisBotRunCard() {
   ];
 
   const runOasisBot = () => {
-    if (Number(startBalance) < 5000) {
+    if (exchange === "upbit" ? Number(startBalance) < 5000 : Number(startBalance) < 100) {
       openModal(
         <InfoDialog
           title="거래금액"
-          description={[`거래금액은 ${exchange === "upbit" ? "￦5,000" : "$5"} 부터 가능합니다.`]}
+          description={[`거래금액은 ${exchange === "upbit" ? "￦5,000" : "$100"} 부터 가능합니다.`]}
           confirmFunc={closeModal}
         />,
       );
@@ -170,7 +170,6 @@ function OasisBotRunCard() {
           <FormSelect
             id="presets"
             label="설정 프리셋"
-            placeholder="설정 프리셋을 선택"
             variant="standard"
             items={presetList}
             value={selectedPreset}
@@ -179,7 +178,6 @@ function OasisBotRunCard() {
           <FormSelect
             id="tradeItem"
             label="매매종목"
-            placeholder="매매종목을 선택"
             variant="standard"
             items={coinList}
             value={selectedTradeItem}
@@ -188,7 +186,6 @@ function OasisBotRunCard() {
           <FormSelect
             id="tradeItem"
             label="기준 분봉"
-            placeholder="분봉 선택"
             variant="standard"
             items={standardMinuteList}
             value={standardMinute}

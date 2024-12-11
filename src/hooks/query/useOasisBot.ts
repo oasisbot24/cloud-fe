@@ -1,3 +1,4 @@
+import { GridRowId } from "@mui/x-data-grid";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAtom, useAtomValue } from "jotai";
 
@@ -23,7 +24,7 @@ export function useBot() {
     mutationFn: async (id: number) => api.post<ResponseT<void>>(`/stop_bot/${id}`),
     mutationKey: ["stopBot"],
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["getBot"] });
+      queryClient.invalidateQueries({ queryKey: ["getBotDetail"] });
     },
   });
 
@@ -31,7 +32,7 @@ export function useBot() {
     mutationFn: async (id: number) => api.post<ResponseT<void>>(`/restart_bot/${id}`),
     mutationKey: ["restartBot"],
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["getBot"] });
+      queryClient.invalidateQueries({ queryKey: ["getBotDetail"] });
     },
   });
 
@@ -44,7 +45,7 @@ export function useBot() {
 
 export function useBotQuery() {
   const [exchange] = useAtom(exchangeAtom);
-  const botQuery = useQuery({
+  const botListQuery = useQuery({
     queryKey: ["getBot", exchange || "all"],
     queryFn: async () => {
       const res = await api.get<ResponseT<Bot.InfoT[]>>("/bot", {
@@ -56,8 +57,26 @@ export function useBotQuery() {
   });
 
   return {
-    botQuery,
+    botListQuery,
   };
+}
+
+export function useBotDetailQuery(botId?: GridRowId) {
+  const [exchange] = useAtom(exchangeAtom);
+  const botDetailQuery = useQuery({
+    queryKey: ["getBotDetail", exchange || "all"],
+    queryFn: async () => {
+      const res = await api.get<ResponseT<Bot.InfoT[]>>("/bot", {
+        params: { exchange: exchange || "all" },
+      });
+      return res.data?.data;
+    },
+    select: data => data.find(item => item.id === botId),
+    refetchOnMount: false,
+    initialData: undefined,
+  });
+
+  return { botDetailQuery };
 }
 
 async function getTransaction(exchange: string): Promise<Bot.TransactionT[]> {
