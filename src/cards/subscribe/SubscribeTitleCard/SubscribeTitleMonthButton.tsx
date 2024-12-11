@@ -1,14 +1,14 @@
 import { ButtonBase, Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
 
-import { subscribeMonthAtom } from "@/datas/subscribe";
+import { productMonthAtom } from "@/datas/subscribe";
 
 const buttonStyle = {
   focused: "bg-brand",
   unfocused: "bg-white",
 };
 export default function SubscribeTitleMonthButton() {
-  const [month, setMonth] = useAtom(subscribeMonthAtom);
+  const [month, setMonth] = useAtom(productMonthAtom);
   return (
     <Stack
       direction="row"

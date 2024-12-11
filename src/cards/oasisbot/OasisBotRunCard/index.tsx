@@ -36,8 +36,9 @@ function OasisBotRunCard() {
   const { openModal, closeModal } = useModalGlobal();
   const { presetQuery } = usePresetQuery();
   const { coinQuery, balanceQuery } = useBotInfo();
-  const { startBotMutation } = useBot();
-  const { mutate } = startBotMutation;
+  const {
+    startBotMutation: { mutate },
+  } = useBot();
 
   const onReset = () => {
     setStartBalance(5000);
@@ -135,7 +136,7 @@ function OasisBotRunCard() {
         title="봇 실행"
         description={["해당 봇을 실행할까요?"]}
         confirmFunc={() => {
-          mutate(body);
+          mutate({ body });
           closeModal();
         }}
         cancelFunc={closeModal}

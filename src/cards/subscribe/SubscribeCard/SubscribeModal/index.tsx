@@ -5,7 +5,7 @@ import { ButtonBase, Stack, Typography } from "@mui/material";
 import { AxiosError } from "axios";
 import { useAtom } from "jotai";
 
-import { subscribeMonthAtom } from "@/datas/subscribe";
+import { productMonthAtom } from "@/datas/subscribe";
 import { useProductQuery, useSubscribeMutation } from "@/hooks/query/useSubcribe";
 import useModalGlobal from "@/hooks/useModalGlobal";
 import { numberToCurrency } from "@/libs/string";
@@ -15,12 +15,12 @@ import { subscribeData } from "../SubscribeTableData";
 import modalImage from "./modal.png";
 
 interface SubscribeModalProps {
-  type: SubscribeType;
+  productKey: Subscribe.ProductKey;
 }
 
-export default function SubscribeModal({ type }: SubscribeModalProps) {
+export default function SubscribeModal({ productKey }: SubscribeModalProps) {
   const { push } = useRouter();
-  const [month] = useAtom(subscribeMonthAtom);
+  const [month] = useAtom(productMonthAtom);
   const { closeModal } = useModalGlobal();
   const {
     productQuery: { data: productData },
@@ -29,7 +29,7 @@ export default function SubscribeModal({ type }: SubscribeModalProps) {
 
   const handleClick = () => {
     postSubscribeMutation.mutate(
-      { productId: subscribeData[type].month[month].productId },
+      { body: { productId: subscribeData[productKey].month[month].productId } },
       {
         onSuccess: () => {
           push("/mypage");
@@ -58,9 +58,9 @@ export default function SubscribeModal({ type }: SubscribeModalProps) {
               구독 멤버십:
             </Typography>
             <Typography variant="300B" className="text-font-1">
-              {`${subscribeData[type].title}: ${numberToCurrency(
+              {`${subscribeData[productKey].title}: ${numberToCurrency(
                 productData?.find(
-                  product => product.productId === subscribeData[type].month[month].productId,
+                  product => product.productId === subscribeData[productKey].month[month].productId,
                 )?.productPrice ?? 0,
                 "₩",
               )}`}

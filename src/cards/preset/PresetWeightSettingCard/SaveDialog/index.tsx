@@ -25,8 +25,10 @@ export default function SaveDialog() {
     if (preset?.id === 0) {
       postPreset(
         {
-          ...preset,
-          presetData: presetWeightToPresetData(presetWeight),
+          body: {
+            ...preset,
+            presetData: presetWeightToPresetData(presetWeight),
+          },
         },
         {
           onSuccess: () => {

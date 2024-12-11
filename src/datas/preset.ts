@@ -1,8 +1,6 @@
 import { atomWithReset } from "jotai/utils";
 
-import { PresetType } from "@/hooks/query/usePreset";
-
-const presetAtom = atomWithReset<PresetType | null>(null);
+const presetAtom = atomWithReset<Preset.PresetT | null>(null);
 presetAtom.debugLabel = "presetAtom";
 
 const presetInit = {

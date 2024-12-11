@@ -6,5 +6,5 @@ interface ResponseT<Data> {
 
 interface RequestT<Body, Params = undefined> {
   body: Body;
-  params: Params;
+  params?: Params;
 }

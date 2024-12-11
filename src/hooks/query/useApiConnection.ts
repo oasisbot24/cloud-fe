@@ -22,7 +22,7 @@ export function useSmartAccessMutation() {
     mutationFn: async ({
       body,
       params,
-    }: RequestT<ExchangeConnection.PostOkxOauthTokenBody, ExchangeParams>) => {
+    }: RequestT<ExchangeConnection.PostSmartAccessResultBody, ExchangeParams>) => {
       await api.post<ResponseT<void>>(`/smart-access/result`, body, {
         params,
       });

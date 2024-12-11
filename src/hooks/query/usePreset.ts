@@ -23,7 +23,7 @@ export function useIndicatorQuery() {
   const indicatorQuery = useQuery({
     queryKey: ["getIndicator"],
     queryFn: async () => {
-      const res = await api.get<ResponseT<Preset.IndicatorT>>("/indicator", {
+      const res = await api.get<ResponseT<Preset.IndicatorT[]>>("/indicator", {
         params: { exchange },
       });
       return res.data?.data;

@@ -38,7 +38,16 @@ const tableData: TableType = {
   },
 };
 
-const subscribeData = {
+const subscribeData: {
+  [key in Subscribe.ProductKey]: {
+    title: string;
+    month: {
+      [monthKey in Subscribe.ProductMonth]: {
+        productId: number;
+      };
+    };
+  };
+} = {
   free: {
     title: "Free",
     month: {

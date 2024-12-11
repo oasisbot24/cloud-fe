@@ -2,13 +2,12 @@ import { Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
 
 import authAtom from "@/datas/auth";
-import { TradeStyleType } from "@/hooks/query/useInfo";
 import { numberSlice } from "@/libs/string";
 
 import DisplayPL from "./DisplayPL";
 
 interface AssetStatusInfoProps {
-  tradeStyleData?: TradeStyleType;
+  tradeStyleData?: Account.TradeStyleT;
 }
 export default function AssetStatusInfo({ tradeStyleData }: AssetStatusInfoProps) {
   const [user] = useAtom(authAtom);

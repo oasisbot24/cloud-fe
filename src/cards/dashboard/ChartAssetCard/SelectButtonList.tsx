@@ -1,13 +1,11 @@
 import { Stack } from "@mui/material";
 
-import { CoinRatio } from "@/hooks/query/useChart";
-
 import SelectButton from "./SelectButton";
 
 const colorList = ["#223CE9", "#FEBD38", "#2BB7F5", "#BEBEC3"];
 
 interface SelectButtonListProps {
-  coinRatioList?: CoinRatio[];
+  coinRatioList?: Account.HoldingCoinRatioT[];
   focus: string;
   setFocus: (focus: string) => void;
 }

@@ -5,7 +5,6 @@ import { useAtom } from "jotai";
 
 import Icon from "@/components/Icon";
 import exchangeAtom from "@/datas/exchange";
-import { ChartType } from "@/hooks/query/useChart";
 
 import CustomMenu from "./CustomMenu";
 import PanelDescription from "./PanelDescription";
@@ -13,7 +12,7 @@ import PanelDescription from "./PanelDescription";
 interface Props {
   setMenuId: React.Dispatch<React.SetStateAction<number>>;
   menuId: number;
-  chart: ChartType[];
+  chart: Account.BotResultChartT[];
 }
 export default function Panel({ setMenuId, menuId, chart }: Props) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
