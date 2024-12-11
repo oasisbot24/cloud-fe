@@ -14,16 +14,16 @@ import Card from "@/cards/Card";
 import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
-import LeverageNoticeDialog from "@/cards/oasisbot/OasisBotRunCard/LeverageNoticeDialog";
 import Icon from "@/components/Icon";
 import ExchangeChip from "@/components/chip/ExchangeChip";
-import InfoDialog from "@/components/common/InfoDialog";
+import InfoDialog from "@/components/dialog/InfoDialog";
+import LeverageNoticeDialog from "@/components/dialog/LeverageNoticeDialog";
+import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import FormSelect from "@/components/form/FormSelect";
 import FormTextField from "@/components/form/FormTextField";
 import exchangeAtom from "@/datas/exchange";
 import { useBot, useBotInfo } from "@/hooks/query/useOasisBot";
 import { usePresetQuery } from "@/hooks/query/usePreset";
-import useModalGlobal from "@/hooks/useModalGlobal";
 
 function OasisBotRunCard() {
   const [startBalance, setStartBalance] = useState<number>(5000);
@@ -33,7 +33,7 @@ function OasisBotRunCard() {
 
   const [exchange] = useAtom(exchangeAtom);
 
-  const { openModal, closeModal } = useModalGlobal();
+  const { openDialog, closeDialog } = useDialogGlobal();
   const { presetQuery } = usePresetQuery();
   const { coinQuery, balanceQuery } = useBotInfo();
   const { startBotMutation } = useBot();
@@ -64,11 +64,11 @@ function OasisBotRunCard() {
 
   const runOasisBot = () => {
     if (exchange === "upbit" ? Number(startBalance) < 5000 : Number(startBalance) < 100) {
-      openModal(
+      openDialog(
         <InfoDialog
           title="거래금액"
           description={[`거래금액은 ${exchange === "upbit" ? "￦5,000" : "$100"} 부터 가능합니다.`]}
-          confirmFunc={closeModal}
+          confirmFunc={closeDialog}
         />,
       );
       return;
@@ -78,44 +78,44 @@ function OasisBotRunCard() {
         balanceQuery.data.availableBalance < Number(startBalance)) ||
       !Number(startBalance)
     ) {
-      openModal(
+      openDialog(
         <InfoDialog
           title="거래금액"
           description={["거래금액은 잔고 이내의 금액을 기입해주세요."]}
-          confirmFunc={closeModal}
+          confirmFunc={closeDialog}
         />,
       );
       return;
     }
 
     if (!selectedPreset) {
-      openModal(
+      openDialog(
         <InfoDialog
           title="설정 프리셋"
           description={["프리셋을 설정하고 실행해주세요."]}
-          confirmFunc={closeModal}
+          confirmFunc={closeDialog}
         />,
       );
       return;
     }
 
     if (!selectedTradeItem) {
-      openModal(
+      openDialog(
         <InfoDialog
           title="매매종목 설정"
           description={["매매종목을 설정하고 실행해주세요."]}
-          confirmFunc={closeModal}
+          confirmFunc={closeDialog}
         />,
       );
       return;
     }
 
     if (!Number(standardMinute)) {
-      openModal(
+      openDialog(
         <InfoDialog
           title="기준 분봉 설정"
           description={["기준분봉을 설정하고 실행해주세요."]}
-          confirmFunc={closeModal}
+          confirmFunc={closeDialog}
         />,
       );
       return;
@@ -130,15 +130,15 @@ function OasisBotRunCard() {
       leverage: null,
     };
 
-    openModal(
+    openDialog(
       <InfoDialog
         title="봇 실행"
         description={["해당 봇을 실행할까요?"]}
         confirmFunc={() => {
           mutate(body);
-          closeModal();
+          closeDialog();
         }}
-        cancelFunc={closeModal}
+        cancelFunc={closeDialog}
         cancellable
       />,
     );
@@ -198,7 +198,7 @@ function OasisBotRunCard() {
                 <Typography
                   variant="100R"
                   className="text-neutral-600 underline hover:cursor-pointer"
-                  onClick={() => openModal(<LeverageNoticeDialog handleClose={closeModal} />)}
+                  onClick={() => openDialog(<LeverageNoticeDialog handleClose={closeDialog} />)}
                 >
                   현재 설정 레버리지
                 </Typography>
