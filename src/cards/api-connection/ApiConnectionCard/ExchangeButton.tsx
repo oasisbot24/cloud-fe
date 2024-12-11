@@ -49,16 +49,22 @@ export default function ExchangeButton({
         console.error("sdk has not been loaded");
       }
     } else if (exchange === "upbit") {
-      postSmartAccessSessionMutation.mutate(exchange, {
-        onSuccess: u => {
-          openScrap(u, () => {
-            postSmartAccessResultMutation.mutate({
-              exchange,
-              body: { uid: u },
-            });
-          });
+      postSmartAccessSessionMutation.mutate(
+        {
+          body: null,
+          params: { exchange },
         },
-      });
+        {
+          onSuccess: u => {
+            openScrap(u, () => {
+              postSmartAccessResultMutation.mutate({
+                body: { uid: u },
+                params: { exchange },
+              });
+            });
+          },
+        },
+      );
     }
   };
   return (

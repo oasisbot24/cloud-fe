@@ -7,18 +7,19 @@ import { useAtom } from "jotai";
 
 import { subscribeData } from "@/cards/subscribe/SubscribeCard/SubscribeTableData";
 import SubscribeTitleMonthButton from "@/cards/subscribe/SubscribeTitleCard/SubscribeTitleMonthButton";
-import useDialogGlobal from "@/components/dialog/useDialogGlobal";
-import { subscribeMonthAtom } from "@/datas/subscribe";
+import { productMonthAtom } from "@/datas/subscribe";
 import { useProductQuery, useSubscribeMutation } from "@/hooks/query/useSubcribe";
 import { numberToCurrency } from "@/libs/string";
 
-interface SubscribeDialogProps {
-  type: SubscribeType;
+import useDialogGlobal from "./useDialogGlobal";
+
+interface SubscribeModalProps {
+  productKey: Subscribe.ProductKey;
 }
 
-export default function SubscribeDialog({ type }: SubscribeDialogProps) {
+export default function SubscribeModal({ productKey }: SubscribeModalProps) {
   const { push } = useRouter();
-  const [month] = useAtom(subscribeMonthAtom);
+  const [month] = useAtom(productMonthAtom);
   const { closeDialog } = useDialogGlobal();
   const {
     productQuery: { data: productData },
@@ -27,7 +28,7 @@ export default function SubscribeDialog({ type }: SubscribeDialogProps) {
 
   const handleClick = () => {
     postSubscribeMutation.mutate(
-      { productId: subscribeData[type].month[month].productId },
+      { body: { productId: subscribeData[productKey].month[month].productId } },
       {
         onSuccess: () => {
           push("/mypage");
@@ -56,9 +57,9 @@ export default function SubscribeDialog({ type }: SubscribeDialogProps) {
               구독 멤버십:
             </Typography>
             <Typography variant="300B" className="text-font-1">
-              {`${subscribeData[type].title}: ${numberToCurrency(
+              {`${subscribeData[productKey].title}: ${numberToCurrency(
                 productData?.find(
-                  product => product.productId === subscribeData[type].month[month].productId,
+                  product => product.productId === subscribeData[productKey].month[month].productId,
                 )?.productPrice ?? 0,
                 "₩",
               )}`}

@@ -8,7 +8,7 @@ import Icon from "@/components/Icon";
 import CustomSwitch from "@/components/common/CustomSwitch";
 import TimeConvert from "@/components/table/timeConvert";
 import useBotCommand from "@/hooks/card/useBotCommand";
-import { BotType, useBotDetailQuery } from "@/hooks/query/useOasisBot";
+import { useBotDetailQuery } from "@/hooks/query/useOasisBot";
 
 function IconButtonFun() {
   const { push } = useRouter();
@@ -47,7 +47,7 @@ const OasisBotListColumns: GridColDef[] = [
     headerName: "프리셋 이름",
     flex: 1,
     headerClassName: "text-slate-500",
-    renderCell: (params: GridRenderCellParams<GridValidRowModel, BotType["presetName"]>) => (
+    renderCell: (params: GridRenderCellParams<GridValidRowModel, Bot.InfoT["presetName"]>) => (
       <div className="flex items-center">
         <div className="w-4/5 whitespace-normal">{params.value}</div>
         <IconButtonFun />
@@ -65,7 +65,7 @@ const OasisBotListColumns: GridColDef[] = [
     headerName: "운영 기간",
     flex: 1,
     headerClassName: "text-slate-500",
-    renderCell: (params: GridRenderCellParams<GridValidRowModel, BotType["runningTime"]>) => (
+    renderCell: (params: GridRenderCellParams<GridValidRowModel, Bot.InfoT["runningTime"]>) => (
       <div className="whitespace-normal">{TimeConvert(Number(params.value))}</div>
     ),
   },
@@ -74,7 +74,7 @@ const OasisBotListColumns: GridColDef[] = [
     headerName: "종목",
     flex: 1,
     headerClassName: "text-slate-500",
-    renderCell: (params: GridRenderCellParams<GridValidRowModel, BotType["coinType"]>) => (
+    renderCell: (params: GridRenderCellParams<GridValidRowModel, Bot.InfoT["coinType"]>) => (
       <div className="whitespace-normal">{params.value}</div>
     ),
   },
@@ -83,7 +83,7 @@ const OasisBotListColumns: GridColDef[] = [
     headerName: "상태",
     flex: 0.5,
     headerClassName: "text-slate-500",
-    renderCell: (params: GridRenderCellParams<GridValidRowModel, BotType["isRunning"]>) => (
+    renderCell: (params: GridRenderCellParams<GridValidRowModel, Bot.InfoT["isRunning"]>) => (
       <IsRunningCell {...params} />
     ),
   },

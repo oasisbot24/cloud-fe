@@ -1,11 +1,10 @@
 import { Box } from "@mui/material";
 
 import { BaseCircle, CenterCircle, ElementCircle } from "@/cards/dashboard/ChartAssetCard/Circle";
-import { CoinRatio } from "@/hooks/query/useChart";
 import { numberSlice, numberToCurrency } from "@/libs/string";
 
 interface CircleChartProps {
-  coinRatioList?: CoinRatio[];
+  coinRatioList?: Account.HoldingCoinRatioT[];
   focus?: string;
 }
 

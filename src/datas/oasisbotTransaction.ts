@@ -1,8 +1,6 @@
 import { GridRowSelectionModel } from "@mui/x-data-grid";
 import { atom } from "jotai";
 
-import { BotType } from "@/hooks/query/useOasisBot";
-
 interface BotTransaction {
   id: number;
   market: string;
@@ -29,7 +27,7 @@ interface BotTransactionPrice {
   presetName: string;
 }
 
-const botAtom = atom<BotType>({
+const botAtom = atom<Bot.InfoT>({
   id: -1,
   isRunning: false,
   presetName: "",

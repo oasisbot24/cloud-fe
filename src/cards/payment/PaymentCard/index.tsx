@@ -53,7 +53,7 @@ export default function PaymentCard() {
           push("/mypage");
         },
         onError: e => {
-          setError((e as AxiosError<ApiResponseType<void>>).response?.data.msg ?? "");
+          setError((e as AxiosError<ResponseT<void>>).response?.data.msg ?? "");
         },
       },
     );

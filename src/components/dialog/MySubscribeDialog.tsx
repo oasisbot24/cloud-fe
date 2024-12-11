@@ -26,7 +26,7 @@ export default function MySubscribeDialog() {
         setStatus("success");
       },
       onError: e => {
-        const axiosError = e as AxiosError<ApiResponseType<void>>;
+        const axiosError = e as AxiosError<ResponseT<void>>;
         setError(axiosError.response?.data?.msg ?? "알 수 없는 오류가 발생했습니다.");
         setStatus("error");
       },

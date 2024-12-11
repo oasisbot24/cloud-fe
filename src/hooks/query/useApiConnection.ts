@@ -2,14 +2,10 @@ import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/re
 
 import api from "@/libs/network";
 
-interface PostOkxOauthTokenBody {
-  code: string;
-}
-
 export function useOkxOauthTokenMutation() {
   const postOkxOauthTokenMutation = useMutation({
-    mutationFn: async (body: PostOkxOauthTokenBody) => {
-      const res = await api.post<ApiResponseType<void>>("/oauth/okx/apikey", body);
+    mutationFn: async ({ body }: RequestT<ExchangeConnection.PostOkxOauthTokenBody>) => {
+      const res = await api.post<ResponseT<void>>("/oauth/okx/apikey", body);
       return res.data;
     },
     mutationKey: ["postOkxOauthToken"],
@@ -18,21 +14,17 @@ export function useOkxOauthTokenMutation() {
     postOkxOauthTokenMutation,
   };
 }
-interface PostSmartAccessResultBody {
-  uid: string;
-}
+
 export function useSmartAccessMutation() {
   const queryClient = useQueryClient();
+
   const postSmartAccessResultMutation = useMutation({
     mutationFn: async ({
-      exchange,
       body,
-    }: {
-      exchange: ExchangeType;
-      body: PostSmartAccessResultBody;
-    }) => {
-      await api.post<ApiResponseType<void>>(`/smart-access/result`, body, {
-        params: { exchange },
+      params,
+    }: RequestT<ExchangeConnection.PostSmartAccessResultBody, ExchangeParams>) => {
+      await api.post<ResponseT<void>>(`/smart-access/result`, body, {
+        params,
       });
     },
     mutationKey: ["postSmartAccessResult"],
@@ -40,13 +32,14 @@ export function useSmartAccessMutation() {
       queryClient.invalidateQueries({ queryKey: ["getUserExchanges"] });
     },
   });
+
   const postSmartAccessSessionMutation = useMutation({
-    mutationFn: async (exchange: ExchangeType) => {
-      const res = await api.post<ApiResponseType<string>>(
+    mutationFn: async ({ params }: RequestT<null, ExchangeParams>) => {
+      const res = await api.post<ResponseT<string>>(
         `/smart-access/session`,
         {},
         {
-          params: { exchange },
+          params,
         },
       );
       return res.data.data;
@@ -63,7 +56,7 @@ export function useUserExchangesQuery(queryClient?: QueryClient) {
   const userExchangeQuery = useQuery(
     {
       queryFn: async () => {
-        const res = await api.get<ApiResponseType<ExchangeType[]>>("/user/apikey/exchanges");
+        const res = await api.get<ResponseT<ExchangeType[]>>("/user/apikey/exchanges");
         return res.data?.data;
       },
       queryKey: ["getUserExchanges"],
