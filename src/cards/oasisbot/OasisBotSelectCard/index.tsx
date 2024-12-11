@@ -15,15 +15,20 @@ import Card from "@/cards/Card";
 import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
-import LeverageNoticeDialog from "@/cards/oasisbot/OasisBotRunCard/LeverageNoticeDialog";
 import Icon from "@/components/Icon";
 import ExchangeChip from "@/components/chip/ExchangeChip";
+import LeverageNoticeDialog from "@/components/dialog/LeverageNoticeDialog";
+import useModalGlobal from "@/components/dialog/useModalGlobal";
 import FormTextField from "@/components/form/FormTextField";
 import exchangeAtom from "@/datas/exchange";
 import { selectedBotRowAtom } from "@/datas/oasisbotTransaction";
 import useBotCommand from "@/hooks/card/useBotCommand";
+<<<<<<< HEAD
 import { useBotDetailQuery, useBotInfo } from "@/hooks/query/useOasisBot";
 import useModalGlobal from "@/hooks/useModalGlobal";
+=======
+import { useBotInfo } from "@/hooks/query/useOasisBot";
+>>>>>>> 2f4e99c (dialog 통일)
 
 function OasisBotSelectCard() {
   const [startBalance, setStartBalance] = useState<number>(5000);

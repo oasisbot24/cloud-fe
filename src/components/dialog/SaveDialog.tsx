@@ -3,12 +3,10 @@ import Image from "next/image";
 import { ButtonBase, Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
 
+import useModalGlobal from "@/components/dialog/useModalGlobal";
 import { presetAtom, presetWeightAtom } from "@/datas/preset";
 import { usePresetMutation } from "@/hooks/query/usePreset";
-import useModalGlobal from "@/hooks/useModalGlobal";
 import { presetWeightToPresetData } from "@/libs/preset";
-
-import modalImage from "./modal.png";
 
 export default function SaveDialog() {
   const {
@@ -54,7 +52,7 @@ export default function SaveDialog() {
 
   return (
     <Stack className="rounded-[28px] bg-white">
-      <Image src={modalImage.src} alt="modalimage" width={410} height={208} />
+      <Image src={"/dialog/modal.png"} alt="modalimage" width={410} height={208} />
       <Stack className="items-center gap-4 p-8">
         <Typography variant="400B">프리셋 저장</Typography>
         <Stack className="w-full">

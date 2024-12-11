@@ -2,15 +2,13 @@ import Image from "next/image";
 
 import { ButtonBase, Stack, Typography } from "@mui/material";
 
-import useModalGlobal from "@/hooks/useModalGlobal";
+import useModalGlobal from "@/components/dialog/useModalGlobal";
 
-import modalImage from "./modal.png";
-
-export default function PromotionModal() {
+export default function PromotionDialog() {
   const { closeModal } = useModalGlobal();
   return (
     <Stack className="rounded-[28px] bg-white">
-      <Image src={modalImage.src} alt="modalimage" width={410} height={208} />
+      <Image src={"/dialog/modal.png"} alt="modalimage" width={410} height={208} />
       <Stack className="h-[200px] items-center justify-between gap-4 p-8">
         <Typography variant="400B" className="text-font-2">
           프로모션 코드

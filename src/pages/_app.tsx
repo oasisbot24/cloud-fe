@@ -9,9 +9,9 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useAtom } from "jotai";
 import { SnackbarProvider } from "notistack";
 
+import useModalGlobal from "@/components/dialog/useModalGlobal";
 import authAtom from "@/datas/auth";
 import exchangeAtom from "@/datas/exchange";
-import useModalGlobal from "@/hooks/useModalGlobal";
 import "@/styles/custom.css";
 import "@/styles/font/font-sans.css";
 import "@/styles/font/font-sfp.css";
