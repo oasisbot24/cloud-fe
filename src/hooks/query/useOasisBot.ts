@@ -4,20 +4,13 @@ import { useAtom, useAtomValue } from "jotai";
 import exchangeAtom from "@/datas/exchange";
 import api from "@/libs/network";
 
-export interface BotStartType {
-  botName: string;
-  presetId: number;
-  coinId: number;
-  startBalance: number;
-  leverage: number | null;
-}
 export function useBot() {
   const queryClient = useQueryClient();
   const exchange = useAtomValue(exchangeAtom);
 
   const startBotMutation = useMutation({
-    mutationFn: async (data: BotStartType) =>
-      api.post<ApiResponseType<void>>("/start_bot", data, {
+    mutationFn: async ({ body }: RequestT<Bot.PostBotStartBody>) =>
+      api.post<ResponseT<void>>("/start_bot", body, {
         params: { exchange },
       }),
     mutationKey: ["startBot", exchange],
@@ -27,7 +20,7 @@ export function useBot() {
   });
 
   const stopBotMutation = useMutation({
-    mutationFn: async (id: number) => api.post<ApiResponseType<void>>(`/stop_bot/${id}`),
+    mutationFn: async (id: number) => api.post<ResponseT<void>>(`/stop_bot/${id}`),
     mutationKey: ["stopBot"],
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["getBot"] });
@@ -35,7 +28,7 @@ export function useBot() {
   });
 
   const restartBotMutation = useMutation({
-    mutationFn: async (id: number) => api.post<ApiResponseType<void>>(`/restart_bot/${id}`),
+    mutationFn: async (id: number) => api.post<ResponseT<void>>(`/restart_bot/${id}`),
     mutationKey: ["restartBot"],
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["getBot"] });
@@ -49,21 +42,15 @@ export function useBot() {
   };
 }
 
-export interface BotType {
-  id: number;
-  isRunning: boolean;
-  presetName: string;
-  startBalance: number;
-  runningTime: number;
-  coinType: string;
-}
 export function useBotQuery() {
   const [exchange] = useAtom(exchangeAtom);
   const botQuery = useQuery({
     queryKey: ["getBot", exchange || "all"],
     queryFn: async () => {
-      const res = await api.get<ApiResponseType<BotType[]>>(`/bot?exchange=${exchange || "all"}`);
-      return res.data?.data;
+      const res = await api.get<ResponseT<Bot.InfoT[]>>("/bot", {
+        params: { exchange: exchange || "all" },
+      });
+      return res.data.data;
     },
     refetchOnMount: false,
   });
@@ -73,56 +60,13 @@ export function useBotQuery() {
   };
 }
 
-export interface AvailableBalanceType {
-  exchangeName: string;
-  availableBalance: number;
-}
+async function getTransaction(exchange: string): Promise<Bot.TransactionT[]> {
+  const respose = await api.get<ResponseT<Bot.TransactionResponseT[]>>("/transaction", {
+    params: { exchange },
+  });
 
-interface CoinType {
-  id: number;
-  coinName: string;
-}
-
-interface BotTransactionType {
-  id: number;
-  market: string;
-  tradeTime: string;
-  coinName: string;
-  status: string;
-  quantity: {
-    totalPrice: number;
-    volume: number;
-  };
-  price: {
-    startBalance: number;
-    presetName: string;
-  };
-  profit: {
-    profitLoss: number;
-    profitLossRate: number;
-  };
-}
-
-interface BotItem {
-  id: number;
-  exchange: string;
-  date: string;
-  coinName: string;
-  position: string;
-  totalPrice: number;
-  volume: number;
-  profitLoss: number;
-  profitLossRate: number;
-  startBalance: number;
-  presetName: string;
-}
-
-async function getTransaction(exchangeName: string): Promise<BotTransactionType[]> {
-  const respose = await api.get<ApiResponseType<[]>>(`/transaction?exchange=${exchangeName}`);
-
-  const bots: BotTransactionType[] = [];
-  respose.data?.data.map((item: BotItem, n) => {
-    const type: BotTransactionType = {
+  const bots: Bot.TransactionT[] = respose.data?.data.map((item, n) => {
+    const type: Bot.TransactionT = {
       id: n + 1,
       market: item.exchange,
       tradeTime: item.date,
@@ -141,10 +85,7 @@ async function getTransaction(exchangeName: string): Promise<BotTransactionType[
         profitLossRate: item.profitLossRate,
       },
     };
-
-    bots.push(type);
-
-    return bots;
+    return type;
   });
 
   return bots;
@@ -155,7 +96,7 @@ export function useBotInfo() {
   const coinQuery = useQuery({
     queryKey: ["getCoin", exchange],
     queryFn: async () => {
-      const res = await api.get<ApiResponseType<CoinType[]>>("/coin", {
+      const res = await api.get<ResponseT<Common.CoinT[]>>("/coin", {
         params: { exchange },
       });
       return res.data.data;
@@ -175,11 +116,11 @@ export function useBotInfo() {
   const balanceQuery = useQuery({
     queryKey: ["getAvailableBalance", exchange],
     queryFn: async () => {
-      const res = await api.get<ApiResponseType<AvailableBalanceType>>(
-        `/available-balance?exchange=${exchange}`,
-      );
+      const res = await api.get<ResponseT<Account.AvailableBalanceT>>("/available-balance", {
+        params: { exchange },
+      });
 
-      return res.data?.data;
+      return res.data.data;
     },
   });
 
@@ -190,35 +131,15 @@ export function useBotInfo() {
   };
 }
 
-interface BotDataType {
-  totalTradePrice: {
-    value: number;
-    difference: number;
-  };
-  totalTradeCount: {
-    value: number;
-    difference: number;
-  };
-  maxProfitRate: {
-    rate: number;
-    presetName: string;
-    coinName: string;
-  };
-  maxWinRate: {
-    rate: number;
-    presetName: string;
-    coinName: string;
-  };
-  totalTradeBalance: number;
-}
-
 export function useBotData() {
   const [exchange] = useAtom(exchangeAtom);
   const botDataQuery = useQuery({
     queryKey: ["getBotData", exchange],
     queryFn: async () => {
-      const res = await api.get<ApiResponseType<BotDataType>>(`/bot-data?exchange=${exchange}`);
-      return res.data?.data;
+      const res = await api.get<ResponseT<Account.BotResultDataT>>("/bot-data", {
+        params: { exchange },
+      });
+      return res.data.data;
     },
   });
 

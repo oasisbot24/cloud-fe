@@ -19,7 +19,7 @@ function ApiConnectionOkx() {
     if (!code || !state) return;
     postOkxOauthTokenMutation.mutate(
       {
-        code: code as string,
+        body: { code: code as string },
       },
       {
         onSuccess: () => {

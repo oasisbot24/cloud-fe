@@ -22,7 +22,7 @@ async function getUserInfo(accesstoken: string): Promise<Auth> {
 }
 
 async function signinAccessToken(accessToken: string): Promise<SigninResponseType> {
-  const res = await api.post<ApiResponseType<void> & SigninResponseType>("/signin-accesstoken", {
+  const res = await api.post<ResponseT<void> & SigninResponseType>("/signin-accesstoken", {
     token: accessToken,
   });
   return res.data;
@@ -45,7 +45,7 @@ export default function useSignin() {
   });
 
   const postAgreementMutation = useMutation({
-    mutationFn: async (body: AgreementBody) => api.post<ApiResponseType<void>>("/agreement", body),
+    mutationFn: async (body: AgreementBody) => api.post<ResponseT<void>>("/agreement", body),
     mutationKey: ["postAgreement"],
   });
 

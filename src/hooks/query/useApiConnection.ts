@@ -4,8 +4,8 @@ import api from "@/libs/network";
 
 export function useOkxOauthTokenMutation() {
   const postOkxOauthTokenMutation = useMutation({
-    mutationFn: async ({ body }: ApiRequestType<MutationBody.PostOkxOauthTokenBody>) => {
-      const res = await api.post<ApiResponseType<void>>("/oauth/okx/apikey", body);
+    mutationFn: async ({ body }: RequestT<ExchangeConnection.PostOkxOauthTokenBody>) => {
+      const res = await api.post<ResponseT<void>>("/oauth/okx/apikey", body);
       return res.data;
     },
     mutationKey: ["postOkxOauthToken"],
@@ -17,12 +17,13 @@ export function useOkxOauthTokenMutation() {
 
 export function useSmartAccessMutation() {
   const queryClient = useQueryClient();
+
   const postSmartAccessResultMutation = useMutation({
     mutationFn: async ({
       body,
       params,
-    }: ApiRequestType<MutationBody.PostOkxOauthTokenBody, ExchangeParams>) => {
-      await api.post<ApiResponseType<void>>(`/smart-access/result`, body, {
+    }: RequestT<ExchangeConnection.PostOkxOauthTokenBody, ExchangeParams>) => {
+      await api.post<ResponseT<void>>(`/smart-access/result`, body, {
         params,
       });
     },
@@ -31,9 +32,10 @@ export function useSmartAccessMutation() {
       queryClient.invalidateQueries({ queryKey: ["getUserExchanges"] });
     },
   });
+
   const postSmartAccessSessionMutation = useMutation({
-    mutationFn: async ({ params }: ApiRequestType<null, ExchangeParams>) => {
-      const res = await api.post<ApiResponseType<string>>(
+    mutationFn: async ({ params }: RequestT<null, ExchangeParams>) => {
+      const res = await api.post<ResponseT<string>>(
         `/smart-access/session`,
         {},
         {
@@ -54,7 +56,7 @@ export function useUserExchangesQuery(queryClient?: QueryClient) {
   const userExchangeQuery = useQuery(
     {
       queryFn: async () => {
-        const res = await api.get<ApiResponseType<ExchangeType[]>>("/user/apikey/exchanges");
+        const res = await api.get<ResponseT<ExchangeType[]>>("/user/apikey/exchanges");
         return res.data?.data;
       },
       queryKey: ["getUserExchanges"],

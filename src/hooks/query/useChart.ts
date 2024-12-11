@@ -4,62 +4,27 @@ import { useAtom } from "jotai";
 import exchangeAtom from "@/datas/exchange";
 import api from "@/libs/network";
 
-export interface CoinRatio {
-  name: string;
-  price: number;
-  ratio: number;
-}
 export function useChart() {
   const [exchange] = useAtom(exchangeAtom);
   const coinRatioQuery = useQuery({
-    queryKey: ["coinRatio", exchange],
     queryFn: async () => {
-      const res = await api.get<ApiResponseType<CoinRatio[]>>("/coin_ratio", {
+      const res = await api.get<ResponseT<Account.HoldingCoinRatioT[]>>("/coin_ratio", {
         params: { exchange },
       });
       return res.data.data;
     },
+    queryKey: ["coinRatio", exchange],
   });
   return { coinRatioQuery };
-}
-
-export interface ChartType {
-  botId: number;
-  coinName: string;
-  presetName: string;
-  totalProfit: number;
-  totalProfitRate: number;
-  chartData: {
-    date: string[];
-    price: number[];
-    rate: number[];
-  };
-}
-
-export interface ChartDataItem {
-  date: string;
-  price: string;
-  rate: string;
-}
-
-export interface ChartResponseItem {
-  botId: number;
-  coinName: string;
-  presetName: string;
-  totalProfit: number;
-  totalProfitRate: number;
-  chartData: ChartDataItem[];
 }
 
 export function useDashboardChart() {
   const dashboardChartQuery = useQuery({
     queryKey: ["dashboardchart"],
     queryFn: async () => {
-      const response = await api.get<ApiResponseType<ChartResponseItem[]>>(`/chart`);
+      const res = await api.get<ResponseT<Account.BotResultChartResponseT[]>>(`/chart`);
 
-      const charts: ChartType[] = [];
-
-      response.data?.data.map((item: ChartResponseItem) => {
+      const charts: Account.BotResultChartT[] = res.data?.data.map(item => {
         const dateArr: string[] = [];
         const priceArr: number[] = [];
         const rateArr: number[] = [];
@@ -72,7 +37,7 @@ export function useDashboardChart() {
           return 0;
         });
 
-        const type: ChartType = {
+        const type: Account.BotResultChartT = {
           botId: item.botId,
           coinName: item.coinName,
           presetName: item.presetName,
@@ -84,10 +49,7 @@ export function useDashboardChart() {
             rate: rateArr,
           },
         };
-
-        charts.push(type);
-
-        return charts;
+        return type;
       });
 
       return charts;

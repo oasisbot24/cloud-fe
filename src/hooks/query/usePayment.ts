@@ -10,7 +10,7 @@ export function usePaymentMethodQuery() {
   const paymentMethodQuery = useQuery({
     queryKey: ["getPaymentMethod"],
     queryFn: async () => {
-      const res = await api.get<ApiResponseType<PaymentMethodType>>("/payment/method");
+      const res = await api.get<ResponseT<PaymentMethodType>>("/payment/method");
       return res.data?.data;
     },
   });
@@ -28,12 +28,12 @@ interface PaymentMethodBody {
 export function usePaymentMethodMutation() {
   const postPaymentMethodMutation = useMutation({
     mutationFn: async (body: PaymentMethodBody) =>
-      api.post<ApiResponseType<void>>("/payment/method", body),
+      api.post<ResponseT<void>>("/payment/method", body),
 
     mutationKey: ["postPaymentMethod"],
   });
   const deletePaymentMethodMutation = useMutation({
-    mutationFn: async (id: number) => api.delete<ApiResponseType<void>>(`/payment/method?id=${id}`),
+    mutationFn: async (id: number) => api.delete<ResponseT<void>>(`/payment/method?id=${id}`),
 
     mutationKey: ["deleteSubscribe"],
   });
