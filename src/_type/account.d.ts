@@ -1,13 +1,4 @@
 declare namespace Account {
-  interface PostSubscribeBody {
-    productId: number;
-    promotionCode?: string;
-  }
-  interface SubscribeT {
-    subscribeId: number;
-    productName: string;
-    expiryDate: string;
-  }
   interface HoldingCoinRatioT {
     name: string;
     price: number;

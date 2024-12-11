@@ -99,10 +99,6 @@ interface RealtimeTransaction {
   };
 }
 
-// subscribe
-type SubscribeType = "free" | "basic" | "premium";
-type SubscribeMonth = 1 | 3;
-
 interface SelectItem {
   label: string;
   value: string | number;
