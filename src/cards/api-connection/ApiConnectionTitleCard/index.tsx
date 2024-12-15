@@ -2,11 +2,10 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { Box, ButtonBase, Stack, Typography } from "@mui/material";
 
 import Card from "@/cards/Card";
+import CardHeader from "@/cards/CardHeader";
+import bg from "@/cards/api-connection/ApiConnectionTitleCard/bg.png";
 import Icon from "@/components/Icon";
 import Logo from "@/components/Logo";
-
-import CardHeader from "../../CardHeader";
-import bg from "./bg.png";
 
 function Tag({ title, id }: { title: string; id: string }) {
   return (

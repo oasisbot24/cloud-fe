@@ -1,7 +1,6 @@
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
-
-import BotTransaction from "./BotTransaction";
+import BotTransaction from "@/cards/oasisbot/OasisBotTransactionCard/BotTransaction";
 
 function OasisBotTransactionCard() {
   return (

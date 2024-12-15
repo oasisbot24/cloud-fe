@@ -3,11 +3,10 @@ import { useAtom } from "jotai";
 
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
+import bg from "@/cards/mypage/MypageTitleCard/bg.png";
 import Icon from "@/components/Icon";
 import Logo from "@/components/Logo";
 import authAtom from "@/datas/auth";
-
-import bg from "./bg.png";
 
 function Tag({ title, id }: { title: string; id: string }) {
   return (

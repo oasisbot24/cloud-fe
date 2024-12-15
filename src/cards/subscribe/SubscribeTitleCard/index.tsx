@@ -2,11 +2,10 @@ import { Box, Stack, Typography } from "@mui/material";
 
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
+import SubscribeTitleMonthButton from "@/cards/subscribe/SubscribeTitleCard/SubscribeTitleMonthButton";
+import bg from "@/cards/subscribe/SubscribeTitleCard/bg.png";
 import Icon from "@/components/Icon";
 import Logo from "@/components/Logo";
-
-import SubscribeTitleMonthButton from "./SubscribeTitleMonthButton";
-import bg from "./bg.png";
 
 function Tag({ title, id }: { title: string; id: string }) {
   return (

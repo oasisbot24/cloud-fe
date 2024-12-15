@@ -3,11 +3,10 @@ import Image from "next/image";
 import { CardContent, Stack } from "@mui/material";
 
 import Card from "@/cards/Card";
+import CardHeader from "@/cards/CardHeader";
+import Chart from "@/cards/preset/PresetIndicatorInfoCard/Chart.png";
+import Description from "@/cards/preset/PresetIndicatorInfoCard/Description";
 import IndicatorChip from "@/components/chip/IndicatorChip";
-
-import CardHeader from "../../CardHeader";
-import Chart from "./Chart.png";
-import Description from "./Description";
 
 export default function PresetIndicatorInfoCard() {
   return (

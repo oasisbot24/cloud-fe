@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import { Box, Stack, Typography } from "@mui/material";
 
-import AdvertismentButton from "./AdvertismentButton";
+import AdvertismentButton from "@/cards/dashboard/AdvertisementCard/AdvertismentButton";
 
 interface AdvertisementInfoProps {
   semiTitle: string;

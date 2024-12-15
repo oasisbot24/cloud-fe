@@ -8,11 +8,10 @@ import Card from "@/cards/Card";
 import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
+import SliderGraph from "@/cards/preset/PresetWeightSettingCard/SliderGraph";
+import useSave from "@/cards/preset/PresetWeightSettingCard/useSave";
 import AlertIcon from "@/components/Icon/AlertIcon";
 import { presetMenuAtom, presetWeightAtom, presetWeightInit } from "@/datas/preset";
-
-import SliderGraph from "./SliderGraph";
-import useSave from "./useSave";
 
 function PresetWeightSettingCard() {
   const [presetMenu, setPresetMenu] = useAtom(presetMenuAtom);

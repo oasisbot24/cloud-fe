@@ -8,9 +8,9 @@ import Card from "@/cards/Card";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
 import DetailChip from "@/components/chip/DetailChip";
-import OasisBotListColumns from "@/components/table/OasisBotListColumns";
 import { selectedBotRowAtom } from "@/datas/oasisbotTransaction";
 import { useBotQuery } from "@/hooks/query/useOasisBot";
+import OasisBotListColumns from "@/tables/OasisBotListColumns";
 
 interface Props {
   nav: string;

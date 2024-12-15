@@ -1,9 +1,8 @@
 import { Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
 
+import DisplayPL from "@/cards/oasislab/OasisLabResultInfoCard/DisplayPL";
 import authAtom from "@/datas/auth";
-
-import DisplayPL from "./DisplayPL";
 
 interface TestResultInfoProps {
   testResult?: {

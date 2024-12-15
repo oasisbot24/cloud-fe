@@ -3,8 +3,8 @@ import { DataGrid } from "@mui/x-data-grid";
 
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
-import ProfitRankColumns from "@/components/table/ProfitRankColumns";
 import { useInfoRanking } from "@/hooks/query/useInfo";
+import ProfitRankColumns from "@/tables/ProfitRankColumns";
 
 function ProfitRankCard() {
   const { rankingQuery } = useInfoRanking(365);

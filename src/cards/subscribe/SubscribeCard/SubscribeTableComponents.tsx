@@ -1,14 +1,13 @@
 import { Box, Stack, TableCell, Typography } from "@mui/material";
 import { useAtom } from "jotai";
 
+import { subscribeData, tableData } from "@/cards/subscribe/SubscribeCard/SubscribeTableData";
+import { TableRowType } from "@/cards/subscribe/SubscribeCard/SubscribeTableRow";
 import MySubscribeDialog from "@/components/dialog/MySubscribeDialog";
 import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import { productKeyAtom, productMonthAtom } from "@/datas/subscribe";
 import { useProductQuery } from "@/hooks/query/useSubcribe";
 import { numberToCurrency } from "@/libs/string";
-
-import { subscribeData, tableData } from "./SubscribeTableData";
-import { TableRowType } from "./SubscribeTableRow";
 
 interface CustomTableCellProps {
   productKey: Subscribe.ProductKey;

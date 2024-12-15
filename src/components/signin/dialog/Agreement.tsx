@@ -1,6 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 
-import AgreementList from "./AgreementList";
+import AgreementList from "@/components/signin/dialog/AgreementList";
 
 interface AgreementProps {
   onClose: () => void;
