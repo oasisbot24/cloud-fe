@@ -3,15 +3,14 @@ import { useRouter } from "next/router";
 import { Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
 
+import SigninDialog from "@/components/dialog/SigninDialog";
+import useDialogGlobal from "@/components/dialog/useDialogGlobal";
+import GoogleSigninButton from "@/components/signin/GoogleSigninButton";
+import Agreement from "@/components/signin/dialog/Agreement";
+import ExchangeSelect from "@/components/signin/dialog/ExchangeSelect";
 import exchangeAtom from "@/datas/exchange";
 import { useUserExchangesQuery } from "@/hooks/query/useApiConnection";
 import useSignin from "@/hooks/query/useSignin";
-
-import SigninDialog from "../dialog/SigninDialog";
-import useDialogGlobal from "../dialog/useDialogGlobal";
-import GoogleSigninButton from "./GoogleSigninButton";
-import Agreement from "./dialog/Agreement";
-import ExchangeSelect from "./dialog/ExchangeSelect";
 
 function Description() {
   const {

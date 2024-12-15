@@ -4,10 +4,9 @@ import { Box, CardContent, Stack } from "@mui/material";
 
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
+import AssetStatusInfo from "@/cards/dashboard/AssetStatusCard/AssetStatusInfo";
 import CharacterIcon from "@/components/Icon/CharacterIcon";
 import { useInfoTradeStyle } from "@/hooks/query/useInfo";
-
-import AssetStatusInfo from "./AssetStatusInfo";
 
 function calculateHappiness(totalProfitLossRate: number) {
   if (totalProfitLossRate <= -11) return 1;

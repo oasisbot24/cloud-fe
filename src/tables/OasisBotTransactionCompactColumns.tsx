@@ -1,10 +1,8 @@
 import { GridColDef, GridRenderCellParams, GridValidRowModel } from "@mui/x-data-grid";
 
-import { exchangeToKorean } from "@/libs/string";
-
-import ExchangeIcon from "../Icon/ExchangeIcon";
-import ProfitChip from "../chip/ProfitChip";
-import SellBuyChip from "../chip/SellBuyChip";
+import SellBuyChip from "@/components/chip/SellBuyChip";
+import TransactionColumnsMarketCell from "@/tables/row-cells/MarketCell";
+import TransactionColumnsProfitCell from "@/tables/row-cells/TransactionColumnsProfitCell";
 
 const OasisBotTransactionCompactColumns: GridColDef[] = [
   {
@@ -13,10 +11,7 @@ const OasisBotTransactionCompactColumns: GridColDef[] = [
     flex: 1,
     headerClassName: "text-slate-500",
     renderCell: (params: GridRenderCellParams<GridValidRowModel, ExchangeType>) => (
-      <div className="flex w-full justify-between whitespace-normal">
-        {exchangeToKorean(params.value)}
-        <ExchangeIcon exchange={params.value} size={20} />
-      </div>
+      <TransactionColumnsMarketCell {...params} />
     ),
   },
   {
@@ -34,17 +29,7 @@ const OasisBotTransactionCompactColumns: GridColDef[] = [
     flex: 1,
     headerClassName: "text-slate-500",
     renderCell: (params: GridRenderCellParams<GridValidRowModel, BotTransactionProfit>) => (
-      <div>
-        <div
-          className={`whitespace-normal ${params.value?.profitLoss && params.value.profitLoss > 0 ? "text-sub-3" : ""}`}
-        >
-          {params.value?.profitLoss ? "￦" : ""}
-          <span className="text-ellipsis font-bold">
-            {params.value?.profitLoss.toLocaleString("ko-kr") ?? "-"}
-          </span>
-        </div>
-        {params.value?.profitLossRate && <ProfitChip rate={params.value?.profitLossRate} />}
-      </div>
+      <TransactionColumnsProfitCell {...params} />
     ),
   },
   {

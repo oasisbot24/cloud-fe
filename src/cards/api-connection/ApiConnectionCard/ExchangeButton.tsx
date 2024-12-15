@@ -2,11 +2,10 @@ import { useRouter } from "next/router";
 
 import { ButtonBase, CircularProgress, Stack, Typography } from "@mui/material";
 
+import openScrap from "@/cards/api-connection/ApiConnectionCard/openScrap";
 import ExchangeIcon from "@/components/Icon/ExchangeIcon";
 import { useSmartAccessMutation } from "@/hooks/query/useApiConnection";
 import { useSubscribeQuery } from "@/hooks/query/useSubcribe";
-
-import openScrap from "./openScrap";
 
 interface ExchangeButtonProps {
   exchange: ExchangeType;

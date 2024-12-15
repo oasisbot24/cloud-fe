@@ -5,8 +5,8 @@ import Card from "@/cards/Card";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
 import DetailChip from "@/components/chip/DetailChip";
-import OasisBotTransactionCompactColumns from "@/components/table/OasisBotTransactionCompactColumns";
 import { useBotInfo } from "@/hooks/query/useOasisBot";
+import OasisBotTransactionCompactColumns from "@/tables/OasisBotTransactionCompactColumns";
 
 function BotTransactionCard() {
   const { transactionQuery } = useBotInfo();

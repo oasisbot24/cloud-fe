@@ -1,6 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 
-import PieSvg from "./PieSvg";
+import PieSvg from "@/cards/oasislab/OasisLabResultChartCard/PieSvg";
 
 export default function PieChart() {
   return (

@@ -1,6 +1,6 @@
-import Chip from ".";
-import ArrowDownIcon from "../Icon/ArrowDownIcon";
-import ArrowUpIcon from "../Icon/ArrowUpIcon";
+import ArrowDownIcon from "@/components/Icon/ArrowDownIcon";
+import ArrowUpIcon from "@/components/Icon/ArrowUpIcon";
+import Chip from "@/components/chip/index";
 
 interface ChipProps {
   rate: number;

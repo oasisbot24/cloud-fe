@@ -1,6 +1,6 @@
 import { Check, Close } from "@mui/icons-material";
 
-import { TableRowType } from "./SubscribeTableRow";
+import { TableRowType } from "@/cards/subscribe/SubscribeCard/SubscribeTableRow";
 
 interface TableType {
   free: Record<TableRowType, JSX.Element | string>;

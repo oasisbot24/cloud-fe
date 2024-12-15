@@ -2,11 +2,10 @@ import { useRouter } from "next/router";
 
 import { ButtonBase, Stack, Typography } from "@mui/material";
 
+import MypageInfo from "@/cards/mypage/MypageCard/MypageInfo";
 import MySubscribeDialog from "@/components/dialog/MySubscribeDialog";
 import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import { useSubscribeQuery } from "@/hooks/query/useSubcribe";
-
-import MypageInfo from "./MypageInfo";
 
 export default function MypageSubscribe() {
   const { push } = useRouter();

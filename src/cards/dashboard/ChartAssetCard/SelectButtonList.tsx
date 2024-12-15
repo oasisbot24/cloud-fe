@@ -1,6 +1,6 @@
 import { Stack } from "@mui/material";
 
-import SelectButton from "./SelectButton";
+import SelectButton from "@/cards/dashboard/ChartAssetCard/SelectButton";
 
 const colorList = ["#223CE9", "#FEBD38", "#2BB7F5", "#BEBEC3"];
 

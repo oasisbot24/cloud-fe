@@ -1,10 +1,9 @@
 import { Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
 
+import DisplayPL from "@/cards/dashboard/AssetStatusCard/DisplayPL";
 import authAtom from "@/datas/auth";
 import { numberSlice } from "@/libs/string";
-
-import DisplayPL from "./DisplayPL";
 
 interface AssetStatusInfoProps {
   tradeStyleData?: Account.TradeStyleT;

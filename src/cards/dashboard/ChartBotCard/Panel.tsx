@@ -3,11 +3,10 @@ import { useState } from "react";
 import { Box, Menu, Stack } from "@mui/material";
 import { useAtom } from "jotai";
 
+import CustomMenu from "@/cards/dashboard/ChartBotCard/CustomMenu";
+import PanelDescription from "@/cards/dashboard/ChartBotCard/PanelDescription";
 import Icon from "@/components/Icon";
 import exchangeAtom from "@/datas/exchange";
-
-import CustomMenu from "./CustomMenu";
-import PanelDescription from "./PanelDescription";
 
 interface Props {
   setMenuId: React.Dispatch<React.SetStateAction<number>>;

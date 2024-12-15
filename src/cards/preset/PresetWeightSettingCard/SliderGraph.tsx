@@ -1,13 +1,12 @@
 import { Stack } from "@mui/material";
 import { useAtom } from "jotai";
 
+import Column from "@/cards/preset/PresetWeightSettingCard/Column";
+import GraphText from "@/cards/preset/PresetWeightSettingCard/GraphText";
+import VerticalSliderSum from "@/cards/preset/PresetWeightSettingCard/VerticalSilderSum";
+import VerticalSlider from "@/cards/preset/PresetWeightSettingCard/VerticalSlider";
 import { PresetWeightType, presetWeightAtom } from "@/datas/preset";
 import { sumPresetWeight } from "@/libs/preset";
-
-import Column from "./Column";
-import GraphText from "./GraphText";
-import VerticalSliderSum from "./VerticalSilderSum";
-import VerticalSlider from "./VerticalSlider";
 
 function SliderGraph() {
   const [presetWeight, setPresetWeight] = useAtom(presetWeightAtom);

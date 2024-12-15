@@ -1,11 +1,10 @@
 import { useAtom } from "jotai";
 
+import ErrorDialog from "@/components/dialog/ErrorDialog";
+import SaveDialog from "@/components/dialog/SaveDialog";
 import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import { presetAtom, presetWeightAtom } from "@/datas/preset";
 import { sumPresetWeight } from "@/libs/preset";
-
-import ErrorDialog from "../../../components/dialog/ErrorDialog";
-import SaveDialog from "../../../components/dialog/SaveDialog";
 
 export default function useSave() {
   const [preset] = useAtom(presetAtom);

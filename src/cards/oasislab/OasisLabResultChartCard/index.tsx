@@ -2,9 +2,8 @@ import { Stack } from "@mui/material";
 
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
-
-import LiquidProgress from "./LiquidProgress";
-import PieChart from "./PieChart";
+import LiquidProgress from "@/cards/oasislab/OasisLabResultChartCard/LiquidProgress";
+import PieChart from "@/cards/oasislab/OasisLabResultChartCard/PieChart";
 
 export default function OasisLabResultChartCard() {
   return (

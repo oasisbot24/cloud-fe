@@ -3,11 +3,10 @@ import { useAtom } from "jotai";
 
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
+import PresetWeightInfo from "@/cards/preset/PresetWeightInfoCard/PresetWeightInfo";
 import AlertIcon from "@/components/Icon/AlertIcon";
 import { presetMenuAtom, presetWeightAtom } from "@/datas/preset";
 import { sumPresetWeight } from "@/libs/preset";
-
-import PresetWeightInfo from "./PresetWeightInfo";
 
 export default function PresetWeightInfoCard() {
   const [presetMenu] = useAtom(presetMenuAtom);

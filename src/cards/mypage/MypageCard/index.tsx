@@ -5,14 +5,13 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useAtom } from "jotai";
 
 import Card from "@/cards/Card";
+import MypageExchange from "@/cards/mypage/MypageCard/MypageExchange";
+import MypageInfo from "@/cards/mypage/MypageCard/MypageInfo";
+import MypageSubscribe from "@/cards/mypage/MypageCard/MypageSubscribe";
+import PromotionDialog from "@/components/dialog/PromotionDialog";
 import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import authAtom from "@/datas/auth";
 import { usePaymentMethodQuery } from "@/hooks/query/usePayment";
-
-import PromotionDialog from "../../../components/dialog/PromotionDialog";
-import MypageExchange from "./MypageExchange";
-import MypageInfo from "./MypageInfo";
-import MypageSubscribe from "./MypageSubscribe";
 
 export default function MypageCard() {
   const [auth] = useAtom(authAtom);

@@ -4,10 +4,9 @@ import { Box, Stack } from "@mui/material";
 
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
+import CircleChart from "@/cards/dashboard/ChartAssetCard/CircleChart";
 import SelectButtonList from "@/cards/dashboard/ChartAssetCard/SelectButtonList";
 import { useChart } from "@/hooks/query/useChart";
-
-import CircleChart from "./CircleChart";
 
 export default function ChartAssetCard() {
   const {

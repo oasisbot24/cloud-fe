@@ -2,10 +2,9 @@ import { Box, Stack, Typography } from "@mui/material";
 
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
+import bg from "@/cards/payment/PaymentTitleCard/bg.png";
 import Icon from "@/components/Icon";
 import Logo from "@/components/Logo";
-
-import bg from "./bg.png";
 
 function Tag({ title, id }: { title: string; id: string }) {
   return (
