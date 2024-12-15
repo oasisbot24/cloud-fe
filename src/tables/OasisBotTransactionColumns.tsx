@@ -1,9 +1,10 @@
 import { GridColDef, GridRenderCellParams, GridValidRowModel } from "@mui/x-data-grid";
 
-import ExchangeIcon from "@/components/Icon/ExchangeIcon";
-import ProfitChip from "@/components/chip/ProfitChip";
 import SellBuyChip from "@/components/chip/SellBuyChip";
-import { exchangeToKorean } from "@/libs/string";
+import TransactionColumnsMarketCell from "@/tables/row-cells/MarketCell";
+import TransactionColumnsPriceCell from "@/tables/row-cells/TransactionColumnsPriceCell";
+import TransactionColumnsProfitCell from "@/tables/row-cells/TransactionColumnsProfitCell";
+import TransactionColumnsQuantityCell from "@/tables/row-cells/TransactionColumnsQuantityCell";
 
 const OasisBotTransactionColumns: GridColDef[] = [
   {
@@ -12,10 +13,7 @@ const OasisBotTransactionColumns: GridColDef[] = [
     flex: 1,
     headerClassName: "text-slate-500",
     renderCell: (params: GridRenderCellParams<GridValidRowModel, ExchangeType>) => (
-      <div className="flex w-full justify-between whitespace-normal">
-        {exchangeToKorean(params.value)}
-        <ExchangeIcon exchange={params.value} size={20} />
-      </div>
+      <TransactionColumnsMarketCell {...params} />
     ),
   },
   {
@@ -42,13 +40,7 @@ const OasisBotTransactionColumns: GridColDef[] = [
     flex: 1,
     headerClassName: "text-slate-500",
     renderCell: (params: GridRenderCellParams<GridValidRowModel, BotTransactionQuantity>) => (
-      <div>
-        <div className="text-[16px] font-bold leading-[18px]">
-          ￦{params.value?.totalPrice.toLocaleString("ko-kr")}
-        </div>
-
-        <div className="mt-2 text-[14px] font-bold leading-[16px]">{params.value?.volume}</div>
-      </div>
+      <TransactionColumnsQuantityCell {...params} />
     ),
   },
   {
@@ -57,12 +49,7 @@ const OasisBotTransactionColumns: GridColDef[] = [
     flex: 1,
     headerClassName: "text-slate-500",
     renderCell: (params: GridRenderCellParams<GridValidRowModel, BotTransactionPrice>) => (
-      <div>
-        <div className="text-[16px] font-bold leading-[18px]">
-          ￦{params.value?.startBalance.toLocaleString("ko-kr")}
-        </div>
-        <div className="mt-2 whitespace-normal">{params.value?.presetName}</div>
-      </div>
+      <TransactionColumnsPriceCell {...params} />
     ),
   },
 
@@ -81,83 +68,9 @@ const OasisBotTransactionColumns: GridColDef[] = [
     flex: 1,
     headerClassName: "text-slate-500",
     renderCell: (params: GridRenderCellParams<GridValidRowModel, BotTransactionProfit>) => (
-      <div>
-        <div
-          className={`whitespace-normal ${params.value?.profitLoss && params.value.profitLoss > 0 ? "text-sub-3" : ""}`}
-        >
-          {params.value?.profitLoss ? "￦" : ""}
-          <span className="text-ellipsis font-bold">
-            {params.value?.profitLoss.toLocaleString("ko-kr") ?? "-"}
-          </span>
-        </div>
-        {params.value?.profitLossRate && <ProfitChip rate={params.value?.profitLossRate} />}
-      </div>
+      <TransactionColumnsProfitCell {...params} />
     ),
   },
 ];
-
-// const OasisBotTransactionCompactMockRows = [
-//   {
-//     id: 1,
-//     market: "upbit",
-//     item: "STARXEA USDT",
-//     profit: {
-//       money: 1000000000,
-//       rate: 11,
-//     },
-//     tradeTime: "2024.03.29 15:03",
-//     status: "sell",
-//   },
-//   {
-//     id: 2,
-//     market: "upbit",
-//     item: "STARXEA USDT",
-//     profit: null,
-//     tradeTime: "2024.03.29 15:03",
-//     status: "buy",
-//   },
-//   {
-//     id: 3,
-//     market: "upbit",
-//     item: "STARXEA USDT",
-//     profit: {
-//       money: 1000000000,
-//       rate: 11,
-//     },
-//     tradeTime: "2024.03.29 15:03",
-//     status: "sell",
-//   },
-//   {
-//     id: 4,
-//     market: "upbit",
-//     item: "STARXEA USDT",
-//     profit: {
-//       money: 1000000000,
-//       rate: 11,
-//     },
-//     tradeTime: "2024.03.29 15:03",
-//     status: "sell",
-//   },
-//   {
-//     id: 5,
-//     market: "upbit",
-//     item: "STARXEA USDT",
-//     profit: {
-//       money: 1000000000,
-//       rate: 11,
-//     },
-//     tradeTime: "2024.03.29 15:03",
-//     status: "sell",
-//   },
-// ];
-
-//   const { data: OasisBotTransactionCompactRows, isLoading: isLoading } =
-//     useQuery({
-//       queryKey: ["transaction", market],
-//       queryFn: () => getTransaction(market),
-//     });
-
-//   return { columns, OasisBotTransactionCompactRows, isLoading };
-// }
 
 export default OasisBotTransactionColumns;

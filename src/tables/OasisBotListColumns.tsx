@@ -1,45 +1,8 @@
-import { useRouter } from "next/router";
-
-import { CircularProgress, IconButton } from "@mui/material";
 import { GridColDef, GridRenderCellParams, GridValidRowModel } from "@mui/x-data-grid";
-import { useIsMutating } from "@tanstack/react-query";
 
-import Icon from "@/components/Icon";
-import CustomSwitch from "@/components/common/CustomSwitch";
 import TimeConvert from "@/components/table/timeConvert";
-import useBotCommand from "@/hooks/card/useBotCommand";
-import { useBotDetailQuery } from "@/hooks/query/useOasisBot";
-
-function IconButtonFun() {
-  const { push } = useRouter();
-  return (
-    <IconButton sx={{ width: "24px", height: "24px" }} onClick={() => push("/preset")}>
-      <Icon src="/icons/basic/setting.png" size={24} />
-    </IconButton>
-  );
-}
-
-function IsRunningCell(params: GridRenderCellParams<GridValidRowModel, boolean>) {
-  const { row } = params;
-
-  const { stopBot, restartBot } = useBotCommand();
-  const { botDetailQuery } = useBotDetailQuery(row.id);
-  const isStopBotMutating = useIsMutating({ mutationKey: ["stopBot"] });
-  const isRestartBotMutating = useIsMutating({ mutationKey: ["restartBot"] });
-
-  return isStopBotMutating || isRestartBotMutating ? (
-    <CircularProgress color="inherit" size={16} />
-  ) : (
-    <CustomSwitch
-      checked={botDetailQuery.data?.isRunning}
-      onClick={() => {
-        botDetailQuery.data?.isRunning
-          ? stopBot({ selected: row.id })
-          : restartBot({ selected: row.id });
-      }}
-    />
-  );
-}
+import IsRunningStatusCell from "@/tables/row-cells/IsRunningCell";
+import PresetNameCell from "@/tables/row-cells/PresetNameCell";
 
 const OasisBotListColumns: GridColDef[] = [
   {
@@ -48,10 +11,7 @@ const OasisBotListColumns: GridColDef[] = [
     flex: 1,
     headerClassName: "text-slate-500",
     renderCell: (params: GridRenderCellParams<GridValidRowModel, Bot.InfoT["presetName"]>) => (
-      <div className="flex items-center">
-        <div className="w-4/5 whitespace-normal">{params.value}</div>
-        <IconButtonFun />
-      </div>
+      <PresetNameCell {...params} />
     ),
   },
   {
@@ -84,7 +44,7 @@ const OasisBotListColumns: GridColDef[] = [
     flex: 0.5,
     headerClassName: "text-slate-500",
     renderCell: (params: GridRenderCellParams<GridValidRowModel, Bot.InfoT["isRunning"]>) => (
-      <IsRunningCell {...params} />
+      <IsRunningStatusCell {...params} />
     ),
   },
 ];

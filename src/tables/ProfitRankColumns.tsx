@@ -1,12 +1,11 @@
-import Image from "next/image";
-
 import { GridColDef, GridRenderCellParams, GridValidRowModel } from "@mui/x-data-grid";
 
 import CoinIcon from "@/components/Icon/CoinIcon";
-import ExchangeIcon from "@/components/Icon/ExchangeIcon";
 import Chip from "@/components/chip";
 import TimeConvert from "@/components/table/timeConvert";
-import { exchangeToKorean } from "@/libs/string";
+import MarketCell from "@/tables/row-cells/MarketCell";
+import ProfitRankColumnsAccumulatedProfitCell from "@/tables/row-cells/ProfitRankColumnsAccumulatedProfitCell";
+import ProfitRankColumnsUserCell from "@/tables/row-cells/ProfitRankColumnsUserCell";
 
 const ProfitRankColumns: GridColDef[] = [
   {
@@ -22,17 +21,7 @@ const ProfitRankColumns: GridColDef[] = [
     flex: 1,
     headerClassName: "text-slate-500",
     renderCell: (params: GridRenderCellParams<GridValidRowModel, ProfitRank["user"]>) => (
-      <div className="flex items-center justify-center whitespace-normal">
-        <div className="mr-1 flex size-5 items-center justify-center rounded-full bg-neutral-300">
-          <Image
-            src={params.value?.icon || "/user.png"}
-            alt={params.value?.nickname ?? ""}
-            width={20}
-            height={20}
-          />
-        </div>
-        {params.value?.nickname}
-      </div>
+      <ProfitRankColumnsUserCell {...params} />
     ),
   },
   {
@@ -42,12 +31,7 @@ const ProfitRankColumns: GridColDef[] = [
     headerClassName: "text-slate-500",
     renderCell: (
       params: GridRenderCellParams<GridValidRowModel, ProfitRank["accumulatedProfit"]>,
-    ) => (
-      <div className="whitespace-normal">
-        {params.value ? "￦" : ""}
-        <span className="text-ellipsis font-bold">{params.value?.toLocaleString("ko-kr")}</span>
-      </div>
-    ),
+    ) => <ProfitRankColumnsAccumulatedProfitCell {...params} />,
   },
   {
     field: "market",
@@ -55,10 +39,7 @@ const ProfitRankColumns: GridColDef[] = [
     flex: 1,
     headerClassName: "text-slate-500",
     renderCell: (params: GridRenderCellParams<GridValidRowModel, ProfitRank["market"]>) => (
-      <div className="flex w-full whitespace-normal">
-        <ExchangeIcon exchange={params.value} size={20} />
-        {exchangeToKorean(params.value)}
-      </div>
+      <MarketCell {...params} />
     ),
   },
   {
@@ -96,63 +77,4 @@ const ProfitRankColumns: GridColDef[] = [
   },
 ];
 
-// const ProfitRankMockRows: ProfitRank[] = [
-//   {
-//     id: 1,
-//     user: {
-//       icon: "",
-//       nickname: "나카모토 사토시",
-//     },
-//     accumulatedProfit: 1000000000,
-//     market: "upbit",
-//     item: "BTC",
-//     period: "365일 12시간",
-//   },
-//   {
-//     id: 2,
-//     user: {
-//       icon: "",
-//       nickname: "Winkelvoss쌍둥이",
-//     },
-//     accumulatedProfit: 1000000000,
-//     market: "okx",
-//     item: "ETH",
-//     period: "365일 12시간",
-//   },
-//   {
-//     id: 3,
-//     user: {
-//       icon: "",
-//       nickname: "나카모토 사토시",
-//     },
-//     accumulatedProfit: 1000000000,
-//     market: "upbit",
-//     item: "BTC",
-//     period: "365일 12시간",
-//   },
-//   {
-//     id: 4,
-//     user: {
-//       icon: "",
-//       nickname: "Winkelvoss쌍둥이",
-//     },
-//     accumulatedProfit: 1000000000,
-//     market: "okx",
-//     item: "ETH",
-//     period: "365일 12시간",
-//   },
-//   {
-//     id: 5,
-//     user: {
-//       icon: "",
-//       nickname: "Winkelvoss쌍둥이",
-//     },
-//     accumulatedProfit: 1000000000,
-//     market: "okx",
-//     item: "ETH",
-//     period: "365일 12시간",
-//   },
-// ];
-
 export default ProfitRankColumns;
-// export { ProfitRankMockRows };
