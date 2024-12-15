@@ -5,17 +5,19 @@ import ProfitChip from "@/components/chip/ProfitChip";
 function TransactionColumnsProfitCell(
   params: GridRenderCellParams<GridValidRowModel, BotTransactionProfit>,
 ) {
+  const { value } = params;
+
   return (
     <div>
       <div
-        className={`whitespace-normal ${params.value?.profitLoss && params.value.profitLoss > 0 ? "text-sub-3" : ""}`}
+        className={`whitespace-normal ${value?.profitLoss && value.profitLoss > 0 ? "text-sub-3" : ""}`}
       >
-        {params.value?.profitLoss ? "￦" : ""}
+        {value?.profitLoss ? "￦" : ""}
         <span className="text-ellipsis font-bold">
-          {params.value?.profitLoss.toLocaleString("ko-kr") ?? "-"}
+          {value?.profitLoss.toLocaleString("ko-kr") ?? "-"}
         </span>
       </div>
-      {params.value?.profitLossRate && <ProfitChip rate={params.value?.profitLossRate} />}
+      {value?.profitLossRate && <ProfitChip rate={value?.profitLossRate} />}
     </div>
   );
 }
