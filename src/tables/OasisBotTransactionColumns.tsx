@@ -1,10 +1,9 @@
 import { GridColDef, GridRenderCellParams, GridValidRowModel } from "@mui/x-data-grid";
 
+import ExchangeIcon from "@/components/Icon/ExchangeIcon";
+import ProfitChip from "@/components/chip/ProfitChip";
+import SellBuyChip from "@/components/chip/SellBuyChip";
 import { exchangeToKorean } from "@/libs/string";
-
-import ExchangeIcon from "../Icon/ExchangeIcon";
-import ProfitChip from "../chip/ProfitChip";
-import SellBuyChip from "../chip/SellBuyChip";
 
 const OasisBotTransactionColumns: GridColDef[] = [
   {

@@ -2,12 +2,11 @@ import Image from "next/image";
 
 import { GridColDef, GridRenderCellParams, GridValidRowModel } from "@mui/x-data-grid";
 
+import CoinIcon from "@/components/Icon/CoinIcon";
+import ExchangeIcon from "@/components/Icon/ExchangeIcon";
 import Chip from "@/components/chip";
+import TimeConvert from "@/components/table/timeConvert";
 import { exchangeToKorean } from "@/libs/string";
-
-import CoinIcon from "../Icon/CoinIcon";
-import ExchangeIcon from "../Icon/ExchangeIcon";
-import TimeConvert from "./timeConvert";
 
 const ProfitRankColumns: GridColDef[] = [
   {
