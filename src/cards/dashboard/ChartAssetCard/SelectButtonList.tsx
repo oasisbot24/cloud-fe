@@ -11,8 +11,10 @@ interface SelectButtonListProps {
 }
 
 function SelectButtonList({ coinRatioList, focus, setFocus }: SelectButtonListProps) {
+  const className = `justify-center gap-3 ${coinRatioList && coinRatioList.length > 5 ? "w-[125%]" : ""}`;
+
   return (
-    <Stack direction="row" className="justify-center gap-3">
+    <Stack direction="row" className={className}>
       {coinRatioList?.map((coinRatio, index) => (
         <SelectButton
           key={coinRatio.name}

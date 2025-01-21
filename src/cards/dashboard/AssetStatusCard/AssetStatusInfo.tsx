@@ -1,16 +1,20 @@
 import { Stack, Typography } from "@mui/material";
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 
 import DisplayPL from "@/cards/dashboard/AssetStatusCard/DisplayPL";
 import authAtom from "@/datas/auth";
-import { numberSlice } from "@/libs/string";
+import exchangeAtom from "@/datas/exchange";
+import { numberSlice, numberToCurrency } from "@/libs/string";
 
 interface AssetStatusInfoProps {
   tradeStyleData?: Account.TradeStyleT;
 }
 export default function AssetStatusInfo({ tradeStyleData }: AssetStatusInfoProps) {
   const [user] = useAtom(authAtom);
+  const exchange = useAtomValue(exchangeAtom);
+
   const userName = user.name;
+
   return (
     <Stack className="h-full w-full justify-between">
       <Stack direction="column" className="gap-1">
@@ -29,8 +33,11 @@ export default function AssetStatusInfo({ tradeStyleData }: AssetStatusInfoProps
         <Typography variant="300R" className="text-neutral-200">
           총 자산금액
         </Typography>
-        <Typography variant="h4" className="text-white">
-          ₩ {numberSlice(tradeStyleData?.accountBalance, 2)}
+        <Typography variant="h4" className="w-[120%] text-white">
+          {numberToCurrency(
+            numberSlice(tradeStyleData?.accountBalance, 2),
+            exchange === "upbit" ? "₩" : "$",
+          )}
         </Typography>
       </Stack>
       <Stack direction="row" className="w-full">
