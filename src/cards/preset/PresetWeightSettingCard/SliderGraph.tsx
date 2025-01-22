@@ -21,28 +21,6 @@ function SliderGraph() {
           return (
             <Stack gap={2} key={key} className="h-full items-center">
               <GraphText text={index + 1 + ""} />
-              {/* <VerticalSlider
-                value={presetWeight[key as keyof PresetWeightType]}
-                onChange={(_, newValue) => {
-                  const updatedValue = newValue as number;
-
-                  setPresetWeight(prev => {
-                    const currentWeight = prev[key as keyof PresetWeightType];
-                    const sum = sumPresetWeight(prev);
-                    const newSum = sum - currentWeight + updatedValue;
-
-                    if (newSum <= 100) {
-                      return {
-                        ...prev,
-                        [key]: updatedValue,
-                      };
-                    }
-
-                    return prev;
-                  });
-                }}
-              /> */}
-
               <VerticalSiliderText counting={presetWeight[key as keyof PresetWeightType]} />
               <Stack direction="row" className="w-full">
                 <Box className="w-[10px]" />
@@ -52,7 +30,7 @@ function SliderGraph() {
                     sx: { textAlign: "center" },
                   }}
                   value={presetWeight[key as keyof PresetWeightType]}
-                  endAdornment={"%"}
+                  endAdornment="%"
                   setValue={v => {
                     const updatedValue = Number(v);
                     setPresetWeight(prev => {
@@ -89,7 +67,7 @@ function SliderGraph() {
                 sx: { textAlign: "center" },
               }}
               value={sumPresetWeight(presetWeight)}
-              endAdornment={"%"}
+              endAdornment="%"
             />
             <Box className="w-[10px]" />
           </Stack>
