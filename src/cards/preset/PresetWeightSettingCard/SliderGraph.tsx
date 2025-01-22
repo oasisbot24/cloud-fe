@@ -20,7 +20,7 @@ function SliderGraph() {
         {Object.keys(presetWeight).map((key, index) => {
           return (
             <Stack gap={2} key={key} className="h-full items-center">
-              <GraphText text={index + 1 + ""} />
+              <GraphText text={`${index + 1}`} />
               <VerticalSiliderText counting={presetWeight[key as keyof PresetWeightType]} />
               <Stack direction="row" className="w-full">
                 <Box className="w-[10px]" />
