@@ -1,12 +1,9 @@
-import { useState } from "react";
-
-import { Box, OutlinedInput, Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { useAtom } from "jotai";
 
 import Column from "@/cards/preset/PresetWeightSettingCard/Column";
 import GraphText from "@/cards/preset/PresetWeightSettingCard/GraphText";
 import VerticalSliderSum from "@/cards/preset/PresetWeightSettingCard/VerticalSilderSum";
-import VerticalSlider from "@/cards/preset/PresetWeightSettingCard/VerticalSlider";
 import FormTextField from "@/components/form/FormTextField";
 import { PresetWeightType, presetWeightAtom } from "@/datas/preset";
 import { sumPresetWeight } from "@/libs/preset";
@@ -58,7 +55,6 @@ function SliderGraph() {
                   endAdornment={"%"}
                   setValue={v => {
                     const updatedValue = Number(v);
-
                     setPresetWeight(prev => {
                       const currentWeight = prev[key as keyof PresetWeightType];
                       const sum = sumPresetWeight(prev);
