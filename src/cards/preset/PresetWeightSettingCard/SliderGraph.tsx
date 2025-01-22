@@ -1,54 +1,76 @@
-import { Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { useAtom } from "jotai";
 
 import Column from "@/cards/preset/PresetWeightSettingCard/Column";
 import GraphText from "@/cards/preset/PresetWeightSettingCard/GraphText";
 import VerticalSliderSum from "@/cards/preset/PresetWeightSettingCard/VerticalSilderSum";
-import VerticalSlider from "@/cards/preset/PresetWeightSettingCard/VerticalSlider";
+import FormTextField from "@/components/form/FormTextField";
 import { PresetWeightType, presetWeightAtom } from "@/datas/preset";
 import { sumPresetWeight } from "@/libs/preset";
 
+import VerticalSiliderText from "./VerticalSiliderText";
+
 function SliderGraph() {
   const [presetWeight, setPresetWeight] = useAtom(presetWeightAtom);
+
   return (
     <Stack direction="row" className="h-full gap-8">
       <Column />
       <Stack direction="row" className="h-full w-full items-center justify-between">
-        {Object.keys(presetWeight).map(key => {
+        {Object.keys(presetWeight).map((key, index) => {
           return (
             <Stack gap={2} key={key} className="h-full items-center">
-              <VerticalSlider
-                value={presetWeight[key as keyof PresetWeightType]}
-                onChange={(_, newValue) => {
-                  const updatedValue = newValue as number;
+              <GraphText text={`${index + 1}`} />
+              <VerticalSiliderText counting={presetWeight[key as keyof PresetWeightType]} />
+              <Stack direction="row" className="w-full">
+                <Box className="w-[10px]" />
+                <FormTextField
+                  id="graphRate"
+                  inputProps={{
+                    sx: { textAlign: "center" },
+                  }}
+                  value={presetWeight[key as keyof PresetWeightType]}
+                  endAdornment="%"
+                  setValue={v => {
+                    const updatedValue = Number(v);
+                    setPresetWeight(prev => {
+                      const currentWeight = prev[key as keyof PresetWeightType];
+                      const sum = sumPresetWeight(prev);
+                      const newSum = sum - currentWeight + updatedValue;
 
-                  setPresetWeight(prev => {
-                    const currentWeight = prev[key as keyof PresetWeightType];
-                    const sum = sumPresetWeight(prev);
-                    const newSum = sum - currentWeight + updatedValue;
+                      if (newSum <= 100) {
+                        return {
+                          ...prev,
+                          [key]: updatedValue,
+                        };
+                      }
 
-                    if (newSum <= 100) {
-                      return {
-                        ...prev,
-                        [key]: updatedValue,
-                      };
-                    }
+                      return prev;
+                    });
+                  }}
+                />
 
-                    return prev;
-                    // return {
-                    //   ...prev,
-                    //   [key]: updatedValue,
-                    // };
-                  });
-                }}
-              />
-              <GraphText text={key} />
+                <Box className="w-[10px]" />
+              </Stack>
             </Stack>
           );
         })}
         <Stack gap={2} className="h-full items-center">
-          <VerticalSliderSum sum={sumPresetWeight(presetWeight)} />
           <GraphText text="종합" />
+          <VerticalSliderSum sum={sumPresetWeight(presetWeight)} />
+          <Stack direction="row" className="w-full">
+            <Box className="w-[10px]" />
+            <FormTextField
+              id="graphRateSum"
+              readOnly
+              inputProps={{
+                sx: { textAlign: "center" },
+              }}
+              value={sumPresetWeight(presetWeight)}
+              endAdornment="%"
+            />
+            <Box className="w-[10px]" />
+          </Stack>
         </Stack>
       </Stack>
     </Stack>
