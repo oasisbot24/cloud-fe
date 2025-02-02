@@ -24,24 +24,25 @@ import FormTextField from "@/components/form/FormTextField";
 import exchangeAtom from "@/datas/exchange";
 import { useBot, useBotInfo } from "@/hooks/query/useOasisBot";
 import { usePresetQuery } from "@/hooks/query/usePreset";
+import { DEFAULT_BALANCE } from "@/libs/balance";
 
 function OasisBotRunCard() {
-  const [startBalance, setStartBalance] = useState<number>(5000);
+  const [exchange] = useAtom(exchangeAtom);
+
+  const [startBalance, setStartBalance] = useState<number>(DEFAULT_BALANCE[exchange]);
   const [selectedPreset, setSelectedPreset] = useState<number>(0);
   const [selectedTradeItem, setSelectedTradeItem] = useState<number>(1);
   const [standardMinute, setStandardMinute] = useState<number>(1);
-
-  const [exchange] = useAtom(exchangeAtom);
 
   const { openDialog, closeDialog } = useDialogGlobal();
   const { presetQuery } = usePresetQuery();
   const { coinQuery, balanceQuery } = useBotInfo();
   const {
-    startBotMutation: { mutate },
+    startBotMutation: { mutate, isSuccess },
   } = useBot();
 
   const onReset = () => {
-    setStartBalance(5000);
+    setStartBalance(DEFAULT_BALANCE[exchange]);
     setSelectedPreset(0);
     setSelectedTradeItem(0);
   };
@@ -137,7 +138,7 @@ function OasisBotRunCard() {
         description={["해당 봇을 실행할까요?"]}
         confirmFunc={() => {
           mutate({ body });
-          closeDialog();
+          if (isSuccess) closeDialog();
         }}
         cancelFunc={closeDialog}
         cancellable
