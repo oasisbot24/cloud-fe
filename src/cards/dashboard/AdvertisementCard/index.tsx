@@ -35,14 +35,14 @@ export default function AdvertisementCard() {
           semiTitle="5TH 폴리곤 OPEN"
           title={`꾸준히 보상이 쌓이는\nOASIS 스테이킹`}
           description={`디지털 자산을 블록체인 검증에 활용하도록\n맡기고 보상을 받으세요`}
-          bgSrc="/advertisement/ad1.jpg"
+          bgSrc="/advertisement/event01.png"
         />
 
         <AdvertisementInfo
           semiTitle="5TH 폴리곤 OPEN"
           title={`꾸준히 보상이 쌓이는\nOASIS 스테이킹`}
           description={`디지털 자산을 블록체인 검증에 활용하도록\n맡기고 보상을 받으세요`}
-          bgSrc="/advertisement/ad1.jpg"
+          bgSrc="/advertisement/event02.png"
         />
 
         <AdvertisementInfo

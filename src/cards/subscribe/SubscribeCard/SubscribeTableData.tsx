@@ -10,22 +10,22 @@ interface TableType {
   premium: Record<TableRowType, JSX.Element | string>;
 }
 
-const UpbitIcon = () => {
+function UpbitIcon() {
   return (
     <Stack direction="row" gap={1} className="flex items-center justify-center">
-      <Icon src={"/icons/exchange/upbit.png"} size={25} />
+      <Icon src="/icons/exchange/upbit.png" size={25} />
       <div className="flex items-center justify-center">업비트만가능</div>
     </Stack>
   );
-};
+}
 
-const AllText = () => {
+function AllText() {
   return (
     <Stack direction="row" gap={1}>
       <div className="font-bold">All</div> 지원거래소 모두가능
     </Stack>
   );
-};
+}
 
 const tableData: TableType = {
   free: {
