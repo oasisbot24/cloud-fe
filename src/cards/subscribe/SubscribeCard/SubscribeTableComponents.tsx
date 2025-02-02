@@ -29,8 +29,8 @@ function CustomTableCell({ productKey, tableRowType, children }: CustomTableCell
       {tableRowType ? (
         <Stack className="gap-1">
           <Typography
-            variant={productKey === "free" ? "200B" : "200R"}
-            className={productKey === "free" ? "font-bold text-brand" : ""}
+            variant={productKey === "basic" ? "200B" : "200R"}
+            className={productKey === "basic" ? "font-bold text-brand" : ""}
           >
             {tableData[productKey][tableRowType]}
           </Typography>
