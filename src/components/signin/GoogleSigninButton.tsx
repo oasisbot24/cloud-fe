@@ -16,12 +16,19 @@ function GoogleSigninButton({ onSuccess }: { onSuccess: (data: { isAgree: boolea
   });
   */
   const handleClick = useGoogleLogin({
-    onSuccess: tokenResponse =>
+    onSuccess: tokenResponse => {
       signinAccessTokenMutation.mutate(tokenResponse.access_token, {
         onSuccess: data => {
           onSuccess(data);
         },
-      }),
+        onError: error => {
+          console.log("error on mutate: ", error);
+        },
+      });
+    },
+    onError: error => {
+      console.log("error on google login: ", error);
+    },
   });
 
   return (

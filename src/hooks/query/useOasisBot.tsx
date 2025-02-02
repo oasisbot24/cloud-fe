@@ -1,13 +1,20 @@
+import { useRouter } from "next/router";
+
 import { GridRowId } from "@mui/x-data-grid";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 import { useAtom, useAtomValue } from "jotai";
 
+import BotValidationDialog from "@/components/dialog/BotValidationDialog";
+import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import exchangeAtom from "@/datas/exchange";
 import api from "@/libs/network";
 
 export function useBot() {
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
+  const { reload } = useRouter();
   const exchange = useAtomValue(exchangeAtom);
+  const { openDialog } = useDialogGlobal();
 
   const startBotMutation = useMutation({
     mutationFn: async ({ body }: RequestT<Bot.PostBotStartBody>) =>
@@ -16,7 +23,15 @@ export function useBot() {
       }),
     mutationKey: ["startBot", exchange],
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["getBot"] });
+      // queryClient.invalidateQueries({ queryKey: ["getBot", exchange] });
+      reload();
+    },
+    onError: e => {
+      if (e instanceof AxiosError) {
+        openDialog(
+          <BotValidationDialog code={e.response?.data.code} message={e.response?.data.msg} />,
+        );
+      }
     },
   });
 
@@ -24,7 +39,8 @@ export function useBot() {
     mutationFn: async (id: number) => api.post<ResponseT<void>>(`/stop_bot/${id}`),
     mutationKey: ["stopBot"],
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["getBotDetail"] });
+      // queryClient.invalidateQueries({ queryKey: ["getBotDetail"] });
+      reload();
     },
   });
 
@@ -32,7 +48,15 @@ export function useBot() {
     mutationFn: async (id: number) => api.post<ResponseT<void>>(`/restart_bot/${id}`),
     mutationKey: ["restartBot"],
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["getBotDetail"] });
+      // queryClient.invalidateQueries({ queryKey: ["getBotDetail"] });
+      reload();
+    },
+    onError: e => {
+      if (e instanceof AxiosError) {
+        openDialog(
+          <BotValidationDialog code={e.response?.data.code} message={e.response?.data.msg} />,
+        );
+      }
     },
   });
 

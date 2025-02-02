@@ -1,10 +1,13 @@
 import React from "react";
 
+import { useQueryClient } from "@tanstack/react-query";
+
 import InfoDialog from "@/components/dialog/InfoDialog";
 import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import { useBot } from "@/hooks/query/useOasisBot";
 
 function useBotCommand() {
+  const queryClient = useQueryClient();
   const { stopBotMutation, restartBotMutation } = useBot();
   const { openDialog, closeDialog } = useDialogGlobal();
 
@@ -26,15 +29,17 @@ function useBotCommand() {
     );
   };
 
-  const restartBot = ({ selected, onSuccess }: { selected: number; onSuccess?: () => void }) => {
+  const restartBot = ({ selected }: { selected: number }) => {
     openDialog(
       <InfoDialog
         title="봇 재실행"
         description={["봇을 재실행하시겠습니까?"]}
-        confirmFunc={() => {
-          restartBotMutation.mutate(Number(selected));
-          !!onSuccess && onSuccess();
-          closeDialog();
+        confirmFunc={async () => {
+          await restartBotMutation.mutate(Number(selected));
+          if (restartBotMutation.isSuccess) {
+            closeDialog();
+          }
+          await queryClient.invalidateQueries({ queryKey: ["getBot"] });
         }}
         cancelFunc={closeDialog}
         cancellable
