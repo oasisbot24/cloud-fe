@@ -42,6 +42,10 @@ export default function useSignin() {
       localStorage.setItem("auth", JSON.stringify(auth));
       setAuth(auth);
     },
+    onError: err => {
+      console.log("Error on signinAccessTokenMutation: ", err);
+      alert("로그인에 실패했습니다.");
+    },
   });
 
   const postAgreementMutation = useMutation({

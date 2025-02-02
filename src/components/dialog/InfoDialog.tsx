@@ -7,6 +7,7 @@ type InfoDialogType = {
   description: string[];
   imgSrc?: string;
   confirmFunc: () => void;
+  confirmBtnText?: string;
   cancellable?: boolean;
   cancelFunc?: () => void;
   handleClose?: () => void;
@@ -17,6 +18,7 @@ function InfoDialog({
   description,
   imgSrc,
   confirmFunc,
+  confirmBtnText,
   cancellable,
   cancelFunc,
   handleClose,
@@ -76,7 +78,7 @@ function InfoDialog({
               className="w-full rounded-full"
               onClick={confirmFunc ?? handleClose}
             >
-              확인
+              {confirmBtnText ?? "확인"}
             </Button>
           </Stack>
         </Stack>

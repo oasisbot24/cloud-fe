@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useIsMutating } from "@tanstack/react-query";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom } from "jotai";
 
 import Card from "@/cards/Card";
 import CardButton from "@/cards/CardButton";
@@ -24,15 +24,17 @@ import exchangeAtom from "@/datas/exchange";
 import { selectedBotRowAtom } from "@/datas/oasisbotTransaction";
 import useBotCommand from "@/hooks/card/useBotCommand";
 import { useBotDetailQuery, useBotInfo } from "@/hooks/query/useOasisBot";
+import { DEFAULT_BALANCE } from "@/libs/balance";
 
 function OasisBotSelectCard() {
-  const [startBalance, setStartBalance] = useState<number>(5000);
+  const [exchange] = useAtom(exchangeAtom);
+
+  const [startBalance, setStartBalance] = useState<number>(DEFAULT_BALANCE[exchange] || 0);
   const [selectedPreset, setSelectedPreset] = useState<string>("");
   const [selectedTradeItem, setSelectedTradeItem] = useState<string>("");
   const [standardMinute, setStandardMinute] = useState<number>(0);
 
-  const [exchange] = useAtom(exchangeAtom);
-  const selectedRow = useAtomValue(selectedBotRowAtom);
+  const [selectedRow, setSelectedRow] = useAtom(selectedBotRowAtom);
 
   const {
     botDetailQuery: { data },
@@ -45,7 +47,7 @@ function OasisBotSelectCard() {
   const isRestartBotMutating = useIsMutating({ mutationKey: ["restartBot"] });
 
   const onRemove = () => {
-    console.log("onRemove");
+    setSelectedRow([]);
   };
 
   useEffect(() => {
@@ -163,12 +165,7 @@ function OasisBotSelectCard() {
           <CardButton
             text="재실행"
             className="ml-1 bg-brand text-white"
-            onClick={() =>
-              restartBot({
-                selected: data?.id || -1,
-                onSuccess: () => console.log("restart"),
-              })
-            }
+            onClick={() => restartBot({ selected: data?.id || -1 })}
             loading={!!isRestartBotMutating}
           />
         )}
