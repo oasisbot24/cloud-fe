@@ -9,6 +9,8 @@ interface AdvertisementInfoProps {
   title: string;
   description: string;
   bgSrc: string;
+  btn: string;
+  onClick: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 export default function AdvertisementInfo({
@@ -16,6 +18,8 @@ export default function AdvertisementInfo({
   title,
   description,
   bgSrc,
+  btn,
+  onClick,
 }: AdvertisementInfoProps) {
   return (
     <Box className="relative h-full w-full">
@@ -32,13 +36,13 @@ export default function AdvertisementInfo({
         <Box className="h-full w-full bg-black opacity-50" />
       </Box>
       <Stack className="absolute gap-6 p-4 text-white">
-        <Stack className="max-w-[250px] gap-2">
+        <Stack className="max-w-[250px] gap-2 whitespace-pre-line">
           <Typography variant="100B">{semiTitle}</Typography>
           <Typography variant="h4">{title}</Typography>
           <Typography variant="200M">{description}</Typography>
         </Stack>
-        <AdvertismentButton>
-          <Typography variant="300B">자세히보기</Typography>
+        <AdvertismentButton onClick={onClick}>
+          <Typography variant="300B">{btn}</Typography>
         </AdvertismentButton>
       </Stack>
     </Box>
