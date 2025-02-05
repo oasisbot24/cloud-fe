@@ -51,7 +51,7 @@ export default function AdvertisementCard() {
 
         <AdvertisementInfo
           semiTitle="Preset Setting"
-          title={`완벽한 프리셋 설정`}
+          title="완벽한 프리셋 설정"
           description={`가이드라인을 통해\n완벽한 프리셋 설정을 세팅해 보세요`}
           bgSrc="/advertisement/event3.png"
           btn="가이드라인 보러가기"
