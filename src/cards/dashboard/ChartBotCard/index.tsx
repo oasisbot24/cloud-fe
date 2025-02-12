@@ -3,10 +3,9 @@ import { useState } from "react";
 import { Box } from "@mui/material";
 
 import Card from "@/cards/Card";
+import CustomChart from "@/cards/dashboard/ChartBotCard/CustomChart";
+import Panel from "@/cards/dashboard/ChartBotCard/Panel";
 import { useDashboardChart } from "@/hooks/query/useChart";
-
-import CustomChart from "./CustomChart";
-import Panel from "./Panel";
 
 export default function ChartBotCard() {
   const { dashboardChartQuery } = useDashboardChart();

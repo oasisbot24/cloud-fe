@@ -16,6 +16,7 @@ export default function Carousel({ children, minWidth }: CarouselProps) {
   const { size, componentRef } = useComponentSize();
   const { size: childSize, componentRef: childRef } = useComponentSize();
   const [align, setAlign] = useState<"left" | "right">("left");
+
   return (
     <Box ref={componentRef} className="relative w-full" sx={{ height: `${childSize.height}px` }}>
       <Box className="absolute w-full" sx={{ minWidth: `${minWidth}px` }}>

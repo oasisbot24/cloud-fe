@@ -1,71 +1,63 @@
 import { useEffect, useState } from "react";
 
-import Image from "next/image";
-
 import {
   CardContent,
-  Chip,
   InputAdornment,
   InputBase,
   InputLabel,
   Stack,
   Typography,
 } from "@mui/material";
-import { useAtom, useAtomValue } from "jotai";
+import { useIsMutating } from "@tanstack/react-query";
+import { useAtom } from "jotai";
 
 import Card from "@/cards/Card";
 import CardButton from "@/cards/CardButton";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
-import LeverageNoticeDialog from "@/cards/oasisbot/OasisBotRunCard/LeverageNoticeDialog";
+import Icon from "@/components/Icon";
+import ExchangeChip from "@/components/chip/ExchangeChip";
+import LeverageNoticeDialog from "@/components/dialog/LeverageNoticeDialog";
+import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import FormTextField from "@/components/form/FormTextField";
 import exchangeAtom from "@/datas/exchange";
-import { botAtom } from "@/datas/oasisbotTransaction";
-import { useBot, useBotInfo } from "@/hooks/query/useOasisBot";
-import useModalGlobal from "@/hooks/useModalGlobal";
-import { exchangeToKorean } from "@/libs/string";
+import { selectedBotRowAtom } from "@/datas/oasisbotTransaction";
+import useBotCommand from "@/hooks/card/useBotCommand";
+import { useBotDetailQuery, useBotInfo } from "@/hooks/query/useOasisBot";
+import { DEFAULT_BALANCE } from "@/libs/balance";
 
 function OasisBotSelectCard() {
-  const [startBalance, setStartBalance] = useState<number>(5000);
+  const [exchange] = useAtom(exchangeAtom);
+
+  const [startBalance, setStartBalance] = useState<number>(DEFAULT_BALANCE[exchange] || 0);
   const [selectedPreset, setSelectedPreset] = useState<string>("");
   const [selectedTradeItem, setSelectedTradeItem] = useState<string>("");
-  const [standardMinute] = useState<string>("");
+  const [standardMinute, setStandardMinute] = useState<number>(0);
 
-  const [exchange] = useAtom(exchangeAtom);
-  const selectedBot = useAtomValue(botAtom);
+  const [selectedRow, setSelectedRow] = useAtom(selectedBotRowAtom);
 
-  useEffect(() => {
-    setStartBalance(selectedBot.startBalance);
-    setSelectedPreset(selectedBot.presetName);
-    setSelectedTradeItem(selectedBot.coinType);
-    // setStandardMinute(selectedBot.standardMinute);
-  }, [selectedBot]);
-
-  const { stopBotMutation, restartBotMutation } = useBot();
-  const { openModal, closeModal } = useModalGlobal();
+  const {
+    botDetailQuery: { data },
+  } = useBotDetailQuery(selectedRow[0]);
+  const { stopBot, restartBot } = useBotCommand();
+  const { openDialog, closeDialog } = useDialogGlobal();
   const { balanceQuery } = useBotInfo();
 
+  const isStopBotMutating = useIsMutating({ mutationKey: ["stopBot"] });
+  const isRestartBotMutating = useIsMutating({ mutationKey: ["restartBot"] });
+
   const onRemove = () => {
-    console.log("onRemove");
+    setSelectedRow([]);
   };
 
-  const stopBot = () => {
-    // openModal(
-    //   <InfoDialog
-    //     title="봇 중지"
-    //     description={[
-    //       "매수된 종목이 있을 시, 자동 매도가 안되어 잔고에 영향을 초래할 수 있습니다.",
-    //     ]}
-    //     handleClose={closeModal}
-    //   />,
-    // );
-
-    stopBotMutation.mutate(selectedBot.id);
-  };
-
-  const restartBot = () => {
-    restartBotMutation.mutate(selectedBot.id);
-  };
+  useEffect(() => {
+    if (data) {
+      setStartBalance(data.startBalance);
+      setSelectedPreset(data.presetName);
+      setSelectedTradeItem(data.coinType);
+      setStandardMinute(data.standardMinute);
+    }
+  }, [data]);
 
   return (
     <Card>
@@ -73,9 +65,7 @@ function OasisBotSelectCard() {
         id="bot-start"
         title="오아시스 BOT 실행"
         subtitle={`주문가능 금액\n${exchange === "upbit" ? "￦" : "$"}${balanceQuery.data?.availableBalance?.toLocaleString() ?? 0}`}
-        action={
-          <Chip label={exchangeToKorean(exchange)} variant="outlined" className="text-brand" />
-        }
+        action={<ExchangeChip />}
       />
       <CardContent>
         <Stack className="gap-2">
@@ -128,20 +118,16 @@ function OasisBotSelectCard() {
           />
           <Stack className="w-full">
             <InputLabel htmlFor="leverage">
-              <Image
-                src="/icons/control/info.png"
-                alt="info"
-                width={12}
-                height={12}
-                className="mr-1"
-              />
-              <Typography
-                variant="100R"
-                className="text-neutral-600 underline hover:cursor-pointer"
-                onClick={() => openModal(<LeverageNoticeDialog handleClose={closeModal} />)}
-              >
-                현재 설정 레버리지
-              </Typography>
+              <div className="flex flex-row">
+                <Icon src="/icons/control/info.png" alt="info" size={12} className="mr-1" />
+                <Typography
+                  variant="100R"
+                  className="text-neutral-600 underline hover:cursor-pointer"
+                  onClick={() => openDialog(<LeverageNoticeDialog handleClose={closeDialog} />)}
+                >
+                  현재 설정 레버리지
+                </Typography>
+              </div>
             </InputLabel>
             <InputBase
               placeholder={`${exchange === "upbit" ? "업비트 거래소는 레버리지 설정 불가" : "레버리지 고정값"}`}
@@ -159,14 +145,29 @@ function OasisBotSelectCard() {
       <CardFooter className="bottom-2">
         <CardButton
           text="초기화"
-          className={`mr-1 text-white ${selectedBot.isRunning ? "bg-neutral-400" : "bg-neutral-700"}`}
+          className={`mr-1 text-white ${data?.isRunning ? "bg-neutral-400" : "bg-neutral-700"}`}
           onClick={onRemove}
-          disabled={!!selectedBot.isRunning}
+          disabled={!!data?.isRunning}
         />
-        {selectedBot.isRunning ? (
-          <CardButton text="중지" className="ml-1 bg-[#F46565] text-white" onClick={stopBot} />
+        {data?.isRunning ? (
+          <CardButton
+            text="중지"
+            className="ml-1 bg-[#F46565] text-white"
+            onClick={() =>
+              stopBot({
+                selected: data.id,
+                onSuccess: () => console.log("stop"),
+              })
+            }
+            loading={!!isStopBotMutating}
+          />
         ) : (
-          <CardButton text="재실행" className="ml-1 bg-brand text-white" onClick={restartBot} />
+          <CardButton
+            text="재실행"
+            className="ml-1 bg-brand text-white"
+            onClick={() => restartBot({ selected: data?.id || -1 })}
+            loading={!!isRestartBotMutating}
+          />
         )}
       </CardFooter>
     </Card>

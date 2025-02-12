@@ -2,6 +2,7 @@ import { TableCell, Typography } from "@mui/material";
 
 export type TableRowType =
   | "oasislab"
+  | "activebot"
   | "getasset"
   | "oasisbot"
   | "exchange"
@@ -11,6 +12,7 @@ export type TableRowType =
 
 export const tableRowData: TableRowType[] = [
   "oasislab",
+  "activebot",
   "getasset",
   "oasisbot",
   "exchange",
@@ -30,6 +32,14 @@ export default function TableRowMeta({ type }: { type: TableRowType }) {
           </Typography>
           <Typography variant="200R" className="text-font-1">
             백테스트
+          </Typography>
+        </TableCell>
+      );
+    case "activebot":
+      return (
+        <TableCell className="text-center">
+          <Typography variant="300B" className="text-font-1">
+            활성화 봇 (제한)
           </Typography>
         </TableCell>
       );

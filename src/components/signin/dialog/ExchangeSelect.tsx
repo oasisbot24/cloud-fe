@@ -1,7 +1,7 @@
 import { Stack, Typography } from "@mui/material";
 
-import ExchangeSelectButton from "./ExchangeSelectButton";
-import ExchangeSelectDescription from "./ExchangeSelectDescription";
+import ExchangeSelectButton from "@/components/signin/dialog/ExchangeSelectButton";
+import ExchangeSelectDescription from "@/components/signin/dialog/ExchangeSelectDescription";
 
 interface ExchangeSelectProps {
   onClick: (type: ExchangeType) => void;

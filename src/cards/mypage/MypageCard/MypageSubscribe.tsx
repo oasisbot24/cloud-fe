@@ -2,18 +2,17 @@ import { useRouter } from "next/router";
 
 import { ButtonBase, Stack, Typography } from "@mui/material";
 
+import MypageInfo from "@/cards/mypage/MypageCard/MypageInfo";
+import MySubscribeDialog from "@/components/dialog/MySubscribeDialog";
+import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import { useSubscribeQuery } from "@/hooks/query/useSubcribe";
-import useModalGlobal from "@/hooks/useModalGlobal";
-
-import MypageInfo from "./MypageInfo";
-import SubscribeModel from "./SubscribeModel";
 
 export default function MypageSubscribe() {
   const { push } = useRouter();
   const {
     subscribeQuery: { data: subscribeData },
   } = useSubscribeQuery();
-  const { openModal } = useModalGlobal();
+  const { openDialog } = useDialogGlobal();
   return (
     <Stack className="w-full gap-4">
       <MypageInfo
@@ -34,7 +33,7 @@ export default function MypageSubscribe() {
           </Typography>
           <ButtonBase
             onClick={() => {
-              openModal(<SubscribeModel />);
+              openDialog(<MySubscribeDialog />);
             }}
           >
             <Typography variant="200M" className="text-neutral-600 underline">

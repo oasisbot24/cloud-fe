@@ -1,39 +1,38 @@
 import { Box, Stack, TableCell, Typography } from "@mui/material";
 import { useAtom } from "jotai";
 
-import { subscribeMonthAtom, subscribeTypeAtom } from "@/datas/subscribe";
+import { subscribeData, tableData } from "@/cards/subscribe/SubscribeCard/SubscribeTableData";
+import { TableRowType } from "@/cards/subscribe/SubscribeCard/SubscribeTableRow";
+import MySubscribeDialog from "@/components/dialog/MySubscribeDialog";
+import useDialogGlobal from "@/components/dialog/useDialogGlobal";
+import { productKeyAtom, productMonthAtom } from "@/datas/subscribe";
 import { useProductQuery } from "@/hooks/query/useSubcribe";
-import useModalGlobal from "@/hooks/useModalGlobal";
 import { numberToCurrency } from "@/libs/string";
 
-import SubscribeModal from "./SubscribeModal";
-import { subscribeData, tableData } from "./SubscribeTableData";
-import { TableRowType } from "./SubscribeTableRow";
-
 interface CustomTableCellProps {
-  subscribeType: SubscribeType;
+  productKey: Subscribe.ProductKey;
   tableRowType?: TableRowType;
   children?: React.ReactNode;
 }
 
-function CustomTableCell({ subscribeType, tableRowType, children }: CustomTableCellProps) {
-  const [, setType] = useAtom(subscribeTypeAtom);
-  const { openModal } = useModalGlobal();
+function CustomTableCell({ productKey, tableRowType, children }: CustomTableCellProps) {
+  const [, setKey] = useAtom(productKeyAtom);
+  const { openDialog } = useDialogGlobal();
   return (
     <TableCell
       width={220}
       className="cursor-pointer items-center text-center"
-      onMouseEnter={() => setType(subscribeType)}
-      onMouseLeave={() => setType(null)}
-      onClick={() => openModal(<SubscribeModal type={subscribeType} />)}
+      onMouseEnter={() => setKey(productKey)}
+      onMouseLeave={() => setKey(null)}
+      onClick={() => openDialog(<MySubscribeDialog />)}
     >
       {tableRowType ? (
         <Stack className="gap-1">
           <Typography
-            variant={subscribeType === "free" ? "200B" : "200R"}
-            className={subscribeType === "free" ? "font-bold text-brand" : ""}
+            variant={productKey === "basic" ? "200B" : "200R"}
+            className={productKey === "basic" ? "font-bold text-brand" : ""}
           >
-            {tableData[subscribeType][tableRowType]}
+            {tableData[productKey][tableRowType]}
           </Typography>
         </Stack>
       ) : (
@@ -43,20 +42,20 @@ function CustomTableCell({ subscribeType, tableRowType, children }: CustomTableC
   );
 }
 
-function CustomChip({ type }: { type: SubscribeType }) {
+function CustomChip({ productKey }: { productKey: Subscribe.ProductKey }) {
   const {
     productQuery: { data: productData },
   } = useProductQuery();
-  const [month] = useAtom(subscribeMonthAtom);
-  const [currentType] = useAtom(subscribeTypeAtom);
+  const [month] = useAtom(productMonthAtom);
+  const [currentKey] = useAtom(productKeyAtom);
   return (
     <Box
-      className={`mx-auto w-fit rounded-full px-5 py-2 ${type === currentType ? "bg-brand text-white" : "bg-neutral-200 text-brand"}`}
+      className={`mx-auto w-fit rounded-full px-5 py-2 ${productKey === currentKey ? "bg-brand text-white" : "bg-neutral-200 text-brand"}`}
     >
       <Typography variant="200B">
         {numberToCurrency(
           productData?.find(
-            product => product.productId === subscribeData[type].month[month]?.productId,
+            product => product.productId === subscribeData[productKey].month[month]?.productId,
           )?.productPrice ?? 0,
           "￦",
         )}
@@ -65,15 +64,16 @@ function CustomChip({ type }: { type: SubscribeType }) {
   );
 }
 
-function CustomOriginPrice({ type }: { type: SubscribeType }) {
+function CustomOriginPrice({ productKey }: { productKey: Subscribe.ProductKey }) {
   const {
     productQuery: { data: productData },
   } = useProductQuery();
   return (
     <Typography variant="200R" className="text-sub-4 line-through">
       {numberToCurrency(
-        (productData?.find(product => product.productId === subscribeData[type].month[1]?.productId)
-          ?.productPrice ?? 0) * 3,
+        (productData?.find(
+          product => product.productId === subscribeData[productKey].month[1]?.productId,
+        )?.productPrice ?? 0) * 3,
         "￦",
       )}
     </Typography>

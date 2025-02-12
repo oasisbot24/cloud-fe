@@ -1,11 +1,12 @@
-import { CardContent, Chip } from "@mui/material";
+import { CardContent } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
 import Card from "@/cards/Card";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
-import OasisBotTransactionCompactColumns from "@/components/table/OasisBotTransactionCompactColumns";
+import DetailChip from "@/components/chip/DetailChip";
 import { useBotInfo } from "@/hooks/query/useOasisBot";
+import OasisBotTransactionCompactColumns from "@/tables/OasisBotTransactionCompactColumns";
 
 function BotTransactionCard() {
   const { transactionQuery } = useBotInfo();
@@ -34,7 +35,7 @@ function BotTransactionCard() {
         />
       </CardContent>
       <CardFooter>
-        <Chip label="자세히 보기" variant="outlined" onClick={() => console.log("clicked")} />
+        <DetailChip onClick={() => console.log("clicked")} />
       </CardFooter>
     </Card>
   );

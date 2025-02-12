@@ -1,52 +1,27 @@
-import { useEffect, useState } from "react";
-
 import { useRouter } from "next/router";
 
-import { CardContent, Chip } from "@mui/material";
-import { DataGrid, GridRowSelectionModel } from "@mui/x-data-grid";
-import { useSetAtom } from "jotai";
+import { CardContent } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
+import { useAtom } from "jotai";
 
 import Card from "@/cards/Card";
 import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
-import OasisBotListColumns from "@/components/table/OasisBotListColumns";
-import { botAtom } from "@/datas/oasisbotTransaction";
+import DetailChip from "@/components/chip/DetailChip";
+import { selectedBotRowAtom } from "@/datas/oasisbotTransaction";
 import { useBotQuery } from "@/hooks/query/useOasisBot";
+import OasisBotListColumns from "@/tables/OasisBotListColumns";
 
 interface Props {
   nav: string;
 }
 export default function OasisBotListCard({ nav }: Props) {
+  const [selectedRow, setSelectedRow] = useAtom(selectedBotRowAtom);
+
   const columns = OasisBotListColumns;
   const {
-    botQuery: { data, isLoading },
+    botListQuery: { data, isLoading },
   } = useBotQuery();
-  const [selectedRow, setSelectedRow] = useState<GridRowSelectionModel>([]);
-  const setSelectedBot = useSetAtom(botAtom);
-
-  useEffect(() => {
-    if (selectedRow.length > 0) {
-      setSelectedBot(
-        data?.find(value => value.id === selectedRow[0]) || {
-          id: -1,
-          isRunning: false,
-          presetName: "",
-          startBalance: 0,
-          runningTime: 0,
-          coinType: "",
-        },
-      );
-    } else {
-      setSelectedBot({
-        id: -1,
-        isRunning: false,
-        presetName: "",
-        startBalance: 0,
-        runningTime: 0,
-        coinType: "",
-      });
-    }
-  }, [selectedRow]);
 
   const router = useRouter();
   return (
@@ -57,9 +32,7 @@ export default function OasisBotListCard({ nav }: Props) {
           columns={columns}
           rows={data ?? []}
           loading={isLoading}
-          onRowSelectionModelChange={newRow => {
-            setSelectedRow(selectedRow[0] === newRow[0] ? [] : newRow);
-          }}
+          onRowSelectionModelChange={newRow => setSelectedRow(newRow)}
           rowSelectionModel={selectedRow}
           hideFooter
           sx={{
@@ -72,16 +45,7 @@ export default function OasisBotListCard({ nav }: Props) {
         />
       </CardContent>
       <CardFooter>
-        {nav === "dashboard" ? (
-          <Chip
-            label="자세히 보기"
-            variant="outlined"
-            className="my-2"
-            onClick={() => router.push("/oasisbot")}
-          />
-        ) : (
-          ""
-        )}
+        {nav === "dashboard" ? <DetailChip onClick={() => router.push("/oasisbot")} /> : ""}
       </CardFooter>
     </Card>
   );

@@ -1,7 +1,6 @@
 import Card from "@/cards/Card";
-
-import SubscribeDescription from "./SubscribeDescription";
-import SubscribeTable from "./SubscribeTable";
+import SubscribeDescription from "@/cards/subscribe/SubscribeCard/SubscribeDescription";
+import SubscribeTable from "@/cards/subscribe/SubscribeCard/SubscribeTable";
 
 export default function SubscribeCard() {
   return (

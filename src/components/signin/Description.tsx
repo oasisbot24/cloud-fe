@@ -3,15 +3,14 @@ import { useRouter } from "next/router";
 import { Stack, Typography } from "@mui/material";
 import { useAtom } from "jotai";
 
+import SigninDialog from "@/components/dialog/SigninDialog";
+import useDialogGlobal from "@/components/dialog/useDialogGlobal";
+import GoogleSigninButton from "@/components/signin/GoogleSigninButton";
+import Agreement from "@/components/signin/dialog/Agreement";
+import ExchangeSelect from "@/components/signin/dialog/ExchangeSelect";
 import exchangeAtom from "@/datas/exchange";
 import { useUserExchangesQuery } from "@/hooks/query/useApiConnection";
 import useSignin from "@/hooks/query/useSignin";
-import useModal from "@/hooks/useModal";
-
-import GoogleSigninButton from "./GoogleSigninButton";
-import Agreement from "./dialog/Agreement";
-import ExchangeSelect from "./dialog/ExchangeSelect";
-import SigninDialog from "./dialog/SigninDialog";
 
 function Description() {
   const {
@@ -20,16 +19,16 @@ function Description() {
   const { push } = useRouter();
   const [, setExchange] = useAtom(exchangeAtom);
   const { postAgreementMutation } = useSignin();
-  const { modal, openModal, closeModal } = useModal();
+  const { Dialog, openDialog, closeDialog } = useDialogGlobal();
 
   const openExchangeSelect = () => {
-    openModal(
-      <SigninDialog onClose={closeModal}>
+    openDialog(
+      <SigninDialog onClose={closeDialog}>
         <ExchangeSelect
           onClick={(type: ExchangeType) => {
             localStorage.setItem("exchange", type);
             setExchange(type);
-            closeModal();
+            closeDialog();
             if (!userExchangeData || userExchangeData.length === 0) {
               push("/api-connection");
             } else {
@@ -47,16 +46,16 @@ function Description() {
     body.adAgreement = data.marketing;
     postAgreementMutation.mutate(body, {
       onSuccess: () => {
-        closeModal();
+        closeDialog();
         openExchangeSelect();
       },
     });
   };
 
   const openAgreement = () => {
-    openModal(
-      <SigninDialog onClose={closeModal}>
-        <Agreement onClose={closeModal} onAgree={agree} />
+    openDialog(
+      <SigninDialog onClose={closeDialog}>
+        <Agreement onClose={closeDialog} onAgree={agree} />
       </SigninDialog>,
     );
   };
@@ -80,7 +79,7 @@ function Description() {
         </Stack>
       </Stack>
       <GoogleSigninButton onSuccess={handleSuccess} />
-      {modal}
+      {Dialog}
     </Stack>
   );
 }

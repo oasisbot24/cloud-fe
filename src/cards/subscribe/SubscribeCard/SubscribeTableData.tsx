@@ -1,6 +1,8 @@
 import { Check, Close } from "@mui/icons-material";
+import { Stack } from "@mui/material";
 
-import { TableRowType } from "./SubscribeTableRow";
+import { TableRowType } from "@/cards/subscribe/SubscribeCard/SubscribeTableRow";
+import Icon from "@/components/Icon";
 
 interface TableType {
   free: Record<TableRowType, JSX.Element | string>;
@@ -8,9 +10,27 @@ interface TableType {
   premium: Record<TableRowType, JSX.Element | string>;
 }
 
+function UpbitIcon() {
+  return (
+    <Stack direction="row" gap={1} className="flex items-center justify-center">
+      <Icon src="/icons/exchange/upbit.png" size={25} />
+      <div className="flex items-center justify-center">업비트만가능</div>
+    </Stack>
+  );
+}
+
+function AllText() {
+  return (
+    <Stack direction="row" gap={1}>
+      <div className="font-bold">All</div> 지원거래소 모두가능
+    </Stack>
+  );
+}
+
 const tableData: TableType = {
   free: {
     oasislab: "개발예정",
+    activebot: <Close />,
     getasset: <Close />,
     oasisbot: <Close />,
     exchange: <Close />,
@@ -20,25 +40,36 @@ const tableData: TableType = {
   },
   basic: {
     oasislab: "개발예정",
+    activebot: "3개",
     getasset: <Check />,
     oasisbot: <Check />,
-    exchange: "업비트만가능",
-    "api-connection": "업비트만가능",
+    exchange: <UpbitIcon />,
+    "api-connection": <UpbitIcon />,
     "new-coin": <Check />,
     partner: <Check />,
   },
   premium: {
     oasislab: "개발예정",
+    activebot: "8개",
     getasset: <Check />,
     oasisbot: <Check />,
-    exchange: "지원거래소 모두가능",
-    "api-connection": "지원거래소 모두가능",
+    exchange: <AllText />,
+    "api-connection": <AllText />,
     "new-coin": <Check />,
     partner: <Check />,
   },
 };
 
-const subscribeData = {
+const subscribeData: {
+  [key in Subscribe.ProductKey]: {
+    title: string;
+    month: {
+      [monthKey in Subscribe.ProductMonth]: {
+        productId: number;
+      };
+    };
+  };
+} = {
   free: {
     title: "Free",
     month: {

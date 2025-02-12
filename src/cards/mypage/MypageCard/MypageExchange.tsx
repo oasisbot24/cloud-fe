@@ -1,30 +1,29 @@
 import { Typography } from "@mui/material";
 import { useAtom } from "jotai";
 
+import MypageInfo from "@/cards/mypage/MypageCard/MypageInfo";
 import ExchangeIcon from "@/components/Icon/ExchangeIcon";
+import SigninDialog from "@/components/dialog/SigninDialog";
+import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import ExchangeSelect from "@/components/signin/dialog/ExchangeSelect";
-import SigninDialog from "@/components/signin/dialog/SigninDialog";
 import exchangeAtom from "@/datas/exchange";
-import useModalGlobal from "@/hooks/useModalGlobal";
 import { exchangeToKorean } from "@/libs/string";
-
-import MypageInfo from "./MypageInfo";
 
 export default function MypageExchange() {
   const [exchange, setExchange] = useAtom(exchangeAtom);
-  const { openModal, closeModal } = useModalGlobal();
+  const { openDialog, closeDialog } = useDialogGlobal();
   return (
     <MypageInfo
       title="거래소"
       buttonText="거래소 변경"
       onClick={() => {
-        openModal(
-          <SigninDialog onClose={closeModal}>
+        openDialog(
+          <SigninDialog onClose={closeDialog}>
             <ExchangeSelect
               onClick={(type: ExchangeType) => {
                 localStorage.setItem("exchange", type);
                 setExchange(type);
-                closeModal();
+                closeDialog();
               }}
             />
           </SigninDialog>,

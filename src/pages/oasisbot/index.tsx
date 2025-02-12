@@ -6,12 +6,15 @@ import OasisBotRunCard from "@/cards/oasisbot/OasisBotRunCard";
 import OasisBotSelectCard from "@/cards/oasisbot/OasisBotSelectCard";
 import OasisBotTotalCardList from "@/cards/oasisbot/OasisBotTotalCard/list";
 import OasisBotTransactionCard from "@/cards/oasisbot/OasisBotTransactionCard";
-import { botAtom } from "@/datas/oasisbotTransaction";
+import { selectedBotRowAtom } from "@/datas/oasisbotTransaction";
+import { useBotDetailQuery } from "@/hooks/query/useOasisBot";
 import Carousel from "@/layouts/Carousel";
 import Layout from "@/layouts/Layout";
 
 function OasisBot() {
-  const bot = useAtomValue(botAtom);
+  const selectedRow = useAtomValue(selectedBotRowAtom);
+  const { botDetailQuery } = useBotDetailQuery(selectedRow[0]);
+  const { data } = botDetailQuery;
 
   return (
     <Layout>
@@ -19,9 +22,7 @@ function OasisBot() {
         <Stack direction="row" className="w-full gap-4">
           <Stack className="w-4/6 gap-4">
             <Stack direction="row" className="h-[495px] gap-4">
-              <Box className="w-2/5">
-                {bot.id === -1 ? <OasisBotRunCard /> : <OasisBotSelectCard />}
-              </Box>
+              <Box className="w-2/5">{data?.id ? <OasisBotSelectCard /> : <OasisBotRunCard />}</Box>
               <Box className="h-[495px] w-3/5 gap-4">
                 <OasisBotListCard nav="oasisbot" />
               </Box>

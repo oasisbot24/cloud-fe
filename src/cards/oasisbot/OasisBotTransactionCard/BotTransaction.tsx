@@ -1,8 +1,8 @@
 import { CardContent } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
-import OasisBotTransactionColumns from "@/components/table/OasisBotTransactionColumns";
 import { useBotInfo } from "@/hooks/query/useOasisBot";
+import OasisBotTransactionColumns from "@/tables/OasisBotTransactionColumns";
 
 export default function BotTransaction() {
   const { transactionQuery } = useBotInfo();

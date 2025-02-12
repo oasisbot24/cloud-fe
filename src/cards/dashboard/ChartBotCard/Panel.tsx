@@ -3,17 +3,15 @@ import { useState } from "react";
 import { Box, Menu, Stack } from "@mui/material";
 import { useAtom } from "jotai";
 
-import { ChartType } from "@/apis/chart/dashboardChart";
+import CustomMenu from "@/cards/dashboard/ChartBotCard/CustomMenu";
+import PanelDescription from "@/cards/dashboard/ChartBotCard/PanelDescription";
 import Icon from "@/components/Icon";
 import exchangeAtom from "@/datas/exchange";
-
-import CustomMenu from "./CustomMenu";
-import PanelDescription from "./PanelDescription";
 
 interface Props {
   setMenuId: React.Dispatch<React.SetStateAction<number>>;
   menuId: number;
-  chart: ChartType[];
+  chart: Account.BotResultChartT[];
 }
 export default function Panel({ setMenuId, menuId, chart }: Props) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

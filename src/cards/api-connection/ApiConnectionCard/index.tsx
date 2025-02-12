@@ -1,10 +1,9 @@
 import { Alert, Box, Stack } from "@mui/material";
 
 import Card from "@/cards/Card";
+import ExchangeButton from "@/cards/api-connection/ApiConnectionCard/ExchangeButton";
 import ExchangeSelectDescription from "@/components/signin/dialog/ExchangeSelectDescription";
 import { useUserExchangesQuery } from "@/hooks/query/useApiConnection";
-
-import ExchangeButton from "./ExchangeButton";
 
 interface Props {
   processing?: ExchangeType;
@@ -16,6 +15,7 @@ export default function ApiConnectionCard({ processing, error, success }: Props)
   const {
     userExchangeQuery: { data: userExchanges },
   } = useUserExchangesQuery();
+
   return (
     <Card>
       <Stack className="h-full w-full items-center justify-between gap-8 px-4 py-4 md:px-8 md:py-8 xl:px-16">

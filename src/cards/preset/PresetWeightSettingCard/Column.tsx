@@ -1,6 +1,6 @@
 import { Box, Stack } from "@mui/material";
 
-import GraphText from "./GraphText";
+import GraphText from "@/cards/preset/PresetWeightSettingCard/GraphText";
 
 function Column() {
   return (
