@@ -65,7 +65,7 @@ api.interceptors.response.use(
   },
   error => {
     const { response } = error;
-    console.log("error: ", error);
+    // console.log("error: ", error);
     if (response.status === 406) {
       if (response.headers.authorization) {
         localStorage.setItem("authorization", response.headers.authorization);

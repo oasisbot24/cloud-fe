@@ -73,6 +73,7 @@ export default function ExchangeButton({
         backgroundColor: disabled ? "#e3e3e3" : isConnected ? "#EEF0FE" : "white",
       }}
       disabled={isConnected || disabled || isProcessing}
+      data-exchange={exchange}
       onClick={clickHandler}
     >
       <Stack className="items-center justify-between">

@@ -8,6 +8,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { sendGAEvent, sendGTMEvent } from "@next/third-parties/google";
 import { useAtom } from "jotai";
 
 import Card from "@/cards/Card";
@@ -21,6 +22,7 @@ import LeverageNoticeDialog from "@/components/dialog/LeverageNoticeDialog";
 import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import FormSelect from "@/components/form/FormSelect";
 import FormTextField from "@/components/form/FormTextField";
+import { GA_CTA_EVENTS } from "@/constants/constants";
 import exchangeAtom from "@/datas/exchange";
 import { useBot, useBotInfo } from "@/hooks/query/useOasisBot";
 import { usePresetQuery } from "@/hooks/query/usePreset";
@@ -138,7 +140,25 @@ function OasisBotRunCard() {
         description={["해당 봇을 실행할까요?"]}
         confirmFunc={() => {
           mutate({ body });
-          if (isSuccess) closeDialog();
+          if (isSuccess) {
+            sendGAEvent({
+              event: GA_CTA_EVENTS.startBot1,
+              trade_amount: Number(startBalance),
+              preset_name: selectedPreset,
+              trade_asset: selectedTradeItem,
+              timeframe: Number(standardMinute),
+              leverage_setting: null,
+            });
+            sendGTMEvent({
+              event: GA_CTA_EVENTS.startBot1,
+              trade_amount: Number(startBalance),
+              preset_name: selectedPreset,
+              trade_asset: selectedTradeItem,
+              timeframe: Number(standardMinute),
+              leverage_setting: null,
+            });
+            closeDialog();
+          }
         }}
         cancelFunc={closeDialog}
         cancellable
@@ -158,6 +178,7 @@ function OasisBotRunCard() {
         <Stack className="gap-2">
           <FormTextField
             id="transactionAmount"
+            className="trade-amount"
             label={`거래금액을 입력해 주세요 (최소 ${exchange === "upbit" ? "₩5,000" : "$100"})`}
             type="number"
             value={startBalance}
@@ -171,6 +192,7 @@ function OasisBotRunCard() {
           />
           <FormSelect
             id="presets"
+            className="preset-name"
             label="설정 프리셋"
             variant="standard"
             items={presetList}
@@ -179,6 +201,7 @@ function OasisBotRunCard() {
           />
           <FormSelect
             id="tradeItem"
+            className="trade-asset"
             label="매매종목"
             variant="standard"
             items={coinList}
@@ -187,6 +210,7 @@ function OasisBotRunCard() {
           />
           <FormSelect
             id="tradeItem"
+            className="timeframe"
             label="기준 분봉"
             variant="standard"
             items={standardMinuteList}
@@ -211,7 +235,7 @@ function OasisBotRunCard() {
               fullWidth
               classes={{
                 input:
-                  "h-[30px] p-0 flex-0 items-center justify-center leading-[16px] text-[14px] border-solid border-b-[1px] border-x-0 border-t-0 border-neutral-300 font-[500] text-font-2",
+                  "leverage-setting h-[30px] p-0 flex-0 items-center justify-center leading-[16px] text-[14px] border-solid border-b-[1px] border-x-0 border-t-0 border-neutral-300 font-[500] text-font-2",
                 disabled: "cursor-not-allowed bg-neutral-200 text-neutral-600",
               }}
               disabled
@@ -220,10 +244,14 @@ function OasisBotRunCard() {
         </Stack>
       </CardContent>
       <CardFooter className="bottom-2">
-        <CardButton text="초기화" className="mr-1 bg-neutral-700 text-white" onClick={onReset} />
+        <CardButton
+          text="초기화"
+          className="reset-button mr-1 bg-neutral-700 text-white"
+          onClick={onReset}
+        />
         <CardButton
           text="저장 및 실행"
-          className="ml-1 bg-brand text-white"
+          className="execute-button ml-1 bg-brand text-white"
           onClick={runOasisBot}
         />
       </CardFooter>
