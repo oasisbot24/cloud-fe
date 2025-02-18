@@ -27,7 +27,7 @@ export default function openScrap(uid: string, callback?: (e: ScrapResponse) => 
 
   const mode = process.env.NEXT_PUBLIC_MODE;
   let scrapUrl = "";
-  if (mode == "development") {
+  if (mode === "development") {
     scrapUrl = pluginURL + pluginPath + qs.stringify(sampleScrapParams);
   } else {
     scrapUrl = "https://sa.portx.im/login";
