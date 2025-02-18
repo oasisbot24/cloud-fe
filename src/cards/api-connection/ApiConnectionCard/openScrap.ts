@@ -25,7 +25,13 @@ export default function openScrap(uid: string, callback?: (e: ScrapResponse) => 
     lang: "ko",
   };
 
-  const scrapUrl = pluginURL + pluginPath + qs.stringify(sampleScrapParams);
+  const mode = process.env.NEXT_PUBLIC_MODE;
+  let scrapUrl = "";
+  if (mode == "development") {
+    scrapUrl = pluginURL + pluginPath + qs.stringify(sampleScrapParams);
+  } else {
+    scrapUrl = "https://sa.portx.im/login";
+  }
 
   const opened = window.open(scrapUrl, "_blank");
 
