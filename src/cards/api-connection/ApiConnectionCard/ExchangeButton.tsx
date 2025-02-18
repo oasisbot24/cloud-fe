@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import { ButtonBase, CircularProgress, Stack, Typography } from "@mui/material";
 
 import openScrap from "@/cards/api-connection/ApiConnectionCard/openScrap";
-import OKEXOAuthSDK from "@/cards/api-connection/ApiConnectionCard/useOKEXOAuthSDK";
 import ExchangeIcon from "@/components/Icon/ExchangeIcon";
 import { useSmartAccessMutation } from "@/hooks/query/useApiConnection";
 import { useSubscribeQuery } from "@/hooks/query/useSubcribe";
