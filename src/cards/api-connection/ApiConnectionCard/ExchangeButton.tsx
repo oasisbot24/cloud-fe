@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { ButtonBase, CircularProgress, Stack, Typography } from "@mui/material";
 
 import openScrap from "@/cards/api-connection/ApiConnectionCard/openScrap";
+import OKEXOAuthSDK from "@/cards/api-connection/ApiConnectionCard/useOKEXOAuthSDK";
 import ExchangeIcon from "@/components/Icon/ExchangeIcon";
 import { useSmartAccessMutation } from "@/hooks/query/useApiConnection";
 import { useSubscribeQuery } from "@/hooks/query/useSubcribe";
@@ -25,6 +26,7 @@ export default function ExchangeButton({
   } = useSubscribeQuery();
   const { postSmartAccessSessionMutation, postSmartAccessResultMutation } =
     useSmartAccessMutation();
+
   const clickHandler = () => {
     if (subscribeData?.productName === "Free") {
       push("/subscribe");
@@ -33,13 +35,13 @@ export default function ExchangeButton({
     if (exchange === "binance" || exchange === "lbank") return;
     if (exchange === "okx") {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { OKEXOAuthSDK } = window as unknown as any;
+      // const { OKEXOAuthSDK } = window as unknown as any;
       if (OKEXOAuthSDK) {
         const state = OKEXOAuthSDK.generateState();
         OKEXOAuthSDK.authorize({
           response_type: "code",
           access_type: "offline",
-          client_id: process.env.NEXT_PUBLIC_OKX_OAUTH_CLIENT_ID,
+          client_id: process.env.NEXT_PUBLIC_OKX_OAUTH_CLIENT_ID!,
           redirect_uri: encodeURIComponent(`${window.location.origin}/api-connection/okx`),
           scope: "fast_api",
           state,
