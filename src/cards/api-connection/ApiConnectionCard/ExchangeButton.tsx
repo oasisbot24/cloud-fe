@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import { useRouter } from "next/router";
 
 import { ButtonBase, CircularProgress, Stack, Typography } from "@mui/material";
@@ -35,7 +37,8 @@ export default function ExchangeButton({
     if (exchange === "binance" || exchange === "lbank") return;
     if (exchange === "okx") {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      // const { OKEXOAuthSDK } = window as unknown as any;
+      const { OKEXOAuthSDK } = window as unknown as any;
+
       if (OKEXOAuthSDK) {
         const state = OKEXOAuthSDK.generateState();
         OKEXOAuthSDK.authorize({

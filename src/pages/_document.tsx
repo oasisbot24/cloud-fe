@@ -19,9 +19,9 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
-        <GoogleAnalytics gaId="G-35VD71EPTP" />
-        <GoogleTagManager gtmId="GTM-TBMTZ7W3" />
       </body>
+      <GoogleAnalytics gaId="G-35VD71EPTP" />
+      <GoogleTagManager gtmId="GTM-TBMTZ7W3" />
     </Html>
   );
 }
