@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import { useRouter } from "next/router";
 
 import { ButtonBase, CircularProgress, Stack, Typography } from "@mui/material";
