@@ -103,3 +103,7 @@ interface SelectItem {
   label: string;
   value: string | number;
 }
+
+interface Window {
+  gtag: any;
+}

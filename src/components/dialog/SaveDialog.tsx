@@ -1,9 +1,11 @@
 import Image from "next/image";
 
 import { ButtonBase, Stack, Typography } from "@mui/material";
+import { sendGAEvent, sendGTMEvent } from "@next/third-parties/google";
 import { useAtom } from "jotai";
 
 import useDialogGlobal from "@/components/dialog/useDialogGlobal";
+import { GA_CTA_EVENTS } from "@/constants/constants";
 import { presetAtom, presetWeightAtom } from "@/datas/preset";
 import { usePresetMutation } from "@/hooks/query/usePreset";
 import { presetWeightToPresetData } from "@/libs/preset";
@@ -30,6 +32,8 @@ export default function SaveDialog() {
         },
         {
           onSuccess: () => {
+            sendGAEvent("event", GA_CTA_EVENTS.presetAdd3);
+            sendGTMEvent("event", GA_CTA_EVENTS.presetAdd3);
             closeDialog();
           },
         },
