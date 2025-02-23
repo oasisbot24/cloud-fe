@@ -6,6 +6,7 @@ declare namespace Subscribe {
   interface SubscribeT {
     subscribeId: number;
     productName: string;
+    paidPeriod: number;
     expiryDate: string;
   }
 

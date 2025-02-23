@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { useAtom } from "jotai";
+import { useAtomValue } from "jotai";
 
 import exchangeAtom from "@/datas/exchange";
 import api from "@/libs/network";
 
 export function useChart() {
-  const [exchange] = useAtom(exchangeAtom);
+  const exchange = useAtomValue(exchangeAtom);
   const coinRatioQuery = useQuery({
     queryFn: async () => {
       const res = await api.get<ResponseT<Account.HoldingCoinRatioT[]>>("/coin_ratio", {
@@ -19,10 +19,14 @@ export function useChart() {
 }
 
 export function useDashboardChart() {
+  const exchange = useAtomValue(exchangeAtom);
+
   const dashboardChartQuery = useQuery({
     queryKey: ["dashboardchart"],
     queryFn: async () => {
-      const res = await api.get<ResponseT<Account.BotResultChartResponseT[]>>(`/chart`);
+      const res = await api.get<ResponseT<Account.BotResultChartResponseT[]>>(`/chart`, {
+        params: { exchange },
+      });
 
       const charts: Account.BotResultChartT[] = res.data?.data.map(item => {
         const dateArr: string[] = [];

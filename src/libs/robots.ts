@@ -1,5 +1,3 @@
-import React from "react";
-
 import { NextApiRequest, NextApiResponse } from "next";
 
 function handler(req: NextApiRequest, res: NextApiResponse) {
