@@ -78,7 +78,7 @@ function Description() {
           <Typography variant="display3">오직 오아시스에서</Typography>
         </Stack>
       </Stack>
-      <GoogleSigninButton onSuccess={handleSuccess} />
+      <GoogleSigninButton onSuccess={handleSuccess} eventLabel="login_success" />
       {Dialog}
     </Stack>
   );

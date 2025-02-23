@@ -8,11 +8,11 @@ import useSignin from "@/hooks/query/useSignin";
 
 type GAButtonProps = {
   onSuccess: (data: { isAgree: boolean }) => void;
-  children: React.ReactNode;
+  // children: React.ReactNode;
   eventLabel: GA_CTA_EVENT;
 } & React.HTMLAttributes<HTMLButtonElement>;
 
-function GoogleSigninButton({ onSuccess, eventLabel, ...rest }: GAButtonProps) {
+function GoogleSigninButton({ onSuccess, eventLabel }: GAButtonProps) {
   const { signinAccessTokenMutation } = useSignin();
 
   /*
