@@ -1,6 +1,8 @@
 import { Box } from "@mui/material";
+import { useAtomValue } from "jotai";
 
 import { BaseCircle, CenterCircle, ElementCircle } from "@/cards/dashboard/ChartAssetCard/Circle";
+import exchangeAtom from "@/datas/exchange";
 import { numberSlice, numberToCurrency } from "@/libs/string";
 
 interface CircleChartProps {
@@ -24,6 +26,8 @@ const coinColors = [
 ];
 
 export default function CircleChart({ coinRatioList, focus }: CircleChartProps) {
+  const exchange = useAtomValue(exchangeAtom);
+
   const coinRatioPercentList = [0];
   let sum = 0;
   coinRatioList?.forEach(coinRatio => {
@@ -50,7 +54,10 @@ export default function CircleChart({ coinRatioList, focus }: CircleChartProps) 
       )}
       <CenterCircle
         percent={coinRatioList?.[focusIndex]?.ratio}
-        amount={numberToCurrency(numberSlice(coinRatioList?.[focusIndex]?.price, 2), "₩")}
+        amount={numberToCurrency(
+          numberSlice(coinRatioList?.[focusIndex]?.price, 2),
+          exchange === "upbit" ? "₩" : "$",
+        )}
       />
     </Box>
   );
