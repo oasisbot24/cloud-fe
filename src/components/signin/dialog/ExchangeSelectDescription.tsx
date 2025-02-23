@@ -1,10 +1,12 @@
 import { ButtonBase, Stack, Typography } from "@mui/material";
+import { sendGAEvent, sendGTMEvent } from "@next/third-parties/google";
 
 import Icon from "@/components/Icon";
+import { GA_CTA_EVENTS } from "@/constants/constants";
 
 export default function ExchangeSelectDescription() {
   return (
-    <Stack className="w-full items-center gap-4 rounded-2xl bg-neutral-200 px-4 py-6">
+    <Stack className="event-section w-full items-center gap-4 rounded-2xl bg-neutral-200 px-4 py-6">
       <Stack direction="row" className="gap-2">
         <Icon src="/icons/control/info.png" size={16} />
         <Typography variant="300M" className="text-font-1">
@@ -20,8 +22,19 @@ export default function ExchangeSelectDescription() {
         </Typography>
       </Stack>
       <ButtonBase
-        className="w-full rounded-full bg-brand py-3"
-        onClick={() => window.open("https://www.okx.com/join/79271938")}
+        className="event-button w-full rounded-full bg-brand py-3"
+        onClick={() => {
+          sendGAEvent({
+            event: GA_CTA_EVENTS.selectExchange,
+            exchange_name: "OKX Event",
+          });
+          sendGTMEvent({
+            event: GA_CTA_EVENTS.selectExchange,
+            exchange_name: "OKX Event",
+          });
+          window.open("https://www.okx.com/join/79271938");
+        }}
+        data-exchange="OKX Event"
       >
         <Typography variant="300B" className="text-white">
           이벤트 이용하기

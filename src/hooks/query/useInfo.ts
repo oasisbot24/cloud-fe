@@ -1,5 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
+import { useAtomValue } from "jotai";
 
+import exchangeAtom from "@/datas/exchange";
 import api from "@/libs/network";
 
 export function useInfoRanking(period: 1 | 30 | 180 | 365) {
@@ -37,10 +39,14 @@ export function useInfoRanking(period: 1 | 30 | 180 | 365) {
 }
 
 export function useInfoTradeStyle() {
+  const exchange = useAtomValue(exchangeAtom);
+
   const tradeStyleQuery = useQuery({
     queryKey: ["tradeStyle"],
     queryFn: async () => {
-      const res = await api.get<ResponseT<Account.TradeStyleT>>("/trade_style");
+      const res = await api.get<ResponseT<Account.TradeStyleT>>("/trade_style", {
+        params: { exchange },
+      });
       return res.data?.data;
     },
   });

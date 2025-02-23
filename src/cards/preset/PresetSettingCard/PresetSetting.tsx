@@ -15,9 +15,10 @@ export default function PresetSetting() {
 
   const [exchange] = useAtom(exchangeAtom);
   return (
-    <Stack className="w-full items-center gap-1">
+    <Stack className="preset-container w-full items-center gap-1">
       <FormTextField
         id="presetName"
+        className="preset-name"
         label="프리셋이름"
         value={preset?.presetName}
         setValue={v => {
@@ -26,6 +27,7 @@ export default function PresetSetting() {
       />
       <FormSelect
         id="indicator"
+        className="indicator"
         label="설정 보조지표"
         items={
           indicatorData?.map(({ indicatorName }) => ({
@@ -41,6 +43,7 @@ export default function PresetSetting() {
       {exchange === "upbit" ? (
         <FormSelect
           id="position"
+          className="entry-position"
           label="진입 포지션"
           value="not-supported"
           items={[{ label: "upbit에서는 지원하지 않습니다.", value: "not-supported" }]}
@@ -49,6 +52,7 @@ export default function PresetSetting() {
       ) : (
         <FormSelect
           id="position"
+          className="entry-position"
           label="진입 포지션"
           items={[
             { label: "long", value: "long" },
@@ -62,6 +66,7 @@ export default function PresetSetting() {
       )}
       <FormTextField
         id="profitRate"
+        className="profit-target"
         label="익절률 (%)"
         value={preset?.profitCutRate}
         setValue={v => {
@@ -70,6 +75,7 @@ export default function PresetSetting() {
       />
       <FormTextField
         id="lossRate"
+        className="loss-limit"
         label="손절률 (%)"
         value={preset?.lossCutRate}
         setValue={v => {
