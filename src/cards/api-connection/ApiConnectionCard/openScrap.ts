@@ -4,6 +4,7 @@ const mode = process.env.NEXT_PUBLIC_MODE;
 let pluginURL = "";
 if (mode === "development") {
   pluginURL = "https://svc.ckss.solidwallet.io";
+  // pluginURL = "https://sa.portx.im";
 } else {
   pluginURL = "https://sa.portx.im";
 }
