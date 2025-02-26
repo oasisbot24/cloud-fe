@@ -27,10 +27,10 @@ export default function ExchangeButton({
     useSmartAccessMutation();
 
   const clickHandler = () => {
-    if (subscribeData?.productName === "Free") {
-      push("/subscribe");
-      return;
-    }
+    // if (subscribeData?.productName === "Free") {
+    //   push("/subscribe");
+    //   return;
+    // }
     if (exchange === "binance" || exchange === "lbank") return;
     if (exchange === "okx") {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -74,12 +74,15 @@ export default function ExchangeButton({
       sx={{
         backgroundColor: disabled ? "#e3e3e3" : isConnected ? "#EEF0FE" : "white",
       }}
-      disabled={isConnected || disabled || isProcessing}
+      // disabled={isConnected || disabled || isProcessing}
       data-exchange={exchange}
       onClick={clickHandler}
     >
       <Stack className="items-center justify-between">
-        {isProcessing ? (
+        <Typography variant="300R" className="text-font-2">
+          연결하기
+        </Typography>
+        {/* {isProcessing ? (
           <CircularProgress size={42} className="mb-2" />
         ) : (
           <ExchangeIcon exchange={exchange} size={60} />
@@ -100,7 +103,7 @@ export default function ExchangeButton({
           <Typography variant="300R" className="text-font-2">
             연결하기
           </Typography>
-        )}
+        )} */}
       </Stack>
     </ButtonBase>
   );
