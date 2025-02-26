@@ -1,6 +1,6 @@
 import { Head, Html, Main, NextScript } from "next/document";
 
-import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
+import GoogleAnalytics from "@/components/googleAnalytics/GoogleAnalytics";
 
 export default function Document() {
   return (
@@ -16,11 +16,10 @@ export default function Document() {
       <script src="https://static.okx.com/cdn/assets/okfe/libs/okxOAuth/index.js" async />
 
       <body>
+        <GoogleAnalytics gaId="G-35VD71EPTP" gtmId="GTM-TBMTZ7W3" />
         <Main />
         <NextScript />
       </body>
-      <GoogleAnalytics gaId="G-35VD71EPTP" />
-      <GoogleTagManager gtmId="GTM-TBMTZ7W3" />
     </Html>
   );
 }
