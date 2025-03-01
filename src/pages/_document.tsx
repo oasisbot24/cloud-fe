@@ -1,7 +1,5 @@
 import { Head, Html, Main, NextScript } from "next/document";
 
-import GoogleAnalytics from "@/components/googleAnalytics/GoogleAnalytics";
-
 export default function Document() {
   return (
     <Html lang="en">
@@ -16,7 +14,6 @@ export default function Document() {
       <script src="https://static.okx.com/cdn/assets/okfe/libs/okxOAuth/index.js" async />
 
       <body>
-        <GoogleAnalytics gaId="G-35VD71EPTP" gtmId="GTM-TBMTZ7W3" />
         <Main />
         <NextScript />
       </body>
