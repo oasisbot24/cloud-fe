@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import type { AppProps } from "next/app";
 
 import { Box, CssBaseline, ThemeProvider } from "@mui/material";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -62,6 +63,8 @@ export default function App({ Component, pageProps }: AppProps) {
             </Box>
           )}
           <Component {...pageProps} />
+          <GoogleAnalytics gaId="G-35VD71EPTP" />
+          <GoogleTagManager gtmId="GTM-TBMTZ7W3" />
         </ThemeProvider>
       </GoogleOAuthProvider>
     </QueryClientProvider>
