@@ -27,12 +27,11 @@ function CustomTableCell({ productKey, tableRowType, children }: CustomTableCell
   const { openDialog } = useDialogGlobal();
 
   const openDialogCondition = (): React.ReactElement | undefined => {
-    const productName = sliceOnlyProductName(subscribeQueryData!!.productName) ?? "free";
+    const productName = subscribeQueryData
+      ? (sliceOnlyProductName(subscribeQueryData.productName) ?? "free")
+      : "free";
     if (subscribeQueryData) {
-      console.log("productMonth: ", subscribeQueryData.productMonth);
-      console.log("productKey: ", SUBSCRIBE_ITEMS[productKey]);
       if (subscribeQueryData.productMonth === 0 && SUBSCRIBE_ITEMS[productKey] === 0) {
-        console.log("A");
         return;
       } else if (subscribeQueryData.productMonth !== 0 && SUBSCRIBE_ITEMS[productKey] === 0) {
         return <MySubscribeDialog />;
@@ -40,6 +39,7 @@ function CustomTableCell({ productKey, tableRowType, children }: CustomTableCell
         return <SubscribeDialog currentSubscribe={productName} productKey={productKey} />;
       }
     }
+    return;
   };
   return (
     <TableCell
