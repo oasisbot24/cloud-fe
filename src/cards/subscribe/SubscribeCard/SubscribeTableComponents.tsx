@@ -1,13 +1,16 @@
 import { Box, Stack, TableCell, Typography } from "@mui/material";
+import { useQueryClient } from "@tanstack/react-query";
 import { useAtom } from "jotai";
 
 import { subscribeData, tableData } from "@/cards/subscribe/SubscribeCard/SubscribeTableData";
 import { TableRowType } from "@/cards/subscribe/SubscribeCard/SubscribeTableRow";
 import MySubscribeDialog from "@/components/dialog/MySubscribeDialog";
+import SubscribeDialog from "@/components/dialog/SubscribeDialog";
 import useDialogGlobal from "@/components/dialog/useDialogGlobal";
+import { SUBSCRIBE_ITEMS } from "@/constants/constants";
 import { productKeyAtom, productMonthAtom } from "@/datas/subscribe";
 import { useProductQuery } from "@/hooks/query/useSubcribe";
-import { numberToCurrency } from "@/libs/string";
+import { numberToCurrency, sliceOnlyProductName } from "@/libs/string";
 
 interface CustomTableCellProps {
   productKey: Subscribe.ProductKey;
@@ -17,14 +20,39 @@ interface CustomTableCellProps {
 
 function CustomTableCell({ productKey, tableRowType, children }: CustomTableCellProps) {
   const [, setKey] = useAtom(productKeyAtom);
+  const queryClient = useQueryClient();
+  const subscribeQueryData: Subscribe.SubscribeT | undefined = queryClient.getQueryData([
+    "getSubscribe",
+  ]);
   const { openDialog } = useDialogGlobal();
+
+  const openDialogCondition = (): React.ReactElement | undefined => {
+    const productName = sliceOnlyProductName(subscribeQueryData!!.productName) ?? "free";
+    if (subscribeQueryData) {
+      console.log("productMonth: ", subscribeQueryData.productMonth);
+      console.log("productKey: ", SUBSCRIBE_ITEMS[productKey]);
+      if (subscribeQueryData.productMonth === 0 && SUBSCRIBE_ITEMS[productKey] === 0) {
+        console.log("A");
+        return;
+      } else if (subscribeQueryData.productMonth !== 0 && SUBSCRIBE_ITEMS[productKey] === 0) {
+        return <MySubscribeDialog />;
+      } else if (SUBSCRIBE_ITEMS[productKey]) {
+        return <SubscribeDialog currentSubscribe={productName} productKey={productKey} />;
+      }
+    }
+  };
   return (
     <TableCell
       width={220}
       className="cursor-pointer items-center text-center"
       onMouseEnter={() => setKey(productKey)}
       onMouseLeave={() => setKey(null)}
-      onClick={() => openDialog(<MySubscribeDialog />)}
+      onClick={() => {
+        const condition = openDialogCondition() as React.ReactElement;
+        if (condition) {
+          openDialog(condition);
+        }
+      }}
     >
       {tableRowType ? (
         <Stack className="gap-1">
