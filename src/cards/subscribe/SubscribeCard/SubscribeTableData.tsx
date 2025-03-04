@@ -73,6 +73,9 @@ const subscribeData: {
   free: {
     title: "Free",
     month: {
+      0: {
+        productId: 0,
+      },
       1: {
         productId: 0,
       },
@@ -84,6 +87,9 @@ const subscribeData: {
   basic: {
     title: "Basic",
     month: {
+      0: {
+        productId: 999,
+      },
       1: {
         productId: 1,
       },
@@ -95,6 +101,9 @@ const subscribeData: {
   premium: {
     title: "Premium",
     month: {
+      0: {
+        productId: 999,
+      },
       1: {
         productId: 3,
       },

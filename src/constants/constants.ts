@@ -9,3 +9,9 @@ export const GA_CTA_EVENTS = {
 } as const;
 
 export type GA_CTA_EVENT = (typeof GA_CTA_EVENTS)[keyof typeof GA_CTA_EVENTS];
+
+export const SUBSCRIBE_ITEMS: { [key: string]: number } = {
+  free: 0,
+  basic: 3,
+  premium: 8,
+};
