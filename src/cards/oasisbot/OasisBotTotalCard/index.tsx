@@ -3,12 +3,10 @@ import React from "react";
 import Image from "next/image";
 
 import { CardContent, Stack, Typography } from "@mui/material";
-import { useAtomValue } from "jotai";
 
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
 import Chip from "@/components/chip";
-import exchangeAtom from "@/datas/exchange";
 import { truncateDecimalPoints } from "@/libs/string";
 
 interface OasisBotTotalCardProps {
@@ -34,8 +32,6 @@ function OasisBotTotalCard({
   arrow,
   mention,
 }: OasisBotTotalCardProps) {
-  const exchange = useAtomValue(exchangeAtom);
-
   return (
     <Card>
       <div
