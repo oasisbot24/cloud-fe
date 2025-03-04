@@ -1,6 +1,8 @@
 import { GridColDef, GridRenderCellParams, GridValidRowModel } from "@mui/x-data-grid";
+import { useAtomValue } from "jotai";
 
 import TimeConvert from "@/components/table/timeConvert";
+import exchangeAtom from "@/datas/exchange";
 import IsRunningStatusCell from "@/tables/row-cells/IsRunningCell";
 import PresetNameCell from "@/tables/row-cells/PresetNameCell";
 
@@ -19,6 +21,15 @@ const OasisBotListColumns: GridColDef[] = [
     headerName: "실행 금액",
     flex: 1,
     headerClassName: "text-slate-500",
+    renderCell: (params: GridRenderCellParams<GridValidRowModel, Bot.InfoT["startBalance"]>) => {
+      const exchange = useAtomValue(exchangeAtom);
+
+      return (
+        <div className="whitespace-normal">
+          {exchange === "upbit" ? "₩" : "$"} {params.value}
+        </div>
+      );
+    },
   },
   {
     field: "runningTime",
