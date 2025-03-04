@@ -47,6 +47,11 @@ const sliceOnlyProductName = (productName: string) =>
     ?.join(" ")
     .toLowerCase();
 
+const truncateDecimalPoints = (number: number | string, decimalPoints: number) => {
+  const multiplier = Math.pow(10, decimalPoints);
+  return Math.floor(typeof number === "number" ? number : Number(number) * multiplier) / multiplier;
+};
+
 export {
   numberToCurrency,
   dateToKorean,
@@ -54,4 +59,5 @@ export {
   createRandomString,
   numberSlice,
   sliceOnlyProductName,
+  truncateDecimalPoints,
 };

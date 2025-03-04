@@ -3,10 +3,13 @@ import React from "react";
 import Image from "next/image";
 
 import { CardContent, Stack, Typography } from "@mui/material";
+import { useAtomValue } from "jotai";
 
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
 import Chip from "@/components/chip";
+import exchangeAtom from "@/datas/exchange";
+import { truncateDecimalPoints } from "@/libs/string";
 
 interface OasisBotTotalCardProps {
   id: DashboardIdType;
@@ -31,6 +34,8 @@ function OasisBotTotalCard({
   arrow,
   mention,
 }: OasisBotTotalCardProps) {
+  const exchange = useAtomValue(exchangeAtom);
+
   return (
     <Card>
       <div
@@ -66,7 +71,7 @@ function OasisBotTotalCard({
                   <Typography fontSize={12} fontWeight={700}>
                     {mention}
                     {difference !== undefined &&
-                      `전 날 보다 ${difference}원 ${difference >= 0 ? "상승" : "하락"} 했어요`}
+                      `전 날 보다 ${unit === "$" ? unit : ""}${truncateDecimalPoints(difference, 2)}${unit !== "$" ? unit : ""} ${difference >= 0 ? "상승" : "하락"} 했어요`}
                   </Typography>
                 </Stack>
               }
@@ -79,12 +84,19 @@ function OasisBotTotalCard({
               alignItems: "center",
             }}
           >
+            {unit === "$" && (
+              <Typography fontSize={16} fontWeight={500}>
+                {unit}
+              </Typography>
+            )}
             <Typography fontSize={28} fontWeight={700}>
-              {value}
+              {truncateDecimalPoints(value, 2)}
             </Typography>
-            <Typography fontSize={16} fontWeight={500}>
-              {unit}
-            </Typography>
+            {unit !== "$" && (
+              <Typography fontSize={16} fontWeight={500}>
+                {unit}
+              </Typography>
+            )}
           </Stack>
         </Stack>
       </CardContent>
