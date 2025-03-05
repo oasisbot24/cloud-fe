@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Stack } from "@mui/material";
-import { useAtom } from "jotai";
+import { useAtomValue } from "jotai";
 
 import OasisBotTotalCard from "@/cards/oasisbot/OasisBotTotalCard/index";
 import exchangeAtom from "@/datas/exchange";
@@ -9,7 +9,7 @@ import { useBotData } from "@/hooks/query/useOasisBot";
 import { exchangeToKorean } from "@/libs/string";
 
 function OasisBotTotalCardList() {
-  const [exchange] = useAtom(exchangeAtom);
+  const exchange = useAtomValue(exchangeAtom);
   const { botDataQuery } = useBotData();
 
   return (
@@ -20,7 +20,7 @@ function OasisBotTotalCardList() {
         subtitle="7일 기준"
         color="#223CE9"
         value={botDataQuery.data?.totalTradePrice.value ?? 0}
-        unit="원"
+        unit={exchange === "upbit" ? "원" : "$"}
         difference={botDataQuery.data?.totalTradePrice.difference}
         arrow
       />

@@ -3,6 +3,7 @@ import { GridColDef, GridRenderCellParams, GridValidRowModel } from "@mui/x-data
 import TimeConvert from "@/components/table/timeConvert";
 import IsRunningStatusCell from "@/tables/row-cells/IsRunningCell";
 import PresetNameCell from "@/tables/row-cells/PresetNameCell";
+import StartBalanceCell from "@/tables/row-cells/StartBalanceCell";
 
 const OasisBotListColumns: GridColDef[] = [
   {
@@ -19,6 +20,9 @@ const OasisBotListColumns: GridColDef[] = [
     headerName: "실행 금액",
     flex: 1,
     headerClassName: "text-slate-500",
+    renderCell: (params: GridRenderCellParams<GridValidRowModel, Bot.InfoT["startBalance"]>) => (
+      <StartBalanceCell {...params} />
+    ),
   },
   {
     field: "runningTime",
