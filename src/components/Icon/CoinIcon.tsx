@@ -53,27 +53,27 @@ const coinToIcon = (coin: string | undefined) => {
     case "헤데라":
       return "/icons/crypto/upbit/헤데라.png";
     case "도지코인 스왑":
-      return "/icons/crypto/upbit/도지코인 스왑.png";
+      return "/icons/crypto/okx/도지코인 스왑.png";
     case "무브먼트 스왑":
-      return "/icons/crypto/upbit/무브먼트스왑.png";
+      return "/icons/crypto/okx/무브먼트스왑.png";
     case "비트코인 스왑":
-      return "/icons/crypto/upbit/비트코인 스왑.png";
+      return "/icons/crypto/okx/비트코인 스왑.png";
     case "솔라나 스왑":
-      return "/icons/crypto/upbit/솔라나 스왑.png";
+      return "/icons/crypto/okx/솔라나 스왑.png";
     case "시바이누 스왑":
-      return "/icons/crypto/upbit/시바이누 스왑.png";
+      return "/icons/crypto/okx/시바이누 스왑.png";
     case "엑스알피(리플) 스왑":
-      return "/icons/crypto/upbit/엑스알피(리플) 스왑.png";
+      return "/icons/crypto/okx/엑스알피(리플) 스왑.png";
     case "온도파이낸스 스왑":
-      return "/icons/crypto/upbit/온도파이낸스 스왑.png";
+      return "/icons/crypto/okx/온도파이낸스 스왑.png";
     case "이더리움 스왑":
-      return "/icons/crypto/upbit/이더리움 스왑.png";
+      return "/icons/crypto/okx/이더리움 스왑.png";
     case "체인링크 스왑":
-      return "/icons/crypto/upbit/체인링크 스왑.png";
+      return "/icons/crypto/okx/체인링크 스왑.png";
     case "페페 스왑":
-      return "/icons/crypto/upbit/페페 스왑.png";
+      return "/icons/crypto/okx/페페 스왑.png";
     case "헤데라 스왑":
-      return "/icons/crypto/upbit/헤데라 스왑.png";
+      return "/icons/crypto/okx/헤데라 스왑.png";
     default:
       return "";
   }
