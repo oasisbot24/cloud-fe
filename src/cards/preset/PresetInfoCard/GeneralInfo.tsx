@@ -37,7 +37,10 @@ export default function GeneralInfo({ type }: GeneralInfoProps) {
           {type === "exchange"
             ? exchange.toUpperCase()
             : type === "balance"
-              ? numberToCurrency(numberSlice(tradeStyleData?.accountBalance, 2), "₩") || "0"
+              ? numberToCurrency(
+                  numberSlice(tradeStyleData?.accountBalance, 2),
+                  exchange === "upbit" ? "₩" : "$",
+                ) || "0"
               : subscribeData?.productName || "Free"}
         </Typography>
       </Stack>

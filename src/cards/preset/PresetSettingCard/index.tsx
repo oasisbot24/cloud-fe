@@ -30,8 +30,13 @@ export default function PresetSettingCard() {
             <CardButton
               text="초기화"
               className="reset-button bg-neutral-700 text-white"
+              onClick={() => setPreset(presetInit)}
+            />
+            <CardButton
+              text="다음"
+              className="next-button bg-brand text-white"
               onClick={() => {
-                setPreset(presetInit);
+                setPresetMenu("indicator");
                 sendGAEvent({
                   event: GA_CTA_EVENTS.presetAdd2,
                   preset_name: preset.presetName,
@@ -49,11 +54,6 @@ export default function PresetSettingCard() {
                   loss_limit: preset.lossCutRate,
                 });
               }}
-            />
-            <CardButton
-              text="다음"
-              className="next-button bg-brand text-white"
-              onClick={() => setPresetMenu("indicator")}
             />
           </CardFooter>
         </>

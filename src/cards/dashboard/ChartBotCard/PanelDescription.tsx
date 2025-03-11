@@ -53,7 +53,7 @@ export default function PanelDescription({
           lineHeight="22px"
           className="text-white"
         >
-          ₩ {totalProfit}
+          {exchange === "upbit" ? "₩" : "$"} {totalProfit}
         </Typography>
         <ProfitChip rate={totalProfitRate} />
       </Stack>
