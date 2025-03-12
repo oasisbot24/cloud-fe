@@ -68,7 +68,7 @@ function OasisBotTotalCardList() {
         title="실시간 운용자산"
         subtitle={`${exchangeToKorean(exchange)} 거래소 기준`}
         color="#2BB7F5"
-        value=""
+        value={(exchange === "upbit" ? "₩" : "$") + (botDataQuery.data?.totalTradeBalance ?? "")}
         unit=""
         mention="OASIS 님의 운용자산"
       />

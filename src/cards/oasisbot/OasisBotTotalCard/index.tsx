@@ -7,7 +7,6 @@ import { CardContent, Stack, Typography } from "@mui/material";
 import Card from "@/cards/Card";
 import CardHeader from "@/cards/CardHeader";
 import Chip from "@/components/chip";
-import { truncateDecimalPoints } from "@/libs/string";
 
 interface OasisBotTotalCardProps {
   id: DashboardIdType;
@@ -67,7 +66,7 @@ function OasisBotTotalCard({
                   <Typography fontSize={12} fontWeight={700}>
                     {mention}
                     {difference !== undefined &&
-                      `전 날 보다 ${unit === "$" ? unit : ""}${truncateDecimalPoints(difference, 2)}${unit !== "$" ? unit : ""} ${difference >= 0 ? "상승" : "하락"} 했어요`}
+                      `전 날 보다 ${unit === "$" ? unit : ""}${difference}${unit !== "$" ? unit : ""} ${difference >= 0 ? "상승" : "하락"} 했어요`}
                   </Typography>
                 </Stack>
               }
@@ -86,7 +85,7 @@ function OasisBotTotalCard({
               </Typography>
             )}
             <Typography fontSize={28} fontWeight={700}>
-              {truncateDecimalPoints(value, 2)}
+              {value}
             </Typography>
             {unit !== "$" && (
               <Typography fontSize={16} fontWeight={500}>
