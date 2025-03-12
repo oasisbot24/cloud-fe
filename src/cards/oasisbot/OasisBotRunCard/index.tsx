@@ -139,26 +139,25 @@ function OasisBotRunCard() {
         title="봇 실행"
         description={["해당 봇을 실행할까요?"]}
         confirmFunc={() => {
+          sendGAEvent({
+            event: GA_CTA_EVENTS.startBot1,
+            trade_amount: Number(startBalance),
+            preset_name: selectedPreset,
+            trade_asset: selectedTradeItem,
+            timeframe: Number(standardMinute),
+            leverage_setting: null,
+          });
+          sendGTMEvent({
+            event: GA_CTA_EVENTS.startBot1,
+            trade_amount: Number(startBalance),
+            preset_name: selectedPreset,
+            trade_asset: selectedTradeItem,
+            timeframe: Number(standardMinute),
+            leverage_setting: null,
+          });
+
           mutate({ body });
-          if (isSuccess) {
-            sendGAEvent({
-              event: GA_CTA_EVENTS.startBot1,
-              trade_amount: Number(startBalance),
-              preset_name: selectedPreset,
-              trade_asset: selectedTradeItem,
-              timeframe: Number(standardMinute),
-              leverage_setting: null,
-            });
-            sendGTMEvent({
-              event: GA_CTA_EVENTS.startBot1,
-              trade_amount: Number(startBalance),
-              preset_name: selectedPreset,
-              trade_asset: selectedTradeItem,
-              timeframe: Number(standardMinute),
-              leverage_setting: null,
-            });
-            closeDialog();
-          }
+          if (isSuccess) closeDialog();
         }}
         cancelFunc={closeDialog}
         cancellable

@@ -36,7 +36,6 @@ export default function PresetSettingCard() {
               text="다음"
               className="next-button bg-brand text-white"
               onClick={() => {
-                setPresetMenu("indicator");
                 sendGAEvent({
                   event: GA_CTA_EVENTS.presetAdd2,
                   preset_name: preset.presetName,
@@ -53,6 +52,7 @@ export default function PresetSettingCard() {
                   profit_target: preset.profitCutRate,
                   loss_limit: preset.lossCutRate,
                 });
+                setPresetMenu("indicator");
               }}
             />
           </CardFooter>
