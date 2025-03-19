@@ -66,7 +66,7 @@ function OasisBotTotalCard({
                   <Typography fontSize={12} fontWeight={700}>
                     {mention}
                     {difference !== undefined &&
-                      `전 날 보다 ${difference}원 ${difference >= 0 ? "상승" : "하락"} 했어요`}
+                      `전 날 보다 ${unit === "$" ? unit : ""}${difference}${unit !== "$" ? unit : ""} ${difference >= 0 ? "상승" : "하락"} 했어요`}
                   </Typography>
                 </Stack>
               }
@@ -79,12 +79,19 @@ function OasisBotTotalCard({
               alignItems: "center",
             }}
           >
+            {unit === "$" && (
+              <Typography fontSize={16} fontWeight={500}>
+                {unit}
+              </Typography>
+            )}
             <Typography fontSize={28} fontWeight={700}>
               {value}
             </Typography>
-            <Typography fontSize={16} fontWeight={500}>
-              {unit}
-            </Typography>
+            {unit !== "$" && (
+              <Typography fontSize={16} fontWeight={500}>
+                {unit}
+              </Typography>
+            )}
           </Stack>
         </Stack>
       </CardContent>

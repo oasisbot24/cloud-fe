@@ -1,6 +1,13 @@
 import qs from "qs";
 
-const pluginURL = "https://svc.ckss.solidwallet.io";
+const mode = process.env.NEXT_PUBLIC_MODE;
+let pluginURL = "";
+if (mode === "development") {
+  pluginURL = "https://sa-dev.portx.im";
+} else {
+  pluginURL = "https://sa.portx.im";
+}
+
 const pluginPath = "/plugin/?";
 
 interface ScrapResponse {
@@ -25,18 +32,13 @@ export default function openScrap(uid: string, callback?: (e: ScrapResponse) => 
     lang: "ko",
   };
 
-  const mode = process.env.NEXT_PUBLIC_MODE;
-  let scrapUrl = "";
-  if (mode === "development") {
-    scrapUrl = pluginURL + pluginPath + qs.stringify(sampleScrapParams);
-  } else {
-    scrapUrl = "https://sa.portx.im/login";
-  }
+  const scrapUrl = pluginURL + pluginPath + qs.stringify(sampleScrapParams);
 
   const opened = window.open(scrapUrl, "_blank");
 
   window.addEventListener("message", event => {
     const res = event.data as ScrapResponse;
+
     if (event.source !== opened) {
       return;
     }

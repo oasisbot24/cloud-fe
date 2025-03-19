@@ -1,4 +1,5 @@
 import { CardContent, Typography } from "@mui/material";
+import { sendGAEvent, sendGTMEvent } from "@next/third-parties/google";
 import { useAtom } from "jotai";
 
 import Card from "@/cards/Card";
@@ -7,6 +8,7 @@ import CardFooter from "@/cards/CardFooter";
 import CardHeader from "@/cards/CardHeader";
 import PresetSetting from "@/cards/preset/PresetSettingCard/PresetSetting";
 import AlertIcon from "@/components/Icon/AlertIcon";
+import { GA_CTA_EVENTS } from "@/constants/constants";
 import { presetAtom, presetInit, presetMenuAtom } from "@/datas/preset";
 
 export default function PresetSettingCard() {
@@ -27,13 +29,31 @@ export default function PresetSettingCard() {
           <CardFooter>
             <CardButton
               text="초기화"
-              className="bg-neutral-700 text-white"
+              className="reset-button bg-neutral-700 text-white"
               onClick={() => setPreset(presetInit)}
             />
             <CardButton
               text="다음"
-              className="bg-brand text-white"
-              onClick={() => setPresetMenu("indicator")}
+              className="next-button bg-brand text-white"
+              onClick={() => {
+                sendGAEvent({
+                  event: GA_CTA_EVENTS.presetAdd2,
+                  preset_name: preset.presetName,
+                  indicator: preset.indicatorName,
+                  entry_position: preset.position,
+                  profit_target: preset.profitCutRate,
+                  loss_limit: preset.lossCutRate,
+                });
+                sendGTMEvent({
+                  event: GA_CTA_EVENTS.presetAdd2,
+                  preset_name: preset.presetName,
+                  indicator: preset.indicatorName,
+                  entry_position: preset.position,
+                  profit_target: preset.profitCutRate,
+                  loss_limit: preset.lossCutRate,
+                });
+                setPresetMenu("indicator");
+              }}
             />
           </CardFooter>
         </>

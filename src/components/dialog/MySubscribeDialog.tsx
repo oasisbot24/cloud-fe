@@ -3,22 +3,24 @@ import { useState } from "react";
 import Image from "next/image";
 
 import { Alert, ButtonBase, Stack, Typography } from "@mui/material";
+import { useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
 import useDialogGlobal from "@/components/dialog/useDialogGlobal";
-import { useSubscribeMutation, useSubscribeQuery } from "@/hooks/query/useSubcribe";
+import { useSubscribeMutation } from "@/hooks/query/useSubcribe";
 
 export default function MySubscribeDialog() {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
-  const {
-    subscribeQuery: { data: subscribeData },
-  } = useSubscribeQuery();
   const { deleteSubscribeMutation } = useSubscribeMutation();
 
   const { closeDialog } = useDialogGlobal();
+  const queryClient = useQueryClient();
+  const subscribeData: Subscribe.SubscribeT | undefined = queryClient.getQueryData([
+    "getSubscribe",
+  ]);
 
-  const handleClick = () => {
+  const unsubscribe = () => {
     const subscribeId = subscribeData?.subscribeId;
     if (!subscribeId) return;
     deleteSubscribeMutation.mutate(subscribeId, {
@@ -56,7 +58,7 @@ export default function MySubscribeDialog() {
                   취소
                 </Typography>
               </ButtonBase>
-              <ButtonBase className="w-full rounded-full bg-brand py-3" onClick={handleClick}>
+              <ButtonBase className="w-full rounded-full bg-brand py-3" onClick={unsubscribe}>
                 <Typography variant="300B" className="text-white">
                   해지하기
                 </Typography>

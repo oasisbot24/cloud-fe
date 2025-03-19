@@ -41,4 +41,23 @@ const numberSlice = (number: number | undefined, slice: number) => {
   return `${integer}.${decimal.slice(0, slice)}`;
 };
 
-export { numberToCurrency, dateToKorean, exchangeToKorean, createRandomString, numberSlice };
+const sliceOnlyProductName = (productName: string) =>
+  productName
+    .match(/[A-Za-z]+/g)
+    ?.join(" ")
+    .toLowerCase();
+
+const truncateDecimalPoints = (number: number | string, decimalPoints: number) => {
+  const multiplier = 10 ** decimalPoints;
+  return Math.floor(typeof number === "number" ? number : Number(number) * multiplier) / multiplier;
+};
+
+export {
+  numberToCurrency,
+  dateToKorean,
+  exchangeToKorean,
+  createRandomString,
+  numberSlice,
+  sliceOnlyProductName,
+  truncateDecimalPoints,
+};

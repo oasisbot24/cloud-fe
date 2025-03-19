@@ -20,7 +20,9 @@
     "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
     "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/no-unused-expressions": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/ban-ts-comment": "warn",
+    "@typescript-eslint/naming-convention": "off",
     "no-nested-ternary": "off",
     "react/jsx-props-no-spreading": "off",
     "react/require-default-props": "off",
@@ -28,6 +30,9 @@
     "react-hooks/exhaustive-deps": "off",
     "import/prefer-default-export": "off",
     "react/display-name": "off",
-    "no-console": "warn"
+    "no-console": "warn",
+    "no-useless-return": "off",
+    "consistent-return": "off",
+    "no-else-return": "off"
   }
 }

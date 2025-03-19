@@ -42,10 +42,12 @@ export function useSmartAccessMutation() {
           params,
         },
       );
+
       return res.data.data;
     },
     mutationKey: ["postSmartAccessSession"],
   });
+
   return {
     postSmartAccessResultMutation,
     postSmartAccessSessionMutation,

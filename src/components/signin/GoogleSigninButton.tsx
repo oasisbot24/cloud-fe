@@ -1,10 +1,18 @@
 import { ButtonBase, Typography } from "@mui/material";
+import { sendGAEvent, sendGTMEvent } from "@next/third-parties/google";
 import { useGoogleLogin } from "@react-oauth/google";
 
 import Icon from "@/components/Icon/index";
+import { GA_CTA_EVENT } from "@/constants/constants";
 import useSignin from "@/hooks/query/useSignin";
 
-function GoogleSigninButton({ onSuccess }: { onSuccess: (data: { isAgree: boolean }) => void }) {
+type GAButtonProps = {
+  onSuccess: (data: { isAgree: boolean }) => void;
+  // children: React.ReactNode;
+  eventLabel: GA_CTA_EVENT;
+} & React.HTMLAttributes<HTMLButtonElement>;
+
+function GoogleSigninButton({ onSuccess, eventLabel }: GAButtonProps) {
   const { signinAccessTokenMutation } = useSignin();
 
   /*
@@ -20,6 +28,19 @@ function GoogleSigninButton({ onSuccess }: { onSuccess: (data: { isAgree: boolea
       signinAccessTokenMutation.mutate(tokenResponse.access_token, {
         onSuccess: data => {
           onSuccess(data);
+          if (!sessionStorage.getItem("loginTracked")) {
+            sendGAEvent({
+              event: eventLabel,
+              method: "google",
+              status: "success",
+            });
+            sendGTMEvent({
+              event: eventLabel,
+              method: "google",
+              status: "success",
+            });
+          }
+          sessionStorage.setItem("loginTracked", "true");
         },
         onError: error => {
           console.log("error on mutate: ", error);

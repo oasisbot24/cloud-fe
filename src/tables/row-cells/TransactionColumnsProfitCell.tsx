@@ -4,6 +4,7 @@ import ProfitChip from "@/components/chip/ProfitChip";
 
 function TransactionColumnsProfitCell(
   params: GridRenderCellParams<GridValidRowModel, BotTransactionProfit>,
+  exchange?: ExchangeType,
 ) {
   const { value } = params;
 
@@ -12,7 +13,7 @@ function TransactionColumnsProfitCell(
       <div
         className={`whitespace-normal ${value?.profitLoss && value.profitLoss > 0 ? "text-sub-3" : ""}`}
       >
-        {value?.profitLoss ? "￦" : ""}
+        {value?.profitLoss ? (exchange === "upbit" ? "￦" : "$") : ""}
         <span className="text-ellipsis font-bold">
           {value?.profitLoss.toLocaleString("ko-kr") ?? "-"}
         </span>

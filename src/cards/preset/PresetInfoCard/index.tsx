@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { CardContent, Divider } from "@mui/material";
+import { sendGAEvent, sendGTMEvent } from "@next/third-parties/google";
 import { useAtom } from "jotai";
 
 import Card from "@/cards/Card";
@@ -10,6 +11,7 @@ import CardHeader from "@/cards/CardHeader";
 import PresetInfo from "@/cards/preset/PresetInfoCard/PresetInfo";
 import UserInfo from "@/cards/preset/PresetInfoCard/UserInfo";
 import RoundSelect from "@/components/common/RoundSelect";
+import { GA_CTA_EVENTS } from "@/constants/constants";
 import {
   presetAtom,
   presetInit,
@@ -89,6 +91,8 @@ export default function PresetInfoCard() {
             setPreset(presetInit);
             setPresetMenu("preset");
             setPresetWeight(presetWeightInit);
+            sendGAEvent("event", GA_CTA_EVENTS.presetAdd1);
+            sendGTMEvent("event", GA_CTA_EVENTS.presetAdd1);
           }}
         />
       </CardFooter>

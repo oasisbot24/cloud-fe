@@ -25,6 +25,7 @@ function BotValidationDialog({ code, message }: Props) {
       }}
       confirmBtnText="플랜 업그레이드"
       cancellable
+      cancelFunc={closeDialog}
     />
   );
 }

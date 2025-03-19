@@ -30,7 +30,7 @@ export default function OasisBotListCard({ nav }: Props) {
       <CardContent sx={{ paddingTop: "0", maxHeight: "400px", overflow: "auto" }}>
         <DataGrid
           columns={columns}
-          rows={data ?? []}
+          rows={nav === "dashboard" ? (data?.slice(0, 5) ?? []) : (data ?? [])}
           loading={isLoading}
           onRowSelectionModelChange={newRow => setSelectedRow(newRow)}
           rowSelectionModel={selectedRow}

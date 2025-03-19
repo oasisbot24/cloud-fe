@@ -1,5 +1,7 @@
 import dynamic from "next/dynamic";
 
+import dayjs from "dayjs";
+
 interface ChartData {
   date: string[];
   price: number[];
@@ -11,6 +13,17 @@ export default function CustomChart({ date, price, rate }: ChartData) {
     options: {
       xaxis: {
         categories: date,
+        tickAmount: 20,
+        labels: {
+          formatter: (value: string) => dayjs(value).format("MM-DD HH:mm"),
+        },
+        tooltip: {
+          enabled: true,
+          formatter: (value: string) => {
+            const dateStr = date[Number(value)];
+            return dayjs(dateStr).format("YYYY-MM-DD HH:mm");
+          },
+        },
       },
       tooltip: {
         custom: ({
