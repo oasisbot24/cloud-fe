@@ -3,8 +3,7 @@ import qs from "qs";
 const mode = process.env.NEXT_PUBLIC_MODE;
 let pluginURL = "";
 if (mode === "development") {
-  pluginURL = "https://svc.ckss.solidwallet.io";
-  // pluginURL = "https://sa.portx.im";
+  pluginURL = "https://sa-dev.portx.im";
 } else {
   pluginURL = "https://sa.portx.im";
 }
@@ -39,6 +38,7 @@ export default function openScrap(uid: string, callback?: (e: ScrapResponse) => 
 
   window.addEventListener("message", event => {
     const res = event.data as ScrapResponse;
+
     if (event.source !== opened) {
       return;
     }
