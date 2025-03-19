@@ -44,7 +44,6 @@ export function useSmartAccessMutation() {
       );
 
       return res.data.data;
-      0;
     },
     mutationKey: ["postSmartAccessSession"],
   });
