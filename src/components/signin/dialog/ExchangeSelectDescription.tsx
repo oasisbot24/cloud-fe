@@ -32,7 +32,7 @@ export default function ExchangeSelectDescription() {
             event: GA_CTA_EVENTS.selectExchange,
             exchange_name: "OKX Event",
           });
-          window.open("https://www.okx.com/join/79271938");
+          window.open("https://okx.com/join/OFFICIALOASIS");
         }}
         data-exchange="OKX Event"
       >
