@@ -1,9 +1,10 @@
 import qs from "qs";
 
-const mode = process.env.NEXT_PUBLIC_MODE;
 let pluginURL = "";
-if (mode === "development") {
+console.log(process.env.NEXT_PUBLIC_MODE);
+if (process.env.NEXT_PUBLIC_MODE === "development") {
   pluginURL = "https://sa-dev.portx.im";
+  console.log("develop");
 } else {
   pluginURL = "https://sa.portx.im";
 }
