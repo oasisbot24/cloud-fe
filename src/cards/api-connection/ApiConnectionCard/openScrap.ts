@@ -1,10 +1,8 @@
 import qs from "qs";
 
 let pluginURL = "";
-console.log(process.env.NEXT_PUBLIC_MODE);
 if (process.env.NEXT_PUBLIC_MODE === "development") {
   pluginURL = "https://sa-dev.portx.im";
-  console.log("develop");
 } else {
   pluginURL = "https://sa.portx.im";
 }
