@@ -33,7 +33,7 @@ export default function SaveDialog() {
         {
           onSuccess: () => {
             sendGAEvent("event", GA_CTA_EVENTS.presetAdd3);
-            sendGTMEvent("event", GA_CTA_EVENTS.presetAdd3);
+            sendGTMEvent({ event: GA_CTA_EVENTS.presetAdd3 });
             closeDialog();
           },
         },
