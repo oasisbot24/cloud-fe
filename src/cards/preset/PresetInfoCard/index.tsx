@@ -92,7 +92,7 @@ export default function PresetInfoCard() {
             setPresetMenu("preset");
             setPresetWeight(presetWeightInit);
             sendGAEvent("event", GA_CTA_EVENTS.presetAdd1);
-            sendGTMEvent("event", GA_CTA_EVENTS.presetAdd1);
+            sendGTMEvent({ event: GA_CTA_EVENTS.presetAdd1 });
           }}
         />
       </CardFooter>

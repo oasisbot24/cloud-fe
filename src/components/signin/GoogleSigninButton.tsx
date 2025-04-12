@@ -29,8 +29,8 @@ function GoogleSigninButton({ onSuccess, eventLabel }: GAButtonProps) {
         onSuccess: data => {
           onSuccess(data);
           if (!sessionStorage.getItem("loginTracked")) {
-            sendGAEvent({
-              event: eventLabel,
+            sendGAEvent("event", eventLabel, {
+              // event: eventLabel,
               method: "google",
               status: "success",
             });

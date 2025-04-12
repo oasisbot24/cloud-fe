@@ -36,8 +36,8 @@ export default function PresetSettingCard() {
               text="다음"
               className="next-button bg-brand text-white"
               onClick={() => {
-                sendGAEvent({
-                  event: GA_CTA_EVENTS.presetAdd2,
+                sendGAEvent("event", GA_CTA_EVENTS.presetAdd2, {
+                  // event: GA_CTA_EVENTS.presetAdd2,
                   preset_name: preset.presetName,
                   indicator: preset.indicatorName,
                   entry_position: preset.position,
