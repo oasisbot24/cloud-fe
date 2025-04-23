@@ -55,7 +55,9 @@ export default function AdvertisementCard() {
           description={`가이드라인을 통해\n완벽한 프리셋 설정을 세팅해 보세요`}
           bgSrc="/advertisement/event3.png"
           btn="가이드라인 보러가기"
-          onClick={() => console.log("자세히보기")}
+          onClick={() =>
+            window.open("https://deep-curler-817.notion.site/13e662dca36580989f1ff551050a21ca")
+          }
         />
       </Stack>
       <AdvertisementIndex maxIndex={MAX_INDEX} currentIndex={currentIndex} />
