@@ -37,7 +37,7 @@ export default function AdvertisementCard() {
           description={`오아시스 레퍼럴 코드로 가입한 유저에\n한하여 적용됩니다`}
           bgSrc="/advertisement/event1.png"
           btn="OKX 회원가입 하기"
-          onClick={() => window.open("https://www.okx.com/join/79271938")}
+          onClick={() => window.open("https://okx.com/join/OFFICIALOASIS")}
         />
 
         <AdvertisementInfo
