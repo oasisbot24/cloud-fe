@@ -1,25 +1,27 @@
+import { useState } from "react";
+
 import { useRouter } from "next/router";
 
 import { Button, IconButton, InputBase, Stack, Typography } from "@mui/material";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAtom } from "jotai";
-import Icon from "@/components/Icon/index";
+
 import Card from "@/cards/Card";
 import MypageExchange from "@/cards/mypage/MypageCard/MypageExchange";
 import MypageInfo from "@/cards/mypage/MypageCard/MypageInfo";
 import MypageSubscribe from "@/cards/mypage/MypageCard/MypageSubscribe";
+import Icon from "@/components/Icon/index";
 import PromotionDialog from "@/components/dialog/PromotionDialog";
 import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import authAtom from "@/datas/auth";
 import { usePaymentMethodQuery } from "@/hooks/query/usePayment";
-import { useState } from "react";
-import SupportCard from "./SupportCard";
 
+import SupportCard from "./SupportCard";
 
 export default function MypageCard() {
   const [auth] = useAtom(authAtom);
   const { openDialog } = useDialogGlobal();
-  const [flag, setFlag] = useState(true)
+  const [flag, setFlag] = useState(true);
   const queryClient = useQueryClient();
   const {
     paymentMethodQuery: { data: paymentMethodData },
@@ -35,9 +37,8 @@ export default function MypageCard() {
   };
 
   const buttonClick = () => {
-    setFlag(!flag)
-
-  }
+    setFlag(!flag);
+  };
   return (
     <Card>
       <Stack className="h-full w-full items-center justify-between gap-12 px-4 py-16 md:px-8 xl:px-16">
@@ -49,7 +50,6 @@ export default function MypageCard() {
         <MypageExchange />
         <MypageSubscribe />
         <Stack className="w-full gap-4">
-
           <MypageInfo
             title="결제 수단"
             buttonText="변경하기"
@@ -63,14 +63,24 @@ export default function MypageCard() {
             </Typography>
           </MypageInfo>
           <Stack>
-            <Stack direction="row" className="h-full w-full items-center cursor-pointer" onClick={buttonClick}>
-              {flag ? <Icon src="/icons/arrow/right.png" size={28} /> : <Icon src="/icons/arrow/down.png" size={28} />}
-              <Typography sx={{
-                fontFamily: "Spoqa Han Sans Neo",
-                fontSize: 16,
-                fontWeight: 500,
-                lineHeight: "120%"
-              }}>
+            <Stack
+              direction="row"
+              className="h-full w-full cursor-pointer items-center"
+              onClick={buttonClick}
+            >
+              {flag ? (
+                <Icon src="/icons/arrow/right.png" size={28} />
+              ) : (
+                <Icon src="/icons/arrow/down.png" size={28} />
+              )}
+              <Typography
+                sx={{
+                  fontFamily: "Spoqa Han Sans Neo",
+                  fontSize: 16,
+                  fontWeight: 500,
+                  lineHeight: "120%",
+                }}
+              >
                 지원중인 카드사
               </Typography>
             </Stack>
@@ -89,7 +99,6 @@ export default function MypageCard() {
           />
         </MypageInfo>
       </Stack>
-
-    </Card >
+    </Card>
   );
 }
