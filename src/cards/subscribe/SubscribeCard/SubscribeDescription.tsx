@@ -15,7 +15,8 @@ export default function SubscribeDescription() {
         구독 갱신일이 되면 변경된 낮은 플랜으로 결제가 됩니다.
       </Typography>
       <Typography variant="200R">
-        4. 정기 결제 이용 도중 결제정보가 변경되거나 한도 부족등으로 결제가 실패된 경우 총 3회에 걸쳐 재결제가 진행됩니다. (당일 09시, 15시, 18시)
+        4. 정기 결제 이용 도중 결제정보가 변경되거나 한도 부족등으로 결제가 실패된 경우 총 3회에
+        걸쳐 재결제가 진행됩니다. (당일 09시, 15시, 18시)
       </Typography>
       <Typography variant="200R">
         4-1. 3회 이상에도 재결제가 안 이루어질 시, 익일 00시 이후 봇(자동거래)이 정지가 됩니다.
@@ -49,9 +50,7 @@ export default function SubscribeDescription() {
       <Typography variant="200R">
         1-1. 7일 내 자동거래내역이 있을 경우 서비스는 환불이 불가능 합니다.
       </Typography>
-      <Typography variant="200R">
-        1-2. 조항 폐기
-      </Typography>
+      <Typography variant="200R">1-2. 조항 폐기</Typography>
       <Typography variant="200R">
         2. 전항의 규정에도 불구하고 아래 각 호의 경우에는 결제한 전액을 환불합니다.
       </Typography>
