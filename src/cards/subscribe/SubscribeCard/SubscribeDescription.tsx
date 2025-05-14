@@ -15,11 +15,10 @@ export default function SubscribeDescription() {
         구독 갱신일이 되면 변경된 낮은 플랜으로 결제가 됩니다.
       </Typography>
       <Typography variant="200R">
-        4. 정기 결제 이용 도중 결제정보가 변경되거나 한도 부족등으로 결제가 실패된 경우 총 3회에
-        걸쳐 재결제가 진행됩니다. (당일 09시, 15시, 21시)
+        4. 정기 결제 이용 도중 결제정보가 변경되거나 한도 부족등으로 결제가 실패된 경우 총 3회에 걸쳐 재결제가 진행됩니다. (당일 09시, 15시, 18시)
       </Typography>
       <Typography variant="200R">
-        4-1. 3회 이상에도 재결제가 안 이루어질 시, 매일 일정 후 2일 뒤 봇(자동거래)이 정지가 됩니다.
+        4-1. 3회 이상에도 재결제가 안 이루어질 시, 익일 00시 이후 봇(자동거래)이 정지가 됩니다.
       </Typography>
       <Typography variant="200R">
         5. 결제 당일에는 중복 결제나 오류 방지를 위해 결제 정보 변경이 불가하므로, 다음 날 새롭게
@@ -38,26 +37,25 @@ export default function SubscribeDescription() {
       </Typography>
       <Typography variant="300B">서비스 이용 유의사항</Typography>
       <Typography variant="200R">
-        1. 제조사에 따라 일부 기기에서는 서비스가 정상 동작하지 않을 수 있습니다.
+        1. 환경에 따라 일부 PC에서는 서비스가 정상 동작하지 않을 수 있습니다.
       </Typography>
       <Typography variant="200R">
-        2. 저작권자의 요청으로 기기에 따라 일부 사용자는 제한 될 수 있습니다.
+        2. 저작권자의 요청으로 환경에 따라 일부 사용자는 제한 될 수 있습니다.
       </Typography>
       <Typography variant="300B">환불정책</Typography>
       <Typography variant="200R">
         1. 이용자의 귀책사유로 결제를 취소, 환불하는 경우에는 다음의 절차에 따릅니다.
       </Typography>
       <Typography variant="200R">
-        1-1. 1회로 이용 또는 구매가 완료되는 서비스는 환불이 불가능 합니다.
+        1-1. 7일 내 자동거래내역이 있을 경우 서비스는 환불이 불가능 합니다.
       </Typography>
       <Typography variant="200R">
-        1-2. 지속적으로 이용가능한 서비스는 이용일수에 해당하는 금액을 차감한 나머지 금액을 환불
-        합니다.
+        1-2. 조항 폐기
       </Typography>
       <Typography variant="200R">
         2. 전항의 규정에도 불구하고 아래 각 호의 경우에는 결제한 전액을 환불합니다.
       </Typography>
-      <Typography variant="200R">- 결제를 완료한 후 서비스 이용 내역이 없는 경우</Typography>
+      <Typography variant="200R">- 결제 완료 후 7일 내 자동거래내역이 없을 경우</Typography>
       <Typography variant="200R">
         - 서비스 장애 등 회사의 귀책사유로 서비스를 이용하지 못한 경우
       </Typography>
