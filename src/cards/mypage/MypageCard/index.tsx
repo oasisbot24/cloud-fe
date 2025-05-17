@@ -4,30 +4,50 @@ import { useRouter } from "next/router";
 
 import { InputBase, Stack, Typography } from "@mui/material";
 import { useQueryClient } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 import { useAtom } from "jotai";
 
 import Card from "@/cards/Card";
 import MypageExchange from "@/cards/mypage/MypageCard/MypageExchange";
 import MypageInfo from "@/cards/mypage/MypageCard/MypageInfo";
 import MypageSubscribe from "@/cards/mypage/MypageCard/MypageSubscribe";
+import SupportCard from "@/cards/mypage/MypageCard/SupportCard";
 import Icon from "@/components/Icon/index";
 import PromotionDialog from "@/components/dialog/PromotionDialog";
 import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import authAtom from "@/datas/auth";
+import { promotionCodeAtom } from "@/datas/subscribe";
 import { usePaymentMethodQuery } from "@/hooks/query/usePayment";
-
-import SupportCard from "./SupportCard";
+import { usePromotionMutation } from "@/hooks/query/useSubcribe";
 
 export default function MypageCard() {
   const [auth] = useAtom(authAtom);
+  const [promotionCode, setPromotionCode] = useAtom(promotionCodeAtom);
   const { openDialog } = useDialogGlobal();
   const [flag, setFlag] = useState(true);
   const queryClient = useQueryClient();
   const {
     paymentMethodQuery: { data: paymentMethodData },
   } = usePaymentMethodQuery();
+  const { postPromotionMutation } = usePromotionMutation();
 
   const { push } = useRouter();
+
+  const applyPromotionCode = () => {
+    postPromotionMutation.mutate(
+      { body: { code: promotionCode } },
+      {
+        onSuccess: res => {
+          console.log(res);
+          openDialog(<PromotionDialog result={res.data} />);
+        },
+        onError: err => {
+          const axiosError = err as AxiosError<ResponseT<Subscribe.SubscribeT>>;
+          openDialog(<PromotionDialog result={axiosError.response?.data} />);
+        },
+      },
+    );
+  };
 
   const logout = () => {
     queryClient.clear();
@@ -87,15 +107,14 @@ export default function MypageCard() {
             {flag ? null : <SupportCard />}
           </Stack>
         </Stack>
-        <MypageInfo
-          title="프로모션 코드"
-          buttonText="적용하기"
-          onClick={() => openDialog(<PromotionDialog />)}
-        >
+        <MypageInfo title="프로모션 코드" buttonText="적용하기" onClick={applyPromotionCode}>
           <InputBase
             className="h-full w-full"
             disabled={!paymentMethodData?.cardNumber}
-            value={paymentMethodData?.cardNumber ? "" : "카드를 등록이 필요합니다."}
+            value={paymentMethodData?.cardNumber ? promotionCode : "카드 등록이 필요합니다."}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              setPromotionCode(event.target.value);
+            }}
           />
         </MypageInfo>
       </Stack>

@@ -12,6 +12,13 @@ function dateToKorean(date: Date) {
   return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
 }
 
+function datetimeToKorean(dateStr?: string) {
+  if (!dateStr) return "";
+  const date = new Date(dateStr);
+
+  return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 ${date.getHours()}시 ${date.getMinutes()}분 ${date.getSeconds()}초`;
+}
+
 const exchangeToKorean = (market: ExchangeType | undefined) => {
   switch (market) {
     case "upbit":
@@ -55,6 +62,7 @@ const truncateDecimalPoints = (number: number | string, decimalPoints: number) =
 export {
   numberToCurrency,
   dateToKorean,
+  datetimeToKorean,
   exchangeToKorean,
   createRandomString,
   numberSlice,

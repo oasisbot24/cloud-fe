@@ -9,6 +9,9 @@ declare namespace Subscribe {
     productMonth: Subscribe.ProductMonth;
     expiryDate: string;
   }
+  interface PromotionT {
+    code: string;
+  }
 
   type ProductKey = "free" | "basic" | "premium";
   type ProductMonth = 0 | 1 | 3;
