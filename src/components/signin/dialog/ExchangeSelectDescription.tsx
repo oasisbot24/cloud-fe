@@ -24,15 +24,15 @@ export default function ExchangeSelectDescription() {
       <ButtonBase
         className="event-button w-full rounded-full bg-brand py-3"
         onClick={() => {
-          sendGAEvent({
-            event: GA_CTA_EVENTS.selectExchange,
+          sendGAEvent("event", GA_CTA_EVENTS.selectExchange, {
+            // event: GA_CTA_EVENTS.selectExchange,
             exchange_name: "OKX Event",
           });
           sendGTMEvent({
             event: GA_CTA_EVENTS.selectExchange,
             exchange_name: "OKX Event",
           });
-          window.open("https://www.okx.com/join/79271938");
+          window.open("https://okx.com/join/OFFICIALOASIS");
         }}
         data-exchange="OKX Event"
       >

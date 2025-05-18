@@ -48,3 +48,13 @@ export function useSubscribeMutation() {
     deleteSubscribeMutation,
   };
 }
+
+export function usePromotionMutation() {
+  const postPromotionMutation = useMutation({
+    mutationFn: async ({ body }: RequestT<Subscribe.PromotionT>) =>
+      api.post<ResponseT<Subscribe.SubscribeT>>("/subscribe/promote", { ...body }),
+    mutationKey: ["postPromotion"],
+  });
+
+  return { postPromotionMutation };
+}

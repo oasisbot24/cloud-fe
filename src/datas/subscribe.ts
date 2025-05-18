@@ -6,4 +6,7 @@ productMonthAtom.debugLabel = "subscribeMonthAtom";
 const productKeyAtom = atom<Subscribe.ProductKey | null>(null);
 productKeyAtom.debugLabel = "subscribeTypeAtom";
 
-export { productMonthAtom, productKeyAtom };
+const promotionCodeAtom = atom<string>("");
+promotionCodeAtom.debugLabel = "promotionCodeAtom";
+
+export { productMonthAtom, productKeyAtom, promotionCodeAtom };

@@ -6,5 +6,8 @@
   },
   "eslint.workingDirectories": [
     "./"
-  ]
+  ],
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  }
 }

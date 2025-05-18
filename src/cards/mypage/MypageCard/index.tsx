@@ -1,34 +1,63 @@
+import { useState } from "react";
+
 import { useRouter } from "next/router";
 
 import { InputBase, Stack, Typography } from "@mui/material";
 import { useQueryClient } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 import { useAtom } from "jotai";
 
 import Card from "@/cards/Card";
 import MypageExchange from "@/cards/mypage/MypageCard/MypageExchange";
 import MypageInfo from "@/cards/mypage/MypageCard/MypageInfo";
 import MypageSubscribe from "@/cards/mypage/MypageCard/MypageSubscribe";
+import SupportCard from "@/cards/mypage/MypageCard/SupportCard";
+import Icon from "@/components/Icon/index";
 import PromotionDialog from "@/components/dialog/PromotionDialog";
 import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import authAtom from "@/datas/auth";
+import { promotionCodeAtom } from "@/datas/subscribe";
 import { usePaymentMethodQuery } from "@/hooks/query/usePayment";
+import { usePromotionMutation } from "@/hooks/query/useSubcribe";
 
 export default function MypageCard() {
   const [auth] = useAtom(authAtom);
+  const [promotionCode, setPromotionCode] = useAtom(promotionCodeAtom);
   const { openDialog } = useDialogGlobal();
-
+  const [flag, setFlag] = useState(true);
   const queryClient = useQueryClient();
   const {
     paymentMethodQuery: { data: paymentMethodData },
   } = usePaymentMethodQuery();
+  const { postPromotionMutation } = usePromotionMutation();
 
   const { push } = useRouter();
+
+  const applyPromotionCode = () => {
+    postPromotionMutation.mutate(
+      { body: { code: promotionCode } },
+      {
+        onSuccess: res => {
+          console.log(res);
+          openDialog(<PromotionDialog result={res.data} />);
+        },
+        onError: err => {
+          const axiosError = err as AxiosError<ResponseT<Subscribe.SubscribeT>>;
+          openDialog(<PromotionDialog result={axiosError.response?.data} />);
+        },
+      },
+    );
+  };
 
   const logout = () => {
     queryClient.clear();
     localStorage.removeItem("authorization");
     localStorage.removeItem("authorizationrefresh");
     push("/");
+  };
+
+  const buttonClick = () => {
+    setFlag(!flag);
   };
   return (
     <Card>
@@ -40,27 +69,52 @@ export default function MypageCard() {
         </MypageInfo>
         <MypageExchange />
         <MypageSubscribe />
-        <MypageInfo
-          title="결제 수단"
-          buttonText="변경하기"
-          onClick={() => {
-            push("/payment");
-          }}
-        >
-          <Typography variant="300M" className="text-font-2">
-            {paymentMethodData?.cardNumber ? "**** **** **** " : "카드를 등록해 주세요"}
-            {paymentMethodData?.cardNumber}
-          </Typography>
-        </MypageInfo>
-        <MypageInfo
-          title="프로모션 코드"
-          buttonText="적용하기"
-          onClick={() => openDialog(<PromotionDialog />)}
-        >
+        <Stack className="w-full gap-4">
+          <MypageInfo
+            title="결제 수단"
+            buttonText="변경하기"
+            onClick={() => {
+              push("/payment");
+            }}
+          >
+            <Typography variant="300M" className="text-font-2">
+              {paymentMethodData?.cardNumber ? "**** **** **** " : "카드를 등록해 주세요"}
+              {paymentMethodData?.cardNumber}
+            </Typography>
+          </MypageInfo>
+          <Stack>
+            <Stack
+              direction="row"
+              className="h-full w-full cursor-pointer items-center"
+              onClick={buttonClick}
+            >
+              {flag ? (
+                <Icon src="/icons/arrow/right.png" size={28} />
+              ) : (
+                <Icon src="/icons/arrow/down.png" size={28} />
+              )}
+              <Typography
+                sx={{
+                  fontFamily: "Spoqa Han Sans Neo",
+                  fontSize: 16,
+                  fontWeight: 500,
+                  lineHeight: "120%",
+                }}
+              >
+                지원중인 카드사
+              </Typography>
+            </Stack>
+            {flag ? null : <SupportCard />}
+          </Stack>
+        </Stack>
+        <MypageInfo title="프로모션 코드" buttonText="적용하기" onClick={applyPromotionCode}>
           <InputBase
             className="h-full w-full"
             disabled={!paymentMethodData?.cardNumber}
-            value={paymentMethodData?.cardNumber ? "" : "카드를 등록이 필요합니다."}
+            value={paymentMethodData?.cardNumber ? promotionCode : "카드 등록이 필요합니다."}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              setPromotionCode(event.target.value);
+            }}
           />
         </MypageInfo>
       </Stack>

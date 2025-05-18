@@ -47,7 +47,7 @@ function OasisBotTotalCardList() {
         value={botDataQuery.data?.maxProfitRate.rate ?? 0}
         unit="%"
         arrow
-        mention="7일 동안 승률이 제일 높아요"
+        mention="7일 동안 수익률이 제일 높아요"
       />
       <OasisBotTotalCard
         id="winning-rate"
