@@ -19,13 +19,17 @@ import {
   presetWeightAtom,
   presetWeightInit,
 } from "@/datas/preset";
-import { usePresetMutation, usePresetQuery } from "@/hooks/query/usePreset";
-import { presetDataToPresetWeight } from "@/libs/preset";
+import { useCombinedPresets, useDefaultPresetQuery, usePresetMutation, usePresetQuery } from "@/hooks/query/usePreset";
+import { isDefaultPreset, presetDataToPresetWeight } from "@/libs/preset";
 
 export default function PresetInfoCard() {
-  const {
-    presetQuery: { data: presetData },
-  } = usePresetQuery();
+  // const {
+  //   presetQuery: { data: presetData },
+  // } = usePresetQuery();
+  // const {
+  //   defaultPresetQuery: { data: defaultPresetData },
+  // } = useDefaultPresetQuery();
+  const { data } = useCombinedPresets();
   const { deletePresetMutation } = usePresetMutation();
   const [isCreate, setIsCreate] = useState(false);
   const [preset, setPreset] = useAtom(presetAtom);
@@ -47,14 +51,14 @@ export default function PresetInfoCard() {
             <RoundSelect
               label="프리셋선택"
               items={
-                presetData?.map(({ presetName }) => ({
+                data?.map(({ presetName }) => ({
                   label: presetName,
                   value: presetName,
                 })) ?? []
               }
               value={preset?.presetName ?? ""}
               onChange={e => {
-                const newPreset = presetData?.find(p => p.presetName === e.target.value) ?? null;
+                const newPreset = data?.find(p => p.presetName === e.target.value) ?? null;
                 if (newPreset) {
                   setPreset(newPreset);
                   setPresetWeight(presetDataToPresetWeight(newPreset?.presetData));
@@ -72,16 +76,19 @@ export default function PresetInfoCard() {
       </CardContent>
       <CardFooter>
         <CardButton
+          variant="contained"
           text="삭제"
-          className="bg-sub-3 text-white"
+          className={`${!isDefaultPreset(preset) ? "bg-sub-3" : ""} text-white`}
           onClick={() => {
-            if (preset) {
+            if (isDefaultPreset(preset)) return;
+            if (!isDefaultPreset(preset) && preset) {
               deletePresetMutation.mutate(preset?.id);
               setPreset(null);
               setPresetMenu("preset");
               setPresetWeight(presetWeightInit);
             }
           }}
+          disabled={isDefaultPreset(preset)}
         />
         <CardButton
           text="프리셋 추가"

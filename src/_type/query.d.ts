@@ -1,6 +1,6 @@
 interface ResponseT<Data> {
   data: Data;
-  status: number;
+  state: string;
   msg: string;
 }
 

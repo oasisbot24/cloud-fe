@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 
 import exchangeAtom from "@/datas/exchange";
 import api from "@/libs/network";
@@ -16,6 +16,38 @@ export function usePresetQuery() {
   return {
     presetQuery,
   };
+}
+
+export function useDefaultPresetQuery() {
+  const exchangeId = useAtomValue(exchangeAtom);
+  const defaultPresetQuery = useQuery({
+    queryKey: ["getDefaultPreset"],
+    queryFn: async () => {
+      const res = await api.get<ResponseT<Preset.DefaultPresetT[]>>(
+        `/default_preset?exchange=${exchangeId}`,
+      );
+      return res.data?.data;
+    },
+    select: data => data.map(item => ({ ...item, isDefault: true })),
+  });
+
+  return {
+    defaultPresetQuery,
+  };
+}
+
+export function useCombinedPresets() {
+  const {
+    presetQuery: { data: presets, isLoading: isPresetLoading },
+  } = usePresetQuery();
+
+  const {
+    defaultPresetQuery: { data: defaultPresets, isLoading: isDefaultPresetLoading },
+  } = useDefaultPresetQuery();
+
+  const combinedPresets = [...(presets ?? []), ...(defaultPresets ?? [])];
+
+  return { data: combinedPresets, isLoading: isPresetLoading || isDefaultPresetLoading };
 }
 
 export function useIndicatorQuery() {
