@@ -14,4 +14,8 @@ declare namespace Preset {
     id: number;
     indicatorName: string;
   }
+  interface DefaultPresetT extends PostPresetBody {
+    exchangeId: number;
+    isDefault?: boolean;
+  }
 }

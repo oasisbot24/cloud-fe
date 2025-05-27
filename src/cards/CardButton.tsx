@@ -1,6 +1,7 @@
 import React from "react";
 
-import { Button, CircularProgress, Typography } from "@mui/material";
+import { Button, ButtonPropsVariantOverrides, CircularProgress, Typography } from "@mui/material";
+import { OverridableStringUnion } from "@mui/types";
 
 interface CardButtonProps {
   text: string;
@@ -8,6 +9,7 @@ interface CardButtonProps {
   onClick?: () => void;
   disabled?: boolean;
   loading?: boolean;
+  variant?: OverridableStringUnion<"text" | "contained" | "outlined", ButtonPropsVariantOverrides>;
 }
 
 function CardButton({
@@ -16,9 +18,11 @@ function CardButton({
   onClick,
   disabled,
   loading,
+  variant,
 }: CardButtonProps) {
   return (
     <Button
+      variant={variant ?? "contained"}
       className={`mx-4 my-3 flex w-full rounded-none p-3 ${className}`}
       onClick={onClick}
       disabled={loading || disabled}

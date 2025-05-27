@@ -1,6 +1,6 @@
 import { atomWithReset } from "jotai/utils";
 
-const presetAtom = atomWithReset<Preset.PresetT | null>(null);
+const presetAtom = atomWithReset<Preset.PresetT | Preset.DefaultPresetT | null>(null);
 presetAtom.debugLabel = "presetAtom";
 
 const presetInit = {
