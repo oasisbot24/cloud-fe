@@ -19,7 +19,7 @@ import {
   presetWeightAtom,
   presetWeightInit,
 } from "@/datas/preset";
-import { useCombinedPresets, useDefaultPresetQuery, usePresetMutation, usePresetQuery } from "@/hooks/query/usePreset";
+import { useCombinedPresets, usePresetMutation } from "@/hooks/query/usePreset";
 import { isDefaultPreset, presetDataToPresetWeight } from "@/libs/preset";
 
 export default function PresetInfoCard() {

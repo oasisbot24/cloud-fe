@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Button, ButtonPropsVariantOverrides, CircularProgress, Typography } from "@mui/material";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { OverridableStringUnion } from "@mui/types";
 
 interface CardButtonProps {
