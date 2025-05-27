@@ -46,4 +46,10 @@ const sumPresetWeight = (counting: PresetWeightType) => {
   return Object.values(counting).reduce((acc, cur) => acc + cur, 0);
 };
 
-export { presetDataToPresetWeight, presetWeightToPresetData, sumPresetWeight };
+function isDefaultPreset(
+  item: Preset.PresetT | Preset.DefaultPresetT | null,
+): item is Preset.DefaultPresetT {
+  return !!item && "exchangeId" in item;
+}
+
+export { presetDataToPresetWeight, presetWeightToPresetData, sumPresetWeight, isDefaultPreset };

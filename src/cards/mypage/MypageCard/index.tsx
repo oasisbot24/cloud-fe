@@ -38,7 +38,7 @@ export default function MypageCard() {
       { body: { code: promotionCode } },
       {
         onSuccess: res => {
-          console.log(res);
+          // console.log(res);
           openDialog(<PromotionDialog result={res.data} />);
         },
         onError: err => {

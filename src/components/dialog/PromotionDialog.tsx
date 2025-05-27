@@ -1,7 +1,6 @@
 import Image from "next/image";
 
 import { ButtonBase, Stack, Typography } from "@mui/material";
-import { AxiosError } from "axios";
 
 import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import { datetimeToKorean } from "@/libs/string";
@@ -12,6 +11,7 @@ interface PromotionDialogProps {
 
 export default function PromotionDialog({ result }: PromotionDialogProps) {
   const { closeDialog } = useDialogGlobal();
+
   return (
     <Stack className="rounded-[28px] bg-white">
       <Image src="/dialog/Dialog.png" alt="Dialogimage" width={410} height={208} />
@@ -21,9 +21,9 @@ export default function PromotionDialog({ result }: PromotionDialogProps) {
         </Typography>
         <Stack className="w-full">
           <Typography variant="200R" className="text-center text-sub-3">
-            {result instanceof AxiosError
-              ? result.msg
-              : `프로모션 코드가 적용되었습니다.\n만료일시: ${datetimeToKorean(result?.data.expiryDate)}`}
+            {result?.state === "success"
+              ? `프로모션 코드가 적용되었습니다.\n만료일시: ${datetimeToKorean(result?.data?.expiryDate)}`
+              : (result?.msg ?? "알 수 없는 오류가 발생했습니다. 고객센터에 문의해주세요.")}
           </Typography>
         </Stack>
         <Stack direction="row" className="mt-4 w-full gap-4">
