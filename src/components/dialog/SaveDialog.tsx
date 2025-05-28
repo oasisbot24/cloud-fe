@@ -8,7 +8,7 @@ import useDialogGlobal from "@/components/dialog/useDialogGlobal";
 import { GA_CTA_EVENTS } from "@/constants/constants";
 import { presetAtom, presetWeightAtom } from "@/datas/preset";
 import { usePresetMutation } from "@/hooks/query/usePreset";
-import { presetWeightToPresetData } from "@/libs/preset";
+import { isDefaultPreset, presetWeightToPresetData } from "@/libs/preset";
 
 export default function SaveDialog() {
   const {
@@ -22,7 +22,7 @@ export default function SaveDialog() {
 
   const handleClick = () => {
     if (!preset) return;
-    if (preset?.id === 0) {
+    if (preset?.id === 0 || isDefaultPreset(preset)) {
       postPreset(
         {
           body: {
