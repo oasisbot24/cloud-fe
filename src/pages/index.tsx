@@ -15,7 +15,7 @@ export default function Home() {
           <Description />
           <Box className="absolute bottom-10 right-0 h-full w-full overflow-hidden">
             <Image
-              src="/mobius.png"
+              src="/mobius.webp"
               alt="mobius"
               height={1080}
               width={1080}
