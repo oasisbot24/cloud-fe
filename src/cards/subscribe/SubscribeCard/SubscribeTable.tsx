@@ -37,7 +37,7 @@ export default function SubscribeTable() {
           <TableRow>
             <TableCell />
             <SubscribeTableHead productKey="free" />
-            <SubscribeTableHead productKey="basic" />
+            {/* <SubscribeTableHead productKey="basic" /> */}
             <SubscribeTableHead productKey="premium" />
           </TableRow>
         </TableHead>
@@ -46,7 +46,7 @@ export default function SubscribeTable() {
             <TableRow key={key} className="h-[64px]">
               <TableRowMeta type={key} />
               <CustomTableCell productKey="free" tableRowType={key} />
-              <CustomTableCell productKey="basic" tableRowType={key} />
+              {/* <CustomTableCell productKey="basic" tableRowType={key} /> */}
               <CustomTableCell productKey="premium" tableRowType={key} />
             </TableRow>
           ))}
