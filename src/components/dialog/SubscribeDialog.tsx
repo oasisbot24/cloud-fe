@@ -69,7 +69,7 @@ export default function SubscribeDialog({ currentSubscribe, productKey }: Subscr
                       product.productId ===
                       subscribeData[currentSubscribe as Subscribe.ProductKey].month[
                         subscribeQueryData.productMonth
-                      ].productId,
+                      ]?.productId,
                   )?.productPrice ?? 0,
                   "₩",
                 )}`}
