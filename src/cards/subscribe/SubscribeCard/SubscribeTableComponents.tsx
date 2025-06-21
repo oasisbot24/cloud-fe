@@ -24,6 +24,7 @@ function CustomTableCell({ productKey, tableRowType, children }: CustomTableCell
   const subscribeQueryData: Subscribe.SubscribeT | undefined = queryClient.getQueryData([
     "getSubscribe",
   ]);
+
   const { openDialog } = useDialogGlobal();
 
   const openDialogCondition = (): React.ReactElement | undefined => {
@@ -43,7 +44,7 @@ function CustomTableCell({ productKey, tableRowType, children }: CustomTableCell
   };
   return (
     <TableCell
-      width={220}
+      width={300}
       className="cursor-pointer items-center text-center"
       onMouseEnter={() => setKey(productKey)}
       onMouseLeave={() => setKey(null)}

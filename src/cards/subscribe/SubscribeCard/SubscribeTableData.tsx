@@ -21,7 +21,7 @@ function UpbitIcon() {
 
 function AllText() {
   return (
-    <Stack direction="row" gap={1}>
+    <Stack direction="row" gap={1} className="flex items-center justify-center">
       <div className="font-bold">All</div> 지원거래소 모두가능
     </Stack>
   );
